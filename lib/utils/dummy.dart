@@ -11,4 +11,10 @@ class AppDummyData {
       "2088 Cunningham Court";
   static var house1 = "assets/images/house1.png";
   static var house2 = "assets/images/house2.png";
+
+  static var titleOnBoarding1 = "Title Text for OnBoarding1";
+  static var titleOnBoarding2 = "Title Text for OnBoarding2";
+  static var titleOnBoarding3 = "Title Text for OnBoarding3";
+  static var titleOnBoarding4 = "Title Text for OnBoarding4";
+
 }

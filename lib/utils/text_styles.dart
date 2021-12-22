@@ -10,6 +10,20 @@ class AppTextStyle {
         fontWeight: fw,
     );
   }
+  static TextStyle poppins(Color color, double fs, FontWeight fw,) {
+    return GoogleFonts.poppins(
+      fontSize: fs,
+      color: color,
+      fontWeight: fw,
+    );
+  }
 
+  static TextStyle SFProTextRegular(double fs , Color color) {
+    return TextStyle(
+      fontSize: fs,
+      fontFamily: 'SFProTextRegular',
+      color: color,
+    );
+  }
 
 }

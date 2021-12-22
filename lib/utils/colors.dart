@@ -47,7 +47,39 @@ class AppColors {
     ],
   );
 
+static Color white = Color(0xffFFFFFF);
+  static Color whiteLite = Color(0xffF2F2F3);
+  static Color whiteBackground = Color(0xffFFFCFD);
+  static Color offWhite = Color(0xffF7F8FC);
+  static Color blackLite = Color(0xff707070);
+  static Color borderShadow= Color(0xffECECEC);
+  static Color blue= Color(0xff0191B6);
+  static Color whitedark= Color(0xffEEEEEE);
 
-
+  static LinearGradient orangeGradientColor =  LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    stops: [0.0, 0.9],
+    colors: [
+      AppColors.orangeLite,
+      AppColors.orangeDark,
+    ],
+  );
+  static LinearGradient percantageBarGradientColor =  LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      AppColors.orangeLite,
+      AppColors.orangeDark,
+    ],
+  );
+  static LinearGradient buttonGradienOffWhite =  LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      AppColors.offWhite,
+      AppColors.offWhite,
+    ],
+  );
 
 }

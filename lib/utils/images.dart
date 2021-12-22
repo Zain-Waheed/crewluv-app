@@ -13,4 +13,14 @@ class AppImages {
   static var balloon = "assets/images/balloon.png";
   static var laughing = "assets/images/laughing.png";
   static var party = "assets/images/party.png";
+  static var splashLogo = "assets/images/splashLogo.png";
+  static var onBoarding1 = "assets/images/onBoarding1.png";
+  static var onBoarding2 = "assets/images/onBoarding2.png";
+  static var onBoarding3 = "assets/images/onBoarding3.png";
+  static var onBoarding4 = "assets/images/onBoarding4.png";
+  static var loginLogo = "assets/images/loginLogo.png";
+  static var smartPhone = "assets/images/smartPhone.png";
+  static var google = "assets/images/google.png";
+  static var facebook = "assets/images/facebook.png";
+  static var congratulationLogo = "assets/images/congratulationLogo.png";
 }
