@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:amigos/models/PreferenceModel.dart';
+import 'package:amigos/models/chat_model.dart';
 import 'package:amigos/models/event_type_model.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,12 +12,14 @@ class DashboardProvider extends ChangeNotifier{
   List<PreferenceModel>  favoriteDrinks=[];
   List<PreferenceModel>  musictaste=[];
   List<PreferenceModel>  interests=[];
+  List<ChatModel> messages=[];
 
   DashboardProvider(){
     addEvents();
     addFavoriteDrinks();
     addMusicTaste();
     addInterests();
+    addMessages();
     notifyListeners();
   }
 
@@ -103,4 +106,10 @@ class DashboardProvider extends ChangeNotifier{
     interests.add(PreferenceModel(name: 'photography',isSelected: false));
   }
 
+  void addMessages()
+  {
+    messages.add(ChatModel(message: "'Hey Jeselen ! I would really like to join  Fun Party tonight! Will you let me know if I'm welcome?'",time: '2:00',incomingMsg: false));
+    notifyListeners();
+
+  }
 }

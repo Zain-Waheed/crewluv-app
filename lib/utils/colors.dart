@@ -19,6 +19,19 @@ class AppColors {
   static Color orangeLite =const Color(0xffF9D80D);
   static Color orangeDark= const Color(0xffFF7B17);
   static Color silverWhite = const Color(0xffF7F8FC);
+
+  static Color white = const Color(0xffFFFFFF);
+  static Color whiteLite = const Color(0xffF2F2F3);
+  static Color whiteBackground = const Color(0xffFFFCFD);
+  static Color offWhite = const Color(0xffF7F8FC);
+  static Color blackLite = const Color(0xff707070);
+  static Color borderShadow= const Color(0xffECECEC);
+  static Color blue= const Color(0xff0191B6);
+  static Color whitedark= const Color(0xffEEEEEE);
+  static Color blueLight= const Color(0xff748A9D);
+  static Color pinkLight= const Color(0xffFFE5D2);
+  static Color greyDark= const Color(0xff545659);
+
   static LinearGradient blueGradientColor =  LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -47,14 +60,6 @@ class AppColors {
     ],
   );
 
-static Color white = Color(0xffFFFFFF);
-  static Color whiteLite = Color(0xffF2F2F3);
-  static Color whiteBackground = Color(0xffFFFCFD);
-  static Color offWhite = Color(0xffF7F8FC);
-  static Color blackLite = Color(0xff707070);
-  static Color borderShadow= Color(0xffECECEC);
-  static Color blue= Color(0xff0191B6);
-  static Color whitedark= Color(0xffEEEEEE);
 
   static LinearGradient orangeGradientColor =  LinearGradient(
     begin: Alignment.topLeft,

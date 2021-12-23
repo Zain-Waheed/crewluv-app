@@ -31,6 +31,13 @@ class FieldValidator {
     return null;
   }
 
+  static String? empty(String? value) {
+    if (value!.isEmpty) {
+      return getTranslated(Get.context, "required");
+    }
+    return null;
+  }
+
   static String? validateDescription(String? value) {
     if (value!.isEmpty) {
       return getTranslated(Get.context, "enter_description");

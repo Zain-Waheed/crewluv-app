@@ -23,4 +23,5 @@ class AppImages {
   static var google = "assets/images/google.png";
   static var facebook = "assets/images/facebook.png";
   static var congratulationLogo = "assets/images/congratulationLogo.png";
+   static var attach = "assets/images/attach.png";
 }
