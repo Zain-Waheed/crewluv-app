@@ -149,6 +149,9 @@
   "owner1": "Owner",
   "required": "Required",
   "press_back_button": "Press back button again to exist",
-  "diet_name_required": "Please enter your diet name"
+  "diet_name_required": "Please enter your diet name",
 
+  "about": "About:",
+  "interests": "Interests:",
+  "my_music": "My Music:"
 }

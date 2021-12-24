@@ -108,7 +108,8 @@ class DashboardProvider extends ChangeNotifier{
 
   void addMessages()
   {
-    messages.add(ChatModel(message: "'Hey Jeselen ! I would really like to join  Fun Party tonight! Will you let me know if I'm welcome?'",time: '2:00',incomingMsg: false));
+    messages.add(ChatModel(message: "Lorem ipsum dolor sit amet, consect adip iscing elit, sed do eiusmod. tempor…..incididunt ut labore et dolore magna aliqua",time: '2:00 am',incomingMsg: true));
+    messages.add(ChatModel(message: "Hey Julian",time: '2:00 am',incomingMsg: false));
     notifyListeners();
 
   }
