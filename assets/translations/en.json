@@ -23,6 +23,7 @@
   "vesper": "Vesper",
   "gimlet": "Gimlet",
   "skip_this_step": "Skip this Step",
+  "join_Event": "Join Event",
 
   "music_taste": "Music Taste",
   "share_your_music": "Share your music interest with others.",
@@ -122,6 +123,9 @@
   "max_friends": "How many friends at most?",
   "can_everyone_join":"Can everyone join?",
   "join_on_request":"Join only on Request",
+  "agree_to_friends": "Agree to Friends",
+  "terms_&_condition": "Terms & Conditions",
+  "zero": "0",
   "title": "Title *",
   "description": "Description *",
   "location": "Location",
@@ -154,4 +158,13 @@
   "about": "About:",
   "interests": "Interests:",
   "my_music": "My Music:"
+  "diet_name_required": "Please enter your diet name",
+  "miles_away": "Miles Away",
+  "km":"KM",
+  "new_event":"New Event",
+  "buy_ticket":"Buy Ticket",
+  "my_crew": "My Crew",
+  "join": "Join Event",
+  "of":"of",
+  "friends": "friends"
 }

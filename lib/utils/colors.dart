@@ -11,6 +11,9 @@ class AppColors {
   static Color grey= const Color(0xffEBEBEB);
   static Color genderBorder= const Color(0xffECECEC);
   static Color themeBlue=const Color(0xff0191B6);
+  static Color eventGrey=const Color(0xffB0AFB8);
+  static Color eventBlack=const Color(0xff545659);
+  static Color black3d=const Color(0xff3D3D3D);
   static Color black= const Color(0xff1F1F1F);
   static Color shadedBlack= const Color(0xff484848);
   static Color greyText=const Color(0xff999999);
@@ -20,6 +23,8 @@ class AppColors {
   static Color orangeLite =const Color(0xffF9D80D);
   static Color orangeDark= const Color(0xffFF7B17);
   static Color silverWhite = const Color(0xffF7F8FC);
+  static Color greenActive = const Color(0xff25D660);
+
 
   static Color white = const Color(0xffFFFFFF);
   static Color whiteLite = const Color(0xffF2F2F3);

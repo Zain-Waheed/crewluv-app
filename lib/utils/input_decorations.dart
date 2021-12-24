@@ -9,15 +9,15 @@ class AppInputDecoration{
   {
     return InputDecoration(
       hintText: getTranslated(Get.context, hintText),
-      suffixIcon: Container(
+      suffixIcon:suffixIcon !=null? Container(
           margin: EdgeInsets.only(right: Get.width*0.03),
           child: suffixIcon
-      ),
+      ):null,
       suffixIconConstraints: BoxConstraints(
         maxHeight: Get.width*0.08,
         maxWidth: Get.width*0.08,
       ),
-      hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
+      hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500,),
       enabledBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(30)),
         borderSide: BorderSide(color: AppColors.greyText),

@@ -2,9 +2,10 @@ import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/appbar_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/event_type_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
-import 'package:amigos/ui/auth/event_specifications.dart';
+import 'package:amigos/ui/dashboard/event_specifications.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
@@ -30,9 +31,11 @@ class _CreateEventState extends State<CreateEvent> {
   String endHour= '8';
   String startMinute= '8';
   String endMinute= '8';
-
-
   TimeOfDay? selectedTime = TimeOfDay.now();
+  TextEditingController titleController= TextEditingController();
+  TextEditingController descriptionController=TextEditingController();
+  TextEditingController locationController = TextEditingController();
+  EventModel model=EventModel();
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,15 @@ class _CreateEventState extends State<CreateEvent> {
            color: AppColors.backGround,
           child: AppButton(
             width: Get.width*0.9,
-            onpressed: (){ Get.to(()=> const EventSpecifications());},
+            onpressed: (){
+                model.title = titleController.text;
+                model.description =descriptionController.text;
+                model.liveLocation =locationController.text;
+                model.day=startDate;
+                model.startTime= startHour+':'+startMinute;
+                model.endTime= endHour+':'+endMinute;
+                Get.to(()=>  EventSpecifications(model: model,));
+              },
             buttonText: 'Save_&_continue',
             isWhite: false,
           ) ,
@@ -79,18 +90,21 @@ class _CreateEventState extends State<CreateEvent> {
                 SizedBox(height: Get.width*0.01,),
                 TextFormField(
                   decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_your_title', null),
+                  controller: titleController,
                 ),
                 SizedBox(height: Get.width*0.06,),
                 Text(getTranslated(context, 'description')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
                 SizedBox(height: Get.width*0.01,),
                 TextFormField(
                   decoration: AppInputDecoration.circularFieldDecoration(null, 'invitation_description', null),
+                  controller: descriptionController,
                 ),
                 SizedBox(height: Get.width*0.06,),
                 Text(getTranslated(context, 'location')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
                 SizedBox(height: Get.width*0.01,),
                 TextFormField(
                   decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location', null),
+                  controller: locationController,
                 ),
                 SizedBox(height: Get.width*0.04,),
                 Text(getTranslated(context, "date_time")??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
@@ -247,7 +261,8 @@ class _CreateEventState extends State<CreateEvent> {
 
 
                   ],
-                )
+                ),
+                SizedBox(height: Get.width*0.04,),
               ],
             ),
           ),

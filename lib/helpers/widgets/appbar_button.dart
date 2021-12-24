@@ -22,7 +22,6 @@ class _AppBarButtonState extends State<AppBarButton> {
           primary: AppColors.lightGrey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
-
           ),
 
           elevation: 10

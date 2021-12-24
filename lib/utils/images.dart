@@ -23,7 +23,26 @@ class AppImages {
   static var google = "assets/images/google.png";
   static var facebook = "assets/images/facebook.png";
   static var congratulationLogo = "assets/images/congratulationLogo.png";
-   static var attach = "assets/images/attach.png";
+  static var profile = "assets/images/profile.png";
+  static var party2 = "assets/images/party2.png";
+  static var message = "assets/images/message.png";
+  static var location = "assets/images/location.png";
+  static var bonFire = "assets/images/bonFire.png";
+  static var balloonSmall = "assets/images/balloonSmall.png";
+  static var partySmall = "assets/images/partySmall.png";
+  static var addEvent = "assets/images/addEvent.png";
+  static var attach = "assets/images/attach.png";
+  static var list = "assets/images/list.png";
+  static var list2 = "assets/images/list2.png";
+  static var yourLocation = "assets/images/yourLocation.png";
+  static var yourLocation2 = "assets/images/yourLocation2.png";
+  static var verified = "assets/images/verified.png";
+  static var locationEvent = "assets/images/locationEvent.png";
+  static var crew1 = "assets/images/crew1.png";
+  static var crew2 = "assets/images/crew2.png";
+
+
+
    static var userImage = "assets/images/userImage.png";
    static var chat = "assets/images/chat.png";
    static var close = "assets/images/close.png";

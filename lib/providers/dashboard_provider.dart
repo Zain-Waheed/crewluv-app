@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:amigos/models/PreferenceModel.dart';
+import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/chat_model.dart';
 import 'package:amigos/models/event_type_model.dart';
+import 'package:amigos/models/user_model.dart';
+import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,6 +16,8 @@ class DashboardProvider extends ChangeNotifier{
   List<PreferenceModel>  musictaste=[];
   List<PreferenceModel>  interests=[];
   List<ChatModel> messages=[];
+  List<EventModel> events=[];
+  List<UserModel> users=[];
 
   DashboardProvider(){
     addEvents();
@@ -20,6 +25,7 @@ class DashboardProvider extends ChangeNotifier{
     addMusicTaste();
     addInterests();
     addMessages();
+    addUser();
     notifyListeners();
   }
 
@@ -32,7 +38,7 @@ class DashboardProvider extends ChangeNotifier{
     File(""),
   ];
 
-  void addEvents(){
+  void addEventTypes(){
     eventTypes.add(EventType(image: AppImages.naughty, title: 'Naughty' ));
     eventTypes.add(EventType(image: AppImages.balloon, title: 'Birthday' ));
     eventTypes.add(EventType(image: AppImages.ill, title: 'ill' ));
@@ -105,12 +111,19 @@ class DashboardProvider extends ChangeNotifier{
     interests.add(PreferenceModel(name: 'golf',isSelected: false));
     interests.add(PreferenceModel(name: 'photography',isSelected: false));
   }
+  void addEvents(){
+    events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket'));
+    events.add(EventModel( title: 'Bonfire Party', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.bonFire,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket'));
+    events.add(EventModel(title: 'Friends Mode', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.partySmall,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket'));
+  }
 
   void addMessages()
   {
     messages.add(ChatModel(message: "Lorem ipsum dolor sit amet, consect adip iscing elit, sed do eiusmod. tempor…..incididunt ut labore et dolore magna aliqua",time: '2:00 am',incomingMsg: true));
     messages.add(ChatModel(message: "Hey Julian",time: '2:00 am',incomingMsg: false));
     notifyListeners();
-
+  }
+  void addUser(){
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active'));
   }
 }

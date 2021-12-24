@@ -1,7 +1,7 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
-import 'package:amigos/ui/auth/create_event.dart';
+import 'package:amigos/ui/dashboard/create_event.dart';
 import 'package:amigos/ui/auth/select_gender.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -28,33 +28,6 @@ class _EnterDOBState extends State<EnterDOB> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: PreferredSize(
-      //   preferredSize: Size.fromHeight(Get.width * 0.17),
-      //   child: CustomAppBar(
-      //       function: () {
-      //         Get.back();
-      //       },
-      //       backButton: true,
-      //       title: 'complete_profile'),
-      // ),
-      // bottomNavigationBar: Container(
-      //   height: Get.width * 0.2,
-      //   padding: EdgeInsets.symmetric(
-      //       horizontal: Get.width * 0.07, vertical: Get.width * 0.03),
-      //   child: AppButton(
-      //     isWhite: false,
-      //     width: Get.width * 0.6,
-      //     buttonText: 'further',
-      //     onpressed: () {
-      //       if(formKey.currentState!.validate())
-      //       {
-      //         Get.to(()=>const CreateEvent());
-      //       }
-      //
-      //
-      //     },
-      //   ),
-      // ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
