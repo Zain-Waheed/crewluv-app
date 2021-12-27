@@ -24,6 +24,7 @@ class DashboardProvider extends ChangeNotifier{
     addFavoriteDrinks();
     addMusicTaste();
     addInterests();
+    addEventTypes();
     addMessages();
     addUser();
     notifyListeners();

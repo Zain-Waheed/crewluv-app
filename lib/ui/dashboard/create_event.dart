@@ -1,6 +1,7 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/appbar_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
+import 'package:amigos/helpers/widgets/mood_type_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/event_type_model.dart';
@@ -81,7 +82,7 @@ class _CreateEventState extends State<CreateEvent> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: List.generate(provider.eventTypes.length, (index){
-                      return eventTypeWidget(provider.eventTypes[index]);
+                      return MoodTypeWidget(type:provider.eventTypes[index]);
                     }),
                   ),
                 ),
@@ -270,30 +271,14 @@ class _CreateEventState extends State<CreateEvent> {
       );
     });
   }
-  Widget eventTypeWidget(EventType type){
-    return Container(
-      height: Get.width*0.18,
-      width: Get.width*0.15,
-      margin: const EdgeInsets.only(right: 10),
-      
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset(type.image,scale: 4,),
-          Text(type.title),
-        ],
-      ),
-    );
 
-  }
   _selectDate(BuildContext? context,String date) async {
     final DateTime? selected = await showDatePicker(
       context: context!,
       initialDate: eventDateTime,
-      firstDate: DateTime(1990),
-      lastDate: DateTime.now(),
+      firstDate: eventDateTime,
       locale: const Locale('en', 'US'),
+      lastDate: DateTime(eventDateTime.year+10,eventDateTime.month,eventDateTime.day,eventDateTime.hour,eventDateTime.minute),
       builder: (BuildContext? context, Widget? child) {
         return Theme(
           data: ThemeData.light().copyWith(

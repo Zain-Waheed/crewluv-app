@@ -40,11 +40,12 @@ class AppImages {
   static var locationEvent = "assets/images/locationEvent.png";
   static var crew1 = "assets/images/crew1.png";
   static var crew2 = "assets/images/crew2.png";
-
-
-
+  static var home = "assets/images/home.png";
+  static var chat = "assets/images/chat.png";
+  static var people = "assets/images/people.png";
+  static var user = "assets/images/user.png";
    static var userImage = "assets/images/userImage.png";
-   static var chat = "assets/images/chat.png";
+   static var chat2 = "assets/images/chat2.png";
    static var close = "assets/images/close.png";
    static var heart = "assets/images/heart.png";
    static var starBlank = "assets/images/starBlank.png";

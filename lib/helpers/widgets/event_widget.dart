@@ -25,7 +25,7 @@ class _EventWidgetState extends State<EventWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black.withOpacity(0.5),
+      backgroundColor: AppColors.opacBlack,
       body: Center(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),

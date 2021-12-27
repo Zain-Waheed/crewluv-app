@@ -2,7 +2,7 @@ import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
-import 'package:amigos/ui/dashboard/events.dart';
+import 'package:amigos/ui/dashboard/my_events.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';

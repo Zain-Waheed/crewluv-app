@@ -38,4 +38,30 @@ class AppInputDecoration{
       filled: true,
     );
   }
+  static InputDecoration withoutIcon(String hintText)
+  {
+    return InputDecoration(
+      fillColor: AppColors.whiteColor,
+      hintText: getTranslated(Get.context, hintText),
+      hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500,),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        borderSide: BorderSide(color: AppColors.genderBorder),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        borderSide: BorderSide(color: AppColors.genderBorder),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        borderSide: BorderSide(color: AppColors.genderBorder),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        borderSide: BorderSide(color: AppColors.genderBorder),
+      ),
+      isDense: true,
+      filled: true,
+    );
+  }
 }

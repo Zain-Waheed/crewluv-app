@@ -24,6 +24,7 @@ class AppColors {
   static Color orangeDark= const Color(0xffFF7B17);
   static Color silverWhite = const Color(0xffF7F8FC);
   static Color greenActive = const Color(0xff25D660);
+  static Color opacBlack =   Colors.black.withOpacity(0.5);
 
 
   static Color white = const Color(0xffFFFFFF);
@@ -37,6 +38,7 @@ class AppColors {
   static Color blueLight= const Color(0xff748A9D);
   static Color pinkLight= const Color(0xffFFE5D2);
   static Color greyDark= const Color(0xff545659);
+  static Color bottomBarColor= const Color(0xffF9D80D);
   static LinearGradient blueGradientColor =  LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
