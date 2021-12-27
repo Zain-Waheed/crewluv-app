@@ -46,7 +46,7 @@ class AppButton extends StatelessWidget {
           ),
           child: Text(
             getTranslated(context, buttonText)??"",
-            style: AppTextStyle.montserrat(isWhite==true?AppColors.shadedBlack:AppColors.whiteColor, Get.width*0.04, FontWeight.w600),
+            style: AppTextStyle.montserrat(isWhite==true?AppColors.blackLite:AppColors.whiteColor, Get.width*0.04, FontWeight.w600),
           ),
         ),
       ),

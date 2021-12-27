@@ -1,11 +1,11 @@
 import 'package:amigos/helpers/widgets/app_button_small.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -143,9 +143,9 @@ class _ProfileDetailState extends State<ProfileDetail> {
                             GestureDetector(
                               onTap:(){},
                               child: Container(
-                                margin: EdgeInsets.only(right: Get.width*0.04),
-                                width:Get.width*0.16,
-                                height:Get.width*0.16,
+                                margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.03),
+                                width:Get.width*0.14,
+                                height:Get.width*0.14,
                                 alignment: Alignment.center,
                                 padding:  const EdgeInsets.all(18),
                                 decoration: BoxDecoration(
@@ -162,7 +162,9 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               ),
                             ),
                             GestureDetector(
-                              onTap:(){},
+                              onTap:(){
+                                Get.to(Profiles());
+                              },
                               child: Container(
                                 margin: EdgeInsets.only(right: Get.width*0.04),
                                 width:Get.width*0.16,
@@ -206,9 +208,9 @@ class _ProfileDetailState extends State<ProfileDetail> {
                             GestureDetector(
                               onTap:(){},
                               child: Container(
-                                margin: EdgeInsets.only(right: Get.width*0.04),
-                                width:Get.width*0.16,
-                                height:Get.width*0.16,
+                                margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.04),
+                                width:Get.width*0.14,
+                                height:Get.width*0.14,
                                 alignment: Alignment.center,
                                 padding:  const EdgeInsets.all(12),
                                 decoration: BoxDecoration(

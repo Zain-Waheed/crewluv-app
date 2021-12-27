@@ -40,6 +40,8 @@ class AppImages {
   static var locationEvent = "assets/images/locationEvent.png";
   static var crew1 = "assets/images/crew1.png";
   static var crew2 = "assets/images/crew2.png";
+   static var rewind = "assets/images/rewind.png";
+   static var heartGreen = "assets/images/heartGreen.png";
 
 
 
@@ -48,4 +50,5 @@ class AppImages {
    static var close = "assets/images/close.png";
    static var heart = "assets/images/heart.png";
    static var starBlank = "assets/images/starBlank.png";
+   static var profilesBackground = "assets/images/profilesBackground.png";
 }

@@ -16,5 +16,5 @@ class AppDummyData {
   static var titleOnBoarding2 = "Title Text for OnBoarding2";
   static var titleOnBoarding3 = "Title Text for OnBoarding3";
   static var titleOnBoarding4 = "Title Text for OnBoarding4";
-
+  static var profileDummy = "assets/images/profileDummy.png";
 }

@@ -115,7 +115,6 @@
   "enter_title": "Enter offer title",
   "enter_description": "Enter description",
   "add_description": "Add Description ",
-  "new_event": "New Event",
   "enter_email_username": "Enter username",
   "invite_friends_to": "What do you want to invite friends to?",
   "with_people": "Are you with people yet?",
@@ -157,8 +156,7 @@
 
   "about": "About:",
   "interests": "Interests:",
-  "my_music": "My Music:"
-  "diet_name_required": "Please enter your diet name",
+  "my_music": "My Music:",
   "miles_away": "Miles Away",
   "km":"KM",
   "new_event":"New Event",
@@ -166,5 +164,11 @@
   "my_crew": "My Crew",
   "join": "Join Event",
   "of":"of",
-  "friends": "friends"
+  "friends": "friends",
+  "message":"MESSAGE",
+  "keep_swiping":"KEEP SWIPING",
+  "send_message_to":"Send message to",
+  "to become friends.":"to become friends.",
+  "you_added":"You added",
+  "to_your_event_crew":"to your event crew"
 }
