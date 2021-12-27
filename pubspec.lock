@@ -321,7 +321,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.10"
+    version: "2.0.11"
   path_provider_ios:
     dependency: transitive
     description:
@@ -488,6 +488,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
+  sprung:
+    dependency: transitive
+    description:
+      name: sprung
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   sqflite:
     dependency: transitive
     description:
@@ -530,6 +537,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  swipable_stack:
+    dependency: "direct main"
+    description:
+      name: swipable_stack
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.1"
   synchronized:
     dependency: transitive
     description:
@@ -578,7 +592,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   xdg_directories:
     dependency: transitive
     description:

@@ -118,7 +118,6 @@
   "enter_title": "Enter offer title",
   "enter_description": "Enter description",
   "add_description": "Add Description ",
-  "new_event": "New Event",
   "enter_email_username": "Enter username",
   "invite_friends_to": "What do you want to invite friends to?",
   "with_people": "Are you with people yet?",
@@ -174,5 +173,11 @@
   "my_crew": "My Crew",
   "join": "Join Event",
   "of":"of",
-  "friends": "friends"
+  "friends": "friends",
+  "message":"MESSAGE",
+  "keep_swiping":"KEEP SWIPING",
+  "send_message_to":"Send message to",
+  "to become friends.":"to become friends.",
+  "you_added":"You added",
+  "to_your_event_crew":"to your event crew"
 }
