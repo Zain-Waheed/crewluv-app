@@ -26,6 +26,9 @@ class AppColors {
   static Color greenActive = const Color(0xff25D660);
   static Color opacBlack =   Colors.black.withOpacity(0.5);
   static Color slateGrey = const Color(0xffB2BAC1);
+  static Color  solidGrey = const Color(0xffB2BAC1);
+
+
   static Color white = const Color(0xffFFFFFF);
   static Color whiteLite = const Color(0xffF2F2F3);
   static Color whiteBackground = const Color(0xffFFFCFD);

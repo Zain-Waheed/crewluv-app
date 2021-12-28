@@ -15,8 +15,18 @@ class NotificationDialogBox extends StatefulWidget {
   _NotificationDialogBoxState createState() => _NotificationDialogBoxState();
 }
 
-class _NotificationDialogBoxState extends State<NotificationDialogBox> {
-  late Animation<Offset> _animation;
+class _NotificationDialogBoxState extends State<NotificationDialogBox> with SingleTickerProviderStateMixin{
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+  )..forward();
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: const Offset(-5,0.0),
+    end: const Offset(0.0, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _controller,
+    curve: Curves.bounceIn,
+  ));
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

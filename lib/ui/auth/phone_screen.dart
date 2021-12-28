@@ -1,4 +1,5 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
+import 'package:amigos/helpers/widgets/app_button_grey.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/ui/auth/otp_screen.dart';
@@ -31,7 +32,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
       bottomNavigationBar: Container(
         height: Get.width*0.2,
         padding: EdgeInsets.symmetric(horizontal: Get.width*0.07,vertical: Get.width*0.03),
-        child: AppButton(isWhite: false,width: Get.width*0.6,buttonText: 'request_otp',
+        child:  validated==false?AppButtonGrey():AppButton(isWhite: false,width: Get.width*0.6,buttonText: 'request_otp',
           onpressed: (){
             if(formKey.currentState!.validate())
               {

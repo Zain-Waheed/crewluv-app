@@ -173,7 +173,7 @@ class _ProfilesState extends State<Profiles> {
                 ),
                 GestureDetector(
                   onTap:(){
-
+                    Get.to(SlidingAnimation());
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.04),

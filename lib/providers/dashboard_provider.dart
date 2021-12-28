@@ -23,6 +23,7 @@ class DashboardProvider extends ChangeNotifier{
 
   DashboardProvider(){
     addEvents();
+    addEvents();
     addFavoriteDrinks();
     addMusicTaste();
     addInterests();
@@ -32,6 +33,9 @@ class DashboardProvider extends ChangeNotifier{
     addUser();
     notifyListeners();
   }
+  GlobalKey<FormState> formKey =  GlobalKey<FormState>();
+  List<int> formCheck= [-1,-1,-1,-1,1,1,1,1];
+  int pageIndex = 0;
 
   List<File> mediaListImages = [
     File(""),

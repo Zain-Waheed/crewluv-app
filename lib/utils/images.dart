@@ -48,6 +48,11 @@ class AppImages {
    static var chat2 = "assets/images/chat2.png";
    static var rewind = "assets/images/rewind.png";
    static var heartGreen = "assets/images/heartGreen.png";
+
+
+
+   // static var userImage = "assets/images/userImage.png";
+   // static var chat = "assets/images/chat.png";
    static var close = "assets/images/close.png";
    static var heart = "assets/images/heart.png";
    static var starBlank = "assets/images/starBlank.png";
