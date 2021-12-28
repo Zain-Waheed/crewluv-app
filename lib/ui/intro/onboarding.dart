@@ -27,10 +27,12 @@ class _OnBoardingState extends State<OnBoarding> {
         ),
         child: Column(
           children: [
-            Container(
-              // color: Colors.lightGreen,
+            SizedBox(
+              height: Get.width * 0.08,
+            ),
+            SizedBox(
               width: Get.width,
-              height: Get.width * 1.15,
+              height: Get.height * 0.4,
               child: PageView(
                 controller: _controller,
                 onPageChanged: (index) {
@@ -54,11 +56,14 @@ class _OnBoardingState extends State<OnBoarding> {
                 ],
               ),
             ),
+            SizedBox(
+              height: Get.width * 0.07,
+            ),
             SmoothPageIndicator(
               count: 4,
               effect: ExpandingDotsEffect(
-                expansionFactor: 4.5,
-                strokeWidth: 2,
+                expansionFactor: Get.width*0.01,
+                strokeWidth: Get.width*0.02,
                 dotColor: AppColors.white,
                 dotWidth: Get.width * 0.02,
                 dotHeight: Get.width * 0.02,
@@ -68,72 +73,63 @@ class _OnBoardingState extends State<OnBoarding> {
               controller: _controller,
             ),
             SizedBox(
-              height: Get.width * 0.15,
+              height: Get.width * 0.12,
             ),
-            
             Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  width: Get.width,
-                  height: Get.width * 0.861,
-                  decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      )),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: Get.width * 0.15,
-                      ),
-                      Text(
-                        titleText(),
-                        style: AppTextStyle.montserrat(
-                            AppColors.black, Get.width * 0.05, FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: Get.width * 0.1,
-                      ),
-                      Text(
-                        descriptionText(),
-                        style: AppTextStyle.montserrat(AppColors.blackLite,
-                            Get.width * 0.04, FontWeight.normal),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(
-                        height: Get.width * 0.1,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          AppButton(
-                            onpressed: () {},
-                            buttonText: 'skip',
-                            width: Get.width * 0.35,
-                            isWhite: true,
-                          ),
-                          AppButton(
-                            onpressed: () {
-                              pageIndex++;
-                              if(pageIndex<=3)
+              child: Container(
+                width: Get.width,
+                decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    )),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const SizedBox(height: 10,),
+                    Text(
+                      titleText(),
+                      style: AppTextStyle.montserrat(
+                          AppColors.black, Get.width * 0.05, FontWeight.bold),
+                    ),
+
+                    Text(
+                      descriptionText(),
+                      style: AppTextStyle.montserrat(AppColors.blackLite,
+                          Get.width * 0.04, FontWeight.normal),
+                      textAlign: TextAlign.center,
+                    ),
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        AppButton(
+                          onpressed: () {},
+                          buttonText: 'skip',
+                          width: Get.width * 0.35,
+                          isWhite: true,
+                        ),
+                        AppButton(
+                          onpressed: () {
+                            pageIndex++;
+                            if(pageIndex<=3)
+                              {
+                                _controller.jumpToPage(pageIndex);
+                              }else
                                 {
-                                  _controller.jumpToPage(pageIndex);
-                                }else
-                                  {
-                                     pageIndex=4;
-                                     Get.to(Login());
-                                  }
-                            },
-                            buttonText: pageIndex==3?'register':'next',
-                            width: Get.width * 0.35,
-                            isWhite: false,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                                   pageIndex=4;
+                                   Get.to(Login());
+                                }
+                          },
+                          buttonText: pageIndex==3?'register':'next',
+                          width: Get.width * 0.35,
+                          isWhite: false,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),

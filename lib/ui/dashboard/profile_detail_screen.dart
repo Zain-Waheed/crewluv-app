@@ -94,6 +94,69 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(AppImages.profile,scale: 4,),
+                            SizedBox(width: Get.width*0.02,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      provider.users[0].name ?? "",
+                                      style: AppTextStyle.montserrat(
+                                          AppColors.black3d, Get.width * 0.04, FontWeight.w500),
+                                    ),
+                                    const Text(','),
+                                    Text(
+                                      provider.users[0].age.toString(),
+                                      style: AppTextStyle.montserrat(
+                                          AppColors.black3d, Get.width * 0.04, FontWeight.w500),
+                                    ),
+                                    SizedBox(width: Get.width*0.04,),
+                                    provider.users[0].isVerified
+                                        ? Image.asset(AppImages.verified,scale: 3,)
+                                        : SizedBox(),
+                                  ],
+                                ),
+                                SizedBox(height: Get.width*0.01,),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: Get.width*0.028,
+                                      width: Get.width*0.028,
+                                      decoration:  BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: AppColors.greenActive,
+                                      ),
+                                    ),
+                                    SizedBox(width: Get.width*0.02,),
+                                    Text(provider.users[0].activeStatus, style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                                  ],
+                                ),
+                                SizedBox(height: Get.width*0.02,),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Image.asset(AppImages.locationEvent,scale: 3,),
+                                    SizedBox(width: Get.width*0.01,),
+                                    Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                                    Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Spacer(),
+                            Image.asset(AppImages.bonFire,scale: 1.5,),
+
+                          ],
+                        ),
                         Text(getTranslated(context, 'about') ?? "",
                           style: AppTextStyle.montserrat(
                               AppColors.shadedBlack, Get.width * 0.04,

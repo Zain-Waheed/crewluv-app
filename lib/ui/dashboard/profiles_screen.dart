@@ -187,7 +187,7 @@ class _ProfilesState extends State<Profiles> {
                       boxShadow: [
                         BoxShadow(
                             color: AppColors.black.withOpacity(0.5),
-                            offset: Offset(0, 4),
+                            offset: const Offset(0, 4),
                             blurRadius: 5.0)
                       ],
                     ),

@@ -4,6 +4,7 @@ import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/ui/intro/splash_logo_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
+import 'package:amigos/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +15,7 @@ class SplashScreeen extends StatefulWidget {
   _SplashScreeenState createState() => _SplashScreeenState();
 }
 
-class _SplashScreeenState extends State<SplashScreeen> {
+class _SplashScreeenState extends State<SplashScreeen>  {
 
   void initState() {
     Future.delayed(Duration(seconds: 1),(){
@@ -24,7 +25,6 @@ class _SplashScreeenState extends State<SplashScreeen> {
     },
     );
     super.initState();
-
   }
   @override
   Widget build(BuildContext context) {
