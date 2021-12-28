@@ -15,13 +15,14 @@ class AllEvents extends StatefulWidget {
 }
 
 class _AllEventsState extends State<AllEvents> {
-  int index=1;
+  int index=0;
   PageController controller = PageController();
   @override
   Widget build(BuildContext context) {
    return Consumer<DashboardProvider>(builder:(context,provider,_)
        {
          return Scaffold(
+           backgroundColor: AppColors.whiteBackground,
            appBar: AppBar(
              title: Text(getTranslated(context, "events")??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
              centerTitle: true,
@@ -42,26 +43,56 @@ class _AllEventsState extends State<AllEvents> {
                  child: Row(
                    children: [
                      Expanded(
-                       child: Container(
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(20),
-                           color: index==0?AppColors.themeColor:AppColors.offWhite,
+                       child: GestureDetector(
+                         onTap: (){
+                           index=0;
+                           controller.jumpToPage(index);
+                           setState(() {
+
+                           });
+                         },
+                         child: Container(
+                           decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(20),
+                             color: index==0?AppColors.themeColor:AppColors.offWhite,
+                           ),
+                           child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(index==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
                          ),
                        ),
                      ),
                      Expanded(
-                       child: Container(
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(20),
-                           color: index==1?AppColors.themeColor:AppColors.offWhite,
+                       child: GestureDetector(
+                         onTap: (){
+                           index=1;
+                           controller.jumpToPage(index);
+                           setState(() {
+
+                           });
+                         },
+                         child: Container(
+                           decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(20),
+                             color: index==1?AppColors.themeColor:AppColors.offWhite,
+                           ),
+                           child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(index==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
                          ),
                        ),
                      ),
                      Expanded(
-                       child: Container(
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(20),
-                           color: index==2?AppColors.themeColor:AppColors.offWhite,
+                       child: GestureDetector(
+                         onTap: (){
+                           index=2;
+                           controller.jumpToPage(index);
+                           setState(() {
+
+                           });
+                         },
+                         child: Container(
+                           decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(20),
+                             color: index==2?AppColors.themeColor:AppColors.offWhite,
+                           ),
+                           child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(index==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
                          ),
                        ),
                      ),
@@ -71,6 +102,7 @@ class _AllEventsState extends State<AllEvents> {
                Expanded(
                  child: PageView(
                    controller:controller,
+                   physics: const NeverScrollableScrollPhysics(),
                    onPageChanged: (value){
                      index = value;
                      setState(() {
@@ -79,13 +111,13 @@ class _AllEventsState extends State<AllEvents> {
                    },
                    children: [
                      Column(
-                       children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index],)),
+                       children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index], titleImage: false,)),
                      ),
                      Column(
-                       children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index],)),
+                       children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index], titleImage: false,)),
                      ),
                      Column(
-                       children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index],)),
+                       children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index],titleImage: false,)),
                      ),
                    ],
                  ),

@@ -28,10 +28,10 @@ class _CreateEventState extends State<CreateEvent> {
   DateTime eventDateTime =DateTime.now();
   String startDate = "Dec 12";
   String endDate = "Dec 12";
-  String startHour= '8';
-  String endHour= '8';
-  String startMinute= '8';
-  String endMinute= '8';
+  String startHour= '0';
+  String endHour= '0';
+  String startMinute= '0';
+  String endMinute= '0';
   TimeOfDay? selectedTime = TimeOfDay.now();
   TextEditingController titleController= TextEditingController();
   TextEditingController descriptionController=TextEditingController();
@@ -46,7 +46,9 @@ class _CreateEventState extends State<CreateEvent> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(Get.width * 0.17),
           child: CustomAppBar(
-            function: () {},
+            function: () {
+              Get.back();
+            },
             backButton: false,
             title: 'new_event',
           ),
@@ -119,7 +121,7 @@ class _CreateEventState extends State<CreateEvent> {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                                color: AppColors.black.withOpacity(0.2), offset: Offset(0, 4), blurRadius: 5.0)
+                                color: AppColors.black.withOpacity(0.05), offset: Offset(0, 1), blurRadius: 5.0)
                           ],
                         ),
                         child: Column(
@@ -149,7 +151,7 @@ class _CreateEventState extends State<CreateEvent> {
                                 padding: EdgeInsets.symmetric(horizontal:Get.width*0.015),
                                 decoration: BoxDecoration(
                                     color: AppColors.whiteColor,
-                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5))
+                                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5))
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -192,7 +194,7 @@ class _CreateEventState extends State<CreateEvent> {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                                color: AppColors.black.withOpacity(0.2), offset: Offset(0, 4), blurRadius: 5.0)
+                                color: AppColors.black.withOpacity(0.05), offset: Offset(0, 1), blurRadius: 5.0)
                           ],
                         ),
                         child: Column(

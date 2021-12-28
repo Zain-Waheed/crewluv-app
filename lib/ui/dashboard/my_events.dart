@@ -38,8 +38,8 @@ class _MyEventsState extends State<MyEvents> {
               GestureDetector(
                 onTap: (){
                   Get.dialog(
-                    //EventWidget(event: provider.events[1],user: provider.users.first),
-                     const MoodWidget(),
+                    EventWidget(event: provider.events[1],user: provider.users.first),
+                     //const MoodWidget(),
                   );
                 },
                 child: Container(
@@ -86,7 +86,7 @@ class _MyEventsState extends State<MyEvents> {
         ) ,
         body: SingleChildScrollView(
           child: Column(
-            children: List.generate(provider.events.length, (index) => EventDescriptionWidget(model: provider.events[index])),
+            children: List.generate(provider.events.length, (index) => EventDescriptionWidget(model: provider.events[index],titleImage: true,)),
           ),
         ),
 

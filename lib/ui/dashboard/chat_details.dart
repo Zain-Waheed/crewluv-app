@@ -1,5 +1,5 @@
 import 'package:amigos/localization/app_localization.dart';
-import 'package:amigos/models/chat_model.dart';
+import 'package:amigos/models/chat_details_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
@@ -14,7 +14,9 @@ import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 
 class Chat extends StatefulWidget {
-  const Chat({Key? key}) : super(key: key);
+  String name;
+
+  Chat({ required this.name});
 
   @override
   _ChatState createState() => _ChatState();
@@ -60,7 +62,7 @@ class _ChatState extends State<Chat> {
                     width: Get.width * 0.08,
                   ),
                   Container(
-                    padding: EdgeInsets.all(2),
+                    padding: const EdgeInsets.all(2),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
@@ -77,9 +79,9 @@ class _ChatState extends State<Chat> {
                     width: Get.width * 0.03,
                   ),
                   Text(
-                    'Jeselen',
+                    widget.name,
                     style: AppTextStyle.montserrat(
-                        AppColors.black, Get.width * 0.06, FontWeight.bold),
+                        AppColors.black, Get.width * 0.05, FontWeight.bold),
                   ),
                 ],
               ),
@@ -370,7 +372,7 @@ class _ChatState extends State<Chat> {
                                 setState(() {});
                                 provider.messages.insert(
                                     0,
-                                    ChatModel(
+                                    ChatDetailsModel(
                                         message: sendMessageController.text
                                             .toString(),
                                         time: "2:00",

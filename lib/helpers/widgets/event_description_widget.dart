@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class EventDescriptionWidget extends StatefulWidget {
  EventModel model;
- EventDescriptionWidget({ required this.model});
+ bool titleImage;
+ EventDescriptionWidget({ required this.model,required this.titleImage});
 
   @override
   _EventDescriptionWidgetState createState() => _EventDescriptionWidgetState();
@@ -30,26 +31,32 @@ class _EventDescriptionWidgetState extends State<EventDescriptionWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: Get.width*0.02,),
           Row(
             children: [
               Text(widget.model.title??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
               Spacer(),
-              Image.asset(widget.model.titleImage??"",scale: 2.5,),
+              widget.titleImage?Image.asset(widget.model.titleImage??"",scale: 2.5,): SizedBox(height: Get.width*0.06,),
             ],
           ),
           Text(widget.model.description??"",style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w400),),
+          SizedBox(height: Get.width*0.02,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(AppImages.location,scale: 2.5,),
-              Text('${widget.model.distance}',style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.035, FontWeight.w400),),
+              SizedBox(width: Get.width*0.01,),
+              Text('${widget.model.distance} ',style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.035, FontWeight.w400),),
               Text(getTranslated(context, "miles_away")??"",style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.035, FontWeight.w400)),
-              Spacer(),
+              const Spacer(),
               Text(widget.model.day??"",style: AppTextStyle.montserrat(AppColors.eventGrey, Get.width*0.03, FontWeight.w400)),
-              SizedBox(width: 2,),
+              const SizedBox(width: 2,),
               Text(widget.model.startTime??"",style: AppTextStyle.montserrat(AppColors.eventGrey, Get.width*0.03, FontWeight.w400))
             ],
-          )
+          ),
+          SizedBox(height: Get.width*0.02,),
+
         ],
       ),
     );

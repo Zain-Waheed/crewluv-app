@@ -1,7 +1,7 @@
 class ChatModel{
-  String? message;
-  String? time;
-  bool? incomingMsg;
-
-  ChatModel({this.message,this.time,this.incomingMsg});
+  String imagePath;
+  String name;
+  String lastMessage;
+  String time;
+  ChatModel({required this.imagePath, required this.name, required this.lastMessage,required this.time});
 }

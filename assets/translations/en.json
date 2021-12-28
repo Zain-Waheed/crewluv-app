@@ -1,7 +1,6 @@
 {
-      
 
-"next": "Next",
+  "next": "Next",
   "skip": "Skip",
   "register": "Register",
   "by_clicking": "By clicking Log In, you agree with our  ",
@@ -24,16 +23,16 @@
   "gimlet": "Gimlet",
   "skip_this_step": "Skip this Step",
   "join_Event": "Join Event",
-
   "music_taste": "Music Taste",
   "share_your_music": "Share your music interest with others.",
-
   "pop": "Pop",
   "send": "Send",
   "pending": "pending....",
   "pending2": "Pending",
   "joined": "Joined",
   "my_events": "My Events",
+  "messages": "Messages",
+  "chats": "Chat",
   "start_typing": "Start Typing...",
   "done": "Done",
   "hip_hop": "Hip-Hop",

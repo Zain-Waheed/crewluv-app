@@ -1,4 +1,6 @@
 import 'package:amigos/ui/dashboard/all_events.dart';
+import 'package:amigos/ui/dashboard/chat_screen.dart';
+import 'package:amigos/ui/dashboard/create_event.dart';
 import 'package:amigos/ui/dashboard/my_events.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -19,12 +21,15 @@ import 'package:get/get.dart';
      return Scaffold(
        body: PageView(
          controller: controller,
+         physics:  const NeverScrollableScrollPhysics(),
          onPageChanged: (value){
            pageIndex=value;
          },
          children: const [
            MyEvents(),
            AllEvents(),
+           ChatScreen(),
+
          ],
        ),
 
@@ -32,9 +37,8 @@ import 'package:get/get.dart';
        floatingActionButton: FloatingActionButton(
          child:  Center(child: Image.asset(AppImages.addEvent,scale: 3,color: AppColors.whiteColor,)),
          backgroundColor: AppColors.themeColor,
-
          elevation: 2.0,
-         onPressed: (){},
+         onPressed: (){Get.to(()=> const CreateEvent());},
        ),
        bottomNavigationBar: BottomAppBar(
          clipBehavior: Clip.antiAlias,
@@ -53,7 +57,17 @@ import 'package:get/get.dart';
              mainAxisAlignment: MainAxisAlignment.spaceAround,
              crossAxisAlignment: CrossAxisAlignment.center,
              children: [
-               Image.asset(AppImages.home,scale: 3,),
+               GestureDetector(
+                 onTap: (){
+                   pageIndex=0;
+                   controller.jumpToPage(pageIndex);
+                   setState(() {
+
+                   });
+
+                 },
+                   child: Image.asset(AppImages.home,scale: 3,color: pageIndex==0? AppColors.themeColor:AppColors.slateGrey),
+               ),
                GestureDetector(
                  onTap: (){
                    pageIndex=1;
@@ -63,10 +77,20 @@ import 'package:get/get.dart';
                    });
 
                  },
-                 child: Image.asset(AppImages.people,scale: 3,),
+                 child: Image.asset(AppImages.people,scale: 3,color: pageIndex==1? AppColors.themeColor:AppColors.slateGrey),
 
                ),
-               Image.asset(AppImages.chat2,scale: 3,),
+               GestureDetector(
+                    onTap: (){
+                      pageIndex=2;
+                      controller.jumpToPage(pageIndex);
+                      setState(() {
+
+                      });
+
+                    },
+                   child: Image.asset(AppImages.chat2,scale: 3,color: pageIndex==2? AppColors.themeColor:AppColors.slateGrey)
+               ),
                Image.asset(AppImages.user,scale: 3,),
 
              ],

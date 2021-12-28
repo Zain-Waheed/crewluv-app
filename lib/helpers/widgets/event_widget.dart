@@ -1,4 +1,5 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
+import 'package:amigos/helpers/widgets/crew_members_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/user_model.dart';
@@ -133,7 +134,7 @@ class _EventWidgetState extends State<EventWidget> {
                       color: AppColors.themeColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: Text("${widget.event.distance}  ${getTranslated(context, "miles_away")}",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.035, FontWeight.w700),),
+                    child: Text("${widget.event.distance}  ${getTranslated(context, "km")}",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.035, FontWeight.w700),),
                   ),
 
                 ],
@@ -148,8 +149,8 @@ class _EventWidgetState extends State<EventWidget> {
                   Spacer(),
                   Stack(
                     children: [
-                      crewMembers(0, AppImages.crew1),
-                      crewMembers(25, AppImages.crew2),
+                      CrewMembersWidget(margin: 0, image:AppImages.crew1),
+                      CrewMembersWidget(margin:25, image:AppImages.crew2),
                       Container(
                           margin: EdgeInsets.only(left: 60, top: 7.5),
                           decoration: BoxDecoration(
@@ -171,22 +172,9 @@ class _EventWidgetState extends State<EventWidget> {
               ),
               SizedBox(height: Get.width*0.07,),
               AppButton(buttonText: 'join', onpressed: (){}, width: Get.width, isWhite: false)
-
             ],
           ),
         ),
-      ),
-    );
-  }
-  Widget crewMembers(double margin, String img) {
-    return Container(
-      margin: EdgeInsets.only(left: margin),
-      child: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage(
-          img,
-        ),
-        radius: 20,
       ),
     );
   }

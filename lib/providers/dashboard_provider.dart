@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:amigos/models/PreferenceModel.dart';
-import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/chat_model.dart';
+import 'package:amigos/models/event_model.dart';
+import 'package:amigos/models/chat_details_model.dart';
 import 'package:amigos/models/event_type_model.dart';
 import 'package:amigos/models/user_model.dart';
 import 'package:amigos/utils/dummy.dart';
@@ -15,9 +16,10 @@ class DashboardProvider extends ChangeNotifier{
   List<PreferenceModel>  favoriteDrinks=[];
   List<PreferenceModel>  musictaste=[];
   List<PreferenceModel>  interests=[];
-  List<ChatModel> messages=[];
+  List<ChatDetailsModel> messages=[];
   List<EventModel> events=[];
   List<UserModel> users=[];
+  List<ChatModel> chats=[];
 
   DashboardProvider(){
     addEvents();
@@ -26,6 +28,7 @@ class DashboardProvider extends ChangeNotifier{
     addInterests();
     addEventTypes();
     addMessages();
+    addChats();
     addUser();
     notifyListeners();
   }
@@ -120,11 +123,17 @@ class DashboardProvider extends ChangeNotifier{
 
   void addMessages()
   {
-    messages.add(ChatModel(message: "Lorem ipsum dolor sit amet, consect adip iscing elit, sed do eiusmod. tempor…..incididunt ut labore et dolore magna aliqua",time: '2:00 am',incomingMsg: true));
-    messages.add(ChatModel(message: "Hey Julian",time: '2:00 am',incomingMsg: false));
+    messages.add(ChatDetailsModel(message: "Lorem ipsum dolor sit amet, consect adip iscing elit, sed do eiusmod. tempor…..incididunt ut labore et dolore magna aliqua",time: '2:00 am',incomingMsg: true));
+    messages.add(ChatDetailsModel(message: "Hey Julian",time: '2:00 am',incomingMsg: false));
     notifyListeners();
   }
+
   void addUser(){
     users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active'));
+  }
+  void addChats(){
+    chats.add(ChatModel(imagePath: AppImages.person1, name: 'Julian Dasilva', lastMessage: AppDummyData.shortText,time: 'now'));
+    chats.add(ChatModel(imagePath: AppImages.person2, name: 'Mike Lyne', lastMessage: AppDummyData.shortText,time:"3 min ago"));
+    chats.add(ChatModel(imagePath: AppImages.person3, name: 'Jane Doe', lastMessage: AppDummyData.shortText,time:" yesterday"));
   }
 }

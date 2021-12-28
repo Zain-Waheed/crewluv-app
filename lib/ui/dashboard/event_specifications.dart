@@ -156,6 +156,7 @@ class _EventSpecificationsState extends State<EventSpecifications> {
               SizedBox(
                 height: Get.width * 0.03,
               ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -226,16 +227,6 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                     ),
                   )
                 ],
-              ),
-              SizedBox(
-                height: Get.width * 0.08,
-              ),
-              Text(
-                getTranslated(context, "how_many_friends") ?? "",
-                style: AppTextStyle.montserrat(
-                    AppColors.shadedBlack, Get.width * 0.045, FontWeight.w600),
-                maxLines: 1,
-                overflow: null,
               ),
               SizedBox(
                 height: Get.width * 0.08,
