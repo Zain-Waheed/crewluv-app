@@ -12,6 +12,7 @@ import 'package:amigos/ui/auth/login_screen.dart';
 import 'package:amigos/ui/auth/media_profile_screen.dart';
 import 'package:amigos/ui/auth/music_taste_screen.dart';
 import 'package:amigos/ui/auth/select_gender.dart';
+import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
@@ -84,9 +85,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       _controller.jumpToPage(dashPro.pageIndex);
                     } else {
                       percentageValue(dashPro);
-                     Get.bottomSheet(
-                       CongraulationBottomSheet()
-                     );
+                      Get.bottomSheet(
+                        CongraulationBottomSheet()
+                      );
+                     Future.delayed(Duration(seconds: 2),(){
+                       Get.to(DashBoardScreen());
+                     });
                     }
                   }
                 },
