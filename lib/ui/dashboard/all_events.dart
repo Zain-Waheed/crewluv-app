@@ -110,14 +110,20 @@ class _AllEventsState extends State<AllEvents> {
                      });
                    },
                    children: [
-                     Column(
-                       children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index], titleImage: false,)),
+                     SingleChildScrollView(
+                       child: Column(
+                         children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index], titleImage: false,)),
+                       ),
                      ),
-                     Column(
-                       children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index], titleImage: false,)),
+                     SingleChildScrollView(
+                       child: Column(
+                         children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index], titleImage: false,)),
+                       ),
                      ),
-                     Column(
-                       children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index],titleImage: false,)),
+                     SingleChildScrollView(
+                       child: Column(
+                         children: List.generate(provider.events.length, (index)=> EventDescriptionWidget(model: provider.events[index],titleImage: false,)),
+                       ),
                      ),
                    ],
                  ),
