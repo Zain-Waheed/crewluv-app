@@ -1,5 +1,4 @@
 import 'package:amigos/ui/auth/favorite_drinks_screen.dart';
-import 'package:amigos/ui/dashboard/chatt_screen.dart';
 import 'package:amigos/ui/dashboard/profile_detail_screen.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/ui/intro/splash_logo_screen.dart';

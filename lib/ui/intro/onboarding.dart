@@ -70,66 +70,71 @@ class _OnBoardingState extends State<OnBoarding> {
             SizedBox(
               height: Get.width * 0.15,
             ),
-            Container(
-              width: Get.width,
-              height: Get.width * 0.861,
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  )),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: Get.width * 0.15,
-                  ),
-                  Text(
-                    titleText(),
-                    style: AppTextStyle.montserrat(
-                        AppColors.black, Get.width * 0.05, FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.1,
-                  ),
-                  Text(
-                    descriptionText(),
-                    style: AppTextStyle.montserrat(AppColors.blackLite,
-                        Get.width * 0.04, FontWeight.normal),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.1,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  width: Get.width,
+                  height: Get.width * 0.861,
+                  decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      )),
+                  child: Column(
                     children: [
-                      AppButton(
-                        onpressed: () {},
-                        buttonText: 'skip',
-                        width: Get.width * 0.35,
-                        isWhite: true,
+                      SizedBox(
+                        height: Get.width * 0.15,
                       ),
-                      AppButton(
-                        onpressed: () {
-                          pageIndex++;
-                          if(pageIndex<=3)
-                            {
-                              _controller.jumpToPage(pageIndex);
-                            }else
-                              {
-                                 pageIndex=4;
-                                 Get.to(Login());
-                              }
-                        },
-                        buttonText: pageIndex==3?'register':'next',
-                        width: Get.width * 0.35,
-                        isWhite: false,
+                      Text(
+                        titleText(),
+                        style: AppTextStyle.montserrat(
+                            AppColors.black, Get.width * 0.05, FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: Get.width * 0.1,
+                      ),
+                      Text(
+                        descriptionText(),
+                        style: AppTextStyle.montserrat(AppColors.blackLite,
+                            Get.width * 0.04, FontWeight.normal),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: Get.width * 0.1,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          AppButton(
+                            onpressed: () {},
+                            buttonText: 'skip',
+                            width: Get.width * 0.35,
+                            isWhite: true,
+                          ),
+                          AppButton(
+                            onpressed: () {
+                              pageIndex++;
+                              if(pageIndex<=3)
+                                {
+                                  _controller.jumpToPage(pageIndex);
+                                }else
+                                  {
+                                     pageIndex=4;
+                                     Get.to(Login());
+                                  }
+                            },
+                            buttonText: pageIndex==3?'register':'next',
+                            width: Get.width * 0.35,
+                            isWhite: false,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
             ),
           ],
