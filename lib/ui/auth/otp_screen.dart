@@ -1,7 +1,8 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
+import 'package:amigos/helpers/widgets/app_button_grey.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
-import 'package:amigos/ui/auth/email_screen.dart';
+import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/auth/phone_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/text_styles.dart';
@@ -25,6 +26,7 @@ class _OtpScreenState extends State<OtpScreen> {
   int counter = 60;
   bool resend = true;
   final formKey = GlobalKey<FormState>();
+  bool greyButton=true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,17 +43,12 @@ class _OtpScreenState extends State<OtpScreen> {
         height: Get.width * 0.2,
         padding: EdgeInsets.symmetric(
             horizontal: Get.width * 0.07, vertical: Get.width * 0.03),
-        child: AppButton(
+        child: greyButton==true?const AppButtonGrey():AppButton(
           isWhite: false,
           width: Get.width * 0.6,
           buttonText: 'verify',
           onpressed: () {
-            // if(formKey.currentState!.validate())
-            //   {
-            //
-            //   }
-            Get.to(() => const EnterEmail());
-
+            Get.to(() => const CompleteProfileScreen());
           },
         ),
       ),
@@ -115,6 +112,12 @@ class _OtpScreenState extends State<OtpScreen> {
                   //  backgroundColor: Colors.white,
                   validator: (value) =>
                       FieldValidator.validateOTP(otpController.text),
+                  onCompleted: (value)
+                  {
+                    setState(() {
+                      greyButton=false;
+                    });
+                  },
                   onChanged: (value) {
                     print(value);
                     setState(() {

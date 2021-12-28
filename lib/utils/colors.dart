@@ -24,6 +24,7 @@ class AppColors {
   static Color orangeDark= const Color(0xffFF7B17);
   static Color silverWhite = const Color(0xffF7F8FC);
   static Color greenActive = const Color(0xff25D660);
+  static Color  solidGrey = const Color(0xffB2BAC1);
 
 
   static Color white = const Color(0xffFFFFFF);
