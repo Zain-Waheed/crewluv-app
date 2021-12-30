@@ -3,6 +3,7 @@ import 'package:amigos/ui/dashboard/all_events.dart';
 import 'package:amigos/ui/dashboard/chat_screen.dart';
 import 'package:amigos/ui/dashboard/create_event.dart';
 import 'package:amigos/ui/dashboard/home_screen.dart';
+import 'package:amigos/ui/dashboard/profile_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ import 'package:get/get.dart';
            HomeScreen(),
            AllEvents(),
            ChatScreen(),
+           ProfileScreen(),
 
          ],
        ),
@@ -64,7 +66,6 @@ import 'package:get/get.dart';
                    setState(() {
 
                    });
-
                  },
                    child: Image.asset(AppImages.home,scale: 3,color: pageIndex==0? AppColors.themeColor:AppColors.slateGrey),
                ),
@@ -93,7 +94,16 @@ import 'package:get/get.dart';
                     },
                    child: Image.asset(AppImages.chat2,scale: 3,color: pageIndex==2? AppColors.themeColor:AppColors.slateGrey)
                ),
-               Image.asset(AppImages.user,scale: 3,),
+               GestureDetector(
+                 onTap: (){
+                   pageIndex=3;
+                   controller.jumpToPage(pageIndex);
+                   setState(() {
+
+                   });
+                 },
+                   child: Image.asset(AppImages.user,scale: 3,),
+               ),
 
              ],
            ),

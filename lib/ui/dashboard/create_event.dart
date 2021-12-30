@@ -11,6 +11,7 @@ import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
+import 'package:amigos/utils/validation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -94,6 +95,8 @@ class _CreateEventState extends State<CreateEvent> {
                 TextFormField(
                   decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_your_title', null),
                   controller: titleController,
+                  validator: (value)=> FieldValidator.validateText(titleController.text),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 SizedBox(height: Get.width*0.06,),
                 Text(getTranslated(context, 'description')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
@@ -101,13 +104,17 @@ class _CreateEventState extends State<CreateEvent> {
                 TextFormField(
                   decoration: AppInputDecoration.circularFieldDecoration(null, 'invitation_description', null),
                   controller: descriptionController,
+                  validator: (value)=> FieldValidator.validateText(descriptionController.text),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 SizedBox(height: Get.width*0.06,),
                 Text(getTranslated(context, 'location')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
                 SizedBox(height: Get.width*0.01,),
                 TextFormField(
-                  decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location', null),
+                  decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location', Icon(Icons.my_location,color: AppColors.solidGrey,)),
                   controller: locationController,
+                  validator: (value)=> FieldValidator.validateText(titleController.text),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 SizedBox(height: Get.width*0.04,),
                 Text(getTranslated(context, "date_time")??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),

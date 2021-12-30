@@ -5,6 +5,7 @@ import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/all_events.dart';
+import 'package:amigos/ui/dashboard/notification_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
@@ -72,7 +73,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           actions: [
-            Image.asset(AppImages.message),
+            GestureDetector(
+               onTap: (){
+                   Get.to(()=> const NotificationScreen());
+               },
+                child: Image.asset(AppImages.notificationIcon),
+            ),
             Image.asset(AppImages.party2),
           ],
         ) ,

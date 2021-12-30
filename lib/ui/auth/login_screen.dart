@@ -64,13 +64,13 @@ class _LoginState extends State<Login> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Get.to(PhoneNumber());
+                        Get.to(const PhoneNumber());
                       },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(vertical: Get.width*0.04),
                         primary: AppColors.whiteLite,
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius
                               .circular(27.0),
                         ),
                       ),

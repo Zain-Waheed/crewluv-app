@@ -147,7 +147,7 @@ class _ChatState extends State<Chat> {
                                 margin: EdgeInsets.only(top: 20),
                                 backGroundColor:
                                     provider.messages[index].incomingMsg == true
-                                        ? AppColors.whitedark
+                                        ? AppColors.whiteDark
                                         : AppColors.pinkLight,
                                 padding: const EdgeInsets.all(5),
                                 child: Container(
@@ -305,7 +305,7 @@ class _ChatState extends State<Chat> {
                                 height: Get.width * 0.12,
                                 margin: EdgeInsets.only(right: Get.width * 0.01),
                                 decoration: BoxDecoration(
-                                  color: AppColors.whitedark,
+                                  color: AppColors.whiteDark,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 child: Center(
@@ -339,7 +339,7 @@ class _ChatState extends State<Chat> {
                                     color: AppColors.grey,
                                   ),
                                   filled: true,
-                                  fillColor: AppColors.whitedark,
+                                  fillColor: AppColors.whiteDark,
                                   hintText: getTranslated(
                                       Get.context, "start_typing"),
                                   hintStyle: AppTextStyle.montserrat(
@@ -349,19 +349,19 @@ class _ChatState extends State<Chat> {
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                     borderSide: BorderSide(
-                                      color: AppColors.whitedark,
+                                      color: AppColors.whiteDark,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                     borderSide: BorderSide(
-                                      color: AppColors.whitedark,
+                                      color: AppColors.whiteDark,
                                     ),
                                   ),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                     borderSide: BorderSide(
-                                      color: AppColors.whitedark,
+                                      color: AppColors.whiteDark,
                                     ),
                                   ),
                                 ),
@@ -388,7 +388,7 @@ class _ChatState extends State<Chat> {
                                     horizontal: Get.width * 0.01),
                                 decoration: BoxDecoration(
                                   gradient: AppColors.orangeGradientColor,
-                                  color: AppColors.whitedark,
+                                  color: AppColors.whiteDark,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 child: Text(

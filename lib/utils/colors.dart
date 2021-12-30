@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static Color whiteColor = const Color(0xffFFFFFF);
+  static Color skyblue = const Color(0xffF3F4F9);
+
   static Color backGround = const Color(0xffFFFCFD);
   static Color lightWhite= const Color(0xffF8F8F8);
   static Color progress= const Color(0xffF9D80D);
@@ -27,8 +29,6 @@ class AppColors {
   static Color opacBlack =   Colors.black.withOpacity(0.5);
   static Color slateGrey = const Color(0xffB2BAC1);
   static Color  solidGrey = const Color(0xffB2BAC1);
-
-
   static Color white = const Color(0xffFFFFFF);
   static Color whiteLite = const Color(0xffF2F2F3);
   static Color whiteBackground = const Color(0xffFFFCFD);
@@ -36,11 +36,14 @@ class AppColors {
   static Color blackLite = const Color(0xff707070);
   static Color borderShadow= const Color(0xffECECEC);
   static Color blue= const Color(0xff0191B6);
-  static Color whitedark= const Color(0xffEEEEEE);
+  static Color whiteDark= const Color(0xffEEEEEE);
   static Color blueLight= const Color(0xff748A9D);
   static Color pinkLight= const Color(0xffFFE5D2);
   static Color greyDark= const Color(0xff545659);
   static Color bottomBarColor= const Color(0xffF9D80D);
+  static Color brownColor=const Color(0xffD1B077);
+  static Color jetBlack = const Color(0xff595959);
+  static Color dotColor = const Color(0xffD1D4D8);
   static LinearGradient blueGradientColor =  LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -103,7 +106,7 @@ class AppColors {
       Colors.grey.withOpacity(0.0),
       Colors.black,
     ],
-      stops: [
+      stops: const [
         4.0,
         0.0,
       ]

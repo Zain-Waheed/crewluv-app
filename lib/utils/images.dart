@@ -48,9 +48,10 @@ class AppImages {
    static var chat2 = "assets/images/chat2.png";
    static var rewind = "assets/images/rewind.png";
    static var heartGreen = "assets/images/heartGreen.png";
-
-
-
+   static var notification1 = "assets/images/notification1.png";
+   static var notification2 = "assets/images/notification2.png";
+   static var notification3 = "assets/images/notification3.png";
+   static var notificationIcon = "assets/images/notificationIcon.png";
    // static var userImage = "assets/images/userImage.png";
    // static var chat = "assets/images/chat.png";
    static var close = "assets/images/close.png";
@@ -60,5 +61,9 @@ class AppImages {
    static var person1 = "assets/images/person1.png";
    static var person2 = "assets/images/person2.png";
    static var person3 = "assets/images/person3.png";
-
+   static var settings = "assets/images/settings.png";
+   static var edit = "assets/images/edit.png";
+   static var privacy = "assets/images/privacy.png";
+   static var profileImage = "assets/images/profileImage.png";
+   static var appLogoSmall = "assets/images/appLogoSmall.png";
 }

@@ -260,7 +260,7 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                   style: AppTextStyle.montserrat(AppColors.shadedBlack,
                       Get.width * 0.04, FontWeight.w500),
                   items: <String>[
-                    getTranslated(context, "join_on_request") ?? "",
+                    getTranslated(context, "join_on_request") ?? "",getTranslated(context, "buy_ticket")??"",
                     getTranslated(context, "but_ticket") ?? "",
                   ].map((String value) {
                     return DropdownMenuItem<String>(

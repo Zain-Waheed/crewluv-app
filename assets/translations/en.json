@@ -29,7 +29,6 @@
   "send": "Send",
   "pending": "pending....",
   "pending2": "Pending",
-  "joined": "Joined",
   "my_events": "My Events",
   "messages": "Messages",
   "chats": "Chat",
@@ -75,6 +74,8 @@
   "hiking": "Hiking",
   "golf": "Golf",
   "photography": "Photography",
+
+
 
   "cycling": "Cycling",
   "your_interests": "Your Interests",
@@ -164,7 +165,13 @@
   "share_updates":"Share your updates with everyone.",
   "in_mood": "Is in mood for",
   "lets_go": "Let's Go!",
-
+  "settings": "Settings",
+  "edit": "Edit",
+  "privacy": "Privacy",
+  "hosted": "Hosted",
+  "joined": "Joined",
+  "crews": "Crews",
+  "learn_more": "Learn More",
   "km":"KM",
   "events": "Events",
   "new_event":"New Event",
@@ -179,5 +186,6 @@
   "to become friends.":"to become friends.",
   "you_added":"You added",
   "to_your_event_crew":"to your event crew",
-  "request_otp":"REQUEST OTP"
+  "my_profile": "My Profile",
+  "notifications":"Notifications"
 }
