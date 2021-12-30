@@ -41,8 +41,8 @@ class AppButton extends StatelessWidget {
         },
         child: Padding(
           padding: EdgeInsets.only(
-            top: 10,
-            bottom: 10,
+            top: Get.width*0.04,
+            bottom: Get.width*0.04,
           ),
           child: Text(
             getTranslated(context, buttonText)??"",

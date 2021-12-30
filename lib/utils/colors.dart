@@ -7,6 +7,7 @@ class AppColors {
   static Color whiteColor = const Color(0xffFFFFFF);
   static Color skyblue = const Color(0xffF3F4F9);
 
+  static Color  geryLight = const Color(0xffAAB2BA);
   static Color backGround = const Color(0xffFFFCFD);
   static Color lightWhite= const Color(0xffF8F8F8);
   static Color progress= const Color(0xffF9D80D);
@@ -29,6 +30,8 @@ class AppColors {
   static Color opacBlack =   Colors.black.withOpacity(0.5);
   static Color slateGrey = const Color(0xffB2BAC1);
   static Color  solidGrey = const Color(0xffB2BAC1);
+
+
   static Color white = const Color(0xffFFFFFF);
   static Color whiteLite = const Color(0xffF2F2F3);
   static Color whiteBackground = const Color(0xffFFFCFD);

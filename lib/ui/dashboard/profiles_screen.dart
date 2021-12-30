@@ -1,6 +1,7 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/app_button_small.dart';
 import 'package:amigos/helpers/widgets/notification_dialog.dart';
+import 'package:amigos/helpers/widgets/prefrence_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/profile_detail_screen.dart';
@@ -71,9 +72,10 @@ class _ProfilesState extends State<Profiles> {
           )
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: Get.height*0.7,
+              height: Get.height*0.83,
               width: Get.width,
               child: SwipableStack(
                 controller:controller,
@@ -92,10 +94,9 @@ class _ProfilesState extends State<Profiles> {
               ),
             ),
             SizedBox(
-              height: Get.height*0.1,
+              height: Get.width*0.04,
             ),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
@@ -187,7 +188,7 @@ class _ProfilesState extends State<Profiles> {
                       boxShadow: [
                         BoxShadow(
                             color: AppColors.black.withOpacity(0.5),
-                            offset: Offset(0, 4),
+                            offset: const Offset(0, 4),
                             blurRadius: 5.0)
                       ],
                     ),
@@ -212,13 +213,10 @@ class _ProfilesState extends State<Profiles> {
       child: Stack(
         children:[
           Container(
-            height: Get.height*0.65,
             width: Get.width,
             padding: EdgeInsets.only(
               top: Get.width * 0.099, left: Get.width * 0.06,),
             alignment: Alignment.topLeft,
-            // EdgeInsets.only(
-            //   top: Get.width * 0.099, left: Get.width * 0.06,),
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(AppDummyData.profileDummy),
@@ -230,90 +228,91 @@ class _ProfilesState extends State<Profiles> {
               ),
             ),
           ),
-          SingleChildScrollView(
-            child: Align(
-              alignment: Alignment.center,
-              child: Container(
-                margin: EdgeInsets.only(top:Get.height*0.6),
-                height: Get.height*0.14,
-                width: Get.width*0.75,
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                          color: AppColors.black.withOpacity(0.5),
-                          offset: Offset(0, 4),
-                          blurRadius: 5.0)
-                    ]
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(AppImages.crew1,scale: 3,),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              provider.users[0].name??"",
-                              // widget.user.name ?? "",
-                              style: AppTextStyle.montserrat(
-                                  AppColors.black3d, Get.width * 0.04, FontWeight.w500),
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(top:Get.height*0.6),
+              height: Get.height*0.18,
+              width: Get.width,
+              padding: EdgeInsets.symmetric(vertical: Get.height*0.02),
+              decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                        color: AppColors.black.withOpacity(0.5),
+                        offset: Offset(0, 4),
+                        blurRadius: 5.0)
+                  ]
+              ),
+              child:    Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(AppImages.profile,scale: 4,),
+                  SizedBox(width: Get.width*0.02,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(width: Get.width*0.05,),
+                          Text(
+                            provider.users[0].name ?? "",
+                            style: AppTextStyle.montserrat(
+                                AppColors.black3d, Get.width * 0.04, FontWeight.w500),
+                          ),
+                          const Text(','),
+                          Text(
+                            provider.users[0].age.toString(),
+                            style: AppTextStyle.montserrat(
+                                AppColors.black3d, Get.width * 0.04, FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: Get.width*0.01,),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: Get.width*0.028,
+                            width: Get.width*0.028,
+                            decoration:  BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.greenActive,
                             ),
-                            const Text(','),
-                            Text(
-                              provider.users[0].age.toString(),
-                              style: AppTextStyle.montserrat(
-                                  AppColors.black3d, Get.width * 0.04, FontWeight.w500),
-                            ),
-                             // provider.users[0].isVerified
-                             //    ? Image.asset(AppImages.verified,scale: 3,)
-                             //    : SizedBox(),
-                          ],
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(width: Get.width*0.019,),
-                            Container(
-                              height: Get.width*0.018,
-                              width: Get.width*0.018,
-                              decoration:  BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.greenActive,
-                              ),
-                            ),
-                            SizedBox(width: Get.width*0.02,),
-                            Text(
-                              provider.users[0].activeStatus,
-                              style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.03, FontWeight.w500),),
-                          ],
-                        ),
-                        SizedBox(height: Get.width*0.0,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.asset(AppImages.locationEvent,scale: 3,),
-                            SizedBox(width: Get.width*0.02,),
-                            Text(
-                              provider.users[0].distance.toString(),
-                              style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.03, FontWeight.w500),),
-                            Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.03, FontWeight.w500),),
-                          ],
-                        ),
-
-                      ],
-                    ),
-                    // Spacer(),
-                    // Image.asset(AppImages.bonFire,scale: 1.5,),
-
-                  ],
-                ),
+                          ),
+                          SizedBox(width: Get.width*0.02,),
+                          Text(provider.users[0].activeStatus, style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                        ],
+                      ),
+                      SizedBox(height: Get.width*0.02,),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset(AppImages.locationEvent,scale: 3,),
+                          SizedBox(width: Get.width*0.01,),
+                          Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                          Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                        ],
+                      ),
+                      SizedBox(height: Get.width*0.02,),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          PrefrenceWidget(preference: provider.interests[1],),
+                          SizedBox(width: Get.width*0.02,),
+                          PrefrenceWidget(preference: provider.interests[2],),
+                          SizedBox(width: Get.width*0.02,),
+                          PrefrenceWidget(preference: provider.interests[9],),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

@@ -52,6 +52,10 @@ class AppImages {
    static var notification2 = "assets/images/notification2.png";
    static var notification3 = "assets/images/notification3.png";
    static var notificationIcon = "assets/images/notificationIcon.png";
+   static var subscription = "assets/images/subscription.png";
+
+
+
    // static var userImage = "assets/images/userImage.png";
    // static var chat = "assets/images/chat.png";
    static var close = "assets/images/close.png";
@@ -61,6 +65,7 @@ class AppImages {
    static var person1 = "assets/images/person1.png";
    static var person2 = "assets/images/person2.png";
    static var person3 = "assets/images/person3.png";
+   static var instagram = "assets/images/instagram.png";
    static var settings = "assets/images/settings.png";
    static var edit = "assets/images/edit.png";
    static var privacy = "assets/images/privacy.png";

@@ -13,28 +13,47 @@ class SplashLogoScreen extends StatefulWidget {
   _SplashLogoScreenState createState() => _SplashLogoScreenState();
 }
 
-class _SplashLogoScreenState extends State<SplashLogoScreen> {
+class _SplashLogoScreenState extends State<SplashLogoScreen> with TickerProviderStateMixin{
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+  )..forward();
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.fastOutSlowIn,
+  );
   void initState() {
     Future.delayed(Duration(seconds: 3),(){
 
-      Get.off(
-          OnBoarding()
+      Get.off(OnBoarding()
       );
     },
     );
     super.initState();
-
+  }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: Get.width,
-      height: Get.height,
-      decoration: BoxDecoration(
-        gradient: AppColors.orangeGradientColor,
+    return Scaffold(
+      body: Container(
+        width: Get.width,
+        height: Get.height,
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          gradient: AppColors.orangeGradientColor,
+        ),
+        alignment: Alignment.center,
+        child: ScaleTransition(
+        scale: _animation,
+        child:  Image.asset(AppImages.splashLogo, height: Get.height*0.3,width: Get.width*0.6,),
       ),
-      alignment: Alignment.center,
-      child:Image.asset(AppImages.splashLogo, height: Get.height*0.3,width: Get.width*0.6,),
-    );
+    ));
+
+
+
   }
 }

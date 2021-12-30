@@ -17,9 +17,9 @@ class SplashScreeen extends StatefulWidget {
 class _SplashScreeenState extends State<SplashScreeen> {
 
   void initState() {
-    Future.delayed(Duration(seconds: 1),(){
+    Future.delayed(const Duration(seconds: 1),(){
       Get.off(
-          const SplashLogoScreen()
+          SplashLogoScreen()
       );
     },
     );

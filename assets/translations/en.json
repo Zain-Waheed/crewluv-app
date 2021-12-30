@@ -91,7 +91,7 @@
   "otp": "OTP",
   "enter_verification_code": "Enter Verification Code",
   "code_sent": "We have sent the verification code to Your Mobile Number",
-  "request_otp":"Request OTP",
+
   "verify": "Verify",
   "enter_email_address": "Enter Your Email Address",
   "enter_full_name": "Enter Your Full Name",
@@ -188,4 +188,29 @@
   "to_your_event_crew":"to your event crew",
   "my_profile": "My Profile",
   "notifications":"Notifications"
+  "request_otp":"REQUEST OTP",
+  "login":"Login",
+
+  "university":"University",
+  "your_university_will":"Your university will be publicly visible",
+  "city":"City",
+  "access_to":"Access to all features!",
+  "free_trial":"Free trial for 2 weeks.",
+  "after_trial_ends":"After trial ends, buy a subscription plan to get access of all features.",
+  "view_plans":"VIEW PLANS",
+  "get_premium_plan":"Get Premium Plan",
+  "intro_text":"Intro Text",
+  "most_popular":"Most Popular",
+  "months":"months",
+  "no_thanks":"NO THANKS",
+  "save":"Save",
+  "edit_profile":"Edit Profile",
+  "describe_what_you":"Describe what you are inviting friends for...",
+  "the_university_of_lahore":"The University of Lahore",
+  "social_media":"Social Media",
+  "connect_instagram":"Connect Instagram",
+  "save_changes":"SAVE CHANGES",
+  "lahore":"Lahore",
+  "gender":"Gender",
+  "female":"Female"
 }
