@@ -1,6 +1,5 @@
 import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
-import 'package:amigos/helpers/widgets/app_button_grey.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
@@ -12,7 +11,9 @@ import 'package:amigos/ui/auth/login_screen.dart';
 import 'package:amigos/ui/auth/media_profile_screen.dart';
 import 'package:amigos/ui/auth/music_taste_screen.dart';
 import 'package:amigos/ui/auth/select_gender.dart';
+import 'package:amigos/ui/auth/university_screen.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
+import 'package:amigos/ui/dashboard/edit_profile.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
@@ -37,7 +38,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   
   int percentage = 10;
   double percent = 0.1;
-  bool isChecked = true;
+  bool isChecked = false;
   bool isGrey=true;
 
   @override
@@ -58,7 +59,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   dashPro.pageIndex = 0;
                   percentageValue(dashPro);
                   Get.to(
-                      Login()
+                      const Login()
                   );
                 }
               },
@@ -66,7 +67,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               title: 'complete_profile'),
         ),
         bottomNavigationBar: Container(
-          height: dashPro.pageIndex==4||dashPro.pageIndex==5||dashPro.pageIndex==6?Get.width * 0.3:Get.width * 0.2,
+          height: dashPro.pageIndex==5||dashPro.pageIndex==6||dashPro.pageIndex==7?Get.width * 0.3:Get.width * 0.2,
           margin: EdgeInsets.symmetric(horizontal: Get.width*0.07),
           child: Column(
             children: [
@@ -76,20 +77,24 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               dashPro.formCheck[dashPro.pageIndex]==1?AppButton(
                 isWhite: false,
                 width: Get.width * 0.9,
-                buttonText: dashPro.pageIndex == 7 ? 'done' : 'further',
+                buttonText: dashPro.pageIndex == 8 ? 'done' : 'further',
                 onpressed: () {
                   if (dashPro.formKey.currentState!.validate()) {
                     dashPro.pageIndex++;
                     percentageValue(dashPro);
-                    if (dashPro.pageIndex <= 7) {
+                    if (dashPro.pageIndex <= 8) {
                       _controller.jumpToPage(dashPro.pageIndex);
                     } else {
                       percentageValue(dashPro);
                       Get.bottomSheet(
-                        CongraulationBottomSheet()
+                        const CongraulationBottomSheet()
                       );
-                     Future.delayed(Duration(seconds: 2),(){
-                       Get.to(DashBoardScreen());
+                     Future.delayed(const Duration(seconds: 2),(){
+                       Get.to(
+
+                           // const DashBoardScreen()
+                               EditProfile()
+                       );
                      });
                     }
                   }
@@ -101,7 +106,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
-                  minimumSize: MaterialStateProperty.all(Size(400, 50)),
+                  minimumSize: MaterialStateProperty.all(const Size(400, 50)),
                   backgroundColor: MaterialStateProperty.all(AppColors.solidGrey),
                   shadowColor: MaterialStateProperty.all(Colors.transparent),
                 ),
@@ -111,18 +116,16 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ,),
               ),
               Visibility(
-                visible: dashPro.pageIndex==4||dashPro.pageIndex==5||dashPro.pageIndex==6?true:false,
+                visible: dashPro.pageIndex==5||dashPro.pageIndex==6||dashPro.pageIndex==7?true:false,
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: Get.width*0.01,
-                    ),
                     TextButton(
                       onPressed: () {
-                        _controller.jumpToPage(7);
+                        dashPro.pageIndex++;
+                        _controller.jumpToPage(dashPro.pageIndex);
                       },
                       child: Text(
-                        getTranslated(context, 'skip_this_step') ?? "",
+                        getTranslated(context, 'skip') ?? "",
                         style: AppTextStyle.poppins(
                             AppColors.orangeDark, Get.width * 0.04, FontWeight.w500),
                       ),
@@ -169,7 +172,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     key: dashPro.formKey,
                    // autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: PageView(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       controller: _controller,
                       onPageChanged: (index) {
                         setState(() {
@@ -178,13 +181,14 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       },
                       children: [
                         emailScreen(dashPro),
-                        EnterFullName(),
-                        EnterDOB(),
-                        SelectGender(),
-                        FavoriteDrinks(),
-                        MusicTaste(),
-                        Intersets(),
-                        MediaProfile(),
+                        const EnterFullName(),
+                        const EnterDOB(),
+                        const University(),
+                        const SelectGender(),
+                        const FavoriteDrinks(),
+                        const MusicTaste(),
+                        const Intersets(),
+                        const MediaProfile(),
                       ],
                     ),
                   ),
@@ -307,6 +311,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         percent = 0.95;
       });
     } else if (dashPro.pageIndex == 7) {
+      setState(() {
+        percentage = 95;
+        percent = 1;
+      });
+    }else if (dashPro.pageIndex == 8) {
       setState(() {
         percentage = 95;
         percent = 1;

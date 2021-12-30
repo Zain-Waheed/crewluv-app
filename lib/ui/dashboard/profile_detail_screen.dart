@@ -94,6 +94,9 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(
+                          height: Get.height*0.04,
+                        ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -154,22 +157,10 @@ class _ProfileDetailState extends State<ProfileDetail> {
                             ),
                             Spacer(),
                             Image.asset(AppImages.bonFire,scale: 1.5,),
-
                           ],
                         ),
-                        Text(getTranslated(context, 'about') ?? "",
-                          style: AppTextStyle.montserrat(
-                              AppColors.shadedBlack, Get.width * 0.04,
-                              FontWeight.w500),),
                         SizedBox(
-                          height: Get.width * 0.02,
-                        ),
-                        Text(AppDummyData.shortText,
-                          style: AppTextStyle.montserrat(
-                              AppColors.lightGrey, Get.width * 0.04,
-                              FontWeight.w500),),
-                        SizedBox(
-                          height: Get.width * 0.09,
+                          height: Get.height*0.01,
                         ),
                         Text(getTranslated(context, 'interests') ?? "",
                           style: AppTextStyle.montserrat(
@@ -183,7 +174,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                           ],
                         ),
                         SizedBox(
-                          height: Get.width * 0.04,
+                          height: Get.height*0.02,
                         ),
                         Text(getTranslated(context, 'my_music') ?? "",
                           style: AppTextStyle.montserrat(
@@ -197,7 +188,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                           ],
                         ),
                         SizedBox(
-                          height: Get.width * 0.04,
+                          height: Get.height*0.04,
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -290,6 +281,9 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               ),
                             ),
                           ],
+                        ),
+                        SizedBox(
+                          height: Get.height*0.01,
                         ),
                       ],
                     ),

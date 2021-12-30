@@ -1,5 +1,6 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/ui/auth/login_screen.dart';
+import 'package:amigos/ui/auth/phone_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
@@ -32,7 +33,7 @@ class _OnBoardingState extends State<OnBoarding> {
             ),
             SizedBox(
               width: Get.width,
-              height: Get.height * 0.4,
+              height: Get.height * 0.45,
               child: PageView(
                 controller: _controller,
                 onPageChanged: (index) {
@@ -87,7 +88,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const SizedBox(height: 10,),
+                     SizedBox(height: Get.height*0.002),
                     Text(
                       titleText(),
                       style: AppTextStyle.montserrat(
@@ -106,8 +107,18 @@ class _OnBoardingState extends State<OnBoarding> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         AppButton(
-                          onpressed: () {},
-                          buttonText: 'skip',
+                          onpressed: () {
+                            if(pageIndex<3)
+                            {
+                              pageIndex=3;
+                              _controller.jumpToPage(pageIndex);
+                            }else
+                            {
+                              pageIndex=4;
+                              Get.to(const PhoneNumber());
+                            }
+                          },
+                          buttonText: pageIndex==3?'login':'skip',
                           width: Get.width * 0.35,
                           isWhite: true,
                         ),

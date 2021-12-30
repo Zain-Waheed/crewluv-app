@@ -8,7 +8,6 @@ import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class MediaProfile extends StatefulWidget {
@@ -97,67 +96,69 @@ class _MediaProfileState extends State<MediaProfile> {
                     ),
                      itemCount: provider.mediaListImages.length,
                      itemBuilder: (BuildContext context,int index){
-                      return  SizedBox(
-                        width: Get.width * 0.3,
-                        height: Get.width * 0.42,
-                        child: Stack(
-                            children:[
-                              GestureDetector(
-                                onTap:(){
-                                  provider.getProfileImage(index);
-                                },
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                    width: Get.width * 0.26,
-                                    height: Get.width * 0.38,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.offWhite,
-                                      border: Border.all(
-                                        color: AppColors.borderShadow,
+                      return Visibility(
+                        child: SizedBox(
+                          width: Get.width * 0.3,
+                          height: Get.width * 0.42,
+                          child: Stack(
+                              children:[
+                                GestureDetector(
+                                  onTap:(){
+                                    provider.getProfileImage(index);
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Container(
+                                      width: Get.width * 0.26,
+                                      height: Get.width * 0.38,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.offWhite,
+                                        border: Border.all(
+                                          color: AppColors.borderShadow,
+                                        ),
+                                        borderRadius: BorderRadius.circular(12),
                                       ),
-                                      borderRadius: BorderRadius.circular(12),
+                                      child: provider.mediaListImages[index].path==""?Align(
+                                        alignment: Alignment.center,
+                                        child: Container(
+                                            padding: const EdgeInsets.all(4),
+                                            decoration: BoxDecoration(
+                                                gradient: AppColors.percantageBarGradientColor,
+                                                borderRadius: BorderRadius.circular(16)
+                                            ),
+                                            child: Icon(Icons.add,color: AppColors.white,),
+                                          ),):ClipRRect(
+                                        borderRadius: BorderRadius.circular(16),
+                                            child: Image.file(provider.mediaListImages[index],
+                                        fit: BoxFit.fill,
+                                      ),
+                                          ),
                                     ),
-                                    child: provider.mediaListImages[index].path==""?Align(
-                                      alignment: Alignment.center,
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: provider.mediaListImages[index].path==""?false:true,
+                                  child: Align(
+                                    alignment: Alignment.topRight,
+                                    child:GestureDetector(
+                                      onTap:(){
+                                        setState(() {
+                                          provider.mediaListImages[index]=File("");
+                                        });
+                                      },
                                       child: Container(
-                                          padding: const EdgeInsets.all(4),
+                                          padding: const EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                               gradient: AppColors.percantageBarGradientColor,
                                               borderRadius: BorderRadius.circular(16)
                                           ),
-                                          child: Icon(Icons.add,color: AppColors.white,),
-                                        ),):ClipRRect(
-                                      borderRadius: BorderRadius.circular(16),
-                                          child: Image.file(provider.mediaListImages[index],
-                                      fit: BoxFit.fill,
+                                          child: Icon(Icons.close,color: AppColors.white,size: Get.width*0.04,),
+                                        ),
                                     ),
-                                        ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Visibility(
-                                visible: provider.mediaListImages[index].path==""?false:true,
-                                child: Align(
-                                  alignment: Alignment.topRight,
-                                  child:GestureDetector(
-                                    onTap:(){
-                                      setState(() {
-                                        provider.mediaListImages[index]=File("");
-                                      });
-                                    },
-                                    child: Container(
-                                        padding: const EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                            gradient: AppColors.percantageBarGradientColor,
-                                            borderRadius: BorderRadius.circular(16)
-                                        ),
-                                        child: Icon(Icons.close,color: AppColors.white,size: Get.width*0.04,),
-                                      ),
-                                  ),
-                                  ),
-                                ),
-                            ]
+                              ]
+                          ),
                         ),
                       );
                      }

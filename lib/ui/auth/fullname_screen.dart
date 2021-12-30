@@ -20,8 +20,6 @@ class EnterFullName extends StatefulWidget {
 }
 
 class _EnterFullNameState extends State<EnterFullName> {
-  TextEditingController fullNameController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +72,7 @@ class _EnterFullNameState extends State<EnterFullName> {
             ),
             SizedBox(height: Get.width * 0.15),
             TextFormField(
-              validator: (value)=> FieldValidator.validateName(fullNameController.text),
+              validator: (value)=> FieldValidator.validateName(dashPro.fullNameController.text),
               onChanged: (val)
               {
 
@@ -91,7 +89,7 @@ class _EnterFullNameState extends State<EnterFullName> {
                 Get.forceAppUpdate();
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              controller: fullNameController,
+              controller: dashPro.fullNameController,
               decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,),),
             ),
             SizedBox(height: Get.width * 0.15),

@@ -25,8 +25,7 @@ class _SplashLogoScreenState extends State<SplashLogoScreen> with TickerProvider
   void initState() {
     Future.delayed(Duration(seconds: 3),(){
 
-      Get.off(
-          OnBoarding()
+      Get.off(OnBoarding()
       );
     },
     );

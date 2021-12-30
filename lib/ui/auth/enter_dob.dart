@@ -24,8 +24,6 @@ class EnterDOB extends StatefulWidget {
 }
 
 class _EnterDOBState extends State<EnterDOB> {
-  TextEditingController dobController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
   DateTime _dob=DateTime.now();
   @override
   Widget build(BuildContext context) {
@@ -55,9 +53,9 @@ class _EnterDOBState extends State<EnterDOB> {
             TextFormField(
                 readOnly: true,
 
-                validator: (value)=> FieldValidator.empty(dobController.text),
+                validator: (value)=> FieldValidator.empty(dashPro.dobController.text),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: dobController,
+                controller: dashPro.dobController,
                 decoration: AppInputDecoration.circularFieldDecoration(null, 'd/m/y', Image.asset(AppImages.calendarIcon,),),
                 onTap:(){
                   showDatePicker(
@@ -90,8 +88,8 @@ class _EnterDOBState extends State<EnterDOB> {
                       _dob=date!;
                       final DateFormat formatter = DateFormat('dd-MM-yyyy');
                       final String formatted = formatter.format(date);
-                      dobController.text=formatted;
-                      if(dobController.text.isNotEmpty)
+                      dashPro.dobController.text=formatted;
+                      if(dashPro.dobController.text.isNotEmpty)
                       {
                         dashPro.formCheck[dashPro.pageIndex]=1;
                       }

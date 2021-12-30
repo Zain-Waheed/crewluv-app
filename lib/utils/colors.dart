@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static Color whiteColor = const Color(0xffFFFFFF);
+  static Color  geryLight = const Color(0xffAAB2BA);
   static Color backGround = const Color(0xffFFFCFD);
   static Color lightWhite= const Color(0xffF8F8F8);
   static Color progress= const Color(0xffF9D80D);

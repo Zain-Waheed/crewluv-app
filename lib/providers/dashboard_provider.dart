@@ -34,8 +34,13 @@ class DashboardProvider extends ChangeNotifier{
     notifyListeners();
   }
   GlobalKey<FormState> formKey =  GlobalKey<FormState>();
-  List<int> formCheck= [-1,-1,-1,-1,1,1,1,1];
+  List<int> formCheck= [-1,-1,-1,-1,-1,-1,-1,-1,1];
   int pageIndex = 0;
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController universityController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  int gender=0;
 
   List<File> mediaListImages = [
     File(""),

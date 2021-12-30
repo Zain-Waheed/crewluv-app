@@ -8,6 +8,7 @@ class AppInputDecoration{
   static InputDecoration circularFieldDecoration(Widget? preIcon,String hintText,Widget? suffixIcon)
   {
     return InputDecoration(
+      fillColor: AppColors.offWhite,
       hintText: getTranslated(Get.context, hintText),
       suffixIcon:suffixIcon !=null? Container(
           margin: EdgeInsets.only(right: Get.width*0.03),
@@ -20,7 +21,7 @@ class AppInputDecoration{
       hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500,),
       enabledBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(30)),
-        borderSide: BorderSide(color: AppColors.greyText),
+        borderSide: BorderSide(color: AppColors.borderShadow),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(30)),

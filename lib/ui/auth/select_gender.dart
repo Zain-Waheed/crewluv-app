@@ -18,7 +18,6 @@ class SelectGender extends StatefulWidget {
 }
 
 class _SelectGenderState extends State<SelectGender> {
-  int gender=0;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,dashPro,_)
@@ -69,9 +68,9 @@ class _SelectGenderState extends State<SelectGender> {
             SizedBox(height: Get.width * 0.15),
             GestureDetector(
               onTap: (){
-                gender=1;
+                dashPro.gender=1;
                 setState(() {
-                  if(gender!=0)
+                  if(dashPro.gender!=0)
                   {
                     dashPro.formCheck[dashPro.pageIndex]=1;
                   }
@@ -88,7 +87,7 @@ class _SelectGenderState extends State<SelectGender> {
                 decoration: BoxDecoration(
                   color: AppColors.silverWhite,
                   borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color:gender!=1?AppColors.genderBorder:AppColors.themeColor),
+                  border: Border.all(color:dashPro.gender!=1?AppColors.genderBorder:AppColors.themeColor),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,9 +105,9 @@ class _SelectGenderState extends State<SelectGender> {
             ),
             GestureDetector(
               onTap: (){
-                gender=2;
+                dashPro.gender=2;
                 setState(() {
-                  if(gender!=0)
+                  if(dashPro.gender!=0)
                   {
                     dashPro.formCheck[dashPro.pageIndex]=1;
                   }
@@ -126,7 +125,7 @@ class _SelectGenderState extends State<SelectGender> {
                 decoration: BoxDecoration(
                   color: AppColors.silverWhite,
                   borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color:gender!=2?AppColors.genderBorder:AppColors.themeColor),
+                  border: Border.all(color:dashPro.gender!=2?AppColors.genderBorder:AppColors.themeColor),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,9 +142,9 @@ class _SelectGenderState extends State<SelectGender> {
             ),
             GestureDetector(
               onTap: (){
-                gender=3;
+                dashPro.gender=3;
                 setState(() {
-                  if(gender!=0)
+                  if(dashPro.gender!=0)
                   {
                     dashPro.formCheck[dashPro.pageIndex]=1;
                   }
@@ -162,7 +161,7 @@ class _SelectGenderState extends State<SelectGender> {
                 decoration: BoxDecoration(
                   color: AppColors.silverWhite,
                   borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color:gender!=3?AppColors.genderBorder:AppColors.themeColor),
+                  border: Border.all(color:dashPro.gender!=3?AppColors.genderBorder:AppColors.themeColor),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
