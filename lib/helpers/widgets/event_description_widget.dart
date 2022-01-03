@@ -57,6 +57,8 @@ class _EventDescriptionWidgetState extends State<EventDescriptionWidget> {
           ),
           SizedBox(height: Get.width*0.02,),
 
+
+
         ],
       ),
     );

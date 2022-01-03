@@ -1,10 +1,13 @@
 import 'package:amigos/helpers/bottom_sheets/change_password_bottomsheet.dart';
 import 'package:amigos/helpers/bottom_sheets/further_subscription.dart';
+import 'package:amigos/helpers/bottom_sheets/logout_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/helpers/widgets/getplan_dialog.dart';
 import 'package:amigos/helpers/widgets/subcription_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/ui/dashboard/about_application.dart';
+import 'package:amigos/ui/dashboard/faqs.dart';
 import 'package:amigos/ui/dashboard/terms_of_use.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
@@ -89,9 +92,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               settingsWidget(AppImages.subscription2,'subscription' , () { Get.dialog( GetPlanDialogBox(func: (){Get.bottomSheet(FurtherSubscription());},)); }),
               settingsWidget(AppImages.changePassword,'change_password' , () { Get.bottomSheet(const ChangePassword() , isScrollControlled: true);}),
               settingsWidget(AppImages.termsOfUse,'terms_of_use' , () {Get.to(()=>  TermsOfUse(termsOfUse: true,));}),
-              settingsWidget(AppImages.faqs, 'faqs', () { }),
-              settingsWidget(AppImages.aboutApplication, 'about_application', () { }),
-              settingsWidget(AppImages.logout, 'logout', () { }),
+              settingsWidget(AppImages.faqs, 'faqs', () { Get.to(()=> Faqs());}),
+              settingsWidget(AppImages.aboutApplication, 'about_application', () {Get.to(()=>AboutApplication());}),
+              settingsWidget(AppImages.logout, 'logout', () { Get.bottomSheet(LogoutBottomSheet());}),
               SizedBox(height: Get.height*0.02,),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05,vertical: Get.height*0.003),

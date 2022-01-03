@@ -54,8 +54,6 @@ class _FurtherSubscriptionState extends State<FurtherSubscription> {
                     Text(getTranslated(context, 'membership')??'',style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
                     SizedBox(height: Get.width*0.01,),
                     Text(getTranslated(context, 'slogan')??'',style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
-
-
                   ],
                 ),
 

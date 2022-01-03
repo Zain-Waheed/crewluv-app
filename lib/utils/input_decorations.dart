@@ -39,7 +39,7 @@ class AppInputDecoration{
       filled: true,
     );
   }
-  static InputDecoration lessCircularDecoration(Widget? preIcon,String hintText,Widget? suffixIcon,)
+  static InputDecoration lessCircularDecoration(Widget? preIcon,String hintText,Widget? suffixIcon,Color color)
   {
     return InputDecoration(
       fillColor: AppColors.whiteColor,
