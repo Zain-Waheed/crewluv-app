@@ -23,15 +23,21 @@ class _LoginState extends State<Login> {
           gradient: AppColors.orangeGradientColor,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image.asset(AppImages.loginLogo , scale: 5,),
+            SizedBox(
+              height: Get.width*0.2,
+            ),
+            Container(
+              height: Get.width*0.8,
+              child: Image.asset(AppImages.loginLogo),
+            ),
+            SizedBox(
+              height: Get.width*0.1,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: Get.width*0.07),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text.rich(
                     TextSpan(
@@ -52,16 +58,18 @@ class _LoginState extends State<Login> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: Get.width*0.06,),
+                  SizedBox(
+                    height: Get.width*0.08,
+                  ),
                   ElevatedButton(
                     onPressed: () {
-                      Get.to(PhoneNumber());
+                      Get.to(const PhoneNumber());
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: Get.width*0.04),
                       primary: AppColors.whiteLite,
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius
                             .circular(27.0),
                       ),
                     ),
@@ -81,7 +89,9 @@ class _LoginState extends State<Login> {
                       ],
                     ),
                   ),
-                  SizedBox(height: Get.width*0.04,),
+                  SizedBox(
+                    height: Get.width*0.04,
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       // Navigator.push(
@@ -112,41 +122,41 @@ class _LoginState extends State<Login> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: Get.width*0.04,
+                  ),
+                  SizedBox(
+                    height: Get.width*0.04,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(vertical: Get.width*0.04),
+                      primary: AppColors.whiteLite,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius
+                            .circular(27.0),
+                      ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: Get.width*0.04),
-                        primary: AppColors.whiteLite,
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius
-                              .circular(27.0),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: Get.width*0.04,
                         ),
-                      ),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: Get.width*0.04,
-                          ),
-                          Image.asset(AppImages.facebook,width: Get.width*0.06,height: Get.width*0.06,),
-                          SizedBox(
-                            width: Get.width*0.09,
-                          ),
-                          Text(
-                            getTranslated(context, 'continue_with_facebook')??"",
-                            style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w600),
-                          ),
-                        ],
-                      ),
+                        Image.asset(AppImages.facebook,width: Get.width*0.06,height: Get.width*0.06,),
+                        SizedBox(
+                          width: Get.width*0.09,
+                        ),
+                        Text(
+                          getTranslated(context, 'continue_with_facebook')??"",
+                          style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w600),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

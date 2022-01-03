@@ -17,12 +17,18 @@ class AppButtonSmall extends StatefulWidget {
 }
 
 class _AppButtonSmallState extends State<AppButtonSmall> {
+  int index=0;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,dashPro,_) {
      return GestureDetector(
         onTap: (){
+          index=dashPro.interests.indexOf(widget.preference!);
           widget.preference!.isSelected = !widget.preference!.isSelected!;
+          dashPro.interests[index]=widget.preference!;
+          setState(() {
+
+          });
           if(dashPro.pageIndex==5)
             {
               if(dashPro.favoriteDrinks.where((element) => element.isSelected == true).isEmpty){

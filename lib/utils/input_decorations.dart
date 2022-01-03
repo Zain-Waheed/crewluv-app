@@ -39,7 +39,7 @@ class AppInputDecoration{
       filled: true,
     );
   }
-  static InputDecoration withoutIcon(String hintText)
+  static InputDecoration lessCircularDecoration(Widget? preIcon,String hintText,Widget? suffixIcon,)
   {
     return InputDecoration(
       fillColor: AppColors.whiteColor,
@@ -63,6 +63,7 @@ class AppInputDecoration{
       ),
       isDense: true,
       filled: true,
+      suffixIcon: suffixIcon,
     );
   }
 }

@@ -8,14 +8,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SubcriptionDialogBox extends StatefulWidget {
-  const SubcriptionDialogBox({Key? key}) : super(key: key);
+class SubscriptionDialogBox extends StatefulWidget {
+  const SubscriptionDialogBox({Key? key}) : super(key: key);
 
   @override
-  _SubcriptionDialogBoxState createState() => _SubcriptionDialogBoxState();
+  _SubscriptionDialogBoxState createState() => _SubscriptionDialogBoxState();
 }
 
-class _SubcriptionDialogBoxState extends State<SubcriptionDialogBox> {
+class _SubscriptionDialogBoxState extends State<SubscriptionDialogBox> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

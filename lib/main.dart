@@ -1,6 +1,10 @@
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/auth_provider.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/dashboard.dart';
+import 'package:amigos/ui/dashboard/edit_profile.dart';
+import 'package:amigos/ui/dashboard/profile_screen.dart';
+import 'package:amigos/ui/intro/splash_logo_screen.dart';
 import 'package:amigos/ui/intro/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -67,7 +71,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: const SplashScreeen(),
+       home: const ProfileScreen(),
     );
   }
 }

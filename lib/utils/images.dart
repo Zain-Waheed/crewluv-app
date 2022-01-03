@@ -71,4 +71,19 @@ class AppImages {
    static var privacy = "assets/images/privacy.png";
    static var profileImage = "assets/images/profileImage.png";
    static var appLogoSmall = "assets/images/appLogoSmall.png";
+   static var draw = "assets/images/draw.png";
+   static var logout = "assets/images/logout.png";
+   static var aboutApplication = "assets/images/aboutApplication.png";
+   static var subscription2 = "assets/images/subscription2.png";
+   static var termsOfUse = "assets/images/termsOfUse.png";
+   static var faqs = "assets/images/faqs.png";
+   static var changePassword = "assets/images/changePassword.png";
+   static var newPassword = "assets/images/newPassword.png";
+   static var eye = "assets/images/eye.png";
+
+
+
+
+
+
 }

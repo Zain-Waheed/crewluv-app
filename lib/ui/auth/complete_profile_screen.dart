@@ -93,7 +93,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                        Get.to(
 
                            // const DashBoardScreen()
-                               EditProfile()
+                               const DashBoardScreen(),
                        );
                      });
                     }
@@ -287,38 +287,38 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       });
     } else if (dashPro.pageIndex == 2) {
       setState(() {
-        percentage = 35;
-        percent = 0.35;
+        percentage = 30;
+        percent = 0.30;
       });
     } else if (dashPro.pageIndex == 3) {
+      setState(() {
+        percentage = 40;
+        percent = 0.4;
+      });
+    } else if (dashPro.pageIndex == 4) {
       setState(() {
         percentage = 50;
         percent = 0.5;
       });
-    } else if (dashPro.pageIndex == 4) {
+    } else if (dashPro.pageIndex == 5) {
       setState(() {
         percentage = 65;
         percent = 0.65;
       });
-    } else if (dashPro.pageIndex == 5) {
+    } else if (dashPro.pageIndex == 6) {
       setState(() {
         percentage = 75;
         percent = 0.75;
       });
-    } else if (dashPro.pageIndex == 6) {
-      setState(() {
-        percentage = 85;
-        percent = 0.95;
-      });
     } else if (dashPro.pageIndex == 7) {
       setState(() {
-        percentage = 95;
-        percent = 1;
+        percentage = 85;
+        percent = 0.85;
       });
     }else if (dashPro.pageIndex == 8) {
       setState(() {
-        percentage = 95;
-        percent = 1;
+        percentage = 90;
+        percent = 0.9;
       });
     }
   }

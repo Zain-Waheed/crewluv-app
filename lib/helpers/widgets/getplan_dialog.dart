@@ -12,7 +12,10 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class GetPlanDialogBox extends StatefulWidget {
-  const GetPlanDialogBox({Key? key}) : super(key: key);
+  VoidCallback func;
+
+
+  GetPlanDialogBox({ required this.func});
 
   @override
   _GetPlanDialogBoxState createState() => _GetPlanDialogBoxState();
@@ -136,8 +139,8 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                 SizedBox(
                   height: Get.width*0.045,
                 ),
-                AppButton(buttonText: 'further', onpressed: (){}, width: Get.width*0.7, isWhite: false),
-                TextButton(onPressed: (){},
+                AppButton(buttonText: 'further', onpressed: widget.func, width: Get.width*0.7, isWhite: false),
+                TextButton(onPressed: (){Get.back();},
                     child: Text(
                       getTranslated(context, 'no_thanks')??"",
                       style: AppTextStyle.

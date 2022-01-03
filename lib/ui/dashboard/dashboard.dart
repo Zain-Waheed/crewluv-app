@@ -102,7 +102,7 @@ import 'package:get/get.dart';
 
                    });
                  },
-                   child: Image.asset(AppImages.user,scale: 3,),
+                   child: Image.asset(AppImages.user,scale: 3,color: pageIndex==3? AppColors.themeColor:AppColors.slateGrey)
                ),
 
              ],
@@ -110,7 +110,7 @@ import 'package:get/get.dart';
          ),
          shape: const CircularNotchedRectangle(),
          elevation: 10,
-         notchMargin: 8,
+         notchMargin: 4,
        ),
      );
    }

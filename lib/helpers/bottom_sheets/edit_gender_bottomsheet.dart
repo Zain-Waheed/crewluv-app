@@ -1,5 +1,4 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
-import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/utils/colors.dart';
@@ -9,55 +8,46 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-
-class SelectGender extends StatefulWidget {
-  const SelectGender({Key? key}) : super(key: key);
+class EditGender extends StatefulWidget {
+  const EditGender({Key? key}) : super(key: key);
 
   @override
-  _SelectGenderState createState() => _SelectGenderState();
+  _EditGenderState createState() => _EditGenderState();
 }
 
-class _SelectGenderState extends State<SelectGender> {
+class _EditGenderState extends State<EditGender> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<DashboardProvider>(builder: (context,dashPro,_)
+    return Consumer<DashboardProvider>(builder:(context,dashPro,_)
     {
-      return Scaffold(
-
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          color: AppColors.whiteColor,
+        ),
+        child: Column(
           children: [
-            SizedBox(
-              height: Get.width * 0.1,
+            Container(
+              width: Get.width*0.25,
+              padding: EdgeInsets.symmetric(vertical: Get.width*0.008),
+              margin: EdgeInsets.symmetric(vertical: Get.width*0.03),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.bottomSheetGrey
+
+              ),
             ),
-            Text(
-              getTranslated(context, 'you_are') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
-            ),
-            SizedBox(
-              height: Get.width * 0.05,
-            ),
-            Text(
-              getTranslated(context, 'gender_available') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
-            ),
-            SizedBox(height: Get.width * 0.15),
+            SizedBox(height: Get.width*0.01,),
+            Text(getTranslated(context, "edit_gender")??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
+            SizedBox(height: Get.width*0.1,),
+
             GestureDetector(
               onTap: (){
                 dashPro.gender=1;
                 setState(() {
-                  if(dashPro.gender!=0)
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=1;
-                  }
-                  else
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=-1;
-                  }
+
                 });
-                Get.forceAppUpdate();
               },
               child: Container(
                 height: Get.width*0.17,
@@ -85,16 +75,7 @@ class _SelectGenderState extends State<SelectGender> {
               onTap: (){
                 dashPro.gender=2;
                 setState(() {
-                  if(dashPro.gender!=0)
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=1;
-                  }
-                  else
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=-1;
-                  }
                 });
-                Get.forceAppUpdate();
               },
               child: Container(
                 height: Get.width*0.17,
@@ -112,7 +93,7 @@ class _SelectGenderState extends State<SelectGender> {
                       padding:  EdgeInsets.only(left:Get.width*0.06),
                       child: Image.asset(AppImages.femaleIcon,scale: 3,),
                     ),
-                    Text(getTranslated(context, 'female')??"",style: AppTextStyle.montserrat(dashPro.gender==2?AppColors.themeColor:AppColors.shadedBlack,Get.width*0.04, FontWeight.w500),),
+                    Text(getTranslated(context, 'female')??"",style: AppTextStyle.montserrat(dashPro.gender==2?AppColors.themeColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
                     Image.asset(AppImages.femaleIcon,scale: 3, color: Colors.transparent,),
                   ],
                 ),
@@ -122,16 +103,7 @@ class _SelectGenderState extends State<SelectGender> {
               onTap: (){
                 dashPro.gender=3;
                 setState(() {
-                  if(dashPro.gender!=0)
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=1;
-                  }
-                  else
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=-1;
-                  }
                 });
-                Get.forceAppUpdate();
               },
               child: Container(
                 height: Get.width*0.17,
@@ -154,9 +126,12 @@ class _SelectGenderState extends State<SelectGender> {
                 ),
               ),
             ),
+          SizedBox(height: Get.width*0.1,),
+         AppButton(buttonText: 'save_changes', onpressed: (){}, width: Get.width*0.9, isWhite: false)
           ],
         ),
+
       );
-    });
+  });
   }
 }

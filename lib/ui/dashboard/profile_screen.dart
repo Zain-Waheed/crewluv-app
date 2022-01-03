@@ -1,6 +1,9 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
+import 'package:amigos/helpers/widgets/getplan_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/ui/dashboard/edit_profile.dart';
+import 'package:amigos/ui/dashboard/settings_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
@@ -172,21 +175,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          height: Get.width * 0.15,
-                          width: Get.width * 0.15,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.whiteColor,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: AppColors.black.withOpacity(0.3),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 5.0)
-                              ]),
-                          child: Image.asset(
-                            AppImages.settings,
-                            scale: 3,
+                        GestureDetector(
+                          onTap: (){
+                            Get.to(()=> const SettingsScreen());
+                          },
+                          child: Container(
+                            height: Get.width * 0.15,
+                            width: Get.width * 0.15,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.whiteColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: AppColors.black.withOpacity(0.3),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 5.0)
+                                ]),
+                            child: Image.asset(
+                              AppImages.settings,
+                              scale: 3,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -202,22 +210,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          height: Get.width * 0.15,
-                          width: Get.width * 0.15,
-                          margin: EdgeInsets.only(top: 50),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.whiteColor,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: AppColors.black.withOpacity(0.3),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 5.0)
-                              ]),
-                          child: Image.asset(
-                            AppImages.edit,
-                            scale: 3,
+                        GestureDetector(
+                          onTap: (){
+                            Get.to(()=>const EditProfile());
+                          },
+                          child: Container(
+                            height: Get.width * 0.15,
+                            width: Get.width * 0.15,
+                            margin: EdgeInsets.only(top: 50),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.whiteColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: AppColors.black.withOpacity(0.3),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 5.0)
+                                ]),
+                            child: Image.asset(
+                              AppImages.edit,
+                              scale: 3,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -267,23 +280,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05,vertical: Get.width*0.02),
-
+              padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05,vertical: Get.width*0.01),
               decoration: BoxDecoration(
                 color: AppColors.whiteColor,
-
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: const BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
                       color: AppColors.black.withOpacity(0.9),
                       offset: const Offset(0, 4),
-                      blurRadius: 5)
+                      blurRadius: 5),
                 ],
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    height: Get.width*0.3,
+                    height: Get.width*0.25,
                     child: PageView(
                       controller: controller,
                       onPageChanged: (value){
@@ -293,112 +305,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         });
 
                       },
-                      children: [
-
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                      children:List.generate(5, (index) =>  Column(children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.brownColor,
-
-                                  ),
-                                  child: Image.asset(AppImages.appLogoSmall,scale: 1.5,),
-                                ),
-                                SizedBox(
-                                  width: Get.width*0.01,
-                                ),
-                                Text('intro Text',
-                                  style: AppTextStyle.montserrat(
-                                    AppColors.blackLite,
-                                    Get.width*0.045,
-                                    FontWeight.w700,
-                                  ),
-                                ),
-                              ],
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.brownColor,
+                              ),
+                                child: Image.asset(AppImages.appLogoSmall,width: Get.width*0.08,height: Get.height*0.08,)),
+                            SizedBox(
+                              width: Get.width*0.01,
                             ),
-                            Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.jetBlack, Get.width*0.035, FontWeight.w300),maxLines: 2, overflow: TextOverflow.ellipsis,),
-
-                          ],
-
-                        ),
-                        Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(AppImages.appLogoSmall,width: Get.width*0.08,height: Get.height*0.08,),
-                                SizedBox(
-                                  width: Get.width*0.01,
-                                ),
-                                Text('intro Text',
-                                  style: AppTextStyle.montserrat(
-                                    AppColors.blackLite,
-                                    Get.width*0.045,
-                                    FontWeight.w700,
-                                  ),
-                                ),
-                              ],
+                            Text('intro Text',
+                              style: AppTextStyle.montserrat(
+                                AppColors.blackLite,
+                                Get.width*0.045,
+                                FontWeight.w700,
+                              ),
                             ),
-                            Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w300),maxLines: 2, overflow: TextOverflow.ellipsis,),
-
                           ],
-
                         ),
-                        Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(AppImages.appLogoSmall,width: Get.width*0.08,height: Get.height*0.08,),
-                                SizedBox(
-                                  width: Get.width*0.01,
-                                ),
-                                Text('intro Text',
-                                  style: AppTextStyle.montserrat(
-                                    AppColors.blackLite,
-                                    Get.width*0.045,
-                                    FontWeight.w700,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w300),maxLines: 2, overflow: TextOverflow.ellipsis,),
+                        Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w300),maxLines: 2, overflow: TextOverflow.ellipsis,),
 
-                          ],
-
-                        ),
-                        Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(AppImages.appLogoSmall,width: Get.width*0.08,height: Get.height*0.08,),
-                                SizedBox(
-                                  width: Get.width*0.01,
-                                ),
-                                Text('intro Text',
-                                  style: AppTextStyle.montserrat(
-                                    AppColors.blackLite,
-                                    Get.width*0.045,
-                                    FontWeight.w700,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w300),maxLines: 2, overflow: TextOverflow.ellipsis,),
-
-                          ],
-
-                        ),
-                      ],
+                      ],))
 
                     ),
                   ),
+                  SizedBox(height: Get.height*0.02,),
                   SmoothPageIndicator(
                     count: 5,
                     effect: ExpandingDotsEffect(
@@ -412,8 +347,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     controller: controller,
                   ),
-                  SizedBox(height: Get.width*0.02,),
-                  AppButton(buttonText: 'learn_more', onpressed: (){}, width: Get.width, isWhite: false)
+                  SizedBox(height: Get.height*0.01,),
+                  AppButton(buttonText: 'learn_more', onpressed: (){Get.dialog(GetPlanDialogBox(func: (){}, ));}, width: Get.width, isWhite: false),
 
                 ],
               ),
