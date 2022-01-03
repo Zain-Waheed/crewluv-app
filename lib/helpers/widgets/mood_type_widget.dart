@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class MoodTypeWidget extends StatefulWidget {
   EventType type;
-  MoodTypeWidget({required this.type});
+  bool isTitle;
+  MoodTypeWidget({required this.type, this.isTitle=true});
 
   @override
   _MoodTypeWidgetState createState() => _MoodTypeWidgetState();
@@ -23,7 +24,9 @@ class _MoodTypeWidgetState extends State<MoodTypeWidget> {
         children: [
 
           Image.asset(widget.type.image,scale: 4,),
-          Text(widget.type.title),
+          Visibility(
+            visible: widget.isTitle,
+              child: Text(widget.type.title)),
         ],
       ),
     );

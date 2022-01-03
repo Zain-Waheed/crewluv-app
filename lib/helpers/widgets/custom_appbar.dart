@@ -38,7 +38,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ),
       leadingWidth: Get.width*0.2,
       toolbarHeight: Get.width*0.3,
-      title:  Text(getTranslated(context,widget.title??"")??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w500),),
+      title:  Text(getTranslated(context,widget.title??"")??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.045, FontWeight.w500),),
       centerTitle: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,

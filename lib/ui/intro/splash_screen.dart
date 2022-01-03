@@ -1,4 +1,8 @@
 import 'package:amigos/ui/auth/favorite_drinks_screen.dart';
+import 'package:amigos/ui/dashboard/chat_box_screen.dart';
+import 'package:amigos/ui/dashboard/dashboard.dart';
+import 'package:amigos/ui/dashboard/home_screen.dart';
+import 'package:amigos/ui/dashboard/new_crew.dart';
 import 'package:amigos/ui/dashboard/profile_detail_screen.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/ui/intro/splash_logo_screen.dart';
@@ -19,7 +23,7 @@ class _SplashScreeenState extends State<SplashScreeen> {
   void initState() {
     Future.delayed(const Duration(seconds: 1),(){
       Get.off(
-          SplashLogoScreen()
+          ChatBox()
       );
     },
     );

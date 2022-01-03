@@ -171,7 +171,9 @@ class _EventWidgetState extends State<EventWidget> {
                 ],
               ),
               SizedBox(height: Get.width*0.07,),
-              AppButton(buttonText: 'join', onpressed: (){}, width: Get.width, isWhite: false)
+              AppButton(buttonText: 'join', onpressed: (
+
+                  ){}, width: Get.width, isWhite: false)
             ],
           ),
         ),

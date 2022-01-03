@@ -80,6 +80,7 @@ class AppImages {
    static var changePassword = "assets/images/changePassword.png";
    static var newPassword = "assets/images/newPassword.png";
    static var eye = "assets/images/eye.png";
+   static var filter = "assets/images/filter.png";
 
 
 

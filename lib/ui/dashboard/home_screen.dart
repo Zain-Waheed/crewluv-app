@@ -1,3 +1,4 @@
+import 'package:amigos/helpers/bottom_sheets/ticketbuy_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/event_description_widget.dart';
 import 'package:amigos/helpers/widgets/event_widget.dart';
 import 'package:amigos/helpers/widgets/mood_wideget.dart';
@@ -5,6 +6,7 @@ import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/all_events.dart';
+import 'package:amigos/ui/dashboard/map_screen.dart';
 import 'package:amigos/ui/dashboard/notification_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -23,7 +25,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
+  int pageIndex=0;
+  final _controller = PageController();
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,provider,_)
@@ -45,27 +48,37 @@ class _HomeScreenState extends State<HomeScreen> {
                       BoxShadow(
                           color: AppColors.genderBorder.withOpacity(0.2), offset: const Offset(0, 2), blurRadius: 2.0)
                     ]
-
                 ),
                 child: Row(
                   children: [
-                    Container(
-
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
-                        border: Border.all(color: AppColors.genderBorder),
-                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(16),bottomLeft: Radius.circular(16)),
+                    GestureDetector(
+                      onTap: (){
+                        pageIndex=0;
+                        _controller.jumpToPage(pageIndex);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.whiteColor,
+                          border: Border.all(color: AppColors.genderBorder),
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(16),bottomLeft: Radius.circular(16)),
+                        ),
+                        child: Image.asset(AppImages.yourLocation2,),
                       ),
-                      child: Image.asset(AppImages.yourLocation2,),
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical:Get.width*0.03,horizontal: Get.width*0.01),
-                      decoration: BoxDecoration(
-                        color: AppColors.themeColor,
-                        borderRadius: const BorderRadius.only(topRight: Radius.circular(16),bottomRight: Radius.circular(16)),
+                    GestureDetector(
+                      onTap: (){
+                        pageIndex=1;
+                        _controller.jumpToPage(pageIndex);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical:Get.width*0.03,horizontal: Get.width*0.01),
+                        decoration: BoxDecoration(
+                          color: AppColors.themeColor,
+                          borderRadius: const BorderRadius.only(topRight: Radius.circular(16),bottomRight: Radius.circular(16)),
 
+                        ),
+                        child: Image.asset(AppImages.list,scale: 2.5,color: AppColors.whiteColor,),
                       ),
-                      child: Image.asset(AppImages.list,scale: 2.5,color: AppColors.whiteColor,),
                     ),
                   ],
                 ),
@@ -79,13 +92,29 @@ class _HomeScreenState extends State<HomeScreen> {
                },
                 child: Image.asset(AppImages.notificationIcon),
             ),
-            Image.asset(AppImages.party2),
+            GestureDetector(
+              onTap:(){
+                Get.bottomSheet(
+                  TicketBuy()
+                );
+              },
+                child: Image.asset(AppImages.party2)
+            ),
           ],
         ) ,
-        body: SingleChildScrollView(
-          child: Column(
-            children: List.generate(provider.events.length, (index) => EventDescriptionWidget(model: provider.events[index],titleImage: true,)),
-          ),
+        body: PageView(
+          controller: _controller,
+          children: [
+            MapScreen(),
+            SingleChildScrollView(
+              child: Column(
+                children: List.generate(provider.events.length, (index) => EventDescriptionWidget(model: provider.events[index],titleImage: true,)),
+              ),
+            ),
+          ],
+          onPageChanged: (index){
+            pageIndex=index;
+          },
         ),
       );
     });
