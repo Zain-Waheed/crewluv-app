@@ -25,32 +25,6 @@ class _EnterFullNameState extends State<EnterFullName> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,dashPro,_){
       return Scaffold(
-        // appBar: PreferredSize(
-        //   preferredSize: Size.fromHeight(Get.width * 0.17),
-        //   child: CustomAppBar(
-        //       function: () {
-        //         Get.back();
-        //       },
-        //       backButton: true,
-        //       title: 'complete_profile'),
-        // ),
-        // bottomNavigationBar: Container(
-        //   height: Get.width * 0.2,
-        //   padding: EdgeInsets.symmetric(
-        //       horizontal: Get.width * 0.07, vertical: Get.width * 0.03),
-        //   child: AppButton(
-        //     isWhite: false,
-        //     width: Get.width * 0.6,
-        //     buttonText: 'further',
-        //     onpressed: () {
-        //       if(formKey.currentState!.validate())
-        //       {
-        //         Get.to(() => const EnterDOB());
-        //       }
-        //
-        //     },
-        //   ),
-        // ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

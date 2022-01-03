@@ -1,4 +1,3 @@
-import 'package:amigos/helpers/widgets/event_widget.dart';
 import 'package:amigos/ui/dashboard/all_events.dart';
 import 'package:amigos/ui/dashboard/chat_screen.dart';
 import 'package:amigos/ui/dashboard/create_event.dart';
@@ -32,7 +31,6 @@ import 'package:get/get.dart';
            AllEvents(),
            ChatScreen(),
            ProfileScreen(),
-
          ],
        ),
        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -40,7 +38,9 @@ import 'package:get/get.dart';
          child:  Center(child: Image.asset(AppImages.addEvent,scale: 3,color: AppColors.whiteColor,)),
          backgroundColor: AppColors.themeColor,
          elevation: 2.0,
-         onPressed: (){Get.to(()=> const CreateEvent());},
+         onPressed: (){
+           Get.to(()=> const CreateEvent()
+           );},
        ),
        bottomNavigationBar: BottomAppBar(
          clipBehavior: Clip.antiAlias,

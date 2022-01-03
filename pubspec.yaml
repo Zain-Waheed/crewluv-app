@@ -52,6 +52,7 @@ dependencies:
   swipable_stack: ^0.8.1
   carousel_slider: ^4.0.0
   expandable: ^5.0.1
+  syncfusion_flutter_sliders: ^19.4.40
 
 
 

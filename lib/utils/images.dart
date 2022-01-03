@@ -89,6 +89,7 @@ class AppImages {
 
 
 
+   static var filter = "assets/images/filter.png";
 
 
 
