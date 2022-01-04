@@ -41,7 +41,8 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> with Tick
     curve: Curves.bounceIn,
   ));
   late final AnimationController _heartcontroller = AnimationController(
-    duration: const Duration(seconds: 4),
+    duration: const Duration(seconds: 6),
+    value:0.0,
     vsync: this,
   );
   late final Animation<double> _heartanimation = CurvedAnimation(

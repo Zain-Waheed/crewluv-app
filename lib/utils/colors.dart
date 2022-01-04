@@ -116,5 +116,17 @@ class AppColors {
         0.0,
       ]
   );
+  static LinearGradient brownGradient=const LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomRight,
+      colors: <Color>[
+        Color(0xffBA8E2E),
+        Color(0xff999999),
+      ],
+      stops: [
+        4.0,
+        0.0,
+      ]
+  );
 
 }

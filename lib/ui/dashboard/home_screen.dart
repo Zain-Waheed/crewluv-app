@@ -1,7 +1,9 @@
 import 'package:amigos/helpers/bottom_sheets/ticketbuy_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/event_description_widget.dart';
 import 'package:amigos/helpers/widgets/event_widget.dart';
+import 'package:amigos/helpers/widgets/getplan_dialog.dart';
 import 'package:amigos/helpers/widgets/mood_wideget.dart';
+import 'package:amigos/helpers/widgets/ticket_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
@@ -94,9 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             GestureDetector(
               onTap:(){
-                Get.bottomSheet(
-                  TicketBuy()
-                );
+               Get.to(
+                 GetPlanDialogBox(func: (){})
+               );
               },
                 child: Image.asset(AppImages.party2)
             ),

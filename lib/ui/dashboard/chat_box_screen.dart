@@ -1,4 +1,5 @@
 import 'package:amigos/localization/app_localization.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
@@ -169,40 +170,68 @@ class _ChatBoxState extends State<ChatBox> {
     );
   }
   crewInviteWidget(String title) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: Get.width * 0.01),
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                  color: AppColors.themeColor, width: Get.height * 0.002),
-            ),
-            child: const CircleAvatar(
-              radius: 15,
-              backgroundImage: CachedNetworkImageProvider(
-                'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
+    return Slidable(
+      enabled: true,
+        endActionPane:  ActionPane(
+          extentRatio: 0.25,
+          motion: const ScrollMotion(),
+          children: [
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                width:Get.width*0.1,
+                height:Get.width*0.1,
+                margin:EdgeInsets.only(left: Get.width*0.02),
+                decoration: const BoxDecoration(
+                  color: Colors.orange,
+                  shape: BoxShape.circle,
+                ),
+                child:Icon(
+                  Icons.delete,
+                  color: AppColors.white,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            width: Get.width * 0.03,
-          ),
-          Text(
-            title,
-            style: AppTextStyle.montserrat(
-              AppColors.shadedBlack,
-              Get.width * 0.05,
-              FontWeight.w500,
+          ],
+        ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: Get.width * 0.01),
+        child: Row(
+          children: [
+            IconButton(
+              onPressed: () {  },
+              icon: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      color: AppColors.themeColor, width: Get.height * 0.002),
+                ),
+                child: const CircleAvatar(
+                  radius: 15,
+                  backgroundImage: CachedNetworkImageProvider(
+                    'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
+                  ),
+                ),
+              ),
             ),
-          ),
-          Spacer(),
-          IconButton(
-              onPressed: (){},
-              icon: Image.asset(AppImages.chat2,color: AppColors.themeColor,),
-          )
-        ],
+            SizedBox(
+              width: Get.width * 0.03,
+            ),
+            Text(
+              title,
+              style: AppTextStyle.montserrat(
+                AppColors.shadedBlack,
+                Get.width * 0.05,
+                FontWeight.w500,
+              ),
+            ),
+            Spacer(),
+            IconButton(
+                onPressed: (){},
+                icon: Image.asset(AppImages.chat2,color: AppColors.themeColor,),
+            )
+          ],
+        ),
       ),
     );
   }

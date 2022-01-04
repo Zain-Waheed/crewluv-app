@@ -81,10 +81,7 @@ class AppImages {
    static var newPassword = "assets/images/newPassword.png";
    static var eye = "assets/images/eye.png";
    static var filter = "assets/images/filter.png";
-
-
-
-
-
-
+   static var delete = "assets/images/delete.png";
+   static var share = "assets/images/share.png";
+   static var barCode = "assets/images/barCode.png";
 }
