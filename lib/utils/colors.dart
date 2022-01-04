@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 class AppColors {
   static Color whiteColor = const Color(0xffFFFFFF);
   static Color skyblue = const Color(0xffF3F4F9);
+  static Color versionColor= const Color(0xff8C98A8);
+  static Color greenishBlue = const Color(0xff37BBCA);
   static Color pink = const Color(0xffFFECE4);
   static Color orangedark = const Color(0xffFF7B17);
   static Color  geryLight = const Color(0xffAAB2BA);
@@ -49,6 +51,17 @@ class AppColors {
   static Color jetBlack = const Color(0xff595959);
   static Color dotColor = const Color(0xffD1D4D8);
   static Color bottomSheetGrey = const Color(0xffE8ECF1);
+
+  static LinearGradient greenishBlueGradient =  const LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    stops: [0.0, 0.9],
+    colors: [
+      Color(0xffD3DE16),
+      Color(0xff0191B6),
+    ],
+  );
+
   static LinearGradient blueGradientColor =  LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,

@@ -80,6 +80,15 @@ class AppImages {
    static var changePassword = "assets/images/changePassword.png";
    static var newPassword = "assets/images/newPassword.png";
    static var eye = "assets/images/eye.png";
+   static var facebook2 = "assets/images/facebook2.png";
+   static var google2 = "assets/images/google2.png";
+   static var insta = "assets/images/insta.png";
+   static var twitter = "assets/images/twitter.png";
+   static var copy = "assets/images/copy.png";
+   static var logout2 = "assets/images/logout2.png";
+
+
+
    static var filter = "assets/images/filter.png";
    static var delete = "assets/images/delete.png";
    static var share = "assets/images/share.png";

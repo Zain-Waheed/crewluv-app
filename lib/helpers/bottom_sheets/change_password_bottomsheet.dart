@@ -52,18 +52,18 @@ class _ChangePasswordState extends State<ChangePassword> {
               Text(getTranslated(context, "old_password")??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),),
               SizedBox(height: Get.height*0.01,),
               TextFormField(
-                decoration: AppInputDecoration.lessCircularDecoration(null,'enter_password',Image.asset(AppImages.eye,scale: 3,)),
+                decoration: AppInputDecoration.lessCircularDecoration(null,'enter_password',Image.asset(AppImages.eye,scale: 3,), AppColors.silverWhite),
 
               ),
               SizedBox(height: Get.height*0.02,),
               Text(getTranslated(context, "new_password")??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),),
               SizedBox(height: Get.height*0.01,),
               TextFormField(
-                decoration: AppInputDecoration.lessCircularDecoration(null,'enter_password',Image.asset(AppImages.eye,scale: 3,),),
+                decoration: AppInputDecoration.lessCircularDecoration(null,'enter_password',Image.asset(AppImages.eye,scale: 3,),AppColors.silverWhite),
               ),
               SizedBox(height: Get.height*0.02),
               TextFormField(
-                decoration: AppInputDecoration.lessCircularDecoration(null,'confirm_password',Image.asset(AppImages.eye,scale: 3,)),
+                decoration: AppInputDecoration.lessCircularDecoration(null,'confirm_password',Image.asset(AppImages.eye,scale: 3,),AppColors.silverWhite),
 
               ),
               SizedBox(height: Get.height*0.02,),

@@ -51,6 +51,7 @@ dependencies:
   flutter_chat_bubble: ^2.0.0
   swipable_stack: ^0.8.1
   carousel_slider: ^4.0.0
+  expandable: ^5.0.1
   syncfusion_flutter_sliders: ^19.4.40
   flutter_slidable: ^1.2.0
   dotted_line: ^3.1.0

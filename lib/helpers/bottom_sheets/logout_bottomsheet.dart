@@ -1,0 +1,245 @@
+import 'package:amigos/helpers/bottom_sheets/delete_profile.dart';
+import 'package:amigos/helpers/widgets/app_button.dart';
+import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/ui/auth/login_screen.dart';
+import 'package:amigos/utils/colors.dart';
+import 'package:amigos/utils/images.dart';
+import 'package:amigos/utils/text_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+class LogoutBottomSheet extends StatefulWidget {
+  const LogoutBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  _LogoutBottomSheetState createState() => _LogoutBottomSheetState();
+}
+
+class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
+  bool dontLike =false;
+  bool spendingMuchTime= false;
+ bool  cantTell = false;
+ bool temporary = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(45),
+            topRight: Radius.circular(45),
+          )),
+      child: Column(
+        children: [
+          Image.asset(AppImages.logout2,height: Get.height*0.12,width: Get.width*0.4,),
+          Text(getTranslated(context, 'what_went_wrong')??'',style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w500),),
+          SizedBox(height: Get.height*0.012,),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.height*0.001),
+            margin: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.height*0.007),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: AppColors.whiteColor,
+              boxShadow:[
+                BoxShadow(
+                  color: AppColors.opacBlack.withOpacity(0.1),
+                  offset: const Offset(0,20),
+                  blurRadius: 5
+
+
+                )
+              ]
+            ),
+            child: Row(
+              children: [
+                Text(getTranslated(context, "don't_like")??''),
+                Spacer(),
+                Checkbox(
+                  value: dontLike,
+                  activeColor: AppColors.themeColor,
+                  onChanged: (value) {
+                    dontLike = value!;
+                    if(dontLike==true)
+                      {
+                        cantTell=false;
+                        temporary=false;
+                        spendingMuchTime =false;
+
+                      }
+                    setState(() {});
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+
+
+              ],
+            ),
+
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.height*0.001),
+            margin: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.height*0.007),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: AppColors.whiteColor,
+                boxShadow:[
+                  BoxShadow(
+                      color: AppColors.opacBlack.withOpacity(0.1),
+                      offset: const Offset(0,20),
+                      blurRadius: 5
+
+
+                  )
+                ]
+            ),
+            child: Row(
+              children: [
+                Text(getTranslated(context, "spending_much_time")??''),
+                Spacer(),
+                Checkbox(
+                  value: spendingMuchTime,
+                  activeColor: AppColors.themeColor,
+                  onChanged: (value) {
+                    spendingMuchTime = value!;
+                    if(spendingMuchTime==true)
+                    {
+                      cantTell=false;
+                      temporary=false;
+                      dontLike =false;
+
+                    }
+                    setState(() {});
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+
+
+              ],
+            ),
+
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.height*0.001),
+            margin: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.height*0.007),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: AppColors.whiteColor,
+                boxShadow:[
+                  BoxShadow(
+                      color: AppColors.opacBlack.withOpacity(0.1),
+                      offset: const Offset(0,20),
+                      blurRadius: 5
+
+
+                  )
+                ]
+            ),
+            child: Row(
+              children: [
+                Text(getTranslated(context, "can't_tell")??''),
+                Spacer(),
+                Checkbox(
+                  value: cantTell,
+                  activeColor: AppColors.themeColor,
+                  onChanged: (value) {
+                    cantTell = value!;
+                    if(cantTell==true)
+                    {
+                      temporary=false;
+                      dontLike=false;
+                      spendingMuchTime =false;
+
+                    }
+                    setState(() {});
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+
+
+              ],
+            ),
+
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.height*0.001),
+            margin: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.height*0.007),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: AppColors.whiteColor,
+                boxShadow:[
+                  BoxShadow(
+                      color: AppColors.opacBlack.withOpacity(0.1),
+                      offset: const Offset(0,4),
+                      blurRadius: 2
+
+
+                  )
+                ]
+            ),
+            child: Row(
+              children: [
+                Text(getTranslated(context, "temporary_logout")??''),
+                Spacer(),
+                Checkbox(
+                  value: temporary,
+                  activeColor: AppColors.themeColor,
+                  onChanged: (value) {
+                    temporary = value!;
+                    if(temporary==true)
+                    {
+                      cantTell=false;
+                      dontLike=false;
+                      spendingMuchTime =false;
+
+                    }
+                    setState(() {});
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+
+
+              ],
+            ),
+
+          ),
+          SizedBox(height: Get.height*0.02,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              AppButton(buttonText: 'no',
+                  onpressed: (){
+                  Get.back();
+
+              },
+                  width: Get.width*0.35, isWhite: true),
+              AppButton(buttonText: 'yes',
+                  onpressed: (){
+                    if(temporary == true || cantTell ==true)
+                      {
+                        Get.to(()=> const Login());
+                      }
+                      else
+                        {
+                          Get.bottomSheet(const DeleteProfile());
+
+                       }
+
+                  }, width: Get.width*0.35, isWhite: false)
+
+            ],
+          )
+
+        ],
+
+      ),
+    );
+  }
+}

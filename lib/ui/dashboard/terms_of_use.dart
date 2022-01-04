@@ -22,7 +22,7 @@ class _TermsOfUseState extends State<TermsOfUse> {
         child: CustomAppBar(
           function: (){ Get.back();},
           backButton: true,
-          title: 'terms_of_use',
+          title: widget.termsOfUse?'terms_Of_use2':"privacy_policy2",
 
         ),
 

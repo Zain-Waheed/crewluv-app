@@ -4,6 +4,7 @@ import 'package:amigos/helpers/widgets/getplan_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/ui/dashboard/edit_profile.dart';
 import 'package:amigos/ui/dashboard/settings_screen.dart';
+import 'package:amigos/ui/dashboard/terms_of_use.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
@@ -246,21 +247,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          height: Get.width * 0.15,
-                          width: Get.width * 0.15,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.whiteColor,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: AppColors.black.withOpacity(0.3),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 5.0)
-                              ]),
-                          child: Image.asset(
-                            AppImages.privacy,
-                            scale: 3,
+                        GestureDetector(
+                          onTap: (){
+                            Get.to(()=>TermsOfUse(termsOfUse: false));
+                          },
+                          child: Container(
+                            height: Get.width * 0.15,
+                            width: Get.width * 0.15,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.whiteColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: AppColors.black.withOpacity(0.3),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 5.0)
+                                ]),
+                            child: Image.asset(
+                              AppImages.privacy,
+                              scale: 3,
+                            ),
                           ),
                         ),
                         SizedBox(
