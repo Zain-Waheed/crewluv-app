@@ -29,104 +29,109 @@ class _OtpScreenState extends State<OtpScreen> {
   bool greyButton=true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(Get.width * 0.17),
-        child: CustomAppBar(
-            function: () {
-              Get.to(() => const PhoneNumber());
-            },
-            backButton: true,
-            title: 'otp'),
-      ),
-      bottomNavigationBar: Container(
-        height: Get.width * 0.2,
-        padding: EdgeInsets.symmetric(
-            horizontal: Get.width * 0.07, vertical: Get.width * 0.03),
-        child: greyButton==true?const AppButtonGrey():AppButton(
-          isWhite: false,
-          width: Get.width * 0.6,
-          buttonText: 'verify',
-          onpressed: () {
-            Get.to(() => const CompleteProfileScreen());
-          },
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(Get.width * 0.17),
+          child: CustomAppBar(
+              function: () {
+                Get.to(() => const PhoneNumber());
+              },
+              backButton: true,
+              title: 'otp'),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: Get.width * 0.2,
-              ),
-              Text(
-                getTranslated(context, 'enter_verification_code') ?? "",
-                style: AppTextStyle.montserrat(
-                    AppColors.shadedBlack, Get.width * 0.07, FontWeight.w600),
-              ),
-              SizedBox(
-                height: Get.width * 0.05,
-              ),
-              Text(
-                getTranslated(context, 'code_sent') ?? "",
-                style: AppTextStyle.montserrat(
-                    AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
-              ),
-              SizedBox(height: Get.width * 0.1),
-              Form(
-                key: formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: PinCodeTextField(
-                  appContext: context,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  boxShadows: [
-                    BoxShadow(
-                        color: AppColors.black.withOpacity(0.2), offset: Offset(0, 4), blurRadius: 5.0)
-                  ],
-                  controller: otpController,
-                  textStyle: AppTextStyle.montserrat(AppColors.themeColor, Get.width * 0.06, FontWeight.w500),
-                  length: 6,
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.done,
-                  enableActiveFill: true,
-                  pinTheme: PinTheme(
-                      shape: PinCodeFieldShape.circle,
-                      inactiveColor: AppColors.whiteColor,
-                      activeColor: AppColors.lightGrey,
-                      selectedColor: AppColors.whiteColor,
-                      activeFillColor: AppColors.whiteColor,
-                      inactiveFillColor: AppColors.whiteColor,
-                      disabledColor: AppColors.whiteColor,
-                      errorBorderColor: AppColors.lightGrey,
-                      selectedFillColor: AppColors.whiteColor,
-                      borderWidth: 0.2,
-                      fieldHeight: Get.width * .12,
-                      fieldWidth: Get.width * 0.12,
-                      fieldOuterPadding:
-                          EdgeInsets.only(right: Get.width * 0.012)),
-                  animationDuration: const Duration(milliseconds: 300),
-                  //  backgroundColor: Colors.white,
-                  validator: (value) =>
-                      FieldValidator.validateOTP(otpController.text),
-                  onCompleted: (value)
-                  {
-                    setState(() {
-                      greyButton=false;
-                    });
-                  },
-                  onChanged: (value) {
-                    print(value);
-                    setState(() {
-                      otpText = value;
-                    });
-                  },
+        bottomNavigationBar: Container(
+          height: Get.width * 0.2,
+          padding: EdgeInsets.symmetric(
+              horizontal: Get.width * 0.07, vertical: Get.width * 0.03),
+          child: greyButton==true? AppButtonGrey('verify'):AppButton(
+            isWhite: false,
+            width: Get.width * 0.6,
+            buttonText: 'verify',
+            onpressed: () {
+              Get.to(() => const CompleteProfileScreen());
+            },
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: Get.width * 0.2,
                 ),
-              ),
-            ],
+                Text(
+                  getTranslated(context, 'enter_verification_code') ?? "",
+                  style: AppTextStyle.montserrat(
+                      AppColors.shadedBlack, Get.width * 0.07, FontWeight.w600),
+                ),
+                SizedBox(
+                  height: Get.width * 0.05,
+                ),
+                Text(
+                  getTranslated(context, 'code_sent') ?? "",
+                  style: AppTextStyle.montserrat(
+                      AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
+                ),
+                SizedBox(height: Get.width * 0.1),
+                Form(
+                  key: formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: PinCodeTextField(
+                    appContext: context,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    boxShadows: [
+                      BoxShadow(
+                          color: AppColors.black.withOpacity(0.2), offset: Offset(0, 4), blurRadius: 5.0)
+                    ],
+                    controller: otpController,
+                    textStyle: AppTextStyle.montserrat(AppColors.themeColor, Get.width * 0.06, FontWeight.w500),
+                    length: 6,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    enableActiveFill: true,
+                    pinTheme: PinTheme(
+                        shape: PinCodeFieldShape.circle,
+                        inactiveColor: AppColors.whiteColor,
+                        activeColor: AppColors.whiteColor,
+                        selectedColor: AppColors.themeColor,
+                        activeFillColor: AppColors.whiteColor,
+                        inactiveFillColor: AppColors.whiteColor,
+                        disabledColor: AppColors.themeColor,
+                        errorBorderColor: AppColors.lightGrey,
+                        selectedFillColor: AppColors.whiteColor,
+                        borderWidth: 0.2,
+                        fieldHeight: Get.width * .12,
+                        fieldWidth: Get.width * 0.12,
+                        fieldOuterPadding:
+                            EdgeInsets.only(right: Get.width * 0.012)),
+                    animationDuration: const Duration(milliseconds: 300),
+                    //  backgroundColor: Colors.white,
+                    validator: (value) =>
+                        FieldValidator.validateOTP(otpController.text),
+                    onCompleted: (value)
+                    {
+                      setState(() {
+                        greyButton=false;
+                      });
+                    },
+                    onChanged: (value) {
+                      print(value);
+                      setState(() {
+                        otpText = value;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

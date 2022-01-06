@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:amigos/models/PreferenceModel.dart';
-import 'package:amigos/models/chat_model.dart';
+import 'package:amigos/models/filter_model.dart';
+import 'package:amigos/models/group_chat_model.dart';
+import 'package:amigos/models/personal_chat_model.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/chat_details_model.dart';
 import 'package:amigos/models/event_type_model.dart';
@@ -19,17 +21,29 @@ class DashboardProvider extends ChangeNotifier{
   List<ChatDetailsModel> messages=[];
   List<EventModel> events=[];
   List<UserModel> users=[];
-  List<ChatModel> chats=[];
+  List<PersonalChatModel> personalChats=[];
+  List<GroupChatModel> groupChats =[];
+  FilterModel filters=FilterModel();
+
+
+
+  List<String> names =[
+    "sophie",
+    "lee",
+    "shaun",
+    "sasha",
+  ];
 
   DashboardProvider(){
     addEvents();
-    addEvents();
     addFavoriteDrinks();
+    addFilters();
     addMusicTaste();
     addInterests();
     addEventTypes();
     addMessages();
     addChats();
+    addGroupChat();
     addUser();
     notifyListeners();
   }
@@ -125,9 +139,9 @@ class DashboardProvider extends ChangeNotifier{
     interests.add(PreferenceModel(name: 'photography',isSelected: false));
   }
   void addEvents(){
-    events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket'));
-    events.add(EventModel( title: 'Bonfire Party', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.bonFire,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket'));
-    events.add(EventModel(title: 'Friends Mode', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.partySmall,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket'));
+    events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
+    events.add(EventModel( title: 'Bonfire Party', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.bonFire,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
+    events.add(EventModel(title: 'Friends Mode', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.partySmall,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: false,));
   }
 
   void addMessages()
@@ -141,8 +155,43 @@ class DashboardProvider extends ChangeNotifier{
     users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active'));
   }
   void addChats(){
-    chats.add(ChatModel(imagePath: AppImages.person1, name: 'Julian Dasilva', lastMessage: AppDummyData.shortText,time: 'now'));
-    chats.add(ChatModel(imagePath: AppImages.person2, name: 'Mike Lyne', lastMessage: AppDummyData.shortText,time:"3 min ago"));
-    chats.add(ChatModel(imagePath: AppImages.person3, name: 'Jane Doe', lastMessage: AppDummyData.shortText,time:" yesterday"));
+    personalChats.add(PersonalChatModel(imagePath: AppImages.person1, name: 'Julian Dasilva', lastMessage: AppDummyData.shortText,time: 'now'));
+    personalChats.add(PersonalChatModel(imagePath: AppImages.person2, name: 'Mike Lyne', lastMessage: AppDummyData.shortText,time:"3 min ago"));
+    personalChats.add(PersonalChatModel(imagePath: AppImages.person3, name: 'Jane Doe', lastMessage: AppDummyData.shortText,time:" yesterday"));
+  }
+  void addGroupChat()
+  {
+    groupChats.add(GroupChatModel(chatName: 'Birthday party', people: names, lastMessage: AppDummyData.shortText, date: '10/7/2017', lastMessageSender: names.first));
+    groupChats.add(GroupChatModel(chatName: 'AmericanParty', people: names, lastMessage: AppDummyData.shortText, date: '10/7/2017', lastMessageSender: names.first));
+
+  }
+  void addFilters(){
+    filters!.musicTaste.add(PreferenceModel(name:'pop' ,isSelected: false));
+    filters!.musicTaste.add(PreferenceModel(name:'rock' ,isSelected: false));
+    filters!.musicTaste.add(PreferenceModel(name:'jazz' ,isSelected: false));
+    filters!.musicTaste.add(PreferenceModel(name:'soul' ,isSelected: false));
+    filters!.musicTaste.add(PreferenceModel(name:'funk' ,isSelected: false));
+    //
+    filters!.eventTypes.add(PreferenceModel(name:"private_events",isSelected: false));
+    filters!.eventTypes.add(PreferenceModel(name:"communication_events",isSelected: false));
+    filters!.eventTypes.add(PreferenceModel(name:"activites",isSelected: false));
+    //
+    filters!.friend.add(PreferenceModel(name:"all",isSelected: false));
+    filters!.friend.add(PreferenceModel(name:"favourites",isSelected: false));
+    filters!.friend.add(PreferenceModel(name:"contact_list",isSelected: false));
+    filters!.friend.add(PreferenceModel(name:"squard",isSelected: false));
+    //
+    filters!.timeDuration.add(PreferenceModel(name:"now",isSelected: false));
+    filters!.timeDuration.add(PreferenceModel(name:"today",isSelected: false));
+    filters!.timeDuration.add(PreferenceModel(name:"tomorrow",isSelected: false));
+    filters!.timeDuration.add(PreferenceModel(name:"week",isSelected: false));
+
+
+
+
+
+  }
+  void update(){
+    notifyListeners();
   }
 }

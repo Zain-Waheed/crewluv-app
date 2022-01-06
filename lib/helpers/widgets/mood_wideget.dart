@@ -54,7 +54,17 @@ class _MoodWidgetState extends State<MoodWidget> {
                   decoration: AppInputDecoration.lessCircularDecoration(null,getTranslated(context, 'type_here')??'',null,AppColors.silverWhite),
                   ),
                   SizedBox(height: Get.width*0.1,),
-                  AppButton(width: Get.width,isWhite: false,buttonText: 'lets_go',onpressed: (){},)
+                  AppButton(width: Get.width,isWhite: false,buttonText: 'lets_go',onpressed: (){},),
+                  TextButton(
+                    onPressed: () {
+                     Get.back();
+                    },
+                    child: Text(
+                      getTranslated(context, 'skip') ?? "",
+                      style: AppTextStyle.poppins(AppColors.blackLite,
+                          Get.width * 0.04, FontWeight.w500),
+                    ),
+                  ),
                 ],
               ),
             )

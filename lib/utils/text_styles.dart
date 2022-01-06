@@ -10,6 +10,14 @@ class AppTextStyle {
         fontWeight: fw,
     );
   }
+  static TextStyle montserratUnderlined(Color color, double fs, FontWeight fw,) {
+    return GoogleFonts.montserrat(
+      fontSize: fs,
+      color: color,
+      fontWeight: fw,
+      decoration: TextDecoration.underline,
+    );
+  }
   static TextStyle poppins(Color color, double fs, FontWeight fw,) {
     return GoogleFonts.poppins(
       fontSize: fs,

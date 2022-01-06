@@ -15,6 +15,8 @@ import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
+import '../../main.dart';
+
 
 class EnterDOB extends StatefulWidget {
   const EnterDOB({Key? key}) : super(key: key);
@@ -50,58 +52,67 @@ class _EnterDOBState extends State<EnterDOB> {
                   AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
             ),
             SizedBox(height: Get.width * 0.2),
-            TextFormField(
-                readOnly: true,
+            Theme(
+              data: ThemeData().copyWith(
+                colorScheme: ThemeData().colorScheme.copyWith(
+                  primary: createMaterialColor(AppColors.themeColor),
+                  secondary: createMaterialColor(AppColors.themeColor),
 
-                validator: (value)=> FieldValidator.empty(dashPro.dobController.text),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: dashPro.dobController,
-                decoration: AppInputDecoration.circularFieldDecoration(null, 'd/m/y', Image.asset(AppImages.calendarIcon,),),
-                onTap:(){
-                  showDatePicker(
-                    context: context,
-                    builder: (BuildContext context, Widget? child) {
-                      return Theme(
-                        data: ThemeData(
-                          primarySwatch: Colors.grey,
-                          splashColor: Colors.black,
-                          textTheme: TextTheme(
-                            subtitle1: TextStyle(color: Colors.black),
-                            button: TextStyle(color: Colors.black),
+                ),
+              ),
+              child: TextFormField(
+                  readOnly: true,
+                  autofocus: true,
+                  validator: (value)=> FieldValidator.empty(dashPro.dobController.text),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: dashPro.dobController,
+                  decoration: AppInputDecoration.circularFieldDecoration(null, 'd/m/y', Image.asset(AppImages.calendarIcon,),),
+                  onTap:(){
+                    showDatePicker(
+                      context: context,
+                      builder: (BuildContext context, Widget? child) {
+                        return Theme(
+                          data: ThemeData(
+                            primarySwatch: Colors.grey,
+                            splashColor: Colors.black,
+                            textTheme: const TextTheme(
+                              subtitle1: TextStyle(color: Colors.black),
+                              button: TextStyle(color: Colors.black),
+                            ),
+                            colorScheme: ColorScheme.light(
+                                primary: AppColors.orangeDark,
+                                onPrimary: Color(0xFFFFFFFF),
+                                surface: Colors.black,
+                                onSurface: Colors.black,
+                                secondary: Colors.black),
                           ),
-                          colorScheme: ColorScheme.light(
-                              primary: AppColors.orangeDark,
-                              onPrimary: Color(0xFFFFFFFF),
-                              surface: Colors.black,
-                              onSurface: Colors.black,
-                              secondary: Colors.black),
-                        ),
-                        child: child ??Text(""),
-                      );
-                    },
-                    initialDate: _dob,
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime(2050),
+                          child: child ??Text(""),
+                        );
+                      },
+                      initialDate: _dob,
+                      firstDate: DateTime(1930),
+                      lastDate: DateTime.now(),
 
-                  ).then((date){
-                    setState(() {
-                      _dob=date!;
-                      final DateFormat formatter = DateFormat('dd-MM-yyyy');
-                      final String formatted = formatter.format(date);
-                      dashPro.dobController.text=formatted;
-                      if(dashPro.dobController.text.isNotEmpty)
-                      {
-                        dashPro.formCheck[dashPro.pageIndex]=1;
-                      }
-                      else
-                      {
-                        dashPro.formCheck[dashPro.pageIndex]=-1;
-                      }
-                      Get.forceAppUpdate();
-                    });
-                  },
-                  );
-                }
+                    ).then((date){
+                      setState(() {
+                        _dob=date!;
+                        final DateFormat formatter = DateFormat('dd-MM-yyyy');
+                        final String formatted = formatter.format(date);
+                        dashPro.dobController.text=formatted;
+                        if(dashPro.dobController.text.isNotEmpty)
+                        {
+                          dashPro.formCheck[dashPro.pageIndex]=1;
+                        }
+                        else
+                        {
+                          dashPro.formCheck[dashPro.pageIndex]=-1;
+                        }
+                        Get.forceAppUpdate();
+                      });
+                    },
+                    );
+                  }
+              ),
             ),
             SizedBox(height: Get.width * 0.15),
 

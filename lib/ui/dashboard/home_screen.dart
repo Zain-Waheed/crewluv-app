@@ -36,9 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
       return Scaffold(
         backgroundColor: AppColors.whiteColor,
         appBar:AppBar(
-          backgroundColor: AppColors.whiteColor,
+          backgroundColor: Colors.transparent,
           elevation: 0,
-          leadingWidth: Get.width*0.35,
+          leadingWidth: Get.width*0.32,
           leading: Row(
             children: [
               Container(
@@ -46,9 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: Get.width*0.3,
                 margin: const EdgeInsets.only(left: 5),
                 decoration: BoxDecoration(
+
                     boxShadow: [
-                      BoxShadow(
-                          color: AppColors.genderBorder.withOpacity(0.2), offset: const Offset(0, 2), blurRadius: 2.0)
+                      BoxShadow(color: AppColors.black.withOpacity(0.1), offset: const Offset(0, 1), blurRadius: 12.0)
                     ]
                 ),
                 child: Row(
@@ -56,30 +56,37 @@ class _HomeScreenState extends State<HomeScreen> {
                     GestureDetector(
                       onTap: (){
                         pageIndex=0;
+                        setState(() {
+
+                        });
                         _controller.jumpToPage(pageIndex);
                       },
                       child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: Get.width*0.02,vertical: 2),
+
                         decoration: BoxDecoration(
-                          color: AppColors.whiteColor,
-                          border: Border.all(color: AppColors.genderBorder),
+                          color: pageIndex==1?AppColors.whiteColor:AppColors.themeColor,
                           borderRadius: const BorderRadius.only(topLeft: Radius.circular(16),bottomLeft: Radius.circular(16)),
                         ),
-                        child: Image.asset(AppImages.yourLocation2,),
+                        child: Image.asset(pageIndex==0? AppImages.yourLocation2:AppImages.yourLocation,),
                       ),
                     ),
                     GestureDetector(
                       onTap: (){
                         pageIndex=1;
+                        setState(() {
+
+                        });
                         _controller.jumpToPage(pageIndex);
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical:Get.width*0.03,horizontal: Get.width*0.01),
+                        padding: EdgeInsets.symmetric(vertical:Get.width*0.03,horizontal: Get.width*0.02),
                         decoration: BoxDecoration(
-                          color: AppColors.themeColor,
+                          color: pageIndex==1?AppColors.themeColor:AppColors.whiteColor,
                           borderRadius: const BorderRadius.only(topRight: Radius.circular(16),bottomRight: Radius.circular(16)),
 
                         ),
-                        child: Image.asset(AppImages.list,scale: 2.5,color: AppColors.whiteColor,),
+                        child: Image.asset(AppImages.list,scale: 2.7,color:pageIndex==0?AppColors.black:AppColors.black,),
                       ),
                     ),
                   ],
@@ -96,8 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             GestureDetector(
               onTap:(){
-               Get.to(
-                 GetPlanDialogBox(func: (){})
+               Get.dialog(
+                 MoodWidget()
                );
               },
                 child: Image.asset(AppImages.party2)
@@ -110,12 +117,19 @@ class _HomeScreenState extends State<HomeScreen> {
             MapScreen(),
             SingleChildScrollView(
               child: Column(
-                children: List.generate(provider.events.length, (index) => EventDescriptionWidget(model: provider.events[index],titleImage: true,)),
+                children: List.generate(provider.events.length, (index) => GestureDetector(
+                    onTap: (){
+                      Get.dialog(EventWidget(user: provider.users.first, event :provider.events.first ));
+                    },
+                    child: EventDescriptionWidget(model: provider.events[index],titleImage: true,))),
               ),
             ),
           ],
           onPageChanged: (index){
             pageIndex=index;
+            setState(() {
+
+            });
           },
         ),
       );

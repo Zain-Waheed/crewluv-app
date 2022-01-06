@@ -36,16 +36,58 @@ class _EventDetailsState extends State<EventDetails> {
 
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-
             children: [
-              Center(
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
+              widget.index==1?Row(
+                children: [
+                  Stack(
+                    children: [
+                      Image.asset(AppImages.profileImage,height: Get.width*0.22,width: Get.width*0.22,),
+                      Positioned(
+                        right: 2,
+                        bottom:12 ,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.themeColor,
 
-                  decoration: BoxDecoration(
+                          ),
+                          child: Icon(Icons.add,color: AppColors.whiteColor,),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(10, (index) =>  Container(
+                          margin: EdgeInsets.symmetric(horizontal: Get.width*0.01),
+                          padding: EdgeInsets.all(Get.width*0.005 ),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: AppColors.themeColor,width: 3),
+                              color: AppColors.whiteColor,
+
+                          ),
+                          child: Image.asset(AppImages.crew1,width: Get.width*0.17,height: Get.width*0.17,),
+
+                        )
+                        ),
+                      ),
+                    ),
+                  )
+
+                ],
+              ):SizedBox(),
+              SizedBox(height: Get.height*0.01,),
+              Center(
+                child: Container(padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 10),
+
+                      decoration: BoxDecoration(
                       color: AppColors.whiteColor,
                       borderRadius: BorderRadius.circular(15),
                     boxShadow: [
@@ -74,15 +116,15 @@ class _EventDetailsState extends State<EventDetails> {
                                   Text(
                                     provider.users[0].name ?? "",
                                     style: AppTextStyle.montserrat(
-                                        AppColors.black3d, Get.width * 0.04, FontWeight.w600),
+                                        AppColors.black3d, Get.width * 0.04, FontWeight.w500),
                                   ),
-                                  const Text(','),
+                                  const Text(', '),
                                   Text(
                                     provider.users[0].age.toString(),
                                     style: AppTextStyle.montserrat(
-                                        AppColors.black3d, Get.width * 0.04, FontWeight.w600),
+                                        AppColors.black3d, Get.width * 0.04, FontWeight.w500),
                                   ),
-                                  SizedBox(width: Get.width*0.04,),
+                                  SizedBox(width: Get.width*0.02,),
                                   provider.users[0].isVerified
                                       ? Image.asset(AppImages.verified,scale: 3,)
                                       : SizedBox(),
@@ -112,6 +154,7 @@ class _EventDetailsState extends State<EventDetails> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+
                           Container(
                             padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
                             margin: EdgeInsets.symmetric(vertical: Get.width*0.02),
@@ -119,7 +162,7 @@ class _EventDetailsState extends State<EventDetails> {
                               color: AppColors.themeColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            child: Text(provider.events[0].day??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.035, FontWeight.w700),),
+                            child: Text(provider.events[0].day??"",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
                           ),
                           Container(
                             padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
@@ -128,7 +171,7 @@ class _EventDetailsState extends State<EventDetails> {
                               color: AppColors.themeColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            child: Text("${provider.events[0].startTime}-${provider.events[0].endTime} ",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.035, FontWeight.w700),),
+                            child: Text("${provider.events[0].startTime}-${provider.events[0].endTime} ",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
                           ),
                           Container(
                             padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
@@ -137,14 +180,14 @@ class _EventDetailsState extends State<EventDetails> {
                               color: AppColors.themeColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            child: Text("${provider.events[0].distance}  ${getTranslated(context, "km")}",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.035, FontWeight.w700),),
+                            child: Text("${provider.events[0].distance}  ${getTranslated(context, "km")}",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
                           ),
 
                         ],
 
                       ),
                       SizedBox(height: Get.width*0.01,),
-                      Text(provider.events[0].description??"",style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w400),),
+                      Text(provider.events[0].description??"",style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis,),
                       SizedBox(height: Get.width*0.04,),
                       Row(
                         children: [
@@ -178,17 +221,15 @@ class _EventDetailsState extends State<EventDetails> {
                 ),
 
               ),
-              SizedBox(height: Get.width*0.07,),
-              AppButton(buttonText: 'view_request', onpressed: (){}, width: Get.width, isWhite: true),
+              SizedBox(height: Get.width*0.05,),
+              widget.index==0?AppButton(buttonText: widget.index==0? 'view_request' :"view_tickets", onpressed: (){}, width: Get.width, isWhite: true):SizedBox(),
             ],
-
-
           ),
         ),
-        bottomNavigationBar: widget.index!=2?Container(
-          padding:EdgeInsets.symmetric(vertical: 15,horizontal: 10),
-          child:AppButton(buttonText: widget.index==1?'edit2':'pending' , onpressed: (){}, width: Get.width, isWhite: false),
-        ):SizedBox(),
+        bottomNavigationBar: widget.index!=1?Container(
+          padding:const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+          child:AppButton(buttonText: widget.index==1?'edit2':'pending3' , onpressed: (){}, width: Get.width, isWhite: widget.index!=2? false: true),
+        ):const SizedBox(),
       );
 
     },);

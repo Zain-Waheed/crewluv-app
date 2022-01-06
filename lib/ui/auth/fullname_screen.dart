@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
+
+import '../../main.dart';
 class EnterFullName extends StatefulWidget {
   const EnterFullName({Key? key}) : super(key: key);
 
@@ -20,6 +22,7 @@ class EnterFullName extends StatefulWidget {
 }
 
 class _EnterFullNameState extends State<EnterFullName> {
+  bool isActive=false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +48,15 @@ class _EnterFullNameState extends State<EnterFullName> {
                   AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
             ),
             SizedBox(height: Get.width * 0.15),
-            TextFormField(
+          Theme(
+            data: ThemeData().copyWith(
+              colorScheme: ThemeData().colorScheme.copyWith(
+                primary: createMaterialColor(AppColors.themeColor),
+              ),
+            ),
+            child: TextFormField(
               validator: (value)=> FieldValidator.validateName(dashPro.fullNameController.text),
+              autofocus: true,
               onChanged: (val)
               {
 
@@ -64,8 +74,9 @@ class _EnterFullNameState extends State<EnterFullName> {
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: dashPro.fullNameController,
-              decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,),),
+              decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon),),
             ),
+          ),
             SizedBox(height: Get.width * 0.15),
 
 

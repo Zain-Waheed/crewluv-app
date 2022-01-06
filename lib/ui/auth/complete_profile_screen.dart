@@ -2,6 +2,7 @@ import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/providers/auth_provider.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/auth/enter_dob.dart';
 import 'package:amigos/ui/auth/favorite_drinks_screen.dart';
@@ -34,166 +35,216 @@ class CompleteProfileScreen extends StatefulWidget {
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   TextEditingController emailController = TextEditingController();
   final _controller = PageController();
-
-  
   int percentage = 10;
   double percent = 0.1;
   bool isChecked = false;
-  bool isGrey=true;
+  bool isGrey = true;
+ bool isFocused=false;
+  //var model = Provider.<DashboardProvider>of(context , listen: false);
+
+  Future<bool> _willPopCallback() async {
+
+    var model = Provider.of<DashboardProvider>(context, listen: false);
+    if (model.pageIndex > 0) {
+      model.pageIndex--;
+      percentageValue(model);
+      _controller.jumpToPage(model.pageIndex);
+    } else {
+      model.pageIndex = 0;
+      percentageValue(model);
+      Get.to(const Login());
+    }
+    setState(() {
+
+    });
+    return Future.value(false);
+  }
+
+  @override
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DashboardProvider>(builder: (context,dashPro,_)
-    {
-      return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(Get.width * 0.17),
-          child: CustomAppBar(
-              function: () {
-                //Get.to(() => const PhoneNumber());
-                if (dashPro.pageIndex > 0) {
-                  dashPro.pageIndex--;
-                  percentageValue(dashPro);
-                  _controller.jumpToPage(dashPro.pageIndex);
-                } else {
-                  dashPro.pageIndex = 0;
-                  percentageValue(dashPro);
-                  Get.to(
-                      const Login()
-                  );
-                }
-              },
-              backButton: dashPro.pageIndex == 0 ? false : true,
-              title: 'complete_profile'),
-        ),
-        bottomNavigationBar: Container(
-          height: dashPro.pageIndex==5||dashPro.pageIndex==6||dashPro.pageIndex==7?Get.width * 0.3:Get.width * 0.2,
-          margin: EdgeInsets.symmetric(horizontal: Get.width*0.07),
-          child: Column(
-            children: [
-              SizedBox(
-                height: Get.width*0.04,
-              ),
-              dashPro.formCheck[dashPro.pageIndex]==1?AppButton(
-                isWhite: false,
-                width: Get.width * 0.9,
-                buttonText: dashPro.pageIndex == 8 ? 'done' : 'further',
-                onpressed: () {
-                  if (dashPro.formKey.currentState!.validate()) {
-                    dashPro.pageIndex++;
+    return Consumer<DashboardProvider>(builder: (context, dashPro, _) {
+      return GestureDetector(
+        onTap: (){
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(Get.width * 0.17),
+            child: CustomAppBar(
+                function: () {
+                  //Get.to(() => const PhoneNumber());
+                  if (dashPro.pageIndex > 0) {
+                    dashPro.pageIndex--;
                     percentageValue(dashPro);
-                    if (dashPro.pageIndex <= 8) {
-                      _controller.jumpToPage(dashPro.pageIndex);
-                    } else {
-                      percentageValue(dashPro);
-                      Get.bottomSheet(
-                        const CongraulationBottomSheet()
-                      );
-                     Future.delayed(const Duration(seconds: 2),(){
-                       Get.to(
-
-                           // const DashBoardScreen()
-                               const DashBoardScreen(),
-                       );
-                     });
-                    }
+                    _controller.jumpToPage(dashPro.pageIndex);
+                  } else {
+                    dashPro.pageIndex = 0;
+                    percentageValue(dashPro);
+                    Get.to(const Login());
                   }
                 },
-              ): ElevatedButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                  minimumSize: MaterialStateProperty.all(const Size(400, 50)),
-                  backgroundColor: MaterialStateProperty.all(AppColors.solidGrey),
-                  shadowColor: MaterialStateProperty.all(Colors.transparent),
-                ),
-                onPressed: null,
-                child: Text(getTranslated(context, 'further')??"",
-                  style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.04, FontWeight.w600)
-                  ,),
-              ),
-              Visibility(
-                visible: dashPro.pageIndex==5||dashPro.pageIndex==6||dashPro.pageIndex==7?true:false,
-                child: Column(
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        dashPro.pageIndex++;
-                        _controller.jumpToPage(dashPro.pageIndex);
-                      },
-                      child: Text(
-                        getTranslated(context, 'skip') ?? "",
-                        style: AppTextStyle.poppins(
-                            AppColors.orangeDark, Get.width * 0.04, FontWeight.w500),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+                backButton: dashPro.pageIndex == 0 ? false : true,
+                title: 'complete_profile'),
           ),
-        ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
-          child: SingleChildScrollView(
+          bottomNavigationBar: Container(
+            height: dashPro.pageIndex == 5 ||
+                    dashPro.pageIndex == 6 ||
+                    dashPro.pageIndex == 7||
+                    dashPro.pageIndex==3
+                ? Get.width * 0.3
+                : Get.width * 0.2,
+            margin: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: Get.width * 0.1,
+                  height: Get.width * 0.04,
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: LinearPercentIndicator(
-                        fillColor: AppColors.grey,
-                        percent: percent,
-                        lineHeight: Get.width * 0.04,
-                        linearGradient: AppColors.buttonGradientColor,
+                dashPro.formCheck[dashPro.pageIndex] == 1
+                    ? AppButton(
+                        isWhite: false,
+                        width: Get.width * 0.9,
+                        buttonText: dashPro.pageIndex == 8 ? 'done' : 'further',
+                        onpressed: () {
+                          if (dashPro.formKey.currentState!.validate()&& isChecked ==true ) {
+                            dashPro.pageIndex++;
+                            percentageValue(dashPro);
+                            if (dashPro.pageIndex <= 8 ) {
+                                _controller.jumpToPage(dashPro.pageIndex);
+                            } else {
+                              percentageValue(dashPro);
+                              Get.bottomSheet(const CongraulationBottomSheet());
+                              Future.delayed(const Duration(seconds: 2), () {
+                                Get.to(
+                                  // const DashBoardScreen()
+                                  const DashBoardScreen(),
+                                );
+                              });
+                            }
+                          }
+                        },
+                      )
+                    : ElevatedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                          ),
+                          minimumSize:
+                              MaterialStateProperty.all(const Size(400, 50)),
+                          backgroundColor:
+                              MaterialStateProperty.all(AppColors.solidGrey),
+                          shadowColor:
+                              MaterialStateProperty.all(Colors.transparent),
+                        ),
+                        onPressed: null,
+                        child: Text(
+                          getTranslated(context, 'further') ?? "",
+                          style: AppTextStyle.montserrat(AppColors.whiteColor,
+                              Get.width * 0.04, FontWeight.w600),
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: Get.width * 0.01,
-                    ),
-                    Text(
-                      percentage.toString() + '%',
-                      style: AppTextStyle.montserrat(
-                          AppColors.lightGrey, Get.width * 0.04, FontWeight.w300),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  width: Get.width,
-                  height: Get.width * 1.5,
-                  child: Form(
-                    key: dashPro.formKey,
-                   // autovalidateMode: AutovalidateMode.onUserInteraction,
-                    child: PageView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: _controller,
-                      onPageChanged: (index) {
-                        setState(() {
-                          dashPro.pageIndex = index;
-                        });
-                      },
-                      children: [
-                        emailScreen(dashPro),
-                        const EnterFullName(),
-                        const EnterDOB(),
-                        const University(),
-                        const SelectGender(),
-                        const FavoriteDrinks(),
-                        const MusicTaste(),
-                        const Intersets(),
-                        const MediaProfile(),
-                      ],
-                    ),
+                Visibility(
+                  visible: dashPro.pageIndex == 5 ||
+                      dashPro.pageIndex == 3 ||
+                          dashPro.pageIndex == 6 ||
+                          dashPro.pageIndex == 7
+                      ? true
+                      : false,
+                  child: Column(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          if (dashPro.formKey.currentState!.validate()&& isChecked ==true ) {
+                            dashPro.pageIndex++;
+                            percentageValue(dashPro);
+                            if (dashPro.pageIndex <= 8 ) {
+                              _controller.jumpToPage(dashPro.pageIndex);
+                            } else {
+                              percentageValue(dashPro);
+                              Get.bottomSheet(const CongraulationBottomSheet());
+                              Future.delayed(const Duration(seconds: 2), () {
+                                Get.to(
+                                  // const DashBoardScreen()
+                                  const DashBoardScreen(),
+                                );
+                              });
+                            }
+                          }
+
+                        },
+                        child: Text(
+                          getTranslated(context, 'skip') ?? "",
+                          style: AppTextStyle.poppins(AppColors.blackLite,
+                              Get.width * 0.04, FontWeight.w500),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
+            ),
+          ),
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: Get.width * 0.1,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: LinearPercentIndicator(
+                          percent: percent,
+                          lineHeight: Get.width * 0.04,
+                          linearGradient: AppColors.buttonGradientColor,
+                        ),
+                      ),
+                      SizedBox(
+                        width: Get.width * 0.01,
+                      ),
+                      Text(
+                        percentage.toString() + '%',
+                        style: AppTextStyle.montserrat(AppColors.lightGrey,
+                            Get.width * 0.04, FontWeight.w300),
+                      )
+                    ],
+                  ),
+                  Form(
+                    key: dashPro.formKey,
+                    // autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: SizedBox(
+                      height: Get.height*0.77,
+                      child: PageView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        controller: _controller,
+                        onPageChanged: (index) {
+                          setState(() {
+                            dashPro.pageIndex = index;
+                          });
+                        },
+                        children: [
+                          emailScreen(dashPro),
+                          const EnterFullName(),
+                          const EnterDOB(),
+                          const University(),
+                          const SelectGender(),
+                          const FavoriteDrinks(),
+                          const MusicTaste(),
+                          const Intersets(),
+                          const MediaProfile(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -210,7 +261,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         Text(
           getTranslated(context, 'enter_email_address') ?? "",
           style: AppTextStyle.montserrat(
-              AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
+              AppColors.shadedBlack, Get.width * 0.065, FontWeight.w600),
         ),
         SizedBox(
           height: Get.width * 0.05,
@@ -224,17 +275,14 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: emailController,
-          onChanged: (val){
-
+          onChanged: (val) {
+            isChecked =true;
             setState(() {
-              if(dashPro.formKey.currentState!.validate())
-                {
-                  dashPro.formCheck[dashPro.pageIndex]=1;
-                }
-              else
-                {
-                  dashPro.formCheck[dashPro.pageIndex]=-1;
-                }
+              if (dashPro.formKey.currentState!.validate()) {
+                dashPro.formCheck[dashPro.pageIndex] = 1;
+              } else {
+                dashPro.formCheck[dashPro.pageIndex] = -1;
+              }
             });
           },
           validator: (value) =>
@@ -243,7 +291,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
             null,
             'enter_email',
             Image.asset(
-              AppImages.emailIcon,
+              AppImages.emailIcon,color: AppColors.themeColor,
             ),
           ),
         ),
@@ -302,20 +350,20 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       });
     } else if (dashPro.pageIndex == 5) {
       setState(() {
-        percentage = 65;
-        percent = 0.65;
+        percentage = 60;
+        percent = 0.60;
       });
     } else if (dashPro.pageIndex == 6) {
       setState(() {
-        percentage = 75;
-        percent = 0.75;
+        percentage = 70;
+        percent = 0.70;
       });
     } else if (dashPro.pageIndex == 7) {
       setState(() {
-        percentage = 85;
-        percent = 0.85;
+        percentage = 80;
+        percent = 0.80;
       });
-    }else if (dashPro.pageIndex == 8) {
+    } else if (dashPro.pageIndex == 8) {
       setState(() {
         percentage = 90;
         percent = 0.9;

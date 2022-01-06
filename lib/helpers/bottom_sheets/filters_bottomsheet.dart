@@ -20,32 +20,10 @@ class FiltersBottomSheet extends StatefulWidget {
 }
 
 class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
-  List <String> musicTaste=[
-    "pop",
-    "rock",
-    "funk",
-    "jazz",
-    "soul",
-  ];
-  List <String> typeofEvents=[
-    "private_events",
-    "communication_events",
-    "activites",
-  ];
-  List <String> friends=[
-    "all",
-    "favorites",
-    "contact_list",
-    "squard",
-  ];
-  List <String> timeDuration=[
-    "now",
-    "today",
-    "tomorrow",
-    "week",
-  ];
+
   SfRangeValues _values = SfRangeValues(4.0, 8.0);
   double _currentSliderValue = 0;
+  bool value=false;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,provider,_){
@@ -80,13 +58,13 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                           getTranslated(context, 'filters')??"",
                           style: AppTextStyle.montserrat(
                               AppColors.black,
-                              Get.width*0.06,
+                              Get.width*0.045,
                               FontWeight.bold,
                           ),
                         ),
                         Spacer(),
                         IconButton(
-                            onPressed: (){},
+                            onPressed: (){Get.back();},
                             icon:  Icon(Icons.close,size: Get.width*0.08),
                         ),
                       ],
@@ -98,7 +76,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       getTranslated(context, 'moods')??"",
                       style: AppTextStyle.montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.05,
+                        Get.width*0.04,
                         FontWeight.w500,
                       ),
                     ),
@@ -118,7 +96,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       getTranslated(context, 'music_taste')??"",
                       style: AppTextStyle.montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.05,
+                        Get.width*0.04,
                         FontWeight.w500,
                       ),
                     ),
@@ -129,8 +107,20 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children:List.generate(
-                            musicTaste.length,
-                                (index) => AppButtonSelected(title: musicTaste[index],)
+                            provider.filters.musicTaste.length,
+                                (index) => Container(
+                                     height: Get.height*0.1,
+                                    child: GestureDetector(
+                                         onTap: (){
+                                           value =provider.filters.musicTaste[index].isSelected??false;
+                                           provider.filters.musicTaste[index].isSelected=!value;
+                                           setState(() {
+
+                                           });
+
+                                         },
+                                        child: AppButtonSelected(model: provider.filters.musicTaste[index],))
+                                )
                         ),
                       ),
                     ),
@@ -141,7 +131,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       getTranslated(context, 'type_of_events')??"",
                       style: AppTextStyle.montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.05,
+                        Get.width*0.04,
                         FontWeight.w500,
                       ),
                     ),
@@ -152,8 +142,18 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children:List.generate(
-                            typeofEvents.length,
-                                (index) => AppButtonSelected(title: typeofEvents[index],)
+                            provider.filters.eventTypes.length,
+                                (index) => GestureDetector(
+                                    onTap: (){
+                                      value =provider.filters.eventTypes[index].isSelected??false;
+                                      provider.filters.eventTypes[index].isSelected=!value;
+                                      setState(() {
+
+
+                                      });
+
+                                    },
+                                    child: AppButtonSelected(model: provider.filters.eventTypes[index],))
                         ),
                       ),
                     ),
@@ -164,7 +164,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       getTranslated(context, 'friends')??"",
                       style: AppTextStyle.montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.05,
+                        Get.width*0.04,
                         FontWeight.w500,
                       ),
                     ),
@@ -175,8 +175,16 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children:List.generate(
-                            friends.length,
-                                (index) => AppButtonSelected(title: friends[index],)
+                            provider.filters.friend.length,
+                                (index) => GestureDetector(
+                                    onTap: (){
+                                      value =provider.filters.friend[index].isSelected??false;
+                                      provider.filters.friend[index].isSelected=!value;
+                                      setState(() {
+
+                                      });
+                                    },
+                                    child: AppButtonSelected(model: provider.filters.friend[index],))
                         ),
                       ),
                     ),
@@ -187,7 +195,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       getTranslated(context, 'time_duration')??"",
                       style: AppTextStyle.montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.05,
+                        Get.width*0.04,
                         FontWeight.w500,
                       ),
                     ),
@@ -198,8 +206,16 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children:List.generate(
-                            timeDuration.length,
-                                (index) => AppButtonSelected(title: timeDuration[index],)
+                            provider.filters.timeDuration.length,
+                                (index) => GestureDetector(
+                                    onTap: (){
+                                      value =provider.filters.timeDuration[index].isSelected??false;
+                                      provider.filters.timeDuration[index].isSelected=!value;
+                                      setState(() {
+
+                                      });
+                                    },
+                                    child: AppButtonSelected(model:provider.filters.timeDuration[index]))
                         ),
                       ),
                     ),
@@ -210,7 +226,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       getTranslated(context, 'age_range')??"",
                       style: AppTextStyle.montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.05,
+                        Get.width*0.04,
                         FontWeight.w500,
                       ),
                     ),
@@ -253,7 +269,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       getTranslated(context, 'distance')??"",
                       style: AppTextStyle.montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.05,
+                        Get.width*0.04,
                         FontWeight.w500,
                       ),
                     ),
@@ -284,7 +300,10 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                     ),
                     AppButton(
                         buttonText: 'apply_filters',
-                        onpressed: (){},
+                        onpressed: (){
+                          provider.filters.age=_values;
+                          provider.filters.distance=_currentSliderValue;
+                        },
                         width: Get.width*0.95,
                         isWhite:false
                     ),

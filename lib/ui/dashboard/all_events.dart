@@ -8,6 +8,10 @@ import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
+
+int allEventsIndex=0;
+PageController allEventsController = PageController();
 class AllEvents extends StatefulWidget {
   const AllEvents({Key? key}) : super(key: key);
 
@@ -16,8 +20,7 @@ class AllEvents extends StatefulWidget {
 }
 
 class _AllEventsState extends State<AllEvents> {
-  int pageIndex=0;
-  PageController controller = PageController();
+
   @override
   Widget build(BuildContext context) {
    return Consumer<DashboardProvider>(builder:(context,provider,_)
@@ -46,8 +49,8 @@ class _AllEventsState extends State<AllEvents> {
                      Expanded(
                        child: GestureDetector(
                          onTap: (){
-                           pageIndex=0;
-                           controller.jumpToPage(pageIndex);
+                           allEventsIndex=0;
+                           allEventsController.jumpToPage(allEventsIndex);
                            setState(() {
 
                            });
@@ -55,17 +58,17 @@ class _AllEventsState extends State<AllEvents> {
                          child: Container(
                            decoration: BoxDecoration(
                              borderRadius: BorderRadius.circular(20),
-                             color: pageIndex==0?AppColors.themeColor:AppColors.offWhite,
+                             color: allEventsIndex==0?AppColors.themeColor:AppColors.offWhite,
                            ),
-                           child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(pageIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
+                           child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(allEventsIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
                          ),
                        ),
                      ),
                      Expanded(
                        child: GestureDetector(
                          onTap: (){
-                           pageIndex=1;
-                           controller.jumpToPage(pageIndex);
+                           allEventsIndex=1;
+                           allEventsController.jumpToPage(allEventsIndex);
                            setState(() {
 
                            });
@@ -73,17 +76,17 @@ class _AllEventsState extends State<AllEvents> {
                          child: Container(
                            decoration: BoxDecoration(
                              borderRadius: BorderRadius.circular(20),
-                             color: pageIndex==1?AppColors.themeColor:AppColors.offWhite,
+                             color: allEventsIndex==1?AppColors.themeColor:AppColors.offWhite,
                            ),
-                           child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(pageIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
+                           child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(allEventsIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
                          ),
                        ),
                      ),
                      Expanded(
                        child: GestureDetector(
                          onTap: (){
-                           pageIndex=2;
-                           controller.jumpToPage(pageIndex);
+                           allEventsIndex=2;
+                           allEventsController.jumpToPage(allEventsIndex);
                            setState(() {
 
                            });
@@ -91,9 +94,9 @@ class _AllEventsState extends State<AllEvents> {
                          child: Container(
                            decoration: BoxDecoration(
                              borderRadius: BorderRadius.circular(20),
-                             color: pageIndex==2?AppColors.themeColor:AppColors.offWhite,
+                             color: allEventsIndex==2?AppColors.themeColor:AppColors.offWhite,
                            ),
-                           child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(pageIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
+                           child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(allEventsIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
                          ),
                        ),
                      ),
@@ -102,10 +105,10 @@ class _AllEventsState extends State<AllEvents> {
                ),
                Expanded(
                  child: PageView(
-                   controller:controller,
+                   controller:allEventsController,
                    physics: const NeverScrollableScrollPhysics(),
                    onPageChanged: (value){
-                     pageIndex = value;
+                     allEventsIndex = value;
                      setState(() {
 
                      });
@@ -113,19 +116,19 @@ class _AllEventsState extends State<AllEvents> {
                    children: [
                      SingleChildScrollView(
                        child: Column(
-                         children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){Get.to(EventDetails(index: pageIndex,));},
+                         children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){Get.to(EventDetails(index: allEventsIndex,));},
                              child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
                        ),
                      ),
                      SingleChildScrollView(
                        child: Column(
-                         children: List.generate(provider.events.length, (index)=> GestureDetector(  onTap: (){Get.to(EventDetails(index: pageIndex,));},
+                         children: List.generate(provider.events.length, (index)=> GestureDetector(  onTap: (){Get.to(EventDetails(index: allEventsIndex,));},
                              child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
                        ),
                      ),
                      SingleChildScrollView(
                        child: Column(
-                         children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){Get.to(EventDetails(index: pageIndex,));},child: EventDescriptionWidget(model: provider.events[index],titleImage: false,))),
+                         children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){Get.to(EventDetails(index: allEventsIndex,));},child: EventDescriptionWidget(model: provider.events[index],titleImage: false,))),
                        ),
                      ),
                    ],

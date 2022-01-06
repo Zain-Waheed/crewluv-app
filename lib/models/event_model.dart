@@ -1,4 +1,5 @@
 class EventModel{
+  bool personalEvent ;
   String? title;
   String? titleImage;
   String? description;
@@ -10,7 +11,7 @@ class EventModel{
   int? maxFriends;
   String? entryType;
   String? liveLocation;
-  EventModel({this.title, this.description, this.distance, this.day, this.startTime,this.titleImage,this.endTime,this.withFriends,this.maxFriends,this.entryType,this.liveLocation});
+  EventModel({this.title, this.description, this.distance, this.day, this.startTime,this.titleImage,this.endTime,this.withFriends,this.maxFriends,this.entryType,this.liveLocation,required this.personalEvent});
 
 
 }

@@ -37,7 +37,7 @@ class _CreateEventState extends State<CreateEvent> {
   TextEditingController titleController= TextEditingController();
   TextEditingController descriptionController=TextEditingController();
   TextEditingController locationController = TextEditingController();
-  EventModel model=EventModel();
+  EventModel model=EventModel(personalEvent: false);
 
   @override
   Widget build(BuildContext context) {

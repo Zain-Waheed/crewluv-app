@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class AppButtonSmall extends StatefulWidget {
-  final PreferenceModel? preference;
+  final PreferenceModel preference;
   const AppButtonSmall({Key? key,  required this.preference,}) : super(key: key);
 
   @override
@@ -18,21 +18,27 @@ class AppButtonSmall extends StatefulWidget {
 
 class _AppButtonSmallState extends State<AppButtonSmall> {
   int index=0;
+  bool value=false;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,dashPro,_) {
      return GestureDetector(
         onTap: (){
-          index=dashPro.interests.indexOf(widget.preference!);
-          widget.preference!.isSelected = !widget.preference!.isSelected!;
-          dashPro.interests[index]=widget.preference!;
-          setState(() {
-
-          });
           if(dashPro.pageIndex==5)
             {
+              index= dashPro.favoriteDrinks.indexOf(widget.preference);
+              value =dashPro.favoriteDrinks[index].isSelected!;
+              dashPro.favoriteDrinks[index].isSelected = !value ;
+              setState(() {
+
+              });
               if(dashPro.favoriteDrinks.where((element) => element.isSelected == true).isEmpty){
                 dashPro.formCheck[dashPro.pageIndex]=-1;
+
+
+                setState(() {
+
+                });
                 Get.forceAppUpdate();
               }else{
                 dashPro.formCheck[dashPro.pageIndex]=1;
@@ -43,6 +49,9 @@ class _AppButtonSmallState extends State<AppButtonSmall> {
             }else
           if(dashPro.pageIndex==6)
           {
+            index= dashPro.musictaste.indexOf(widget.preference);
+            value =dashPro.musictaste[index].isSelected!;
+            dashPro.musictaste[index].isSelected = !value ;
             if(dashPro.musictaste.where((element) => element.isSelected == true).isEmpty){
               dashPro.formCheck[dashPro.pageIndex]=-1;
               Get.forceAppUpdate();
@@ -56,6 +65,9 @@ class _AppButtonSmallState extends State<AppButtonSmall> {
           else
           if(dashPro.pageIndex==7)
           {
+            index= dashPro.interests.indexOf(widget.preference);
+            value =dashPro.interests[index].isSelected!;
+            dashPro.interests[index].isSelected = !value ;
             if(dashPro.interests.where((element) => element.isSelected == true).isEmpty){
               dashPro.formCheck[dashPro.pageIndex]=-1;
               Get.forceAppUpdate();

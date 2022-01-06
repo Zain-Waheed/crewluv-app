@@ -6,7 +6,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class AppButtonGrey extends StatefulWidget {
-  const AppButtonGrey({Key? key}) : super(key: key);
+
+ String text;
+
+ AppButtonGrey(this.text);
 
   @override
   _AppButtonGreyState createState() => _AppButtonGreyState();
@@ -34,7 +37,7 @@ class _AppButtonGreyState extends State<AppButtonGrey> {
             bottom: 10,
           ),
           child: Text(
-            getTranslated(context, "request_otp")??"",
+            getTranslated(context, widget.text)??"",
             style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.04, FontWeight.w600),
           ),
         ),
