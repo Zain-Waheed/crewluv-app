@@ -161,6 +161,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           if (isChecked ==true ) {
                             dashPro.pageIndex++;
                             percentageValue(dashPro);
+                            // percentageValue(dashPro);
+                            // percentageValue(dashPro);
                             if (dashPro.pageIndex <= 8 ) {
                               _controller.jumpToPage(dashPro.pageIndex);
                             } else {
