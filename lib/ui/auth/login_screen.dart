@@ -1,4 +1,3 @@
-import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/ui/auth/phone_screen.dart';
 import 'package:amigos/utils/colors.dart';
@@ -6,6 +5,7 @@ import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -27,15 +27,14 @@ class _LoginState extends State<Login> {
             SizedBox(
               height: Get.width*0.2,
             ),
-            Container(
-              height: Get.width*0.8,
-              child: Image.asset(AppImages.loginLogo),
+            Expanded(
+              child: SizedBox(
+                height: Get.width*0.8,
+                child: Image.asset(AppImages.loginLogo),
+              ),
             ),
-            SizedBox(
-              height: Get.width*0.1,
-            ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: Get.width*0.07),
+              margin: EdgeInsets.symmetric(horizontal: Get.width*0.07,vertical: Get.width*0.1,),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -43,16 +42,42 @@ class _LoginState extends State<Login> {
                     TextSpan(
                         children: [
                           TextSpan(text: getTranslated(context, 'by_clicking')??"",
-                            style: AppTextStyle.montserrat(AppColors.white, Get.width*0.04, FontWeight.w400),
+                            style:GoogleFonts.montserrat(
+                              fontSize:Get.width*0.04,
+                              color:AppColors.white,
+                              fontWeight:FontWeight.w600,
+                              height: 1.2,
+                              letterSpacing: 1.0,
+                            ),
                           ),
                           TextSpan(text: getTranslated(context, 'terms_conditions')??"",
-                            style: AppTextStyle.montserrat(AppColors.white, Get.width*0.04, FontWeight.w600),
+                            style: GoogleFonts.montserrat(
+                                fontSize:Get.width*0.04,
+                                color:AppColors.white,
+                                fontWeight:FontWeight.w600,
+                              decoration: TextDecoration.underline,
+                                height: 1.2,
+                                letterSpacing: 1.0,
+                            ),
                           ),
                           TextSpan(text: getTranslated(context, 'learn_how_we')??"",
-                            style: AppTextStyle.montserrat(AppColors.white, Get.width*0.04, FontWeight.w400),
+                            style:GoogleFonts.montserrat(
+                              fontSize:Get.width*0.04,
+                              color:AppColors.white,
+                              fontWeight:FontWeight.w600,
+                              height: 1.2,
+                              letterSpacing: 1.0,
+                            ),
                           ),
                           TextSpan(text: getTranslated(context, 'privacy_policy')??"",
-                            style: AppTextStyle.montserrat(AppColors.white, Get.width*0.04, FontWeight.w600),
+                            style:GoogleFonts.montserrat(
+                              fontSize:Get.width*0.04,
+                              color:AppColors.white,
+                              fontWeight:FontWeight.w600,
+                              decoration: TextDecoration.underline,
+                                height: 1.2 ,
+                                letterSpacing: 1.0
+                            ),
                           ),
                         ]
                     ),

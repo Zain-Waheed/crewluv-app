@@ -25,6 +25,7 @@ class EnterDOB extends StatefulWidget {
 
 class _EnterDOBState extends State<EnterDOB> {
   DateTime _dob=DateTime.now();
+  bool dateIconColor=false;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,dashPro,_){
@@ -52,11 +53,16 @@ class _EnterDOBState extends State<EnterDOB> {
             SizedBox(height: Get.width * 0.2),
             TextFormField(
                 readOnly: true,
-
                 validator: (value)=> FieldValidator.empty(dashPro.dobController.text),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: dashPro.dobController,
-                decoration: AppInputDecoration.circularFieldDecoration(null, 'd/m/y', Image.asset(AppImages.calendarIcon,),),
+                decoration: AppInputDecoration.circularFieldDecoration(
+                  null, 'd/m/y',
+                  Image.asset(
+                    AppImages.calendarIcon,
+                    color: dateIconColor?AppColors.themeColor:null,
+                  ),
+                ),
                 onTap:(){
                   showDatePicker(
                     context: context,
@@ -65,18 +71,18 @@ class _EnterDOBState extends State<EnterDOB> {
                         data: ThemeData(
                           primarySwatch: Colors.grey,
                           splashColor: Colors.black,
-                          textTheme: TextTheme(
+                          textTheme: const TextTheme(
                             subtitle1: TextStyle(color: Colors.black),
                             button: TextStyle(color: Colors.black),
                           ),
                           colorScheme: ColorScheme.light(
                               primary: AppColors.orangeDark,
-                              onPrimary: Color(0xFFFFFFFF),
+                              onPrimary: const Color(0xFFFFFFFF),
                               surface: Colors.black,
                               onSurface: Colors.black,
                               secondary: Colors.black),
                         ),
-                        child: child ??Text(""),
+                        child: child ??const Text(""),
                       );
                     },
                     initialDate: _dob,
@@ -99,14 +105,12 @@ class _EnterDOBState extends State<EnterDOB> {
                       }
                       Get.forceAppUpdate();
                     });
+                    dateIconColor=true;
                   },
                   );
                 }
             ),
             SizedBox(height: Get.width * 0.15),
-
-
-
           ],
         ),
       );

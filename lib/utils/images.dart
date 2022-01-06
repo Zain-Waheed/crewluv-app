@@ -86,6 +86,7 @@ class AppImages {
    static var twitter = "assets/images/twitter.png";
    static var copy = "assets/images/copy.png";
    static var logout2 = "assets/images/logout2.png";
+   static var onBoardingBackground = "assets/images/onBoardingBackground.png";
 
 
 
@@ -93,4 +94,5 @@ class AppImages {
    static var delete = "assets/images/delete.png";
    static var share = "assets/images/share.png";
    static var barCode = "assets/images/barCode.png";
+   static var send = "assets/images/send.png";
 }

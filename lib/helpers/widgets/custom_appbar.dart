@@ -18,22 +18,31 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       leading: Container(
-        margin:  EdgeInsets.symmetric(vertical: 12 , horizontal: 15),
+        height: Get.height*0.06,
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 4) ,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-          color: AppColors.whiteColor,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-                color: AppColors.black.withOpacity(0.5), offset: Offset(0, 4), blurRadius: 5.0)
-          ]
-        ),
-
-        child: IconButton(
-
-          onPressed: widget.function,
-          icon:Icon(widget.backButton==true? Icons.arrow_back_ios: Icons.clear,color: AppColors.black,),
-
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(14),
+            boxShadow: [
+              BoxShadow(
+                  color: AppColors.black.withOpacity(0.5),
+                  offset: Offset(0, 4),
+                  blurRadius: 5.0)
+            ]),
+        child: Padding(
+          padding:  EdgeInsets.only(left: 8.0),
+          child: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.black,
+              size: Get.width*0.06,
+            ),
+          ),
         ),
       ),
       leadingWidth: Get.width*0.2,

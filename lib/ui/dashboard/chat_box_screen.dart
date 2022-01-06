@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ChatBox extends StatefulWidget {
-  const ChatBox({Key? key}) : super(key: key);
+  final  String name;
+  const ChatBox({Key? key, required this.name}) : super(key: key);
 
   @override
   _ChatBoxState createState() => _ChatBoxState();
@@ -23,75 +24,114 @@ class _ChatBoxState extends State<ChatBox> {
     "John",
     "Jack",
     "Tessa",
-    "John",
-    "Jack",
-    "Tessa",
-    "John",
-    "Jack",
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(Get.width * 0.17),
-        child: AppBar(
-          leading: Container(
-            margin:
-            const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-            decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                      color: AppColors.black.withOpacity(0.5),
-                      offset: Offset(0, 4),
-                      blurRadius: 5.0)
-                ]),
-            child: IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: AppColors.black,
-              ),
-            ),
-          ),
-          title: Row(
-            children: [
-              SizedBox(
-                width: Get.width * 0.08,
-              ),
-              Container(
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                      color: AppColors.blue, width: Get.height * 0.002),
-                ),
-                child: const CircleAvatar(
-                  radius: 10,
-                  backgroundImage: CachedNetworkImageProvider(
-                    'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
+        child: PreferredSize(
+          preferredSize: Size.fromHeight(Get.width * 0.17),
+          child: AppBar(
+            leading: Container(
+              height: Get.height*0.06,
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 4) ,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [
+                    BoxShadow(
+                        color: AppColors.black.withOpacity(0.5),
+                        offset: Offset(0, 4),
+                        blurRadius: 5.0)
+                  ]),
+              child: Padding(
+                padding:  EdgeInsets.only(left: 8.0),
+                child: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: AppColors.black,
+                    size: Get.width*0.06,
                   ),
                 ),
               ),
-              SizedBox(
-                width: Get.width * 0.03,
+            ),
+            title: GestureDetector(
+              onTap:(){
+
+              },
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: Get.width * 0.08,
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(1),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: AppColors.maroon, width: Get.height * 0.002),
+                        ),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: AssetImage(
+                              AppImages.crew2
+                          ),
+                          radius: 12,
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left:10),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: AssetImage(
+                              AppImages.crew2
+                          ),
+                          radius: 14,
+                        ),
+                      ),
+                      Container(
+                          margin: const EdgeInsets.only(left: 20,),
+                          decoration: BoxDecoration(
+                            color: AppColors.greyText,
+                            shape: BoxShape.circle,
+                          ),
+                          height: 30,
+                          width: 30,
+                          child: Center(
+                            child: Text(
+                              "+9",
+                              style: AppTextStyle.montserrat(
+                                  AppColors.whiteColor,
+                                  Get.width * 0.02,
+                                  FontWeight.w500),
+                            ),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    width: Get.width * 0.02,
+                  ),
+                  Text(
+                    widget.name,
+                    style: AppTextStyle.montserrat(
+                        AppColors.black, Get.width * 0.05, FontWeight.bold),
+                  ),
+                ],
               ),
-              Text(
-                'American Party',
-                style: AppTextStyle.montserrat(
-                    AppColors.black, Get.width * 0.05, FontWeight.bold),
-              ),
-            ],
+            ),
+            leadingWidth: Get.width * 0.2,
+            toolbarHeight: Get.width * 0.3,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            elevation: 0,
           ),
-          centerTitle: true,
-          leadingWidth: Get.width * 0.2,
-          toolbarHeight: Get.width * 0.3,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          elevation: 0,
         ),
       ),
       body: Padding(
@@ -121,11 +161,12 @@ class _ChatBoxState extends State<ChatBox> {
                       border: Border.all(
                           color: AppColors.themeColor, width: Get.height * 0.002),
                     ),
-                    child: const CircleAvatar(
-                      radius: 15,
-                      backgroundImage: CachedNetworkImageProvider(
-                        'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
+                    child:  CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: AssetImage(
+                          AppImages.crew2
                       ),
+                      radius: 14,
                     ),
                   ),
                   SizedBox(

@@ -18,6 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
@@ -177,23 +179,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   }
   Widget settingsWidget( String image,String text,VoidCallback function){
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: Get.height*0.005, horizontal: Get.width*0.05,),
-      decoration: BoxDecoration(
-        color: AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(color: AppColors.black.withOpacity(0.2),offset: Offset(0,2),blurRadius: 5)
+    return GestureDetector(
+      onTap: function,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: Get.height*0.009, horizontal: Get.width*0.05,),
+        padding:EdgeInsets.all( Get.width*0.035),
+        decoration: BoxDecoration(
+          color: AppColors.whiteColor,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(color: AppColors.black.withOpacity(0.2),
+                offset: const Offset(0,1),blurRadius: 1
+            )
+          ]
+        ),
+        child: Row(
+          children: [
+            Image.asset(image,scale: 3.5,),
+            SizedBox(
+              width: Get.width*0.04,
+            ),
+            Text(getTranslated(context, text)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
+            Spacer(),
+            Icon(Icons.arrow_forward_ios,size: Get.width*0.03,),
+          ],
+        ),
 
-        ]
-      ),
-      child: ListTile(
-        leading: Image.asset(image,scale: 4,),
-        title: Text(getTranslated(context, text)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
-        trailing:  Icon(Icons.arrow_forward_ios,size: Get.width*0.05,),
-        onTap: function,
-        minVerticalPadding: 0,
-        dense: true,
+        /*ListTile(
+          leading: Image.asset(image,scale: 3.5,),
+          title: Text(getTranslated(context, text)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
+          trailing:  Icon(Icons.arrow_forward_ios,size: Get.width*0.05,),
+          onTap: function,
+          minVerticalPadding: 0,
+          dense: true,
+        ),*/
       ),
     );
   }

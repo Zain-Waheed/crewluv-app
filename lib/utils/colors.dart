@@ -33,8 +33,7 @@ class AppColors {
   static Color opacBlack =   Colors.black.withOpacity(0.2);
   static Color slateGrey = const Color(0xffB2BAC1);
   static Color  solidGrey = const Color(0xffB2BAC1);
-
-
+  static Color  blackopa = const Color(0xff4D4D4D);
   static Color white = const Color(0xffFFFFFF);
   static Color whiteLite = const Color(0xffF2F2F3);
   static Color whiteBackground = const Color(0xffFFFCFD);
@@ -51,6 +50,7 @@ class AppColors {
   static Color jetBlack = const Color(0xff595959);
   static Color dotColor = const Color(0xffD1D4D8);
   static Color bottomSheetGrey = const Color(0xffE8ECF1);
+  static Color maroon = const Color(0xffFF4500);
 
   static LinearGradient greenishBlueGradient =  const LinearGradient(
     begin: Alignment.topLeft,

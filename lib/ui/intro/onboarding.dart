@@ -24,17 +24,20 @@ class _OnBoardingState extends State<OnBoarding> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: AppColors.orangeGradientColor,
-        ),
+          image: DecorationImage(
+            image: AssetImage(AppImages.onBoardingBackground),
+            fit: BoxFit.cover,
+          ),),
         child: Column(
           children: [
             SizedBox(
-              height: Get.width * 0.08,
+              height: Get.width * 0.45,
             ),
             SizedBox(
-              width: Get.width,
-              height: Get.height * 0.45,
-              child: PageView(
+          height: Get.height* 0.3,
+          width: Get.width,
+          child: PageView(
+            physics: const NeverScrollableScrollPhysics(),
                 controller: _controller,
                 onPageChanged: (index) {
                   setState(() {
@@ -88,20 +91,19 @@ class _OnBoardingState extends State<OnBoarding> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                     SizedBox(height: Get.height*0.002),
+                    SizedBox(height: Get.height*0.0002),
                     Text(
                       titleText(),
                       style: AppTextStyle.montserrat(
                           AppColors.black, Get.width * 0.05, FontWeight.bold),
                     ),
-
                     Text(
                       descriptionText(),
                       style: AppTextStyle.montserrat(AppColors.blackLite,
                           Get.width * 0.04, FontWeight.normal),
                       textAlign: TextAlign.center,
                     ),
-
+                    SizedBox(height: Get.height*0.0002),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -126,13 +128,13 @@ class _OnBoardingState extends State<OnBoarding> {
                           onpressed: () {
                             pageIndex++;
                             if(pageIndex<=3)
-                              {
-                                _controller.jumpToPage(pageIndex);
-                              }else
-                                {
-                                   pageIndex=4;
-                                   Get.to(Login());
-                                }
+                            {
+                              _controller.jumpToPage(pageIndex);
+                            }else
+                            {
+                              pageIndex=4;
+                              Get.to(Login());
+                            }
                           },
                           buttonText: pageIndex==3?'register':'next',
                           width: Get.width * 0.35,
@@ -149,7 +151,6 @@ class _OnBoardingState extends State<OnBoarding> {
       ),
     );
   }
-
   String titleText() {
     if (pageIndex == 0) {
       return AppDummyData.titleOnBoarding1;

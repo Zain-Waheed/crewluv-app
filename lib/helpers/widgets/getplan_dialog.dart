@@ -127,7 +127,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                       height: Get.width*0.45,
                       enlargeCenterPage:true,
                       aspectRatio: 2.8 / 1,
-                      viewportFraction: 0.38,
+                      viewportFraction: 0.39,
                       initialPage: 0,
                       enableInfiniteScroll: true,
                       reverse: false,

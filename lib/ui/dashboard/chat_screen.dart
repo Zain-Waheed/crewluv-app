@@ -9,6 +9,7 @@ import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -119,7 +120,39 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   Column(
                     children: List.generate(provider.chats.length,
-                        (index) => chatItemWidget(provider.chats[index], true)),
+                        (index) =>
+                            Slidable(
+                                enabled: true,
+                                endActionPane:  ActionPane(
+                                  extentRatio: 0.25,
+                                  motion: const ScrollMotion(),
+                                  children: [
+                                    GestureDetector(
+                                      onTap: (){
+                                        setState(() {
+
+                                        });
+                                        provider.chats.removeAt(index);
+                                      },
+                                      child: Container(
+                                        width:Get.width*0.1,
+                                        height:Get.width*0.1,
+                                        margin:EdgeInsets.only(left: Get.width*0.02),
+                                        decoration: const BoxDecoration(
+                                          color: Colors.orange,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child:Icon(
+                                          Icons.delete,
+                                          color: AppColors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                child: chatItemWidget(provider.chats[index], true)
+                            )
+                    ),
                   ),
                   Column(
                     children: List.generate(
@@ -189,7 +222,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   AppColors.greyDark, Get.width * 0.035, FontWeight.w400),
             )),
         onTap: () {
-          Get.to(() => Chat(name: model.name));
+          Get.to(() => Chatt(name: model.name));
         },
       ),
     );
