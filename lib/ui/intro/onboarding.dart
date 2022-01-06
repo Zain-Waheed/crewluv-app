@@ -52,10 +52,10 @@ class _OnBoardingState extends State<OnBoarding> {
                     AppImages.onBoarding2,
                   ),
                   Image.asset(
-                    AppImages.onBoarding3,
+                    AppImages.onBoarding3,scale: 2,
                   ),
                   Image.asset(
-                    AppImages.onBoarding4,
+                    AppImages.onBoarding4,scale: 2,
                   ),
                 ],
               ),

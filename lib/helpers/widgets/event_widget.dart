@@ -23,6 +23,7 @@ class EventWidget extends StatefulWidget {
 }
 
 class _EventWidgetState extends State<EventWidget> {
+  bool iswhite=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,7 +100,7 @@ class _EventWidgetState extends State<EventWidget> {
                     ],
                   ),
                   Spacer(),
-                  Image.asset(AppImages.bonFire,scale: 1.5,),
+                  Image.asset(widget.event.personalEvent?AppImages.privateEvent:AppImages.barIcon,height: Get.height*0.1,),
 
                 ],
               ),
@@ -116,7 +117,7 @@ class _EventWidgetState extends State<EventWidget> {
                       color: AppColors.themeColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: Text(widget.event.day??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.035, FontWeight.w700),),
+                    child: Text(widget.event.day??"",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
@@ -125,7 +126,7 @@ class _EventWidgetState extends State<EventWidget> {
                       color: AppColors.themeColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: Text("${widget.event.startTime}-${widget.event.endTime} ",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.035, FontWeight.w700),),
+                    child: Text("${widget.event.startTime}-${widget.event.endTime} ",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
@@ -134,7 +135,7 @@ class _EventWidgetState extends State<EventWidget> {
                       color: AppColors.themeColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: Text("${widget.event.distance}  ${getTranslated(context, "km")}",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.035, FontWeight.w700),),
+                    child: Text("${widget.event.distance}  ${getTranslated(context, "km")}",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
                   ),
 
                 ],
@@ -171,9 +172,9 @@ class _EventWidgetState extends State<EventWidget> {
                 ],
               ),
               SizedBox(height: Get.width*0.07,),
-              AppButton(buttonText: 'join', onpressed: (
+              AppButton(buttonText:widget.event.personalEvent==true?'join': widget.event.entryType??'', onpressed: (){
 
-                  ){}, width: Get.width, isWhite: false)
+              }, width: Get.width, isWhite: iswhite)
             ],
           ),
         ),

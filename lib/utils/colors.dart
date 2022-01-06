@@ -50,6 +50,8 @@ class AppColors {
   static Color jetBlack = const Color(0xff595959);
   static Color dotColor = const Color(0xffD1D4D8);
   static Color bottomSheetGrey = const Color(0xffE8ECF1);
+  static Color coalGrey = const Color(0xff999999);
+
   static Color maroon = const Color(0xffFF4500);
 
   static LinearGradient greenishBlueGradient =  const LinearGradient(

@@ -18,15 +18,15 @@ class _EventDescriptionWidgetState extends State<EventDescriptionWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.width*0.03),
-      padding: EdgeInsets.symmetric(horizontal: Get.width*0.02,vertical: Get.width*0.01),
+      margin: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.width*0.01),
+      padding: EdgeInsets.symmetric(horizontal: Get.width*0.02,vertical: Get.width*0.02),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-              color: AppColors.lightGrey.withOpacity(0.2), offset: Offset(0, 4), blurRadius: 5.0)
+              color: AppColors.black.withOpacity(0.1), offset: Offset(0, 10), blurRadius: 5.0)
         ],
         color: AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +48,7 @@ class _EventDescriptionWidgetState extends State<EventDescriptionWidget> {
               Image.asset(AppImages.location,scale: 2.5,),
               SizedBox(width: Get.width*0.01,),
               Text('${widget.model.distance} ',style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.035, FontWeight.w400),),
-              Text(getTranslated(context, "miles_away")??"",style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.035, FontWeight.w400)),
+              Text(widget.model.liveLocation??",Wapda Town",style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.035, FontWeight.w400)),
               const Spacer(),
               Text(widget.model.day??"",style: AppTextStyle.montserrat(AppColors.eventGrey, Get.width*0.03, FontWeight.w400)),
               const SizedBox(width: 2,),

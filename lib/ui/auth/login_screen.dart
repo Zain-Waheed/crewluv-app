@@ -1,8 +1,10 @@
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/ui/auth/phone_screen.dart';
+import 'package:amigos/ui/dashboard/terms_of_use.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -42,14 +44,9 @@ class _LoginState extends State<Login> {
                     TextSpan(
                         children: [
                           TextSpan(text: getTranslated(context, 'by_clicking')??"",
-                            style:GoogleFonts.montserrat(
-                              fontSize:Get.width*0.04,
-                              color:AppColors.white,
-                              fontWeight:FontWeight.w600,
-                              height: 1.2,
-                              letterSpacing: 1.0,
-                            ),
+                            style: AppTextStyle.montserrat(AppColors.white, Get.width*0.04, FontWeight.w400),
                           ),
+
                           TextSpan(text: getTranslated(context, 'terms_conditions')??"",
                             style: GoogleFonts.montserrat(
                                 fontSize:Get.width*0.04,
@@ -59,7 +56,10 @@ class _LoginState extends State<Login> {
                                 height: 1.2,
                                 letterSpacing: 1.0,
                             ),
+                            recognizer: TapGestureRecognizer()..onTap= ()=> Get.to(()=>TermsOfUse(termsOfUse: true)),
+                            style: AppTextStyle.montserratUnderlined(AppColors.white, Get.width*0.04, FontWeight.w600),
                           ),
+
                           TextSpan(text: getTranslated(context, 'learn_how_we')??"",
                             style:GoogleFonts.montserrat(
                               fontSize:Get.width*0.04,
@@ -70,6 +70,8 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           TextSpan(text: getTranslated(context, 'privacy_policy')??"",
+                            recognizer: TapGestureRecognizer()..onTap= ()=> Get.to(()=>TermsOfUse(termsOfUse: false)),
+                            style: AppTextStyle.montserratUnderlined(AppColors.white, Get.width*0.04, FontWeight.w600),
                             style:GoogleFonts.montserrat(
                               fontSize:Get.width*0.04,
                               color:AppColors.white,

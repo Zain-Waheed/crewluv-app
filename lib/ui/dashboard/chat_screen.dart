@@ -1,7 +1,8 @@
 import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/crew_members_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
-import 'package:amigos/models/chat_model.dart';
+import 'package:amigos/models/group_chat_model.dart';
+import 'package:amigos/models/personal_chat_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/chat_details.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
@@ -13,6 +14,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+
+int chatIndex = 0;
+PageController chatController = PageController();
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
 
@@ -21,8 +25,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  int index = 0;
-  PageController controller = PageController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +61,14 @@ class _ChatScreenState extends State<ChatScreen> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          index = 0;
-                          controller.jumpToPage(index);
+                          chatIndex = 0;
+                          chatController.jumpToPage(chatIndex);
                           setState(() {});
                         },
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: index == 0
+                            color: chatIndex == 0
                                 ? AppColors.themeColor
                                 : AppColors.offWhite,
                           ),
@@ -73,7 +76,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               child: Text(
                             getTranslated(context, "chats") ?? "",
                             style: AppTextStyle.montserrat(
-                                index == 0
+                                chatIndex == 0
                                     ? AppColors.whiteColor
                                     : AppColors.shadedBlack,
                                 Get.width * 0.035,
@@ -85,8 +88,8 @@ class _ChatScreenState extends State<ChatScreen> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          index = 1;
-                          controller.jumpToPage(index);
+                          chatIndex = 1;
+                          chatController.jumpToPage(chatIndex);
                           setState(() {});
                         },
                         child: Container(
@@ -115,10 +118,12 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             Expanded(
               child: PageView(
-                controller: controller,
+                controller: chatController,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Column(
+                    children: List.generate(provider.personalChats.length,
+                        (index) => personalChatItemWidget(provider.personalChats[index])),
                     children: List.generate(provider.chats.length,
                         (index) =>
                             Slidable(
@@ -156,9 +161,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   Column(
                     children: List.generate(
-                        provider.chats.length,
+                        provider.groupChats.length,
                         (index) =>
-                            chatItemWidget(provider.chats[index], false)),
+                            groupChatItemWidget(provider.groupChats[index])),
                   ),
                 ],
               ),
@@ -169,35 +174,13 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
-  Widget chatItemWidget(ChatModel model, bool personalChat) {
+  Widget personalChatItemWidget(PersonalChatModel model) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: ListTile(
-        leading: personalChat?Image.asset(
+        leading: Image.asset(
           model.imagePath,
           scale: 0.5,
-        ): Stack(
-          children: [
-            CrewMembersWidget(margin: 0, image: AppImages.crew1),
-            CrewMembersWidget(margin: 10, image: AppImages.crew2),
-            Container(
-                margin: EdgeInsets.only(left: 30, top: 7.5),
-                decoration: BoxDecoration(
-                    color: AppColors.grey,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.whiteColor)),
-                height: 35,
-                width: 35,
-                child: Center(
-                  child: Text(
-                    "+9",
-                    style: AppTextStyle.montserrat(
-                        AppColors.whiteColor,
-                        Get.width * 0.04,
-                        FontWeight.w500),
-                  ),
-                )),
-          ],
         ),
         title: Row(
           children: [
@@ -219,12 +202,69 @@ class _ChatScreenState extends State<ChatScreen> {
             child: Text(
               model.lastMessage,
               style: AppTextStyle.montserrat(
-                  AppColors.greyDark, Get.width * 0.035, FontWeight.w400),
+                  AppColors.greyDark, Get.width * 0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis
             )),
         onTap: () {
+          Get.to(() => Chat(name: model.name));
+        },
+      ),
+    );
+  }
+  Widget groupChatItemWidget(GroupChatModel model,) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: ListTile(
+        leading: Stack(
+          children: [
+            CrewMembersWidget(margin: 0, image: AppImages.crew1),
+            CrewMembersWidget(margin: 10, image: AppImages.crew2),
+            Container(
+                margin: EdgeInsets.only(left: 30, top: 7.5),
+                decoration: BoxDecoration(
+                    color: AppColors.coalGrey,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColors.whiteColor)),
+                height: 35,
+                width: 35,
+                child: Center(
+                  child: Text(
+                    "+9",
+                    style: AppTextStyle.montserrat(
+                        AppColors.whiteColor,
+                        Get.width * 0.035,
+                        FontWeight.w500),
+                  ),
+                )),
+          ],
+        ),
+        title: Row(
+          children: [
+            Text(
+              model.chatName,
+              style: AppTextStyle.montserrat(
+                  AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),
+            ),
+            const Spacer(),
+            Text(
+              model.date,
+              style: AppTextStyle.montserrat(
+                  AppColors.lightGrey, Get.width * 0.03, FontWeight.w400),
+            ),
+          ],
+        ),
+        subtitle: Container(
+            margin: EdgeInsets.symmetric(vertical: Get.width * 0.01),
+            child: Text(
+              '${model.lastMessageSender}:${model.lastMessage}',
+              style: AppTextStyle.montserrat(
+                  AppColors.greyDark, Get.width * 0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis,)
+        ),
+        onTap: () {
+          Get.to(() => Chat(name: model.chatName));
           Get.to(() => Chatt(name: model.name));
         },
       ),
     );
   }
+
 }

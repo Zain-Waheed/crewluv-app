@@ -16,6 +16,7 @@ class University extends StatefulWidget {
 }
 
 class _UniversityState extends State<University> {
+  final formKey2 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -45,23 +46,24 @@ class _UniversityState extends State<University> {
             validator: (value)=> FieldValidator.validateName(
                 dashPro.universityController.text
             ),
-            // onChanged: (val)
-            // {
-            //
-            //   setState(() {
-            //     if(dashPro.formKey.currentState!.validate())
-            //     {
-            //       dashPro.formCheck[dashPro.pageIndex]=1;
-            //     }
-            //     else
-            //     {
-            //       dashPro.formCheck[dashPro.pageIndex]=-1;
-            //     }
-            //   });
-            //   Get.forceAppUpdate();
-            // },
             autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: dashPro.universityController,
+            onChanged: (val)
+            {
+
+              setState(() {
+
+                if(dashPro.formKey.currentState!.validate())
+                {
+                  dashPro.formCheck[dashPro.pageIndex]=1;
+                }
+                else
+                {
+                  dashPro.formCheck[dashPro.pageIndex]=-1;
+                }
+              });
+              Get.forceAppUpdate();
+            },
             decoration: AppInputDecoration.circularFieldDecoration(null, 'university', null,),
           ),
           SizedBox(height: Get.width * 0.05),
@@ -73,6 +75,7 @@ class _UniversityState extends State<University> {
             {
 
               setState(() {
+
                 if(dashPro.formKey.currentState!.validate())
                 {
                   dashPro.formCheck[dashPro.pageIndex]=1;

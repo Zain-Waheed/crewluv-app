@@ -53,9 +53,13 @@ class AppImages {
    static var notification3 = "assets/images/notification3.png";
    static var notificationIcon = "assets/images/notificationIcon.png";
    static var subscription = "assets/images/subscription.png";
-
-
-
+   static var restaurantProfile = "assets/images/restaurantProfile.png";
+   static var barIcon = "assets/images/barIcon.png";
+   static var like = "assets/images/like.png";
+   static var bbqImage = "assets/images/bbqImage.png";
+   static var time = "assets/images/time.png";
+   static var global = "assets/images/global.png";
+   static var phone = "assets/images/phone.png";
    // static var userImage = "assets/images/userImage.png";
    // static var chat = "assets/images/chat.png";
    static var close = "assets/images/close.png";
@@ -94,5 +98,9 @@ class AppImages {
    static var delete = "assets/images/delete.png";
    static var share = "assets/images/share.png";
    static var barCode = "assets/images/barCode.png";
+   static var privateEvent = "assets/images/privateEvent.png";
+   static var dropDownIcon = "assets/images/dropDownIcon.png";
+
+
    static var send = "assets/images/send.png";
 }

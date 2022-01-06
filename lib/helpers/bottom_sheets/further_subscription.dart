@@ -1,6 +1,8 @@
 import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/ui/dashboard/dashboard.dart';
+import 'package:amigos/ui/dashboard/settings_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
@@ -100,17 +102,18 @@ class _FurtherSubscriptionState extends State<FurtherSubscription> {
                 Text("${getTranslated(context, 'price')}",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
                 SizedBox(width: Get.width*0.05,),
                 Center(child: Expanded(child: Text('\$x per month',style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),maxLines: 2,overflow: TextOverflow.ellipsis,))),
-
-
-
               ],
             ),
             SizedBox(height: Get.height*0.1,),
-            AppButton(buttonText: 'subscribe_now', onpressed: (){Get.bottomSheet(CongraulationBottomSheet());}, width: Get.width, isWhite: false),
-
-
-
-
+            AppButton(buttonText: 'subscribe_now', onpressed: (){
+              Get.bottomSheet(const CongraulationBottomSheet());
+              Future.delayed(const Duration(seconds: 3),(){
+                Get.to(
+                  const SettingsScreen(),
+                );
+              },
+              );
+              }, width: Get.width, isWhite: false),
           ],
         ),
       ),
