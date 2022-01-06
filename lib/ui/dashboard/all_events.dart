@@ -36,7 +36,7 @@ class _AllEventsState extends State<AllEvents> {
            body: Column(
              children: [
                Container(
-                 height: Get.width*0.09,
+                 height: Get.width*0.11,
                  width: Get.width*0.9,
                  margin: EdgeInsets.symmetric(horizontal: Get.width*0.05),
                  decoration: BoxDecoration(
@@ -60,7 +60,7 @@ class _AllEventsState extends State<AllEvents> {
                              borderRadius: BorderRadius.circular(20),
                              color: allEventsIndex==0?AppColors.themeColor:AppColors.offWhite,
                            ),
-                           child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(allEventsIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
+                           child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(allEventsIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
                          ),
                        ),
                      ),
@@ -78,7 +78,7 @@ class _AllEventsState extends State<AllEvents> {
                              borderRadius: BorderRadius.circular(20),
                              color: allEventsIndex==1?AppColors.themeColor:AppColors.offWhite,
                            ),
-                           child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(allEventsIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
+                           child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(allEventsIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
                          ),
                        ),
                      ),
@@ -96,7 +96,7 @@ class _AllEventsState extends State<AllEvents> {
                              borderRadius: BorderRadius.circular(20),
                              color: allEventsIndex==2?AppColors.themeColor:AppColors.offWhite,
                            ),
-                           child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(allEventsIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
+                           child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(allEventsIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
                          ),
                        ),
                      ),

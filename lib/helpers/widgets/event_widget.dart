@@ -100,7 +100,7 @@ class _EventWidgetState extends State<EventWidget> {
                     ],
                   ),
                   Spacer(),
-                  Image.asset(AppImages.bonFire,scale: 1.5,),
+                  Image.asset(widget.event.personalEvent?AppImages.privateEvent:AppImages.barIcon,height: Get.height*0.1,),
 
                 ],
               ),
@@ -172,7 +172,9 @@ class _EventWidgetState extends State<EventWidget> {
                 ],
               ),
               SizedBox(height: Get.width*0.07,),
-              AppButton(buttonText:widget.event.personalEvent==true?'join': widget.event.entryType??'', onpressed: (){}, width: Get.width, isWhite: iswhite)
+              AppButton(buttonText:widget.event.personalEvent==true?'join': widget.event.entryType??'', onpressed: (){
+
+              }, width: Get.width, isWhite: iswhite)
             ],
           ),
         ),

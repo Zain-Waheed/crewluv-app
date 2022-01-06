@@ -54,7 +54,7 @@ int dashIndex=0;
            backgroundColor: AppColors.themeColor,
            elevation: 2.0,
            onPressed: (){
-             Get.to(()=> const CreateEvent()
+             Get.to(()=>  CreateEvent(comingFromEdit: false,)
              );},
          ),
        ),

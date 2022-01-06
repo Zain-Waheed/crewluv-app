@@ -28,7 +28,7 @@ class _TermsOfUseState extends State<TermsOfUse> {
 
       ),
       body: Container(
-        height: Get.height*0.7,
+        height: Get.height*0.9,
         margin: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.width*0.05),
         padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.width*0.05),
         decoration: BoxDecoration(
@@ -40,7 +40,7 @@ class _TermsOfUseState extends State<TermsOfUse> {
         ],
 
       ),
-        child: SingleChildScrollView(child: Text(AppDummyData.longText,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w400),)),
+        child: SingleChildScrollView(child: Text(AppDummyData.longText,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.045, FontWeight.w400),)),
       ),
     );
   }

@@ -186,7 +186,7 @@ class _ChatScreenState extends State<ChatScreen> {
             Container(
                 margin: EdgeInsets.only(left: 30, top: 7.5),
                 decoration: BoxDecoration(
-                    color: AppColors.grey,
+                    color: AppColors.coalGrey,
                     shape: BoxShape.circle,
                     border: Border.all(color: AppColors.whiteColor)),
                 height: 35,
@@ -196,7 +196,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     "+9",
                     style: AppTextStyle.montserrat(
                         AppColors.whiteColor,
-                        Get.width * 0.04,
+                        Get.width * 0.035,
                         FontWeight.w500),
                   ),
                 )),

@@ -8,6 +8,7 @@ class AppInputDecoration{
   static InputDecoration circularFieldDecoration(Widget? preIcon,String hintText,Widget? suffixIcon)
   {
     return InputDecoration(
+      contentPadding: EdgeInsets.symmetric(vertical: 12,horizontal: 16),
       fillColor: AppColors.offWhite,
       hintText: getTranslated(Get.context, hintText),
       suffixIcon:suffixIcon !=null? Container(
@@ -41,24 +42,24 @@ class AppInputDecoration{
   static InputDecoration lessCircularDecoration(Widget? preIcon,String hintText,Widget? suffixIcon,Color color)
   {
     return InputDecoration(
-      fillColor: AppColors.whiteColor,
+      fillColor: color,
       hintText: getTranslated(Get.context, hintText),
-      hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500,),
+      hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w400,),
       enabledBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         borderSide: BorderSide(color: AppColors.genderBorder),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(color: AppColors.genderBorder),
+        borderSide: BorderSide(color: AppColors.themeColor),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(color: AppColors.genderBorder),
+        borderSide: BorderSide(color: AppColors.themeColor),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(color: AppColors.genderBorder),
+        borderSide: BorderSide(color: AppColors.themeColor),
       ),
       isDense: true,
       filled: true,

@@ -4,6 +4,8 @@ import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/helpers/widgets/event_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/create_event.dart';
+import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
@@ -222,13 +224,13 @@ class _EventDetailsState extends State<EventDetails> {
 
               ),
               SizedBox(height: Get.width*0.05,),
-              widget.index==0?AppButton(buttonText: widget.index==0? 'view_request' :"view_tickets", onpressed: (){}, width: Get.width, isWhite: true):SizedBox(),
+              widget.index==0?AppButton(buttonText: widget.index==0? 'view_request' :"view_tickets", onpressed: (){Get.to(()=>Profiles());}, width: Get.width, isWhite: true):SizedBox(),
             ],
           ),
         ),
         bottomNavigationBar: widget.index!=1?Container(
           padding:const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-          child:AppButton(buttonText: widget.index==1?'edit2':'pending3' , onpressed: (){}, width: Get.width, isWhite: widget.index!=2? false: true),
+          child:AppButton(buttonText: widget.index==0?'edit2':'pending3' , onpressed: (){Get.to(()=>CreateEvent(comingFromEdit: true,editEventModel:provider.events[0],));}, width: Get.width, isWhite: widget.index!=2? false: true),
         ):const SizedBox(),
       );
 

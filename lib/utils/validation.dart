@@ -78,7 +78,7 @@ class FieldValidator {
 
 
   static String? validateText(String? value) {
-    if (value!.isEmpty) return "Text is required";
+    if (value!.isEmpty) return getTranslated(Get.context, 'required');
     if (value.length < 10) {
       return getTranslated(Get.context, "min_characters");
     }

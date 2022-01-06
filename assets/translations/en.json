@@ -249,9 +249,11 @@
   "describe_what_you":"Describe what you are inviting friends for...",
   "policy":"Policy",
   "privacy_policy2": "Privacy Policy",
-
+"event_details": "Event Details",
+  "edit_event": "Edit Event",
   "account": "Account",
   "time": "Time",
+  "required": "required*",
   "price": "Price",
   "terms_Of_use2": "Terms Of Use",
   "subscribe_now": "Subscribe Now",

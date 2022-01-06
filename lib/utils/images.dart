@@ -94,4 +94,8 @@ class AppImages {
    static var delete = "assets/images/delete.png";
    static var share = "assets/images/share.png";
    static var barCode = "assets/images/barCode.png";
+   static var privateEvent = "assets/images/privateEvent.png";
+   static var dropDownIcon = "assets/images/dropDownIcon.png";
+
+
 }
