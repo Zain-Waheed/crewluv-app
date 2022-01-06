@@ -93,64 +93,6 @@ class _EnterDOBState extends State<EnterDOB> {
                       initialDate: _dob,
                       firstDate: DateTime(1930),
                       lastDate: DateTime.now(),
-            TextFormField(
-                readOnly: true,
-                validator: (value)=> FieldValidator.empty(dashPro.dobController.text),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: dashPro.dobController,
-                decoration: AppInputDecoration.circularFieldDecoration(
-                  null, 'd/m/y',
-                  Image.asset(
-                    AppImages.calendarIcon,
-                    color: dateIconColor?AppColors.themeColor:null,
-                  ),
-                ),
-                onTap:(){
-                  showDatePicker(
-                    context: context,
-                    builder: (BuildContext context, Widget? child) {
-                      return Theme(
-                        data: ThemeData(
-                          primarySwatch: Colors.grey,
-                          splashColor: Colors.black,
-                          textTheme: const TextTheme(
-                            subtitle1: TextStyle(color: Colors.black),
-                            button: TextStyle(color: Colors.black),
-                          ),
-                          colorScheme: ColorScheme.light(
-                              primary: AppColors.orangeDark,
-                              onPrimary: const Color(0xFFFFFFFF),
-                              surface: Colors.black,
-                              onSurface: Colors.black,
-                              secondary: Colors.black),
-                        ),
-                        child: child ??const Text(""),
-                      );
-                    },
-                    initialDate: _dob,
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime(2050),
-
-                    ).then((date){
-                      setState(() {
-                        _dob=date!;
-                        final DateFormat formatter = DateFormat('dd-MM-yyyy');
-                        final String formatted = formatter.format(date);
-                        dashPro.dobController.text=formatted;
-                        if(dashPro.dobController.text.isNotEmpty)
-                        {
-                          dashPro.formCheck[dashPro.pageIndex]=1;
-                        }
-                        else
-                        {
-                          dashPro.formCheck[dashPro.pageIndex]=-1;
-                        }
-                        Get.forceAppUpdate();
-                      });
-                    },
-                    );
-                  }
-              ),
                   ).then((date){
                     setState(() {
                       _dob=date!;
@@ -171,8 +113,7 @@ class _EnterDOBState extends State<EnterDOB> {
                   },
                   );
                 }
-            ),
-            SizedBox(height: Get.width * 0.15),
+            ),)
           ],
         ),
       );

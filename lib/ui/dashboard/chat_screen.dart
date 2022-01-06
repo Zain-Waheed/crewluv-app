@@ -95,7 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: index == 1
+                            color: chatIndex == 1
                                 ? AppColors.themeColor
                                 : AppColors.offWhite,
                           ),
@@ -103,7 +103,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               child: Text(
                             getTranslated(context, 'my_crew') ?? "",
                             style: AppTextStyle.montserrat(
-                                index == 1
+                                chatIndex == 1
                                     ? AppColors.whiteColor
                                     : AppColors.shadedBlack,
                                 Get.width * 0.035,
@@ -124,40 +124,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   Column(
                     children: List.generate(provider.personalChats.length,
                         (index) => personalChatItemWidget(provider.personalChats[index])),
-                    children: List.generate(provider.chats.length,
-                        (index) =>
-                            Slidable(
-                                enabled: true,
-                                endActionPane:  ActionPane(
-                                  extentRatio: 0.25,
-                                  motion: const ScrollMotion(),
-                                  children: [
-                                    GestureDetector(
-                                      onTap: (){
-                                        setState(() {
-
-                                        });
-                                        provider.chats.removeAt(index);
-                                      },
-                                      child: Container(
-                                        width:Get.width*0.1,
-                                        height:Get.width*0.1,
-                                        margin:EdgeInsets.only(left: Get.width*0.02),
-                                        decoration: const BoxDecoration(
-                                          color: Colors.orange,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child:Icon(
-                                          Icons.delete,
-                                          color: AppColors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                child: chatItemWidget(provider.chats[index], true)
-                            )
-                    ),
                   ),
                   Column(
                     children: List.generate(
@@ -205,7 +171,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   AppColors.greyDark, Get.width * 0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis
             )),
         onTap: () {
-          Get.to(() => Chat(name: model.name));
+          Get.to(() => Chatt(name: model.name));
         },
       ),
     );
@@ -260,8 +226,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   AppColors.greyDark, Get.width * 0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis,)
         ),
         onTap: () {
-          Get.to(() => Chat(name: model.chatName));
-          Get.to(() => Chatt(name: model.name));
+          Get.to(() => Chatt(name: model.chatName));
         },
       ),
     );

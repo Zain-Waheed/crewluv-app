@@ -57,7 +57,6 @@ class _LoginState extends State<Login> {
                                 letterSpacing: 1.0,
                             ),
                             recognizer: TapGestureRecognizer()..onTap= ()=> Get.to(()=>TermsOfUse(termsOfUse: true)),
-                            style: AppTextStyle.montserratUnderlined(AppColors.white, Get.width*0.04, FontWeight.w600),
                           ),
 
                           TextSpan(text: getTranslated(context, 'learn_how_we')??"",
@@ -71,7 +70,6 @@ class _LoginState extends State<Login> {
                           ),
                           TextSpan(text: getTranslated(context, 'privacy_policy')??"",
                             recognizer: TapGestureRecognizer()..onTap= ()=> Get.to(()=>TermsOfUse(termsOfUse: false)),
-                            style: AppTextStyle.montserratUnderlined(AppColors.white, Get.width*0.04, FontWeight.w600),
                             style:GoogleFonts.montserrat(
                               fontSize:Get.width*0.04,
                               color:AppColors.white,
