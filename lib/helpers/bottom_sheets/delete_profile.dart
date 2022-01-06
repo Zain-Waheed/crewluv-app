@@ -18,6 +18,7 @@ class _DeleteProfileState extends State<DeleteProfile> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: Get.height*0.65,
       decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: const BorderRadius.only(
@@ -30,7 +31,7 @@ class _DeleteProfileState extends State<DeleteProfile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(AppImages.logout2,height: Get.height*0.12,width: Get.width*0.4,),
-            SizedBox(height: Get.height*0.02,),
+            SizedBox(height: Get.height*0.03,),
             Text(getTranslated(context, 'delete_profile')??'',style: AppTextStyle.montserrat(AppColors.black, Get.width*0.045, FontWeight.w700),),
             SizedBox(height: Get.height*0.01,),
             Text(getTranslated(context, 'explain')??'',style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w500),textAlign: TextAlign.center,),

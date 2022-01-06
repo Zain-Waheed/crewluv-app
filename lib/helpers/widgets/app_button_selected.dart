@@ -20,7 +20,7 @@ class _AppButtonSelectedState extends State<AppButtonSelected> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: Get.width*0.03,horizontal: Get.width*0.05),
+      padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.05),
       margin: EdgeInsets.only(right: Get.width*0.025,top:Get.width*0.03,bottom: Get.width*0.02 ),
       decoration: BoxDecoration(
         color: AppColors.offWhite,

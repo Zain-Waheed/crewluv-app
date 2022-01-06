@@ -108,19 +108,16 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       child: Row(
                         children:List.generate(
                             provider.filters.musicTaste.length,
-                                (index) => Container(
-                                     height: Get.height*0.1,
-                                    child: GestureDetector(
-                                         onTap: (){
-                                           value =provider.filters.musicTaste[index].isSelected??false;
-                                           provider.filters.musicTaste[index].isSelected=!value;
-                                           setState(() {
+                                (index) => GestureDetector(
+                                     onTap: (){
+                                       value =provider.filters.musicTaste[index].isSelected??false;
+                                       provider.filters.musicTaste[index].isSelected=!value;
+                                       setState(() {
 
-                                           });
+                                       });
 
-                                         },
-                                        child: AppButtonSelected(model: provider.filters.musicTaste[index],))
-                                )
+                                     },
+                                    child: AppButtonSelected(model: provider.filters.musicTaste[index],))
                         ),
                       ),
                     ),

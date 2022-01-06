@@ -15,6 +15,8 @@ class Faqs extends StatefulWidget {
 }
 
 class _FaqsState extends State<Faqs> {
+  int pageIndex=0;
+  PageController controller = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,9 +102,84 @@ class _FaqsState extends State<Faqs> {
       body: SingleChildScrollView(
         child: Padding(
            padding: EdgeInsets.only(top: 20),
-          child: Column(
-            children: List.generate(4, (index) => faqsWidget())
-          ),
+          child:Column(
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: Get.height * 0.06,
+                  width: Get.width * 0.6,
+                  margin: EdgeInsets.symmetric(horizontal: Get.width * 0.05,vertical: Get.height*0.02),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: AppColors.genderBorder),
+                      color: AppColors.offWhite),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            pageIndex = 0;
+                            controller.jumpToPage(pageIndex);
+                            setState(() {});
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: pageIndex == 0
+                                  ? AppColors.themeColor
+                                  : AppColors.offWhite,
+                            ),
+                            child: Center(
+                                child: Text(
+                                  getTranslated(context, "faqs") ?? "",
+                                  style: AppTextStyle.montserrat(
+                                      pageIndex == 0
+                                          ? AppColors.whiteColor
+                                          : AppColors.shadedBlack,
+                                      Get.width * 0.035,
+                                      FontWeight.w400),
+                                )),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            pageIndex = 1;
+                            controller.jumpToPage(pageIndex);
+                            setState(() {});
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: pageIndex == 1
+                                  ? AppColors.themeColor
+                                  : AppColors.offWhite,
+                            ),
+                            child: Center(
+                                child: Text(
+                                  getTranslated(context,"what's new") ?? "",
+                                  style: AppTextStyle.montserrat(
+                                      pageIndex == 1
+                                          ? AppColors.whiteColor
+                                          : AppColors.shadedBlack,
+                                      Get.width * 0.035,
+                                      FontWeight.w400),
+                                )),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              Column(
+                  children: List.generate(4, (index) => faqsWidget())
+              ),
+            ],
+          )
         ),
       ),
     );

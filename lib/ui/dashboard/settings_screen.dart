@@ -96,7 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               settingsWidget(AppImages.termsOfUse,'terms_of_use' , () {Get.to(()=>  TermsOfUse(termsOfUse: true,));}),
               settingsWidget(AppImages.faqs, 'faqs', () { Get.to(()=> Faqs());}),
               settingsWidget(AppImages.aboutApplication, 'about_application', () {Get.to(()=>AboutApplication());}),
-              settingsWidget(AppImages.logout, 'logout', () { Get.bottomSheet(LogoutBottomSheet());}),
+              settingsWidget(AppImages.logout, 'logout', () { Get.bottomSheet(LogoutBottomSheet(),isScrollControlled: true);}),
               SizedBox(height: Get.height*0.02,),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05,vertical: Get.height*0.003),
@@ -205,14 +205,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ],
         ),
 
-        /*ListTile(
-          leading: Image.asset(image,scale: 3.5,),
-          title: Text(getTranslated(context, text)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
-          trailing:  Icon(Icons.arrow_forward_ios,size: Get.width*0.05,),
-          onTap: function,
-          minVerticalPadding: 0,
-          dense: true,
-        ),*/
       ),
     );
   }

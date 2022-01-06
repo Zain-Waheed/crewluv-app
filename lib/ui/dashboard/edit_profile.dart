@@ -167,10 +167,11 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 TextFormField(
                     maxLines: 3,
-                    decoration: AppInputDecoration.circularFieldDecoration(
+                    decoration: AppInputDecoration.lessCircularDecoration(
                       null,
                       'describe_what_you',
                       null,
+                      AppColors.offWhite,
                     )),
                 SizedBox(
                   height: Get.width * 0.02,
@@ -192,7 +193,7 @@ class _EditProfileState extends State<EditProfile> {
                         },
                         child: Image.asset(
                           AppImages.draw,
-                          scale: 3,
+                          scale: 4,
                         )),
                   ],
                 ),

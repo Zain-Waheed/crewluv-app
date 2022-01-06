@@ -23,6 +23,7 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: Get.height*0.65,
       decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: const BorderRadius.only(
@@ -32,6 +33,7 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
       child: Column(
         children: [
           Image.asset(AppImages.logout2,height: Get.height*0.12,width: Get.width*0.4,),
+          SizedBox(height: Get.height*0.03,),
           Text(getTranslated(context, 'what_went_wrong')??'',style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w500),),
           SizedBox(height: Get.height*0.012,),
           Container(
@@ -54,22 +56,25 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
               children: [
                 Text(getTranslated(context, "don't_like")??''),
                 Spacer(),
-                Checkbox(
-                  value: dontLike,
-                  activeColor: AppColors.themeColor,
-                  onChanged: (value) {
-                    dontLike = value!;
-                    if(dontLike==true)
-                      {
-                        cantTell=false;
-                        temporary=false;
-                        spendingMuchTime =false;
+                Theme(
+                  data: ThemeData(unselectedWidgetColor: AppColors.themeColor),
+                  child: Checkbox(
+                    value: dontLike,
+                    activeColor: AppColors.themeColor,
+                    onChanged: (value) {
+                      dontLike = value!;
+                      if(dontLike==true)
+                        {
+                          cantTell=false;
+                          temporary=false;
+                          spendingMuchTime =false;
 
-                      }
-                    setState(() {});
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                        }
+                      setState(() {});
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 ),
 
@@ -98,26 +103,27 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
               children: [
                 Text(getTranslated(context, "spending_much_time")??''),
                 Spacer(),
-                Checkbox(
-                  value: spendingMuchTime,
-                  activeColor: AppColors.themeColor,
-                  onChanged: (value) {
-                    spendingMuchTime = value!;
-                    if(spendingMuchTime==true)
-                    {
-                      cantTell=false;
-                      temporary=false;
-                      dontLike =false;
+                Theme(
+                  data: ThemeData(unselectedWidgetColor: AppColors.themeColor),
+                  child: Checkbox(
+                    value: spendingMuchTime,
+                    activeColor: AppColors.themeColor,
+                    onChanged: (value) {
+                      spendingMuchTime = value!;
+                      if(spendingMuchTime==true)
+                      {
+                        cantTell=false;
+                        temporary=false;
+                        dontLike =false;
 
-                    }
-                    setState(() {});
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                      }
+                      setState(() {});
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 ),
-
-
               ],
             ),
 
@@ -142,22 +148,25 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
               children: [
                 Text(getTranslated(context, "can't_tell")??''),
                 Spacer(),
-                Checkbox(
-                  value: cantTell,
-                  activeColor: AppColors.themeColor,
-                  onChanged: (value) {
-                    cantTell = value!;
-                    if(cantTell==true)
-                    {
-                      temporary=false;
-                      dontLike=false;
-                      spendingMuchTime =false;
+                Theme(
+                  data: ThemeData(unselectedWidgetColor: AppColors.themeColor),
+                  child: Checkbox(
+                    value: cantTell,
+                    activeColor: AppColors.themeColor,
+                    onChanged: (value) {
+                      cantTell = value!;
+                      if(cantTell==true)
+                      {
+                        temporary=false;
+                        dontLike=false;
+                        spendingMuchTime =false;
 
-                    }
-                    setState(() {});
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                      }
+                      setState(() {});
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 ),
 
@@ -186,22 +195,25 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
               children: [
                 Text(getTranslated(context, "temporary_logout")??''),
                 Spacer(),
-                Checkbox(
-                  value: temporary,
-                  activeColor: AppColors.themeColor,
-                  onChanged: (value) {
-                    temporary = value!;
-                    if(temporary==true)
-                    {
-                      cantTell=false;
-                      dontLike=false;
-                      spendingMuchTime =false;
+                Theme(
+                  data: ThemeData(unselectedWidgetColor: AppColors.themeColor),
+                  child: Checkbox(
+                    value: temporary,
+                    activeColor: AppColors.themeColor,
+                    onChanged: (value) {
+                      temporary = value!;
+                      if(temporary==true)
+                      {
+                        cantTell=false;
+                        dontLike=false;
+                        spendingMuchTime =false;
 
-                    }
-                    setState(() {});
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                      }
+                      setState(() {});
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 ),
 
@@ -210,7 +222,7 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
             ),
 
           ),
-          SizedBox(height: Get.height*0.02,),
+          SizedBox(height: Get.height*0.015,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -220,7 +232,7 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
 
               },
                   width: Get.width*0.35, isWhite: true),
-              AppButton(buttonText: 'yes',
+              AppButton(buttonText: 'next',
                   onpressed: (){
                     if(temporary == true || cantTell ==true)
                       {
@@ -228,7 +240,7 @@ class _LogoutBottomSheetState extends State<LogoutBottomSheet> {
                       }
                       else
                         {
-                          Get.bottomSheet(const DeleteProfile());
+                          Get.bottomSheet(const DeleteProfile(),isScrollControlled: true,);
 
                        }
 

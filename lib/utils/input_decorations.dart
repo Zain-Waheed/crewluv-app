@@ -8,7 +8,7 @@ class AppInputDecoration{
   static InputDecoration circularFieldDecoration(Widget? preIcon,String hintText,Widget? suffixIcon)
   {
     return InputDecoration(
-      contentPadding: EdgeInsets.symmetric(vertical: 12,horizontal: 16),
+      contentPadding: EdgeInsets.symmetric(horizontal: 16,vertical: 20),
       fillColor: AppColors.offWhite,
       hintText: getTranslated(Get.context, hintText),
       suffixIcon:suffixIcon !=null? Container(
@@ -43,6 +43,7 @@ class AppInputDecoration{
   {
     return InputDecoration(
       fillColor: color,
+      contentPadding: EdgeInsets.symmetric(horizontal: 16,vertical: 20),
       hintText: getTranslated(Get.context, hintText),
       hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w400,),
       enabledBorder: OutlineInputBorder(
