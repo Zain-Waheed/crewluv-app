@@ -162,6 +162,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             dashPro.pageIndex++;
                             percentageValue(dashPro);
                             if (dashPro.pageIndex <= 8 ) {
+                              // I commented here
                               _controller.jumpToPage(dashPro.pageIndex);
                             } else {
                               Get.bottomSheet(const CongraulationBottomSheet(text: 'your_profile_has_been_completed',));
