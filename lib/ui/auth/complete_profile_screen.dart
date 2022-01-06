@@ -2,6 +2,7 @@ import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/main.dart';
 import 'package:amigos/providers/auth_provider.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/auth/enter_dob.dart';
@@ -113,7 +114,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             if (dashPro.pageIndex <= 8 ) {
                                 _controller.jumpToPage(dashPro.pageIndex);
                             } else {
-                              percentageValue(dashPro);
                               Get.bottomSheet( const CongraulationBottomSheet(text: 'your_profile_has_been_completed',));
                               Future.delayed(const Duration(seconds: 2), () {
                                 Get.to(
@@ -158,13 +158,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          if (dashPro.formKey.currentState!.validate()&& isChecked ==true ) {
+                          if (isChecked ==true ) {
                             dashPro.pageIndex++;
                             percentageValue(dashPro);
                             if (dashPro.pageIndex <= 8 ) {
                               _controller.jumpToPage(dashPro.pageIndex);
                             } else {
-                              percentageValue(dashPro);
                               Get.bottomSheet(const CongraulationBottomSheet(text: 'your_profile_has_been_completed',));
                               Future.delayed(const Duration(seconds: 2), () {
                                 Get.to(
@@ -272,26 +271,29 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
         ),
         SizedBox(height: Get.width * 0.15),
-        TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          controller: emailController,
-          onChanged: (val) {
-            isChecked =true;
-            setState(() {
-              if (dashPro.formKey.currentState!.validate()) {
-                dashPro.formCheck[dashPro.pageIndex] = 1;
-              } else {
-                dashPro.formCheck[dashPro.pageIndex] = -1;
-              }
-            });
-          },
-          validator: (value) =>
-              FieldValidator.validateEmail(emailController.text),
-          decoration: AppInputDecoration.circularFieldDecoration(
-            null,
-            'enter_email',
-            Image.asset(
-              AppImages.emailIcon,color: AppColors.themeColor,
+        Theme(
+          data: ThemeData().copyWith(colorScheme: ThemeData().colorScheme.copyWith(primary: createMaterialColor(AppColors.themeColor))),
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            controller: emailController,
+            onChanged: (val) {
+              isChecked =true;
+              setState(() {
+                if (dashPro.formKey.currentState!.validate()) {
+                  dashPro.formCheck[dashPro.pageIndex] = 1;
+                } else {
+                  dashPro.formCheck[dashPro.pageIndex] = -1;
+                }
+              });
+            },
+            validator: (value) =>
+                FieldValidator.validateEmail(emailController.text),
+            decoration: AppInputDecoration.circularFieldDecoration(
+              null,
+              'enter_email',
+              Image.asset(
+                AppImages.emailIcon,
+              ),
             ),
           ),
         ),

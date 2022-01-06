@@ -24,7 +24,7 @@ class _SplashScreeenState extends State<SplashScreeen> {
   void initState() {
     Future.delayed(const Duration(seconds: 1),(){
       Get.off(
-          const SettingsScreen()
+          const SplashLogoScreen()
       );
     },
     );

@@ -34,9 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer<DashboardProvider>(builder:(context,provider,_)
     {
       return Scaffold(
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: Colors.transparent,
         appBar:AppBar(
           backgroundColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
           elevation: 0,
           leadingWidth: Get.width*0.32,
           leading: Row(
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: const BorderRadius.only(topRight: Radius.circular(16),bottomRight: Radius.circular(16)),
 
                         ),
-                        child: Image.asset(AppImages.list,scale: 2.7,color:pageIndex==0?AppColors.black:AppColors.black,),
+                        child: Image.asset(AppImages.list,scale: 2.7,color:pageIndex==0?AppColors.black:AppColors.whiteColor,),
                       ),
                     ),
                   ],

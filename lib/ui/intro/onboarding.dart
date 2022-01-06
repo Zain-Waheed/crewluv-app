@@ -31,34 +31,32 @@ class _OnBoardingState extends State<OnBoarding> {
         child: Column(
           children: [
             SizedBox(
-              height: Get.width * 0.45,
+              height: Get.width * 0.3,
             ),
-            SizedBox(
-          height: Get.height* 0.3,
-          width: Get.width,
-          child: PageView(
-            physics: const NeverScrollableScrollPhysics(),
-                controller: _controller,
-                onPageChanged: (index) {
-                  setState(() {
-                    pageIndex = index;
-                  });
-                },
-                children: [
-                  Image.asset(
-                    AppImages.onBoarding1,
+            Expanded(
+              child: PageView(
+                physics: const NeverScrollableScrollPhysics(),
+                    controller: _controller,
+                    onPageChanged: (index) {
+                      setState(() {
+                        pageIndex = index;
+                      });
+                    },
+                    children: [
+                      Image.asset(
+                        AppImages.onBoarding1,
+                      ),
+                      Image.asset(
+                        AppImages.onBoarding2,
+                      ),
+                      Image.asset(
+                        AppImages.onBoarding3,scale: 2,
+                      ),
+                      Image.asset(
+                        AppImages.onBoarding4,scale: 2,
+                      ),
+                    ],
                   ),
-                  Image.asset(
-                    AppImages.onBoarding2,
-                  ),
-                  Image.asset(
-                    AppImages.onBoarding3,scale: 2,
-                  ),
-                  Image.asset(
-                    AppImages.onBoarding4,scale: 2,
-                  ),
-                ],
-              ),
             ),
             SizedBox(
               height: Get.width * 0.07,

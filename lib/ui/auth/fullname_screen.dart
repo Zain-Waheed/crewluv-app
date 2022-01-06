@@ -22,6 +22,7 @@ class EnterFullName extends StatefulWidget {
 }
 
 class _EnterFullNameState extends State<EnterFullName> {
+  FocusNode e=FocusNode();
   bool isActive=false;
 
   @override
@@ -51,10 +52,11 @@ class _EnterFullNameState extends State<EnterFullName> {
           Theme(
             data: ThemeData().copyWith(
               colorScheme: ThemeData().colorScheme.copyWith(
-                primary: createMaterialColor(AppColors.themeColor),
+                primary: createMaterialColor(AppColors.grey),
               ),
             ),
             child: TextFormField(
+              focusNode:e ,
               validator: (value)=> FieldValidator.validateName(dashPro.fullNameController.text),
               autofocus: true,
               onChanged: (val)
@@ -74,7 +76,7 @@ class _EnterFullNameState extends State<EnterFullName> {
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: dashPro.fullNameController,
-              decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon),),
+              decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,color: e.hasFocus?AppColors.black:Colors.red,),),
             ),
           ),
             SizedBox(height: Get.width * 0.15),

@@ -26,6 +26,7 @@ class _MapScreenState extends State<MapScreen> {
 
       return  Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+        backgroundColor: AppColors.slateGrey,
         floatingActionButton: Padding(
           padding:  EdgeInsets.only(top:Get.width*0.04,),
           child: FloatingActionButton.extended(
