@@ -297,19 +297,16 @@
 
   "invite":"Invite",
   "my_new_crew":"My New Crew",
-  "favorites":"Favorites",
   "my_contacts":"My Contacts",
   "send_invite":"SEND INVITE",
   "create_crew":"CREATE CREW",
 
-  "party":"Party",
   "bachelor_party":"Bachelor Party for CEO",
   "crime_bar":"Crime Bar & Night Club",
   "place":"Place",
   "date":"Date",
-  "time":"Time",
-  "distance":"Distance",
   "id":"ID",
   "cost":"Cost",
-  "most_popular":"Most Popular"
+  "you_have_successfully":"You have successfully subscribe a purchase plan.",
+  "your_password_has":"Your password has been updated successfully."
 }

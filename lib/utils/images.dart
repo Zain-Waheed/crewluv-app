@@ -95,6 +95,7 @@ class AppImages {
 
 
    static var filter = "assets/images/filter.png";
+   static var private = "assets/images/private.png";
    static var delete = "assets/images/delete.png";
    static var share = "assets/images/share.png";
    static var barCode = "assets/images/barCode.png";

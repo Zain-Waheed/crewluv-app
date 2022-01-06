@@ -5,6 +5,7 @@ import 'package:amigos/ui/dashboard/home_screen.dart';
 import 'package:amigos/ui/dashboard/new_crew.dart';
 import 'package:amigos/ui/dashboard/profile_detail_screen.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
+import 'package:amigos/ui/dashboard/settings_screen.dart';
 import 'package:amigos/ui/intro/splash_logo_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
@@ -23,7 +24,7 @@ class _SplashScreeenState extends State<SplashScreeen> {
   void initState() {
     Future.delayed(const Duration(seconds: 1),(){
       Get.off(
-          DashBoardScreen()
+          const SettingsScreen()
       );
     },
     );

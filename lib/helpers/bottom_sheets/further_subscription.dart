@@ -106,7 +106,7 @@ class _FurtherSubscriptionState extends State<FurtherSubscription> {
             ),
             SizedBox(height: Get.height*0.1,),
             AppButton(buttonText: 'subscribe_now', onpressed: (){
-              Get.bottomSheet(const CongraulationBottomSheet());
+              Get.bottomSheet(const CongraulationBottomSheet(text: 'you_have_successfully',));
               Future.delayed(const Duration(seconds: 3),(){
                 Get.to(
                   const SettingsScreen(),
