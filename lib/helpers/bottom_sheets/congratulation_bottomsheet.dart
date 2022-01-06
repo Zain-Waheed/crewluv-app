@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CongraulationBottomSheet extends StatefulWidget {
-  const CongraulationBottomSheet({Key? key}) : super(key: key);
+ final String text;
+  const CongraulationBottomSheet({Key? key, required this.text}) : super(key: key);
 
   @override
   _CongraulationBottomSheetState createState() => _CongraulationBottomSheetState();
@@ -20,7 +21,7 @@ class _CongraulationBottomSheetState extends State<CongraulationBottomSheet> {
       height: Get.width * 0.7,
       decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(45),
             topRight: Radius.circular(45),
           )),
@@ -36,8 +37,8 @@ class _CongraulationBottomSheetState extends State<CongraulationBottomSheet> {
           SizedBox(
             height: Get.width*0.05,
           ),
-          Text(getTranslated(context, 'your_profile_has_been_completed')??"",
-            style: AppTextStyle.montserrat(AppColors.grey, Get.width*0.05, FontWeight.w400),
+          Text(getTranslated(context, widget.text)??"",
+            style: AppTextStyle.montserrat(AppColors.blackLite, Get.width*0.05, FontWeight.w400),
             textAlign: TextAlign.center,
           ),
 

@@ -114,7 +114,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                 _controller.jumpToPage(dashPro.pageIndex);
                             } else {
                               percentageValue(dashPro);
-                              Get.bottomSheet(const CongraulationBottomSheet());
+                              Get.bottomSheet( const CongraulationBottomSheet(text: 'your_profile_has_been_completed',));
                               Future.delayed(const Duration(seconds: 2), () {
                                 Get.to(
                                   // const DashBoardScreen()
@@ -165,7 +165,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               _controller.jumpToPage(dashPro.pageIndex);
                             } else {
                               percentageValue(dashPro);
-                              Get.bottomSheet(const CongraulationBottomSheet());
+                              Get.bottomSheet(const CongraulationBottomSheet(text: 'your_profile_has_been_completed',));
                               Future.delayed(const Duration(seconds: 2), () {
                                 Get.to(
                                   // const DashBoardScreen()
