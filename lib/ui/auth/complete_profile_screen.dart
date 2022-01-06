@@ -160,6 +160,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         onPressed: () {
                           if (isChecked ==true ) {
                             dashPro.pageIndex++;
+                            percentageValue(dashPro);
+                            // percentageValue(dashPro);
+                            // percentageValue(dashPro);
 
                             //percentageValue(dashPro);
                             if (dashPro.pageIndex <= 8 ) {
