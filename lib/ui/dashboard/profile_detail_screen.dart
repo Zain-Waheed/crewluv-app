@@ -25,6 +25,39 @@ class _ProfileDetailState extends State<ProfileDetail> {
         builder: (context, provider, _)
     {
       return Scaffold(
+        floatingActionButton: Align(
+          alignment: Alignment.topLeft,
+          child: Padding(
+            padding:  EdgeInsets.only(left: Get.width*0.06,top:Get.width*0.12),
+            child: FloatingActionButton(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.black.withOpacity(0.5),
+                          offset: Offset(0, 4),
+                          blurRadius: 5.0)
+                    ]
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: AppColors.black,
+                  ),
+                ),
+              ),
+              onPressed: () {  },
+            ),
+          ),
+        ),
           body: Stack(
             children: [
               Stack(
@@ -41,29 +74,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                         image: AssetImage(AppImages.userImage,),
                         fit: BoxFit.cover,
                       ),
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                                color: AppColors.black.withOpacity(0.5),
-                                offset: Offset(0, 4),
-                                blurRadius: 5.0)
-                          ]
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: AppColors.black,
-                        ),
-                      ),
-                    ),
+                    )
                   ),
                   Container(
                     width: Get.width,

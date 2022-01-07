@@ -1,5 +1,8 @@
+import 'package:amigos/helpers/bottom_sheets/further_subscription.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
+import 'package:amigos/helpers/widgets/getplan_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
@@ -44,7 +47,9 @@ class _SubscriptionDialogBoxState extends State<SubscriptionDialogBox> {
                         height: Get.width*0.06,
                         color: AppColors.geryLight,
                       ),
-                      onPressed: () {  },
+                      onPressed: () {
+                        Get.to(Profiles());
+                      },
                     ),
                   ),
                   Container(
@@ -89,7 +94,11 @@ class _SubscriptionDialogBoxState extends State<SubscriptionDialogBox> {
                   ),
                   AppButton(
                       buttonText: 'view_plans',
-                      onpressed: (){},
+                      onpressed: (){
+                        Get.dialog(
+                          GetPlanDialogBox(func:(){Get.bottomSheet(FurtherSubscription());})
+                        );
+                      },
                       width: 450,
                       isWhite: false,
                   ),

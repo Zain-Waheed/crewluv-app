@@ -2,6 +2,7 @@ import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/app_button_small.dart';
 import 'package:amigos/helpers/widgets/notification_dialog.dart';
 import 'package:amigos/helpers/widgets/prefrence_widget.dart';
+import 'package:amigos/helpers/widgets/subcription_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/profile_detail_screen.dart';
@@ -127,6 +128,11 @@ class _ProfilesState extends State<Profiles> {
                          controller.next(
                         swipeDirection: SwipeDirection.right
                          );
+                         Future.delayed(Duration(seconds: 5),(){
+                           Get.dialog(
+                               SubscriptionDialogBox()
+                           );
+                         });
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: Get.width*0.04),

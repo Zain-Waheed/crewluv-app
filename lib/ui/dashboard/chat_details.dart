@@ -13,16 +13,16 @@ import 'package:provider/provider.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 
-class Chatt extends StatefulWidget {
+class ChatDetails extends StatefulWidget {
   String name;
 
-  Chatt({ required this.name});
+  ChatDetails({ required this.name});
 
   @override
-  _ChattState createState() => _ChattState();
+  _ChatDetailsState createState() => _ChatDetailsState();
 }
 
-class _ChattState extends State<Chatt> {
+class _ChatDetailsState extends State<ChatDetails> {
   TextEditingController sendMessageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -99,6 +99,7 @@ class _ChattState extends State<Chatt> {
                   child: ListView.builder(
                       itemCount: provider.messages.length,
                       shrinkWrap: true,
+                      reverse:true,
                       itemBuilder: (context, index) {
                         return Row(
                           crossAxisAlignment: CrossAxisAlignment.end,

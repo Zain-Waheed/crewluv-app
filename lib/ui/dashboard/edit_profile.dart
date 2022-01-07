@@ -8,6 +8,7 @@ import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/PreferenceModel.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/profile_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
@@ -265,20 +266,16 @@ class _EditProfileState extends State<EditProfile> {
                 SizedBox(
                   height: Get.width * 0.02,
                 ),
-                GestureDetector(
-                  onTap: () {
+                TextFormField(
+                  decoration: AppInputDecoration.circularFieldDecoration(
+                    null,
+                    'female',
+                    null,
+                  ),
+                  readOnly: true,
+                  onTap: (){
                     Get.bottomSheet(const EditGender());
                   },
-                  child: IgnorePointer(
-                    child: TextFormField(
-                      decoration: AppInputDecoration.circularFieldDecoration(
-                        null,
-                        'female',
-                        null,
-                      ),
-                      readOnly: true,
-                    ),
-                  ),
                 ),
                 SizedBox(
                   height: Get.width * 0.05,
@@ -336,7 +333,9 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 AppButton(
                     buttonText: 'save_changes',
-                    onpressed: () {},
+                    onpressed: () {
+                      Get.to(ProfileScreen());
+                    },
                     width: Get.width * 1,
                     isWhite: false),
                 SizedBox(

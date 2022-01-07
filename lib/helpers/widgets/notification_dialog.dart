@@ -1,5 +1,6 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/ui/dashboard/chat_details.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
@@ -141,11 +142,15 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> with Tick
                   SizedBox(
                     height:Get.width*0.03,
                   ),
-                  AppButton(buttonText: 'message', onpressed: (){}, width:Get.width*0.8, isWhite: false),
+                  AppButton(buttonText: 'message', onpressed: (){
+                    Get.to(ChatDetails(name: 'Usama',));
+                  }, width:Get.width*0.8, isWhite: false),
                   SizedBox(
                     height:Get.width*0.03,
                   ),
-                  AppButton(buttonText: 'keep_swiping', onpressed: (){}, width:Get.width*0.8, isWhite: true)
+                  AppButton(buttonText: 'keep_swiping', onpressed: (){
+                    Get.back();
+                  }, width:Get.width*0.8, isWhite: true)
                 ],
               ),
             ),

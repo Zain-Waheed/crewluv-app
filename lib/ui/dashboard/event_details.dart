@@ -1,10 +1,13 @@
+import 'package:amigos/helpers/bottom_sheets/ticketbuy_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/crew_members_widget.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/helpers/widgets/event_widget.dart';
+import 'package:amigos/helpers/widgets/ticket_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/create_event.dart';
+import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -31,7 +34,9 @@ class _EventDetailsState extends State<EventDetails> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(Get.width*0.17),
           child: CustomAppBar(
-            function: (){Get.back();},
+            function: (){
+              Get.to(DashBoardScreen());
+              },
             title: "event_details",
             backButton: true,
           ),
@@ -224,7 +229,9 @@ class _EventDetailsState extends State<EventDetails> {
 
               ),
               SizedBox(height: Get.width*0.05,),
-              widget.index==0?AppButton(buttonText: widget.index==0? 'view_request' :"view_tickets", onpressed: (){Get.to(()=>Profiles());}, width: Get.width, isWhite: true):SizedBox(),
+              widget.index!=2?AppButton(buttonText: widget.index==0? 'view_request' :"view_tickets", onpressed: (){widget.index==0?Get.to(()=>Profiles()):
+              Get.dialog(TicketDialogBox());
+              }, width: Get.width, isWhite: true):SizedBox(),
             ],
           ),
         ),

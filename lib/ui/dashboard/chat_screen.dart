@@ -6,6 +6,7 @@ import 'package:amigos/models/personal_chat_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/chat_details.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
+import 'package:amigos/ui/dashboard/group_chat_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
@@ -123,7 +124,36 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   Column(
                     children: List.generate(provider.personalChats.length,
-                        (index) => personalChatItemWidget(provider.personalChats[index])),
+                        (index) => Slidable(
+                            enabled: true,
+                            endActionPane:  ActionPane(
+                              extentRatio: 0.25,
+                              motion: const ScrollMotion(),
+                              children: [
+                                GestureDetector(
+                                  onTap: (){
+                                    setState(() {
+
+                                    });
+                                    provider.personalChats.removeAt(index);
+                                  },
+                                  child: Container(
+                                    width:Get.width*0.1,
+                                    height:Get.width*0.1,
+                                    margin:EdgeInsets.only(left: Get.width*0.02),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.orange,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child:Icon(
+                                      Icons.delete,
+                                      color: AppColors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            child: personalChatItemWidget(provider.personalChats[index]))),
                   ),
                   Column(
                     children: List.generate(
@@ -171,7 +201,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   AppColors.greyDark, Get.width * 0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis
             )),
         onTap: () {
-          Get.to(() => Chatt(name: model.name));
+          Get.to(() => ChatDetails(name: model.name));
         },
       ),
     );
@@ -226,7 +256,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   AppColors.greyDark, Get.width * 0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis,)
         ),
         onTap: () {
-          Get.to(() => Chatt(name: model.chatName));
+          Get.to(() =>
+              GroupChatt(name: model.chatName)
+          );
         },
       ),
     );
