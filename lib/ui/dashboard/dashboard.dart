@@ -102,16 +102,6 @@ int dashIndex=0;
                  Image.asset(AppImages.user,scale: 3,color: Colors.transparent,),
                  Image.asset(AppImages.user,scale: 3,color: Colors.transparent,),
                  GestureDetector(
-                   onTap: (){
-                     dashIndex=3;
-                     dashController.jumpToPage(dashIndex);
-                     setState(() {
-
-                     });
-                   },
-                     child: Image.asset(AppImages.user,scale: 3.2,color: dashIndex==3? AppColors.themeColor:AppColors.slateGrey)
-                 ),
-                 GestureDetector(
                      onTap: (){
                        dashIndex=2;
                        dashController.jumpToPage(dashIndex);
@@ -121,6 +111,16 @@ int dashIndex=0;
 
                      },
                      child: Image.asset(AppImages.chat2,scale: 3.2,color: dashIndex==2? AppColors.themeColor:AppColors.slateGrey)
+                 ),
+                 GestureDetector(
+                     onTap: (){
+                       dashIndex=3;
+                       dashController.jumpToPage(dashIndex);
+                       setState(() {
+
+                       });
+                     },
+                     child: Image.asset(AppImages.user,scale: 3.2,color: dashIndex==3? AppColors.themeColor:AppColors.slateGrey)
                  ),
 
                ],

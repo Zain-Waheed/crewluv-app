@@ -69,7 +69,7 @@ class _LoginState extends State<Login> {
                               letterSpacing: 1.0,
                             ),
                           ),
-                          TextSpan(text: getTranslated(context, 'privacy_policy')??"",
+                          TextSpan(text: getTranslated(context, 'privacy_policy2')??"",
                             style:GoogleFonts.montserrat(
                                 fontSize:Get.width*0.04,
                                 color:AppColors.white,
@@ -79,6 +79,13 @@ class _LoginState extends State<Login> {
                                 letterSpacing: 1.0
                             ),
                           ),
+                          TextSpan(text: '.',style:GoogleFonts.montserrat(
+                          fontSize:Get.width*0.04,
+                            color:AppColors.white,
+                            fontWeight:FontWeight.w600,
+                            height: 1.2,
+                            letterSpacing: 1.0,
+                          ),),
                         ]
                     ),
                     textAlign: TextAlign.center,

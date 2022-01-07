@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:amigos/models/PreferenceModel.dart';
 import 'package:amigos/models/filter_model.dart';
 import 'package:amigos/models/group_chat_model.dart';
+import 'package:amigos/models/mood_model.dart';
 import 'package:amigos/models/personal_chat_model.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/chat_details_model.dart';
@@ -63,6 +64,11 @@ class DashboardProvider extends ChangeNotifier{
     File(""),
     File(""),
     File(""),
+  ];
+  List<MoodModel> moods=[
+    MoodModel(AppImages.walking, AppImages.runningIcon, 'Walking'),
+    MoodModel(AppImages.birthday, AppImages.balloon, 'Birthday'),
+
   ];
 
   void addEventTypes(){

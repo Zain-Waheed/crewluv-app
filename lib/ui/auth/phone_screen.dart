@@ -61,80 +61,83 @@ class _PhoneNumberState extends State<PhoneNumber> {
                 Stack(
                   children: [
                     Container(
-                      height: Get.width * 0.14,
-                      width: Get.width * 0.28,
+                      height: Get.width * 0.15,
+                      width: Get.width*0.85,
                       padding: EdgeInsets.symmetric(horizontal: 20),
+
                       decoration: BoxDecoration(
                           color: AppColors.whiteColor,
-                          border: Border.all(color: AppColors.greyText),
+                          border: Border.all(color: AppColors.themeColor),
                           borderRadius: BorderRadius.circular(30)),
                     ),
 
                     Container(
-                      margin: EdgeInsets.only(left: 10),
+                      margin: EdgeInsets.only(left: 20,top: 5,right: 5),
                       child: Form(
                         key: formKey,
-                        child: InternationalPhoneNumberInput(
-                          key: Key('phone_number'),
-                          inputDecoration: InputDecoration(
-                            fillColor: AppColors.whiteColor,
-                            hintText: "+183 746 8373 829",
-                            suffixIcon: validated==true?Container(
-                              margin: EdgeInsets.only(right: Get.width*0.07),
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.green
+                        child: Center(
+                          child: InternationalPhoneNumberInput(
+                            key: Key('phone_number'),
+                            inputDecoration: InputDecoration(
+                              fillColor: AppColors.whiteColor,
+                              hintText: "+183 746 8373 829",
+                              suffixIcon: validated==true?Container(
+                                margin: EdgeInsets.only(right: Get.width*0.03),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.green
+                                ),
+                                child: Center(
+                                  child: Image.asset(AppImages.tick,scale: 2,),
+                                ),
+                              ):SizedBox(),
+                              suffixIconConstraints: BoxConstraints(
+                                maxHeight: Get.width*0.05,
+                                maxWidth: Get.width*0.1,
                               ),
-                              child: Center(
-                                child: Image.asset(AppImages.tick,scale: 2,),
+                              hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
+                              enabledBorder: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(30)),
+                                borderSide: BorderSide(color: Colors.transparent),
                               ),
-                            ):SizedBox(),
-                            suffixIconConstraints: BoxConstraints(
-                              maxHeight: Get.width*0.08,
-                              maxWidth: Get.width*0.12,
+                              focusedBorder: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(30)),
+                                borderSide: BorderSide(color:Colors.transparent),
+                              ),
+                              errorBorder: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(30)),
+                                borderSide: BorderSide(color: Colors.transparent),
+                              ),
+                              focusedErrorBorder: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(30)),
+                                borderSide: BorderSide(color:Colors.transparent),
+                              ),
+                              isDense: true,
+                              filled: true,
                             ),
-                            hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(const Radius.circular(30)),
-                              borderSide: BorderSide(color: AppColors.greyText),
+                            inputBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.themeColor,style: BorderStyle.solid)
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: const BorderRadius.all(Radius.circular(30)),
-                              borderSide: BorderSide(color: AppColors.themeColor),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: const BorderRadius.all(Radius.circular(30)),
-                              borderSide: BorderSide(color: AppColors.themeColor),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: const BorderRadius.all(Radius.circular(30)),
-                              borderSide: BorderSide(color: AppColors.themeColor),
-                            ),
-                            isDense: true,
-                            filled: true,
-                          ),
-                          inputBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: AppColors.themeColor,style: BorderStyle.solid)
-                          ),
-                          onInputChanged: (number) {
-                            number = number;
-                            print(number);
-                          },
-                          onInputValidated: (bool value) {
-                            validated=value;
-                            setState(() {
+                            onInputChanged: (number) {
+                              number = number;
+                              print(number);
+                            },
+                            onInputValidated: (bool value) {
+                              validated=value;
+                              setState(() {
 
-                            });
-                          },
-                          selectorConfig: SelectorConfig(
-                            leadingPadding: 2,
-                            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                            showFlags: true,
+                              });
+                            },
+                            selectorConfig: SelectorConfig(
+                              leadingPadding: 2,
+                              selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                              showFlags: true,
+                            ),
+                            ignoreBlank: false,
+                            autoValidateMode: AutovalidateMode.onUserInteraction,
+                            selectorTextStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
+                            textFieldController: phoneController,
                           ),
-                          ignoreBlank: false,
-                          autoValidateMode: AutovalidateMode.onUserInteraction,
-                          selectorTextStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
-                          textFieldController: phoneController,
                         ),
                       ),
                     ),

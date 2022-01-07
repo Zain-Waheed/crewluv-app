@@ -16,6 +16,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 import '../../main.dart';
+import 'complete_profile_screen.dart';
 
 
 class EnterDOB extends StatefulWidget {
@@ -62,12 +63,13 @@ class _EnterDOBState extends State<EnterDOB> {
                 ),
               ),
               child: TextFormField(
+                focusNode: focus,
                   readOnly: true,
                   autofocus: true,
                   validator: (value)=> FieldValidator.empty(dashPro.dobController.text),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: dashPro.dobController,
-                  decoration: AppInputDecoration.circularFieldDecoration(null, 'd/m/y', Image.asset(AppImages.calendarIcon,),),
+                  decoration: AppInputDecoration.circularFieldDecoration(null, 'd/m/y', Image.asset(AppImages.calendarIcon,color: dateIconColor?AppColors.themeColor:AppColors.slateGrey,),),
                   onTap:(){
                     showDatePicker(
                       context: context,

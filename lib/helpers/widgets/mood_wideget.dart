@@ -1,6 +1,8 @@
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/models/mood_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/utils/colors.dart';
+import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,30 +32,30 @@ class _MoodWidgetState extends State<MoodWidget> {
                 borderRadius: BorderRadius.circular(16),
               ),
               margin: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: Get.width*0.05),
-              padding: EdgeInsets.symmetric(horizontal:Get.width*0.02,vertical: Get.width*0.05),
+              padding: EdgeInsets.symmetric(horizontal:Get.width*0.02,vertical: Get.width*0.03),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(getTranslated(context, 'up_for')??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.05, FontWeight.w700),),
                   SizedBox(height: Get.width*0.01,),
                   Text(getTranslated(context, 'share_updates')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),),
-                  SizedBox(height: Get.width*0.07,),
+                  SizedBox(height: Get.width*0.03,),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: List.generate(provider.eventTypes.length, (index){
-                        return MoodTypeWidget(type: provider.eventTypes[index]);
+                      children: List.generate(provider.moods.length, (index){
+                        return MoodWithPicture(provider.moods[index]);
                       }),
                     ),
                   ),
                   SizedBox(height: Get.width*0.05,),
                   Align( alignment: Alignment.centerLeft, child: Text(getTranslated(context, 'in_mood')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),)),
-                  SizedBox(height: Get.width*0.02,),
+                  SizedBox(height: Get.width*0.01,),
                   TextFormField(
                    maxLines: 2,
                   decoration: AppInputDecoration.lessCircularDecoration(null,getTranslated(context, 'type_here')??'',null,AppColors.silverWhite),
                   ),
-                  SizedBox(height: Get.width*0.1,),
+                  SizedBox(height: Get.width*0.05,),
                   AppButton(width: Get.width,isWhite: false,buttonText: 'lets_go',onpressed: (){},),
                   TextButton(
                     onPressed: () {
@@ -73,6 +75,30 @@ class _MoodWidgetState extends State<MoodWidget> {
       );
 
     });
+
+  }
+  Widget MoodWithPicture(MoodModel model){
+    return Container(
+      height: Get.height*0.28,
+      width: Get.width*0.46,
+
+      child: Stack(
+        children: [
+          Image.asset(model.ImagePath,fit: BoxFit.fill,),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(model.iconImagePath,height: Get.width*0.2,width: Get.width*0.05,),
+                Text(model.name,style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.04, FontWeight.w500),),
+              ],
+            ),
+          )
+
+        ],
+      ),
+    );
 
   }
 }

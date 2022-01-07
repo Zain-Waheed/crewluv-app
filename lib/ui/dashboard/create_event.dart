@@ -41,6 +41,7 @@ class _CreateEventState extends State<CreateEvent> {
   TextEditingController descriptionController=TextEditingController();
   TextEditingController locationController = TextEditingController();
   EventModel model=EventModel(personalEvent: false);
+  bool isSelected = false;
 
   @override
   void initState() {
@@ -118,7 +119,18 @@ class _CreateEventState extends State<CreateEvent> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: List.generate(provider.eventTypes.length, (index){
-                          return MoodTypeWidget(type:provider.eventTypes[index]);
+                          return GestureDetector(
+                             onTap: (){
+                               for(int i=0;i<provider.eventTypes.length;i++){
+                                 provider.eventTypes[i].isSelected =false;
+                               }
+                               provider.eventTypes[index].isSelected= !isSelected;
+                               setState(() {
+
+                               });
+                             },
+                              child: MoodTypeWidget(type:provider.eventTypes[index])
+                          );
                         }),
                       ),
                     ),

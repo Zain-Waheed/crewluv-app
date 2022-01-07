@@ -2,6 +2,7 @@ import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/auth/enter_dob.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -22,7 +23,6 @@ class EnterFullName extends StatefulWidget {
 }
 
 class _EnterFullNameState extends State<EnterFullName> {
-  FocusNode e=FocusNode();
   bool isActive=false;
 
   @override
@@ -56,7 +56,7 @@ class _EnterFullNameState extends State<EnterFullName> {
               ),
             ),
             child: TextFormField(
-              focusNode:e ,
+              focusNode:focus ,
               validator: (value)=> FieldValidator.validateName(dashPro.fullNameController.text),
               autofocus: true,
               onChanged: (val)
@@ -76,7 +76,7 @@ class _EnterFullNameState extends State<EnterFullName> {
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: dashPro.fullNameController,
-              decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,color: e.hasFocus?AppColors.black:Colors.red,),),
+              decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,scale: 2,color: focus.hasFocus?AppColors.themeColor:AppColors.slateGrey,),),
             ),
           ),
             SizedBox(height: Get.width * 0.15),

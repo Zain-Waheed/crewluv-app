@@ -1,7 +1,9 @@
 import 'package:amigos/helpers/bottom_sheets/filters_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/event_widget.dart';
+import 'package:amigos/helpers/widgets/mood_wideget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/notification_screen.dart';
 import 'package:amigos/ui/dashboard/restaurant_profile.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -10,6 +12,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
+import 'home_screen.dart';
 
 
 class MapScreen extends StatefulWidget {
@@ -26,9 +30,9 @@ class _MapScreenState extends State<MapScreen> {
 
       return  Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-        backgroundColor: AppColors.slateGrey,
+        backgroundColor: Colors.transparent,
         floatingActionButton: Padding(
-          padding:  EdgeInsets.only(top:Get.width*0.04,),
+          padding:  EdgeInsets.only(top:Get.width*0.15,),
           child: FloatingActionButton.extended(
             backgroundColor: AppColors.whiteBackground,
             onPressed: () {
@@ -48,7 +52,7 @@ class _MapScreenState extends State<MapScreen> {
                 SizedBox(
                   width: Get.width*0.02,
                 ),
-                Image.asset(AppImages.filter,scale: 2.5,),
+                Image.asset(AppImages.filter,),
               ],
             ),
           ),
@@ -63,6 +67,7 @@ class _MapScreenState extends State<MapScreen> {
               child: Image.asset(AppImages.barIcon,scale: 3,)),
 
         ),
+
       );
 
     });

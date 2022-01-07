@@ -9,6 +9,7 @@ import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
   SfRangeValues _values = SfRangeValues(4.0, 8.0);
   double _currentSliderValue = 0;
   bool value=false;
+  bool isSelected= false;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,provider,_){
@@ -88,7 +90,17 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: List.generate(provider.eventTypes.length, (index){
-                          return MoodTypeWidget(type:provider.eventTypes[index],isTitle: false,);
+                          return GestureDetector(
+                              onTap: (){
+                                for(int i=0;i<provider.eventTypes.length;i++){
+                                  provider.eventTypes[i].isSelected =false;
+                                }
+                                provider.eventTypes[index].isSelected= !isSelected;
+                                setState(() {
+
+                                });
+                              },
+                              child: MoodTypeWidget(type:provider.eventTypes[index],isTitle: false,));
                         }),
                       ),
                     ),
@@ -219,13 +231,26 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                     SizedBox(
                       height: Get.width*0.04,
                     ),
-                    Text(
-                      getTranslated(context, 'age_range')??"",
-                      style: AppTextStyle.montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.04,
-                        FontWeight.w500,
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          getTranslated(context, 'age_range')??"",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width*0.04,
+                            FontWeight.w500,
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          "${_values.start}-${_values.end}y/o",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width*0.035,
+                            FontWeight.w500,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: Get.width*0.02,
@@ -262,13 +287,29 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                     SizedBox(
                       height: Get.width*0.02,
                     ),
-                    Text(
-                      getTranslated(context, 'distance')??"",
-                      style: AppTextStyle.montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.04,
-                        FontWeight.w500,
-                      ),
+                    Row(
+                      children: [
+
+                        Text(
+                          getTranslated(context, 'distance')??"",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width*0.04,
+                            FontWeight.w500,
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          "${_currentSliderValue.toString()} mi",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width*0.035,
+                            FontWeight.w500,
+                          ),
+                        ),
+
+
+                      ],
                     ),
                     SfSlider(
                       thumbIcon: Container(

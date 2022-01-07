@@ -34,10 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer<DashboardProvider>(builder:(context,provider,_)
     {
       return Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.whiteColor,
         appBar:AppBar(
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           elevation: 0,
           leadingWidth: Get.width*0.32,
           leading: Row(
@@ -87,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: const BorderRadius.only(topRight: Radius.circular(16),bottomRight: Radius.circular(16)),
 
                         ),
-                        child: Image.asset(AppImages.list,scale: 2.7,color:pageIndex==0?AppColors.black:AppColors.whiteColor,),
+                        child: Image.asset(AppImages.list,scale: 2.7,color:pageIndex==0?AppColors.black:AppColors.black,),
                       ),
                     ),
                   ],
@@ -97,17 +96,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             GestureDetector(
-               onTap: (){
-                   Get.to(()=> const NotificationScreen());
-               },
-                child: Image.asset(AppImages.notificationIcon),
+              onTap: (){
+                Get.to(()=> const NotificationScreen());
+              },
+              child: Image.asset(AppImages.notificationIcon),
             ),
             GestureDetector(
-              onTap:(){
-               Get.dialog(
-                 MoodWidget()
-               );
-              },
+                onTap:(){
+                  Get.dialog(
+                      MoodWidget()
+                  );
+                },
                 child: Image.asset(AppImages.party2)
             ),
           ],
@@ -135,6 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     });
-    
+
   }
 }
