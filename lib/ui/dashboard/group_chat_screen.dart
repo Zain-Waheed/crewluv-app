@@ -1,3 +1,4 @@
+import 'package:amigos/helpers/bottom_sheets/links_bottom_sheet.dart';
 import 'package:amigos/helpers/widgets/crew_members_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/chat_details_model.dart';
@@ -140,6 +141,7 @@ class _GroupChattState extends State<GroupChatt> {
               child: ListView.builder(
                   itemCount: provider.messages.length,
                   shrinkWrap: true,
+                  reverse:true,
                   itemBuilder: (context, index) {
                     return Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -341,32 +343,28 @@ class _GroupChattState extends State<GroupChatt> {
                   ),
                   child: Row(
                     children: [
-                      PopupMenuButton(
-                          child:Container(
-                            width: Get.width * 0.12,
-                            height: Get.width * 0.12,
-                            margin: EdgeInsets.only(right: Get.width * 0.01),
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteDark,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Center(
-                              child: Image.asset(
-                                AppImages.attach,
-                                width: Get.width * 0.06,
-                              ),
+                      GestureDetector(
+                        onTap: (){
+                          Get.bottomSheet(
+                            const LinksBottomSheet()
+                          );
+                        },
+                        child: Container(
+                          width: Get.width * 0.12,
+                          height: Get.width * 0.12,
+                          margin: EdgeInsets.only(right: Get.width * 0.01),
+                          decoration: BoxDecoration(
+                            color: AppColors.whiteDark,
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              AppImages.attach,
+                              width: Get.width * 0.06,
                             ),
                           ),
-                          itemBuilder: (context) => [
-                            const PopupMenuItem(
-                              child: Text("First"),
-                              value: 1,
-                            ),
-                            const PopupMenuItem(
-                              child: Text("Second"),
-                              value: 2,
-                            )
-                          ]),
+                        ),
+                      ),
                       Container(
                         height: Get.height * 0.06,
                         width: Get.width * 0.67,

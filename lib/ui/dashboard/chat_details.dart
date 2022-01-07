@@ -1,3 +1,4 @@
+import 'package:amigos/helpers/bottom_sheets/links_bottom_sheet.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/chat_details_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
@@ -33,25 +34,30 @@ class _ChatDetailsState extends State<ChatDetails> {
             preferredSize: Size.fromHeight(Get.width * 0.17),
             child: AppBar(
               leading: Container(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                height: Get.height*0.06,
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                padding: const EdgeInsets.symmetric(vertical: 4) ,
+                alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
                     color: AppColors.white,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(14),
                     boxShadow: [
                       BoxShadow(
                           color: AppColors.black.withOpacity(0.5),
                           offset: Offset(0, 4),
                           blurRadius: 5.0)
                     ]),
-                child: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.black,
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 8.0),
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: AppColors.black,
+                      size: Get.width*0.06,
+                    ),
                   ),
                 ),
               ),
@@ -100,6 +106,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                       itemCount: provider.messages.length,
                       shrinkWrap: true,
                       reverse:true,
+                      padding: EdgeInsets.symmetric(vertical: Get.height * 0.01),
                       itemBuilder: (context, index) {
                         return Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -301,8 +308,13 @@ class _ChatDetailsState extends State<ChatDetails> {
                       ),
                       child: Row(
                         children: [
-                          PopupMenuButton(
-                            child:Container(
+                          GestureDetector(
+                            onTap:(){
+                              Get.bottomSheet(
+                                   const LinksBottomSheet(),backgroundColor: Colors.transparent,
+                              );
+                            },
+                            child: Container(
                               width: Get.width * 0.12,
                               height: Get.width * 0.12,
                               margin: EdgeInsets.only(right: Get.width * 0.01),
@@ -317,16 +329,33 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 ),
                               ),
                             ),
-                              itemBuilder: (context) => [
-                                    const PopupMenuItem(
-                                      child: Text("First"),
-                                      value: 1,
-                                    ),
-                                    const PopupMenuItem(
-                                      child: Text("Second"),
-                                      value: 2,
-                                    )
-                                  ]),
+                          ),
+                          // PopupMenuButton(
+                          //   child:Container(
+                          //     width: Get.width * 0.12,
+                          //     height: Get.width * 0.12,
+                          //     margin: EdgeInsets.only(right: Get.width * 0.01),
+                          //     decoration: BoxDecoration(
+                          //       color: AppColors.whiteDark,
+                          //       borderRadius: BorderRadius.circular(30),
+                          //     ),
+                          //     child: Center(
+                          //       child: Image.asset(
+                          //         AppImages.attach,
+                          //         width: Get.width * 0.06,
+                          //       ),
+                          //     ),
+                          //   ),
+                          //     itemBuilder: (context) => [
+                          //           const PopupMenuItem(
+                          //             child: Text("First"),
+                          //             value: 1,
+                          //           ),
+                          //           const PopupMenuItem(
+                          //             child: Text("Second"),
+                          //             value: 2,
+                          //           )
+                          //         ]),
                           Container(
                             height: Get.height * 0.06,
                             width: Get.width * 0.67,
@@ -402,4 +431,6 @@ class _ChatDetailsState extends State<ChatDetails> {
       },
     );
   }
+
+
 }

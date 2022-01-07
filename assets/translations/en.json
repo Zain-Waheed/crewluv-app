@@ -307,6 +307,8 @@
   "date":"Date",
   "id":"ID",
   "cost":"Cost",
+  "location":"Location",
+  "images_videos":"Images&Videos",
   "view_tickets": "View Tickets",
   "you_have_successfully":"You have successfully subscribe a purchase plan.",
   "your_password_has":"Your password has been updated successfully.",

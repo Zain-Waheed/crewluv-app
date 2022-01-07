@@ -31,32 +31,33 @@ class _OnBoardingState extends State<OnBoarding> {
         child: Column(
           children: [
             SizedBox(
-              height: Get.width * 0.3,
+              height: Get.width * 0.45,
             ),
-            Expanded(
+            SizedBox(
+              height: Get.height* 0.3,
+              width: Get.width,
               child: PageView(
-                physics: const NeverScrollableScrollPhysics(),
-                    controller: _controller,
-                    onPageChanged: (index) {
-                      setState(() {
-                        pageIndex = index;
-                      });
-                    },
-                    children: [
-                      Image.asset(
-                        AppImages.onBoarding1,
-                      ),
-                      Image.asset(
-                        AppImages.onBoarding2,
-                      ),
-                      Image.asset(
-                        AppImages.onBoarding3,scale: 2,
-                      ),
-                      Image.asset(
-                        AppImages.onBoarding4,scale: 2,
-                      ),
-                    ],
+                controller: _controller,
+                onPageChanged: (index) {
+                  setState(() {
+                    pageIndex = index;
+                  });
+                },
+                children: [
+                  Image.asset(
+                    AppImages.onBoarding1,
                   ),
+                  Image.asset(
+                    AppImages.onBoarding2,
+                  ),
+                  Image.asset(
+                    AppImages.onBoarding3,
+                  ),
+                  Image.asset(
+                    AppImages.onBoarding4,
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               height: Get.width * 0.07,
@@ -131,7 +132,7 @@ class _OnBoardingState extends State<OnBoarding> {
                             }else
                             {
                               pageIndex=4;
-                              Get.to(Login());
+                              Get.offAll(const Login());
                             }
                           },
                           buttonText: pageIndex==3?'register':'next',

@@ -21,7 +21,7 @@ class _FurtherSubscriptionState extends State<FurtherSubscription> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(16),topRight: Radius.circular(16)),
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(16),topRight: Radius.circular(16)),
         color: AppColors.whiteColor,
       ),
       child: Padding(

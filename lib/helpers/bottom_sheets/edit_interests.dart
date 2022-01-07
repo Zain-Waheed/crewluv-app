@@ -51,7 +51,7 @@ class _EditInterestsState extends State<EditInterests> {
               ),
               SizedBox(height: Get.width*0.07,),
               AppButton(buttonText: 'save_changes', onpressed: (){
-                Get.to(()=>EditProfile());
+                Get.to(const EditProfile());
               }, width: Get.width*0.9, isWhite: false),
               SizedBox(height: Get.width*0.03,),
 

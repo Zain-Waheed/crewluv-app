@@ -91,6 +91,8 @@ class AppImages {
    static var copy = "assets/images/copy.png";
    static var logout2 = "assets/images/logout2.png";
    static var onBoardingBackground = "assets/images/onBoardingBackground.png";
+   static var minimize = "assets/images/minimize.png";
+   static var plus = "assets/images/plus.png";
 
 
 

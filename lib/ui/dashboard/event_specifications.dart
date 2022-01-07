@@ -8,6 +8,7 @@ import 'package:amigos/ui/dashboard/event_details.dart';
 import 'package:amigos/ui/dashboard/home_screen.dart';
 import 'package:amigos/ui/dashboard/terms_of_use.dart';
 import 'package:amigos/utils/colors.dart';
+import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:amigos/utils/validation.dart';
@@ -126,20 +127,7 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                           });
                         }
                       },
-                      child: Container(
-                        height: Get.height*0.035,
-                        width: Get.width*0.06,
-                        child: Center(
-                          child: Text(
-                            '-',
-                            style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.08, FontWeight.w500),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.themeColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
+                      child: Image.asset(AppImages.minimize,width: Get.width*0.12,height: Get.width*0.12,),
                     ),
 
                     SizedBox(
@@ -179,16 +167,7 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                         }
 
                       },
-                      child: Container(
-                        child: Icon(
-                          Icons.add,
-                          color: AppColors.whiteColor,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.themeColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
+                      child:  Image.asset(AppImages.plus,width: Get.width*0.12,height: Get.width*0.12,),
                     ),
 
                   ],
@@ -222,18 +201,7 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                           maxController.text='0';
                         }
                       },
-                      child: Container(
-                        height: Get.height*0.037,
-                        padding: EdgeInsets.symmetric(vertical: 5),
-                        child: Icon(
-                          Icons.minimize_rounded,
-                          color: AppColors.whiteColor,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.themeColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
+                      child: Image.asset(AppImages.minimize,width: Get.width*0.12,height: Get.width*0.12,),
                     ),
                     SizedBox(
                       width: Get.width * 0.03,
@@ -267,16 +235,7 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                           maxController.text='1';
                         }
                       },
-                      child: Container(
-                        child: Icon(
-                          Icons.add,
-                          color: AppColors.whiteColor,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.themeColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
+                      child: Image.asset(AppImages.plus,width: Get.width*0.12,height: Get.width*0.12,),
                     ),
                   ],
                 ),

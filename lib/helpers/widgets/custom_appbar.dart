@@ -31,7 +31,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   offset: Offset(0, 4),
                   blurRadius: 5.0)
             ]),
-        child: Padding(
+        child:widget.backButton? Padding(
           padding:  EdgeInsets.only(left: 8.0),
           child: IconButton(
             onPressed: () {
@@ -42,6 +42,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
               color: AppColors.black,
               size: Get.width*0.06,
             ),
+          ),
+        ):IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(
+            Icons.close,
+            color: AppColors.black,
+            size: Get.width*0.06,
           ),
         ),
       ),
