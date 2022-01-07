@@ -34,8 +34,6 @@ class _AppButtonSmallState extends State<AppButtonSmall> {
               });
               if(dashPro.favoriteDrinks.where((element) => element.isSelected == true).isEmpty){
                 dashPro.formCheck[dashPro.pageIndex]=-1;
-
-
                 setState(() {
 
                 });

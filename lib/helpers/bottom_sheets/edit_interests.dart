@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:amigos/helpers/widgets/app_button.dart';
+import 'package:amigos/helpers/widgets/app_button_selected.dart';
 import 'package:amigos/helpers/widgets/app_button_small.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
@@ -18,6 +19,7 @@ class EditInterests extends StatefulWidget {
 }
 
 class _EditInterestsState extends State<EditInterests> {
+  bool value=false;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,provider,_){
@@ -47,11 +49,20 @@ class _EditInterestsState extends State<EditInterests> {
               Text(getTranslated(context, "edit_interests")??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
               SizedBox(height: Get.width*0.1,),
               Wrap(
-                children: List.generate(provider.interests.length, (index) => AppButtonSmall(preference: provider.interests[index])),
+                children: List.generate(provider.interests.length, (index) => GestureDetector(
+                    onTap: (){
+                     value= provider.interests[index].isSelected?? false;
+                     provider.interests[index].isSelected= !value;
+                     setState(() {
+
+                     });
+
+                    },
+                    child: AppButtonSelected(model: provider.interests[index]))),
               ),
               SizedBox(height: Get.width*0.07,),
               AppButton(buttonText: 'save_changes', onpressed: (){
-                Get.to(const EditProfile());
+                Get.back();
               }, width: Get.width*0.9, isWhite: false),
               SizedBox(height: Get.width*0.03,),
 

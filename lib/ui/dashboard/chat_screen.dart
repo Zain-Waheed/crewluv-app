@@ -47,34 +47,34 @@ class _ChatScreenState extends State<ChatScreen> {
             SizedBox(
               height: Get.width * 0.05,
             ),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                height: Get.width * 0.09,
-                width: Get.width * 0.5,
-                margin: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: AppColors.genderBorder),
-                    color: AppColors.offWhite),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          chatIndex = 0;
-                          chatController.jumpToPage(chatIndex);
-                          setState(() {});
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: chatIndex == 0
-                                ? AppColors.themeColor
-                                : AppColors.offWhite,
-                          ),
-                          child: Center(
-                              child: Text(
+
+            ToggleButtons(
+              borderRadius: BorderRadius.circular(20),
+              constraints: BoxConstraints(
+                maxHeight: Get.height*0.05,
+                minHeight: Get.height*0.05,
+                maxWidth: Get.width*0.275,
+                minWidth: Get.width*0.237,
+
+              ),renderBorder: false,
+              isSelected: [true,false],
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      chatIndex = 0;
+                      chatController.jumpToPage(chatIndex);
+                      setState(() {});
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: chatIndex == 0
+                            ? AppColors.themeColor
+                            : AppColors.offWhite,
+                      ),
+                      child: Center(
+                          child: Text(
                             getTranslated(context, "chats") ?? "",
                             style: AppTextStyle.montserrat(
                                 chatIndex == 0
@@ -83,25 +83,25 @@ class _ChatScreenState extends State<ChatScreen> {
                                 Get.width * 0.035,
                                 FontWeight.w400),
                           )),
-                        ),
-                      ),
                     ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          chatIndex = 1;
-                          chatController.jumpToPage(chatIndex);
-                          setState(() {});
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: chatIndex == 1
-                                ? AppColors.themeColor
-                                : AppColors.offWhite,
-                          ),
-                          child: Center(
-                              child: Text(
+                  ),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      chatIndex = 1;
+                      chatController.jumpToPage(chatIndex);
+                      setState(() {});
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: chatIndex == 1
+                            ? AppColors.themeColor
+                            : AppColors.offWhite,
+                      ),
+                      child: Center(
+                          child: Text(
                             getTranslated(context, 'my_crew') ?? "",
                             style: AppTextStyle.montserrat(
                                 chatIndex == 1
@@ -110,12 +110,11 @@ class _ChatScreenState extends State<ChatScreen> {
                                 Get.width * 0.035,
                                 FontWeight.w400),
                           )),
-                        ),
-                      ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+
+              ],
             ),
             Expanded(
               child: PageView(

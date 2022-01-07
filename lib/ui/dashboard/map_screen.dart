@@ -1,7 +1,9 @@
 import 'package:amigos/helpers/bottom_sheets/filters_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/event_widget.dart';
+import 'package:amigos/helpers/widgets/mood_wideget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/notification_screen.dart';
 import 'package:amigos/ui/dashboard/restaurant_profile.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -29,12 +31,12 @@ class _MapScreenState extends State<MapScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         backgroundColor: AppColors.slateGrey,
         floatingActionButton: Padding(
-          padding: EdgeInsets.only(top:Get.width*0.2),
+          padding:  EdgeInsets.only(top:Get.width*0.04,),
           child: FloatingActionButton.extended(
             backgroundColor: AppColors.whiteBackground,
             onPressed: () {
               Get.bottomSheet(
-                const FiltersBottomSheet(), isScrollControlled: true,
+                FiltersBottomSheet(), isScrollControlled: true,
               );
             },
             label: Row(
@@ -50,6 +52,7 @@ class _MapScreenState extends State<MapScreen> {
                   width: Get.width*0.02,
                 ),
                 Image.asset(AppImages.filter,scale:1,),
+                Image.asset(AppImages.filter,),
               ],
             ),
           ),
@@ -68,6 +71,7 @@ class _MapScreenState extends State<MapScreen> {
           ),
 
         ),
+
       );
 
     });

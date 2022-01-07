@@ -131,6 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPageChanged: (index){
             pageIndex=index;
             setState(() {
+
             });
           },
         ),

@@ -93,9 +93,8 @@ class AppImages {
    static var onBoardingBackground = "assets/images/onBoardingBackground.png";
    static var minimize = "assets/images/minimize.png";
    static var plus = "assets/images/plus.png";
-
-
-
+   static var walking = "assets/images/walking.png";
+    static var birthday = "assets/images/birthday.png";
    static var filter = "assets/images/filter.png";
    static var private = "assets/images/private.png";
    static var delete = "assets/images/delete.png";
@@ -103,6 +102,8 @@ class AppImages {
    static var barCode = "assets/images/barCode.png";
    static var privateEvent = "assets/images/privateEvent.png";
    static var dropDownIcon = "assets/images/dropDownIcon.png";
+   static var runningIcon = "assets/images/runningIcon.png";
+
 
 
    static var send = "assets/images/send.png";

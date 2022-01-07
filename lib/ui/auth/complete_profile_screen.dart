@@ -24,6 +24,8 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
+FocusNode focus=FocusNode();
+
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({Key? key}) : super(key: key);
 
@@ -108,9 +110,13 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         onpressed: () {
                           if (dashPro.formKey.currentState!.validate()&& isChecked ==true ) {
                             dashPro.pageIndex++;
-                            percentageValue(dashPro);
+                            if(dashPro.pageIndex<8)
+                              {
+                                percentageValue(dashPro);
+
+                              }
                             if (dashPro.pageIndex <= 8 ) {
-                                _controller.jumpToPage(dashPro.pageIndex);
+                              _controller.jumpToPage(dashPro.pageIndex);
                             } else {
                               Get.bottomSheet( const CongraulationBottomSheet(text: 'your_profile_has_been_completed',));
                               Future.delayed(const Duration(seconds: 2), () {
@@ -158,13 +164,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         onPressed: () {
                           if (isChecked ==true ) {
                             dashPro.pageIndex++;
-                            percentageValue(dashPro);
-                            // percentageValue(dashPro);
-                            // percentageValue(dashPro);
 
-                            //percentageValue(dashPro);
-                            if (dashPro.pageIndex < 8 ) {
+                            if(dashPro.pageIndex<8)
+                          {
+                          percentageValue(dashPro);
+
+                          }
+                            if (dashPro.pageIndex <= 8 ) {
                               // I commented here
+                              percentageValue(dashPro);
                               _controller.jumpToPage(dashPro.pageIndex);
                             } else {
                               Get.bottomSheet(const CongraulationBottomSheet(text: 'your_profile_has_been_completed',));
@@ -256,6 +264,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
   Widget emailScreen(DashboardProvider dashPro) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
           height: Get.width * 0.1,
@@ -263,7 +272,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         Text(
           getTranslated(context, 'enter_email_address') ?? "",
           style: AppTextStyle.montserrat(
-              AppColors.shadedBlack, Get.width * 0.065, FontWeight.w600),
+              AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
         ),
         SizedBox(
           height: Get.width * 0.05,
@@ -279,8 +288,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: emailController,
+            focusNode: focus,
             onChanged: (val) {
-              isChecked =true;
               setState(() {
                 if (dashPro.formKey.currentState!.validate()) {
                   dashPro.formCheck[dashPro.pageIndex] = 1;
@@ -295,7 +304,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               null,
               'enter_email',
               Image.asset(
-                AppImages.emailIcon,
+                AppImages.emailIcon,color: focus.hasFocus?AppColors.themeColor:AppColors.slateGrey,
               ),
             ),
           ),
