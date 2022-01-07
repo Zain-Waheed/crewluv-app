@@ -8,6 +8,7 @@ import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -28,12 +29,12 @@ class _MapScreenState extends State<MapScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         backgroundColor: AppColors.slateGrey,
         floatingActionButton: Padding(
-          padding:  EdgeInsets.only(top:Get.width*0.04,),
+          padding: EdgeInsets.only(top:Get.width*0.2),
           child: FloatingActionButton.extended(
             backgroundColor: AppColors.whiteBackground,
             onPressed: () {
               Get.bottomSheet(
-                FiltersBottomSheet(), isScrollControlled: true,
+                const FiltersBottomSheet(), isScrollControlled: true,
               );
             },
             label: Row(
@@ -48,19 +49,23 @@ class _MapScreenState extends State<MapScreen> {
                 SizedBox(
                   width: Get.width*0.02,
                 ),
-                Image.asset(AppImages.filter,scale: 2.5,),
+                Image.asset(AppImages.filter,scale:1,),
               ],
             ),
           ),
         ),
         body: Container(
           color: AppColors.blackLite,
-          margin: EdgeInsets.only(top: 100),
-          child:GestureDetector(
-              onTap: (){
-                Get.dialog(EventWidget(user: provider.users.first, event :provider.events.first ));
-              },
-              child: Image.asset(AppImages.barIcon,scale: 3,)),
+          margin: const EdgeInsets.only(top: 100),
+          child:Column(
+            children: [
+              // GestureDetector(
+              //     onTap: (){
+              //       Get.dialog(EventWidget(user: provider.users.first, event :provider.events.first ));
+              //     },
+              //     child: Image.asset(AppImages.barIcon,scale: 3,)),
+            ],
+          ),
 
         ),
       );

@@ -40,8 +40,8 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
     97.95,
   ];
   List <bool> isPopular=[
-    false,
     true,
+    false,
     false,
   ];
   final Shader linearGradient = const LinearGradient(
@@ -144,7 +144,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                       scrollDirection: Axis.horizontal,
                     ),
                     items:  List.generate(
-                        3, (index) => priceWidget(months[index], pricePerMonth[index], price[index],isPopular[index]),
+                        3, (index) => priceWidget(months[index], pricePerMonth[index], price[index],isPopular[index],index),
                     ),
                   ),
                   SizedBox(
@@ -171,9 +171,9 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
     );
   }
 
-  priceWidget(int months,int pricePerMonth,double price,bool isPopular) {
+  priceWidget(int months,int pricePerMonth,double price,bool isPopular,int index) {
   return  Container(
-    decoration:isPopular? BoxDecoration(
+    decoration:pageIndex==index? BoxDecoration(
       gradient: AppColors.brownGradient,
       borderRadius: BorderRadius.circular(16),
     ):const BoxDecoration(),
@@ -248,7 +248,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
           ),
         ),
         Visibility(
-          visible: isPopular,
+          visible: pageIndex==index,
           child: Container(
             height: Get.width*0.06,
             width: Get.width,
@@ -260,7 +260,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                   topRight: Radius.circular(12),
                 )
             ),
-              child: Text(getTranslated(context, 'most_popular')??"",
+              child: Text(isPopular?getTranslated(context, 'most_popular')??"":"",
               style: AppTextStyle.montserrat(
                   AppColors.white,
                   Get.width*0.035,

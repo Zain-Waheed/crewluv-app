@@ -1,3 +1,4 @@
+import 'package:amigos/helpers/widgets/getplan_dialog.dart';
 import 'package:amigos/helpers/widgets/ticket_dialog.dart';
 import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/auth/favorite_drinks_screen.dart';
@@ -30,7 +31,7 @@ class _SplashScreeenState extends State<SplashScreeen> {
 
   void initState() {
     Future.delayed(const Duration(seconds: 1),(){
-     Get.off(()=>const ProfileScreen());
+    Get.off(const DashBoardScreen());
     },
     );
     super.initState();
