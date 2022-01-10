@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 
 
 class AuthProvider extends ChangeNotifier{
-  String userEmail='';
+
+
   void update(){
     notifyListeners();
   }

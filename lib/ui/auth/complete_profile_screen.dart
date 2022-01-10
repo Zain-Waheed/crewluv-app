@@ -110,16 +110,19 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         onpressed: () {
                           if (dashPro.formKey.currentState!.validate()&& isChecked ==true ) {
                             dashPro.pageIndex++;
-                            if(dashPro.pageIndex<8)
-                              {
-                                percentageValue(dashPro);
 
-                              }
-                            if (dashPro.pageIndex <= 8 ) {
+                            if(dashPro.pageIndex==0){
+                              dashPro.userEmail=emailController.text;
+                              dashPro.update();
+
+                            }
+                            if (dashPro.pageIndex <=8 ) {
                               _controller.jumpToPage(dashPro.pageIndex);
+                              percentageValue(dashPro);
                             } else {
                               Get.bottomSheet( const CongraulationBottomSheet(text: 'your_profile_has_been_completed',));
                               Future.delayed(const Duration(seconds: 2), () {
+                                dashPro.update();
                                 Get.to(
                                   // const DashBoardScreen()
                                   const DashBoardScreen(),
@@ -164,13 +167,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         onPressed: () {
                           if (isChecked ==true ) {
                             dashPro.pageIndex++;
-
-                            if(dashPro.pageIndex<8)
-                          {
-                          percentageValue(dashPro);
-
-                          }
-                            if (dashPro.pageIndex <= 8 ) {
+                            if (dashPro.pageIndex < 8 ) {
                               // I commented here
                               percentageValue(dashPro);
                               _controller.jumpToPage(dashPro.pageIndex);

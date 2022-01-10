@@ -2,6 +2,8 @@ import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/app_button_grey.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/providers/auth_provider.dart';
+import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/auth/otp_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
@@ -12,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:provider/provider.dart';
 class PhoneNumber extends StatefulWidget {
   const PhoneNumber({Key? key}) : super(key: key);
 
@@ -27,131 +30,135 @@ class _PhoneNumberState extends State<PhoneNumber> {
 
   @override
   Widget build(BuildContext context) {
-    return   GestureDetector(
-      onTap: (){
-        FocusScope.of(context).requestFocus(new FocusNode());
-      },
-      child: Scaffold(
-        appBar:PreferredSize(preferredSize: Size.fromHeight(Get.width*0.17),
-        child: CustomAppBar(backButton: true,function: (){Get.back();},title: '',)
-        ),
-        bottomNavigationBar: Container(
-          height: Get.width*0.2,
-          padding: EdgeInsets.symmetric(horizontal: Get.width*0.07,vertical: Get.width*0.03),
-          child:  validated==false?AppButtonGrey("request_otp"):AppButton(isWhite: false,width: Get.width*0.6,buttonText: 'request_otp',
-            onpressed: (){
-              if(formKey.currentState!.validate())
+    return Consumer<DashboardProvider>(builder:(context,provider,_){
+      return   GestureDetector(
+        onTap: (){
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Scaffold(
+          appBar:PreferredSize(preferredSize: Size.fromHeight(Get.width*0.17),
+              child: CustomAppBar(backButton: true,function: (){Get.back();},title: '',)
+          ),
+          bottomNavigationBar: Container(
+            height: Get.width*0.2,
+            padding: EdgeInsets.symmetric(horizontal: Get.width*0.07,vertical: Get.width*0.03),
+            child:  validated==false?AppButtonGrey("request_otp"):AppButton(isWhite: false,width: Get.width*0.6,buttonText: 'request_otp',
+              onpressed: (){
+                if(formKey.currentState!.validate())
                 {
+                  provider.phone=phoneController.text;
                   Get.to(() => const OtpScreen());
                 }
-            },
+              },
+            ),
           ),
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: Get.width*0.07),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: Get.width*0.1,),
-                Text(getTranslated(context, 'enter_your_number')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.07, FontWeight.w600),),
-                SizedBox(height: Get.width*0.03,),
-                Text(getTranslated(context, 'welcome_to')??"",style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w400),),
-                SizedBox(height: Get.width*0.2,),
-                Stack(
-                  children: [
-                    Container(
-                      height: Get.width * 0.15,
-                      width: Get.width*0.85,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding:  EdgeInsets.symmetric(horizontal: Get.width*0.07),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: Get.width*0.1,),
+                  Text(getTranslated(context, 'enter_your_number')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.07, FontWeight.w600),),
+                  SizedBox(height: Get.width*0.03,),
+                  Text(getTranslated(context, 'welcome_to')??"",style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w400),),
+                  SizedBox(height: Get.width*0.2,),
+                  Stack(
+                    children: [
+                      Container(
+                        height: Get.width * 0.15,
+                        width: Get.width*0.85,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
 
-                      decoration: BoxDecoration(
-                          color: AppColors.whiteColor,
-                          border: Border.all(color: AppColors.themeColor),
-                          borderRadius: BorderRadius.circular(30)),
-                    ),
+                        decoration: BoxDecoration(
+                            color: AppColors.whiteColor,
+                            border: Border.all(color: AppColors.themeColor),
+                            borderRadius: BorderRadius.circular(30)),
+                      ),
 
-                    Container(
-                      margin: EdgeInsets.only(left: 20,top: 5,right: 5),
-                      child: Form(
-                        key: formKey,
-                        child: Center(
-                          child: InternationalPhoneNumberInput(
-                            key: Key('phone_number'),
-                            inputDecoration: InputDecoration(
-                              fillColor: AppColors.whiteColor,
-                              hintText: "+183 746 8373 829",
-                              suffixIcon: validated==true?Container(
-                                margin: EdgeInsets.only(right: Get.width*0.03),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.green
+                      Container(
+                        margin: EdgeInsets.only(left: 20,top: 5,right: 5),
+                        child: Form(
+                          key: formKey,
+                          child: Center(
+                            child: InternationalPhoneNumberInput(
+                              key: Key('phone_number'),
+                              inputDecoration: InputDecoration(
+                                fillColor: AppColors.whiteColor,
+                                hintText: "+183 746 8373 829",
+                                suffixIcon: validated==true?Container(
+                                  margin: EdgeInsets.only(right: Get.width*0.03),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.green
+                                  ),
+                                  child: Center(
+                                    child: Image.asset(AppImages.tick,scale: 2,),
+                                  ),
+                                ):SizedBox(),
+                                suffixIconConstraints: BoxConstraints(
+                                  maxHeight: Get.width*0.05,
+                                  maxWidth: Get.width*0.1,
                                 ),
-                                child: Center(
-                                  child: Image.asset(AppImages.tick,scale: 2,),
+                                hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                                  borderSide: BorderSide(color: Colors.transparent),
                                 ),
-                              ):SizedBox(),
-                              suffixIconConstraints: BoxConstraints(
-                                maxHeight: Get.width*0.05,
-                                maxWidth: Get.width*0.1,
+                                focusedBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                                  borderSide: BorderSide(color:Colors.transparent),
+                                ),
+                                errorBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                                  borderSide: BorderSide(color: Colors.transparent),
+                                ),
+                                focusedErrorBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                                  borderSide: BorderSide(color:Colors.transparent),
+                                ),
+                                isDense: true,
+                                filled: true,
                               ),
-                              hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
-                              enabledBorder: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                borderSide: BorderSide(color: Colors.transparent),
+                              inputBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: AppColors.themeColor,style: BorderStyle.solid)
                               ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                borderSide: BorderSide(color:Colors.transparent),
-                              ),
-                              errorBorder: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                borderSide: BorderSide(color: Colors.transparent),
-                              ),
-                              focusedErrorBorder: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                borderSide: BorderSide(color:Colors.transparent),
-                              ),
-                              isDense: true,
-                              filled: true,
-                            ),
-                            inputBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.themeColor,style: BorderStyle.solid)
-                            ),
-                            onInputChanged: (number) {
-                              number = number;
-                              print(number);
-                            },
-                            onInputValidated: (bool value) {
-                              validated=value;
-                              setState(() {
+                              onInputChanged: (number) {
+                                number = number;
+                                print(number);
+                              },
+                              onInputValidated: (bool value) {
+                                validated=value;
+                                setState(() {
 
-                              });
-                            },
-                            selectorConfig: SelectorConfig(
-                              leadingPadding: 2,
-                              selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                              showFlags: true,
+                                });
+                              },
+                              selectorConfig: SelectorConfig(
+                                leadingPadding: 2,
+                                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                                showFlags: true,
+                              ),
+                              ignoreBlank: false,
+                              autoValidateMode: AutovalidateMode.onUserInteraction,
+                              selectorTextStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
+                              textFieldController: phoneController,
                             ),
-                            ignoreBlank: false,
-                            autoValidateMode: AutovalidateMode.onUserInteraction,
-                            selectorTextStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
-                            textFieldController: phoneController,
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: Get.width*0.1,),
-                Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.032, FontWeight.w500),)
+                    ],
+                  ),
+                  SizedBox(height: Get.width*0.1,),
+                  Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.032, FontWeight.w500),)
 
-              ],
+                ],
+              ),
             ),
           ),
-        ),
 
-      ),
-    );
+        ),
+      );
+
+    });
   }
 }

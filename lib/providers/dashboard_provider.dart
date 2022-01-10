@@ -25,8 +25,12 @@ class DashboardProvider extends ChangeNotifier{
   List<PersonalChatModel> personalChats=[];
   List<GroupChatModel> groupChats =[];
   FilterModel filters=FilterModel();
-
-
+  String userEmail='';
+  String dob='';
+  String phone='';
+  int dashboardIndex = 0;
+  int allEventPageIndex =0;
+  int chatPageIndex = 0;
 
   List<String> names =[
     "sophie",
@@ -56,6 +60,7 @@ class DashboardProvider extends ChangeNotifier{
   TextEditingController universityController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   int gender=0;
+
 
   List<File> mediaListImages = [
     File(""),
@@ -161,9 +166,9 @@ class DashboardProvider extends ChangeNotifier{
     users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active'));
   }
   void addChats(){
-    personalChats.add(PersonalChatModel(imagePath: AppImages.person1, name: 'Julian Dasilva', lastMessage: AppDummyData.shortText,time: 'now'));
-    personalChats.add(PersonalChatModel(imagePath: AppImages.person2, name: 'Mike Lyne', lastMessage: AppDummyData.shortText,time:"3 min ago"));
-    personalChats.add(PersonalChatModel(imagePath: AppImages.person3, name: 'Jane Doe', lastMessage: AppDummyData.shortText,time:" yesterday"));
+    personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Julian Dasilva', lastMessage: AppDummyData.shortText,time: 'now'));
+    personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Mike Lyne', lastMessage: AppDummyData.shortText,time:"3 min ago"));
+    personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Jane Doe', lastMessage: AppDummyData.shortText,time:" yesterday"));
   }
   void addGroupChat()
   {
