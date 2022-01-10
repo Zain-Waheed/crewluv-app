@@ -46,8 +46,8 @@ class _MusicTasteState extends State<MusicTaste> {
                 child: Wrap(
                   children:
                   List.generate(
-                      provider.musictaste.length,
-                          (index) => AppButtonSmall(preference: provider.musictaste[index])
+                      provider.musicTaste.length,
+                          (index) => AppButtonSmall(preference: provider.musicTaste[index])
                   )
                   ,
                 ),

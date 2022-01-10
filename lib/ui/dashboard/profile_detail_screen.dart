@@ -1,6 +1,9 @@
 import 'package:amigos/helpers/widgets/app_button_small.dart';
+import 'package:amigos/helpers/widgets/prefrence_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/models/user_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/chat_details.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
@@ -12,13 +15,15 @@ import 'package:provider/provider.dart';
 
 
 class ProfileDetail extends StatefulWidget {
-  const ProfileDetail({Key? key}) : super(key: key);
+ final  UserModel user;
+  const ProfileDetail({Key? key, required this.user}) : super(key: key);
 
   @override
   _ProfileDetailState createState() => _ProfileDetailState();
 }
 
 class _ProfileDetailState extends State<ProfileDetail> {
+ bool isStar=false;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(
@@ -112,7 +117,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Image.asset(AppImages.profile,scale: 4,),
+                            Image.asset(widget.user.imagePath??"",scale: 4,),
                             SizedBox(width: Get.width*0.02,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,13 +125,13 @@ class _ProfileDetailState extends State<ProfileDetail> {
                                 Row(
                                   children: [
                                     Text(
-                                      provider.users[0].name ?? "",
+                                      widget.user.name ?? "",
                                       style: AppTextStyle.montserrat(
                                           AppColors.black3d, Get.width * 0.04, FontWeight.w500),
                                     ),
                                     const Text(','),
                                     Text(
-                                      provider.users[0].age.toString(),
+                                      widget.user.age.toString(),
                                       style: AppTextStyle.montserrat(
                                           AppColors.black3d, Get.width * 0.04, FontWeight.w500),
                                     ),
@@ -150,7 +155,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                                       ),
                                     ),
                                     SizedBox(width: Get.width*0.02,),
-                                    Text(provider.users[0].activeStatus, style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                                    Text(widget.user.activeStatus, style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
                                   ],
                                 ),
                                 SizedBox(height: Get.width*0.02,),
@@ -160,7 +165,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                                   children: [
                                     Image.asset(AppImages.locationEvent,scale: 3,),
                                     SizedBox(width: Get.width*0.01,),
-                                    Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                                    Text(widget.user.distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
                                     Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
                                   ],
                                 ),
@@ -177,12 +182,18 @@ class _ProfileDetailState extends State<ProfileDetail> {
                           style: AppTextStyle.montserrat(
                               AppColors.shadedBlack, Get.width * 0.04,
                               FontWeight.w500),),
+                        SizedBox(
+                          height: Get.height*0.01,
+                        ),
                         Row(
-                          children: [
-                            AppButtonSmall(preference:provider.interests[2]),
-                            AppButtonSmall(preference:provider.interests[1]),
-                            AppButtonSmall(preference:provider.interests[3]),
-                          ],
+                          children:
+                          List.generate(
+                              widget.user.intrests!.where((element) => element.isSelected==true).length,
+
+                                  (index) {
+                                List userlist=widget.user.intrests!.where((element) => element.isSelected==true).toList();
+                                return PrefrenceWidget(preference:userlist[index], largeSize:true,);
+                              }),
                         ),
                         SizedBox(
                           height: Get.height*0.02,
@@ -191,12 +202,18 @@ class _ProfileDetailState extends State<ProfileDetail> {
                           style: AppTextStyle.montserrat(
                               AppColors.shadedBlack, Get.width * 0.04,
                               FontWeight.w500),),
+                        SizedBox(
+                          height: Get.height*0.01,
+                        ),
                         Row(
-                          children: [
-                            AppButtonSmall(preference:provider.musictaste[2]),
-                            AppButtonSmall(preference:provider.musictaste[1]),
-                            AppButtonSmall(preference:provider.musictaste[3]),
-                          ],
+                          children:
+                          List.generate(
+                              widget.user.music!.where((element) => element.isSelected==true).length,
+
+                                  (index) {
+                                List userlist=widget.user.music!.where((element) => element.isSelected==true).toList();
+                                return PrefrenceWidget(preference:userlist[index] ,largeSize:true,);
+                              }),
                         ),
                         SizedBox(
                           height: Get.height*0.04,
@@ -206,7 +223,9 @@ class _ProfileDetailState extends State<ProfileDetail> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             GestureDetector(
-                              onTap:(){},
+                              onTap:(){
+                                Get.to(ChatDetails(name: widget.user.name??""));
+                              },
                               child: Container(
                                 margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.03),
                                 width:Get.width*0.14,
@@ -271,7 +290,12 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               ),
                             ),
                             GestureDetector(
-                              onTap:(){},
+                              onTap:(){
+                                isStar=!isStar;
+                                setState(() {
+
+                                });
+                              },
                               child: Container(
                                 margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.04),
                                 width:Get.width*0.14,
@@ -284,11 +308,11 @@ class _ProfileDetailState extends State<ProfileDetail> {
                                   boxShadow: [
                                     BoxShadow(
                                         color: AppColors.black.withOpacity(0.5),
-                                        offset: Offset(0, 4),
+                                        offset: const Offset(0, 4),
                                         blurRadius: 5.0)
                                   ],
                                 ),
-                                child: Image.asset(AppImages.starBlank),
+                                child: Image.asset(isStar?AppImages.starFill:AppImages.starBlank),
                               ),
                             ),
                           ],

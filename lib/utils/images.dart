@@ -103,6 +103,7 @@ class AppImages {
    static var privateEvent = "assets/images/privateEvent.png";
    static var dropDownIcon = "assets/images/dropDownIcon.png";
    static var runningIcon = "assets/images/runningIcon.png";
+   static var starFill = "assets/images/starFill.png";
 
 
 

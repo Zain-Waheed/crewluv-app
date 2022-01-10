@@ -47,10 +47,10 @@ class _AppButtonSmallState extends State<AppButtonSmall> {
             }else
           if(dashPro.pageIndex==6)
           {
-            index= dashPro.musictaste.indexOf(widget.preference);
-            value =dashPro.musictaste[index].isSelected!;
-            dashPro.musictaste[index].isSelected = !value ;
-            if(dashPro.musictaste.where((element) => element.isSelected == true).isEmpty){
+            index= dashPro.musicTaste.indexOf(widget.preference);
+            value =dashPro.musicTaste[index].isSelected!;
+            dashPro.musicTaste[index].isSelected = !value ;
+            if(dashPro.musicTaste.where((element) => element.isSelected == true).isEmpty){
               dashPro.formCheck[dashPro.pageIndex]=-1;
               Get.forceAppUpdate();
             }else{

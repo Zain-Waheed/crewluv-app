@@ -112,8 +112,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: PageView(
           controller: _controller,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
-            MaoScreen(),
+            MapScreen(),
             Padding(
               padding: EdgeInsets.only(top:Get.width*0.25),
               child: SingleChildScrollView(

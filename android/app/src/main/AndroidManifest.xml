@@ -5,7 +5,7 @@
         android:label="amigos"
         android:icon="@mipmap/ic_launcher">
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyCt11hbdNpzNgRF1zeC3bOb6GhrjKYp5GA"/>
+           android:value="AIzaSyApGmXq4KtyYxWSp8NMDtVSJw_IHT_mkHg"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

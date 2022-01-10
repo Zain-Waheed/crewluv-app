@@ -1,9 +1,9 @@
-import 'package:amigos/helpers/widgets/app_button.dart';
-import 'package:amigos/helpers/widgets/app_button_small.dart';
+import 'package:amigos/helpers/bottom_sheets/edit_gender_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/notification_dialog.dart';
 import 'package:amigos/helpers/widgets/prefrence_widget.dart';
 import 'package:amigos/helpers/widgets/subcription_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/models/user_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/profile_detail_screen.dart';
 import 'package:amigos/ui/dashboard/test_screen.dart';
@@ -13,6 +13,7 @@ import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,9 @@ class Profiles extends StatefulWidget {
 
 class _ProfilesState extends State<Profiles> {
   final controller = SwipableStackController();
+  bool isStar=false;
+  final _controller = PageController();
+  int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context, provider, _) {
@@ -80,10 +84,11 @@ class _ProfilesState extends State<Profiles> {
               width: Get.width,
               child: SwipableStack(
                 controller:controller,
-                itemCount: 6,
+                itemCount: provider.users.length,
                 stackClipBehaviour: Clip.antiAliasWithSaveLayer,
                 builder: (context, index, constraints) {
-                  return  ProfilesWidget(provider);
+                  pageIndex=index;
+                  return  ProfilesWidget(provider.users[index],provider);
                 },
                 onWillMoveNext: (index, direction) {
                   final allowedActions = [
@@ -125,13 +130,18 @@ class _ProfilesState extends State<Profiles> {
                 ),
                 GestureDetector(
                   onTap:(){
-                         controller.next(
-                        swipeDirection: SwipeDirection.right
-                         );
+                    if(controller.currentIndex==0)
+                      {
+                        Get.dialog(
+                            SubscriptionDialogBox()
+                        );
+                      }else
+                        {
+                          controller.next(
+                              swipeDirection: SwipeDirection.right
+                          );
+                        }
                          Future.delayed(Duration(seconds: 5),(){
-                           Get.dialog(
-                               SubscriptionDialogBox()
-                           );
                          });
                   },
                   child: Container(
@@ -175,12 +185,15 @@ class _ProfilesState extends State<Profiles> {
                             blurRadius: 5.0)
                       ],
                     ),
-                    child: Image.asset(AppImages.heart),
+                    child: Image.asset(AppImages.heartGreen),
                   ),
                 ),
                 GestureDetector(
                   onTap:(){
-                    Get.to(SlidingAnimation());
+                    isStar=!isStar;
+                    setState(() {
+
+                    });
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.04),
@@ -198,7 +211,7 @@ class _ProfilesState extends State<Profiles> {
                             blurRadius: 5.0)
                       ],
                     ),
-                    child: Image.asset(AppImages.starBlank),
+                    child: Image.asset(isStar?AppImages.starFill:AppImages.starBlank),
                   ),
                 ),
               ],
@@ -210,11 +223,11 @@ class _ProfilesState extends State<Profiles> {
   }
 
 
-  ProfilesWidget(DashboardProvider provider) {
+  ProfilesWidget(UserModel user,DashboardProvider provider) {
     return
     GestureDetector(
       onTap:(){
-        Get.to(ProfileDetail());
+        Get.to(ProfileDetail(user:user));
       },
       child: Stack(
         children:[
@@ -225,7 +238,7 @@ class _ProfilesState extends State<Profiles> {
             alignment: Alignment.topLeft,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppDummyData.profileDummy),
+                image: AssetImage(user.coverPhoto??""),
                 fit: BoxFit.cover,
               ),
               borderRadius: const BorderRadius.only(
@@ -236,6 +249,25 @@ class _ProfilesState extends State<Profiles> {
           ),
           Align(
             alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(top: Get.height*0.4),
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                   provider.users.length, (index) => Container(
+                  width: pageIndex == index ? Get.width*0.09 : Get.width * 0.015,
+                  height:pageIndex == index ? Get.width*0.03:Get.width * 0.015 ,
+                  margin: const EdgeInsets.only(right: 3),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: AppColors.grey
+                  ),
+                )),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
             child: Container(
               margin: EdgeInsets.only(top:Get.height*0.6),
               height: Get.height*0.18,
@@ -255,7 +287,7 @@ class _ProfilesState extends State<Profiles> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Image.asset(AppImages.profile,scale: 4,),
+                  Image.asset(AppImages.profile,scale: 5,),
                   SizedBox(width: Get.width*0.02,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -264,13 +296,13 @@ class _ProfilesState extends State<Profiles> {
                         children: [
                           SizedBox(width: Get.width*0.05,),
                           Text(
-                            provider.users[0].name ?? "",
+                            user.name ?? "",
                             style: AppTextStyle.montserrat(
                                 AppColors.black3d, Get.width * 0.04, FontWeight.w500),
                           ),
                           const Text(','),
                           Text(
-                            provider.users[0].age.toString(),
+                            user.age.toString(),
                             style: AppTextStyle.montserrat(
                                 AppColors.black3d, Get.width * 0.04, FontWeight.w500),
                           ),
@@ -290,7 +322,7 @@ class _ProfilesState extends State<Profiles> {
                             ),
                           ),
                           SizedBox(width: Get.width*0.02,),
-                          Text(provider.users[0].activeStatus, style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                          Text(user.activeStatus, style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
                         ],
                       ),
                       SizedBox(height: Get.width*0.02,),
@@ -300,7 +332,7 @@ class _ProfilesState extends State<Profiles> {
                         children: [
                           Image.asset(AppImages.locationEvent,scale: 3,),
                           SizedBox(width: Get.width*0.01,),
-                          Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
+                          Text(user.distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
                           Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
                         ],
                       ),
@@ -308,13 +340,15 @@ class _ProfilesState extends State<Profiles> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          PrefrenceWidget(preference: provider.interests[1],),
-                          SizedBox(width: Get.width*0.02,),
-                          PrefrenceWidget(preference: provider.interests[2],),
-                          SizedBox(width: Get.width*0.02,),
-                          PrefrenceWidget(preference: provider.interests[9],),
-                        ],
+                        children:
+                          List.generate(
+                              user.intrests!.where((element) => element.isSelected==true).length,
+
+                                  (index) {
+                                List userlist=user.intrests!.where((element) => element.isSelected==true).toList();
+                                return PrefrenceWidget(preference:userlist[index] ,);
+                                  }),
+
                       ),
                     ],
                   ),
