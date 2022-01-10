@@ -8,7 +8,6 @@ import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/all_events.dart';
-import 'package:amigos/ui/dashboard/map_screen.dart';
 import 'package:amigos/ui/dashboard/notification_screen.dart';
 import 'package:amigos/ui/dashboard/sample_screen.dart';
 import 'package:amigos/utils/colors.dart';
@@ -114,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: PageView(
           controller: _controller,
           children: [
-            SampleScreen(),
+            MaoScreen(),
             Padding(
               padding: EdgeInsets.only(top:Get.width*0.25),
               child: SingleChildScrollView(
