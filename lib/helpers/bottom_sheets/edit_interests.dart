@@ -62,6 +62,10 @@ class _EditInterestsState extends State<EditInterests> {
               ),
               SizedBox(height: Get.width*0.07,),
               AppButton(buttonText: 'save_changes', onpressed: (){
+                provider.update();
+                setState(() {
+
+                });
                 Get.back();
               }, width: Get.width*0.9, isWhite: false),
               SizedBox(height: Get.width*0.03,),

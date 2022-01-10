@@ -30,17 +30,17 @@ class _DeleteProfileState extends State<DeleteProfile> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(AppImages.logout2,height: Get.height*0.12,width: Get.width*0.4,),
-            SizedBox(height: Get.height*0.03,),
+            Image.asset(AppImages.logout2,height: Get.height*0.13,width: Get.width*0.4,),
+            SizedBox(height: Get.height*0.04,),
             Text(getTranslated(context, 'delete_profile')??'',style: AppTextStyle.montserrat(AppColors.black, Get.width*0.045, FontWeight.w700),),
-            SizedBox(height: Get.height*0.01,),
-            Text(getTranslated(context, 'explain')??'',style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w500),textAlign: TextAlign.center,),
+            SizedBox(height: Get.height*0.02,),
+            Text(getTranslated(context, 'explain')??'',style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.037, FontWeight.w500),textAlign: TextAlign.center,),
             SizedBox(height: Get.height*0.05,),
            TextFormField(
              decoration: AppInputDecoration.lessCircularDecoration(null, 'what_went_wrong2', null, AppColors.silverWhite),
              maxLines: 3,
            ),
-            SizedBox(height: Get.height*0.1,),
+            SizedBox(height: Get.height*0.05,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

@@ -8,6 +8,7 @@ import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/PreferenceModel.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/ui/dashboard/profile_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -334,7 +335,8 @@ class _EditProfileState extends State<EditProfile> {
                 AppButton(
                     buttonText: 'save_changes',
                     onpressed: () {
-                      Get.to(ProfileScreen());
+                     Get.back();
+
                     },
                     width: Get.width * 1,
                     isWhite: false),

@@ -20,7 +20,7 @@ class AllEvents extends StatefulWidget {
 }
 
 class _AllEventsState extends State<AllEvents> {
-  TabController?   tabController;
+
 
   @override
   Widget build(BuildContext context) {
@@ -115,58 +115,42 @@ class _AllEventsState extends State<AllEvents> {
                  ),renderBorder: false,
                  isSelected: [true,false,false],
                  children: [
-                   Expanded(
-                     child: GestureDetector(
-                       onTap: (){
-                         allEventsIndex=0;
-                         allEventsController.jumpToPage(allEventsIndex);
-                         setState(() {
+                   GestureDetector(
+                     onTap: (){
 
-                         });
-                       },
-                       child: Container(
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(allEventsIndex==0?20:0),
-                           color: allEventsIndex==0?AppColors.themeColor:AppColors.offWhite,
-                         ),
-                         child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(allEventsIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
+                       allEventsController.jumpToPage(0);
+                     },
+                     child: Container(
+                       decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(allEventsIndex==0?20:0),
+                         color: allEventsIndex==0?AppColors.themeColor:AppColors.offWhite,
                        ),
+                       child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(allEventsIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
                      ),
                    ),
-                   Expanded(
-                     child: GestureDetector(
-                       onTap: (){
-                         allEventsIndex=1;
-                         allEventsController.jumpToPage(allEventsIndex);
-                         setState(() {
-
-                         });
-                       },
-                       child: Container(
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(allEventsIndex==1?20:0),
-                           color: allEventsIndex==1?AppColors.themeColor:AppColors.offWhite,
-                         ),
-                         child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(allEventsIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
+                   GestureDetector(
+                     onTap: (){
+                       allEventsController.jumpToPage(1);
+                     },
+                     child: Container(
+                       decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(allEventsIndex==1?20:0),
+                         color: allEventsIndex==1?AppColors.themeColor:AppColors.offWhite,
                        ),
+                       child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(allEventsIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
                      ),
                    ),
-                   Expanded(
-                     child: GestureDetector(
-                       onTap: (){
-                         allEventsIndex=2;
-                         allEventsController.jumpToPage(allEventsIndex);
-                         setState(() {
+                   GestureDetector(
+                     onTap: (){
+                       allEventsController.jumpToPage(2);
 
-                         });
-                       },
-                       child: Container(
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(allEventsIndex==2?20:0),
-                           color: allEventsIndex==2?AppColors.themeColor:AppColors.offWhite,
-                         ),
-                         child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(allEventsIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
+                     },
+                     child: Container(
+                       decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(allEventsIndex==2?20:0),
+                         color: allEventsIndex==2?AppColors.themeColor:AppColors.offWhite,
                        ),
+                       child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(allEventsIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
                      ),
                    ),
 
@@ -179,6 +163,7 @@ class _AllEventsState extends State<AllEvents> {
                    physics: const NeverScrollableScrollPhysics(),
                    onPageChanged: (value){
                      allEventsIndex = value;
+                     print("All Event Page $value");
                      setState(() {
 
                      });

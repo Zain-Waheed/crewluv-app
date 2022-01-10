@@ -76,7 +76,7 @@ class _EnterFullNameState extends State<EnterFullName> {
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: dashPro.fullNameController,
-              decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,scale: 2,color: focus.hasFocus?AppColors.themeColor:AppColors.slateGrey,),),
+              decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,scale: 2.5,color: focus.hasFocus?AppColors.themeColor:AppColors.slateGrey,),),
             ),
           ),
             SizedBox(height: Get.width * 0.15),

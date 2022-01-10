@@ -142,8 +142,7 @@ class _FaqsState extends State<Faqs> {
               ),
               GestureDetector(
                 onTap: () {
-                  faqIndex = 1;
-                  faqController.jumpToPage(faqIndex);
+                  faqController.jumpToPage(1);
                   setState(() {});
                 },
                 child: Container(
@@ -171,10 +170,8 @@ class _FaqsState extends State<Faqs> {
           SizedBox(
             height: Get.height*0.02,
           ),
-          SingleChildScrollView(
-            child: Column(
-                children: List.generate(4, (index) => faqsWidget())
-            ),
+          Column(
+              children: List.generate(4, (index) => faqsWidget())
           ),
         ],
       ),

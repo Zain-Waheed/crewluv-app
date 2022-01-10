@@ -173,9 +173,24 @@ class _ChatScreenState extends State<ChatScreen> {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: ListTile(
-        leading: Image.asset(
-          model.imagePath,
-          scale: 0.5,
+        leading:Container(
+          height: Get.height * 0.12,
+          width: Get.width * 0.15,
+          padding: EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+                color: AppColors.themeColor,
+                width: 2),
+            color: AppColors.white,
+          ),
+          child: Image.asset(
+              model.imagePath,
+              scale: 0.5,
+            fit: BoxFit.contain,
+            height: Get.width * 0.23,
+            width: Get.width * 0.23,
+          ),
         ),
         title: Row(
           children: [

@@ -47,7 +47,7 @@ class _EventDetailsState extends State<EventDetails> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              widget.index==1?Row(
+              widget.index==1 && provider.events[0].personalEvent==false?Row(
                 children: [
                   Stack(
                     children: [
@@ -72,17 +72,25 @@ class _EventDetailsState extends State<EventDetails> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: List.generate(10, (index) =>  Container(
-                          margin: EdgeInsets.symmetric(horizontal: Get.width*0.01),
-                          padding: EdgeInsets.all(Get.width*0.005 ),
+                          height: Get.height * 0.12,
+                          width: Get.width * 0.15,
+                          padding: EdgeInsets.all(2),
+                          margin: EdgeInsets.symmetric(horizontal: Get.width*0.015),
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: AppColors.themeColor,width: 3),
-                              color: AppColors.whiteColor,
-
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: AppColors.themeColor,
+                                width: 2),
+                            color: AppColors.white,
                           ),
-                          child: Image.asset(AppImages.crew1,width: Get.width*0.17,height: Get.width*0.17,),
-
-                        )
+                          child: Image.asset(
+                            AppImages.notification1,
+                            fit: BoxFit.contain,
+                            height: Get.width * 0.23,
+                            width: Get.width * 0.23,
+                            scale: 0.1,
+                          ),
+                        ),
                         ),
                       ),
                     ),
@@ -151,7 +159,7 @@ class _EventDetailsState extends State<EventDetails> {
                             ],
                           ),
                           Spacer(),
-                          Image.asset(AppImages.bonFire,scale: 1.5,),
+                          Image.asset(AppImages.privateEvent,height: Get.height*0.08,),
 
                         ],
                       ),
@@ -207,7 +215,7 @@ class _EventDetailsState extends State<EventDetails> {
                               Container(
                                   margin: EdgeInsets.only(left: 60, top: 7.5),
                                   decoration: BoxDecoration(
-                                      color: AppColors.grey,
+                                      color: AppColors.coalGrey,
                                       shape: BoxShape.circle,
                                       border: Border.all(color: AppColors.whiteColor)),
                                   height:35,

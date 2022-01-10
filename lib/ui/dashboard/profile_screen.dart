@@ -39,312 +39,301 @@ class _ProfileScreenState extends State<ProfileScreen> {
           preferredSize: Size.fromHeight(Get.width * 0.17),
           child: CustomAppBar(
             function: () {
-              Get.to(()=>DashBoardScreen());
+              provider.dashboardIndex=0;
+              provider.update();
             },
             backButton: true,
             title: 'my_profile',
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(
-                  horizontal: Get.width * 0.05, vertical: Get.width * 0.02),
-              padding: EdgeInsets.symmetric(
-                  horizontal: Get.width * 0.07, vertical: Get.height * 0.03),
-              decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                        color: AppColors.black.withOpacity(0.3),
-                        offset: const Offset(0, 4),
-                        blurRadius: 5)
-                  ]),
-              child: Column(
-                children: [
-                  Container(
-                    width:Get.width*0.22,
-                    height: Get.height*0.12,
-                    child: Stack(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(
+                    horizontal: Get.width * 0.05, vertical: Get.width * 0.02),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Get.width * 0.07, vertical: Get.height * 0.02),
+                decoration: BoxDecoration(
+                    color: AppColors.whiteColor,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.black.withOpacity(0.3),
+                          offset: const Offset(0, 4),
+                          blurRadius: 5)
+                    ]),
+                child: Column(
+                  children: [
+                    Container(
+                      width:Get.width*0.25,
+                      height: Get.height*0.15,
+                      child: Stack(
 
-                      children: [
-                        Center(
-                          child: Container(
-                            height: Get.height * 0.12,
-                            padding: EdgeInsets.all(2),
-                            width: Get.width * 0.25,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: AppColors.themeColor,
-                                  width: 2),
-                              color: AppColors.white,
-                            ),
-                            child: Image.asset(
-                              AppImages.notification1,
-                              fit: BoxFit.contain,
-                              height: Get.width * 0.23,
-                              width: Get.width * 0.23,
-                              scale: 0.1,
+                        children: [
+                          Center(
+                            child: Container(
+                              height: Get.height * 0.13,
+                              width: Get.width * 0.3,
+                              padding: EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: AppColors.themeColor,
+                                    width: 3),
+                                color: AppColors.white,
+                              ),
+                              child: Image.asset(
+                                AppImages.notification1,
+                                fit: BoxFit.contain,
+                                height: Get.width * 0.23,
+                                width: Get.width * 0.23,
+                                scale: 0.1,
+                              ),
                             ),
                           ),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Container(
+                                  margin: EdgeInsets.only(top: Get.height*0.05),
+                                  child: Image.asset(AppImages.verified,height: Get.height*0.03,width: Get.width*0.05,))),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.width * 0.01,
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'stella, ',
+                          style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                              Get.width * 0.04, FontWeight.w500),
                         ),
-                        Align(
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                                margin: EdgeInsets.only(top: Get.height*0.05),
-                                child: Image.asset(AppImages.verified,height: Get.height*0.03,width: Get.width*0.05,))),
+                        Text(
+                          '24',
+                          style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                              Get.width * 0.04, FontWeight.w500),
+                        ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.01,
-                  ),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'stella, ',
-                        style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                            Get.width * 0.033, FontWeight.w500),
-                      ),
-                      Text(
-                        '24',
-                        style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                            Get.width * 0.033, FontWeight.w500),
-                      ),
-                    ],
-                  ),
+                    Divider(
+                      color: AppColors.whiteDark,
+                      thickness: 2,
+                    ),
 
-                  Divider(
-                    color: AppColors.whiteDark,
-                    thickness: 2,
-                  ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            provider.dashboardIndex=1;
+                            provider.update();
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                '1',
+                                style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                                    Get.width * 0.05, FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: Get.width * 0.015,
+                              ),
+                              Text(
+                                getTranslated(context, "hosted") ?? "",
+                                style: AppTextStyle.montserrat(AppColors.blackLite,
+                                    Get.width * 0.035, FontWeight.w400),
+                              ),
+                              SizedBox(
+                                height: Get.height * 0.02,
+                              ),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                          dashIndex=1;
-                          dashController.jumpToPage(dashIndex);
-                          setState(() {
+                              GestureDetector(
+                                onTap: (){
+                                  Get.to(()=> const SettingsScreen());
+                                },
+                                child: Container(
+                                  height: Get.height * 0.08,
+                                  width: Get.width * 0.13,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.whiteColor,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: AppColors.black.withOpacity(0.3),
+                                            offset: Offset(0, 4),
+                                            blurRadius: 5.0)
+                                      ]),
+                                  child: Image.asset(
+                                    AppImages.settings,
+                                    height: Get.height*0.07,
+                                    width: Get.width*0.1,
 
-                          });
-                        },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              '1',
-                              style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                                  Get.width * 0.05, FontWeight.w500),
-                            ),
-                            SizedBox(
-                              height: Get.width * 0.015,
-                            ),
-                            Text(
-                              getTranslated(context, "hosted") ?? "",
-                              style: AppTextStyle.montserrat(AppColors.blackLite,
-                                  Get.width * 0.035, FontWeight.w400),
-                            ),
-                            SizedBox(
-                              height: Get.height * 0.02,
-                            ),
-
-                            GestureDetector(
-                              onTap: (){
-                                Get.to(()=> const SettingsScreen());
-                              },
-                              child: Container(
-                                height: Get.height * 0.12,
-                                width: Get.width * 0.12,
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.whiteColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: AppColors.black.withOpacity(0.3),
-                                          offset: Offset(0, 4),
-                                          blurRadius: 5.0)
-                                    ]),
-                                child: Image.asset(
-                                  AppImages.settings,
-                                  scale: 3,
-
+                                  ),
                                 ),
                               ),
-                            ),
 
-                            Text(
-                              getTranslated(context, "settings") ?? "",
-                              style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                                  Get.width * 0.04, FontWeight.w400),
-                            )
-                          ],
+                              Text(
+                                getTranslated(context, "settings") ?? "",
+                                style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                                    Get.width * 0.04, FontWeight.w400),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
 
-                      Container(
-                        height: Get.width * 0.1,
-                        child: VerticalDivider(
-                          thickness: 2,
+                        Container(
+                          height: Get.width * 0.1,
+                          child: VerticalDivider(
+                            thickness: 2,
+                          ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          dashIndex=1;
-                          dashController.jumpToPage(dashIndex);
-                          setState(() {
+                        GestureDetector(
+                          onTap: (){
+                            provider.dashboardIndex=1;
+                            provider.allEventPageIndex=1;
+                            provider.update();
 
-                          });
-                          allEventsIndex=1;
-                          allEventsController.jumpToPage(allEventsIndex);
-                          setState(() {
-
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            Text(
-                              '3',
-                              style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                                  Get.width * 0.05, FontWeight.w500),
-                            ),
-                            SizedBox(
-                              height: Get.width * 0.015,
-                            ),
-                            Text(
-                              getTranslated(context, "joined") ?? "",
-                              style: AppTextStyle.montserrat(AppColors.blackLite,
-                                  Get.width * 0.035, FontWeight.w400),
-                            ),
-                            SizedBox(
-                              height: Get.height * 0.035,
-                            ),
-                            GestureDetector(
-                              onTap: (){
-                                Get.to(()=>const EditProfile());
-                              },
-                              child: Container(
-                                height: Get.width * 0.12,
-                                width: Get.width * 0.12,
-                                margin: EdgeInsets.only(top: Get.height*0.05),
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.whiteColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: AppColors.black.withOpacity(0.3),
-                                          offset: Offset(0, 4),
-                                          blurRadius: 5.0)
-                                    ]),
-                                child: Image.asset(
-                                  AppImages.edit,
-                                  scale: 3,
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                '3',
+                                style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                                    Get.width * 0.05, FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: Get.width * 0.015,
+                              ),
+                              Text(
+                                getTranslated(context, "joined") ?? "",
+                                style: AppTextStyle.montserrat(AppColors.blackLite,
+                                    Get.width * 0.035, FontWeight.w400),
+                              ),
+                              SizedBox(
+                                height: Get.height * 0.02,
+                              ),
+                              GestureDetector(
+                                onTap: (){
+                                  Get.to(()=>const EditProfile());
+                                },
+                                child: Container(
+                                  height: Get.height * 0.08,
+                                  width: Get.width * 0.13,
+                                  margin: EdgeInsets.only(top: Get.height*0.05),
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.whiteColor,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: AppColors.black.withOpacity(0.3),
+                                            offset: Offset(0, 4),
+                                            blurRadius: 5.0)
+                                      ]),
+                                  child: Image.asset(
+                                    AppImages.edit,
+                                    height: Get.height*0.07,
+                                    width: Get.width*0.11,
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: Get.width * 0.05,
-                            ),
-                            Text(
-                              getTranslated(context, "edit") ?? "",
-                              style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                                  Get.width * 0.04, FontWeight.w400),
-                            ),
-                          ],
+                              SizedBox(
+                                height: Get.width * 0.01,
+                              ),
+                              Text(
+                                getTranslated(context, "edit") ?? "",
+                                style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                                    Get.width * 0.04, FontWeight.w400),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        height: Get.width * 0.1,
-                        child: VerticalDivider(
-                          thickness: 2,
+                        Container(
+                          height: Get.width * 0.1,
+                          child: VerticalDivider(
+                            thickness: 2,
+                          ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          dashIndex=3;
-                          dashController.jumpToPage(dashIndex);
-                          setState(() {
+                        GestureDetector(
+                          onTap: (){
+                            provider.dashboardIndex=2;
+                            provider.chatPageIndex=1;
+                            provider.update();
 
-                          });
-                          chatIndex=1;
-                          chatController.jumpToPage(chatIndex);
-                          setState(() {
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                '1',
+                                style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                                    Get.width * 0.05, FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: Get.width * 0.015,
+                              ),
+                              Text(
+                                getTranslated(context, "crews") ?? "",
+                                style: AppTextStyle.montserrat(AppColors.blackLite,
+                                    Get.width * 0.035, FontWeight.w400),
+                              ),
+                              SizedBox(
+                                height: Get.height * 0.02,
+                              ),
 
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            Text(
-                              '1',
-                              style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                                  Get.width * 0.05, FontWeight.w500),
-                            ),
-                            SizedBox(
-                              height: Get.width * 0.015,
-                            ),
-                            Text(
-                              getTranslated(context, "crews") ?? "",
-                              style: AppTextStyle.montserrat(AppColors.blackLite,
-                                  Get.width * 0.035, FontWeight.w400),
-                            ),
-                            SizedBox(
-                              height: Get.height * 0.02,
-                            ),
-
-                            GestureDetector(
-                              onTap: (){
-                                Get.to(()=>TermsOfUse(termsOfUse: false));
-                              },
-                              child: Container(
-                                height: Get.height * 0.1,
-                                width: Get.width * 0.15,
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.whiteColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: AppColors.black.withOpacity(0.3),
-                                          offset: Offset(0, 4),
-                                          blurRadius: 5.0)
-                                    ]),
-                                child: Image.asset(
-                                  AppImages.privacy,
-                                  height: Get.height*0.08,
-                                  width: Get.width*0.13,
+                              GestureDetector(
+                                onTap: (){
+                                  print('hello');
+                                  Get.to(TermsOfUse(termsOfUse: false));
+                                },
+                                child: Container(
+                                  height: Get.height * 0.08,
+                                  width: Get.width * 0.13,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.whiteColor,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: AppColors.black.withOpacity(0.3),
+                                            offset: Offset(0, 4),
+                                            blurRadius: 5.0)
+                                      ]),
+                                  child: Image.asset(
+                                    AppImages.privacy,
+                                    height: Get.height*0.08,
+                                    width: Get.width*0.13,
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: Get.width * 0.01,
-                            ),
-                            Text(
-                              getTranslated(context, "privacy") ?? "",
-                              style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                                  Get.width * 0.04, FontWeight.w400),
-                            ),
-                          ],
+                              SizedBox(
+                                height: Get.width * 0.01,
+                              ),
+                              Text(
+                                getTranslated(context, "privacy") ?? "",
+                                style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                                    Get.width * 0.04, FontWeight.w400),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
 
-                ],
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05,vertical: Get.width*0.01),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05,vertical: Get.height*0.01),
                 decoration: BoxDecoration(
                   color: AppColors.whiteColor,
                   borderRadius: const BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
@@ -386,13 +375,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Text('intro Text',
                                     style: AppTextStyle.montserrat(
                                       AppColors.blackLite,
-                                      Get.width*0.04,
+                                      Get.width*0.045,
                                       FontWeight.w700,
                                     ),
                                   ),
                                 ],
                               ),
-                              Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.032, FontWeight.w300),maxLines: 2, overflow: TextOverflow.ellipsis,),
+                              Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w300),maxLines: 2, overflow: TextOverflow.ellipsis,),
 
                             ],))
 
@@ -414,13 +403,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(height: Get.height*0.012,),
                       AppButton(buttonText: 'learn_more', onpressed: (){Get.dialog(GetPlanDialogBox(func: (){}, ));}, width: Get.width, isWhite: false),
+                      SizedBox(height: Get.height*0.05,),
+
 
                     ],
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     },);

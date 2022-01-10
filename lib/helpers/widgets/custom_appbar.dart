@@ -34,9 +34,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         child:widget.backButton? Padding(
           padding:  EdgeInsets.only(left: 8.0),
           child: IconButton(
-            onPressed: () {
-              Get.back();
-            },
+            onPressed: widget.function,
             icon: Icon(
               Icons.arrow_back_ios,
               color: AppColors.black,
