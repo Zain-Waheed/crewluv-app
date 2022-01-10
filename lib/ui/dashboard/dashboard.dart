@@ -113,7 +113,9 @@ import 'package:provider/provider.dart';
                          provider.dashboardIndex = 2;
                          provider.update();
                        },
-                       child: Image.asset(AppImages.chat2, scale: 3.2,
+                       child: Image.asset(
+                           AppImages.chat2
+                           , scale: 3.2,
                            color: provider.dashboardIndex == 2
                                ? AppColors.themeColor
                                : AppColors.slateGrey)

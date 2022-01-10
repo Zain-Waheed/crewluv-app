@@ -1,4 +1,5 @@
 import 'package:amigos/helpers/widgets/app_button_small.dart';
+import 'package:amigos/helpers/widgets/notification_dialog.dart';
 import 'package:amigos/helpers/widgets/prefrence_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/user_model.dart';
@@ -269,7 +270,11 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               ),
                             ),
                             GestureDetector(
-                              onTap:(){},
+                              onTap:(){
+                                Get.dialog(
+                                    NotificationDialogBox()
+                                );
+                              },
                               child: Container(
                                 margin: EdgeInsets.only(right: Get.width*0.04),
                                 width:Get.width*0.16,

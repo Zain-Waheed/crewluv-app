@@ -84,6 +84,7 @@ class _ProfilesState extends State<Profiles> {
               width: Get.width,
               child: SwipableStack(
                 controller:controller,
+                swipeAnchor: SwipeAnchor.top,
                 itemCount: provider.users.length,
                 stackClipBehaviour: Clip.antiAliasWithSaveLayer,
                 builder: (context, index, constraints) {
@@ -97,6 +98,15 @@ class _ProfilesState extends State<Profiles> {
                   ];
                   return allowedActions.contains(direction);
                 },
+                  onSwipeCompleted:(int, SwipeDirection){
+                      print("$int" );
+                    if(controller.currentIndex==(provider.users.length-1))
+                    {
+                      Get.dialog(
+                          SubscriptionDialogBox()
+                      );
+                    }
+              }
               ),
             ),
             SizedBox(
@@ -130,7 +140,8 @@ class _ProfilesState extends State<Profiles> {
                 ),
                 GestureDetector(
                   onTap:(){
-                    if(controller.currentIndex==0)
+                    print(controller.currentIndex);
+                    if(controller.currentIndex==(provider.users.length-1))
                       {
                         Get.dialog(
                             SubscriptionDialogBox()
@@ -141,8 +152,6 @@ class _ProfilesState extends State<Profiles> {
                               swipeDirection: SwipeDirection.right
                           );
                         }
-                         Future.delayed(Duration(seconds: 5),(){
-                         });
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: Get.width*0.04),

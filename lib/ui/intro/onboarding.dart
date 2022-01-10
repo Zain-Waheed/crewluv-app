@@ -31,11 +31,10 @@ class _OnBoardingState extends State<OnBoarding> {
         child: Column(
           children: [
             SizedBox(
-              height: Get.width * 0.45,
+              height: Get.width*0.1,
             ),
-            SizedBox(
-              height: Get.height* 0.3,
-              width: Get.width,
+            Expanded(
+              flex: 6,
               child: PageView(
                 controller: _controller,
                 onPageChanged: (index) {
@@ -45,7 +44,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 },
                 children: [
                   Image.asset(
-                    AppImages.onBoarding1,
+                    AppImages.onBoarding1,scale: 1,
                   ),
                   Image.asset(
                     AppImages.onBoarding2,
@@ -59,26 +58,24 @@ class _OnBoardingState extends State<OnBoarding> {
                 ],
               ),
             ),
-            SizedBox(
-              height: Get.width * 0.07,
-            ),
-            SmoothPageIndicator(
-              count: 4,
-              effect: ExpandingDotsEffect(
-                expansionFactor: Get.width*0.01,
-                strokeWidth: Get.width*0.02,
-                dotColor: AppColors.white,
-                dotWidth: Get.width * 0.02,
-                dotHeight: Get.width * 0.02,
-                spacing: Get.width * 0.01,
-                activeDotColor: AppColors.white,
+            Padding(
+              padding:  EdgeInsets.only(top: Get.width*0.01,bottom: Get.width*0.09),
+              child: SmoothPageIndicator(
+                count: 4,
+                effect: ExpandingDotsEffect(
+                  expansionFactor: Get.width*0.01,
+                  strokeWidth: Get.width*0.02,
+                  dotColor: AppColors.white,
+                  dotWidth: Get.width * 0.02,
+                  dotHeight: Get.width * 0.02,
+                  spacing: Get.width * 0.01,
+                  activeDotColor: AppColors.white,
+                ),
+                controller: _controller,
               ),
-              controller: _controller,
-            ),
-            SizedBox(
-              height: Get.width * 0.12,
             ),
             Expanded(
+              flex: 4,
               child: Container(
                 width: Get.width,
                 decoration: BoxDecoration(

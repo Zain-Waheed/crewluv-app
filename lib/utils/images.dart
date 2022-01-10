@@ -105,6 +105,12 @@ class AppImages {
    static var runningIcon = "assets/images/runningIcon.png";
    static var starFill = "assets/images/starFill.png";
 
+   static var giftLocation = "assets/images/giftLocation.png";
+   static var fireLocation = "assets/images/fireLocation.png";
+   static var clubLocation = "assets/images/clubLocation.png";
+   static var bollonLocation = "assets/images/bollonLocation.png";
+
+
 
 
    static var send = "assets/images/send.png";
