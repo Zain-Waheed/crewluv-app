@@ -181,7 +181,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                               ),
-
                               Text(
                                 getTranslated(context, "settings") ?? "",
                                 style: AppTextStyle.montserrat(AppColors.shadedBlack,
@@ -190,7 +189,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ],
                           ),
                         ),
-
                         Container(
                           height: Get.width * 0.1,
                           child: VerticalDivider(

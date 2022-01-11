@@ -4,6 +4,7 @@ import 'package:amigos/models/PreferenceModel.dart';
 import 'package:amigos/models/filter_model.dart';
 import 'package:amigos/models/group_chat_model.dart';
 import 'package:amigos/models/mood_model.dart';
+import 'package:amigos/models/notification_model.dart';
 import 'package:amigos/models/personal_chat_model.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/chat_details_model.dart';
@@ -34,7 +35,8 @@ class DashboardProvider extends ChangeNotifier{
   int dashboardIndex = 0;
   int allEventPageIndex =0;
   int chatPageIndex = 0;
-
+  int faqIndex=0;
+  List<NotificationModel> notifications =[];
   List<String> names =[
     "sophie",
     "lee",
@@ -48,6 +50,7 @@ class DashboardProvider extends ChangeNotifier{
     addFilters();
     addMusicTaste();
     addInterests();
+    addNotifications();
     addUserInterets();
     addUserMusicTaste();
     addEventTypes();
@@ -64,6 +67,9 @@ class DashboardProvider extends ChangeNotifier{
   TextEditingController dobController = TextEditingController();
   TextEditingController universityController = TextEditingController();
   TextEditingController cityController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
+
   int gender=0;
 
 
@@ -78,6 +84,8 @@ class DashboardProvider extends ChangeNotifier{
   List<MoodModel> moods=[
     MoodModel(AppImages.walking, AppImages.runningIcon, 'Walking'),
     MoodModel(AppImages.birthday, AppImages.balloon, 'Birthday'),
+    MoodModel(AppImages.birthday, AppImages.balloon, 'Birthday'),
+
 
   ];
 
@@ -107,6 +115,13 @@ class DashboardProvider extends ChangeNotifier{
     favoriteDrinks.add(PreferenceModel(name: 'spritz',isSelected: false));
     favoriteDrinks.add(PreferenceModel(name: 'vesper',isSelected: false));
     favoriteDrinks.add(PreferenceModel(name: 'gimlet',isSelected: false));
+  }
+  void addNotifications(){
+    notifications.add(NotificationModel(name: 'Nelly,',age: 30,time: 'now',description: AppDummyData.mediumText,image: AppImages.notification1));
+    notifications.add(NotificationModel(name: 'joseph,',age: 29,time: '2 min ago',description: AppDummyData.mediumText, image:AppImages.notification2));
+    notifications.add(NotificationModel(name: 'joseph,',age: 29,time: '2 min ago',description: AppDummyData.mediumText,image:AppImages.notification1));
+
+
   }
 
   void  addMusicTaste(  )

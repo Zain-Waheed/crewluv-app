@@ -27,7 +27,7 @@ class _AppButtonSmallState extends State<AppButtonSmall> {
           if(dashPro.pageIndex==5)
             {
               index= dashPro.favoriteDrinks.indexOf(widget.preference);
-              value =dashPro.favoriteDrinks[index].isSelected!;
+              value =dashPro.favoriteDrinks[index].isSelected;
               dashPro.favoriteDrinks[index].isSelected = !value ;
               setState(() {
 
@@ -48,7 +48,7 @@ class _AppButtonSmallState extends State<AppButtonSmall> {
           if(dashPro.pageIndex==6)
           {
             index= dashPro.musicTaste.indexOf(widget.preference);
-            value =dashPro.musicTaste[index].isSelected!;
+            value =dashPro.musicTaste[index].isSelected;
             dashPro.musicTaste[index].isSelected = !value ;
             if(dashPro.musicTaste.where((element) => element.isSelected == true).isEmpty){
               dashPro.formCheck[dashPro.pageIndex]=-1;
@@ -64,7 +64,7 @@ class _AppButtonSmallState extends State<AppButtonSmall> {
           if(dashPro.pageIndex==7)
           {
             index= dashPro.interests.indexOf(widget.preference);
-            value =dashPro.interests[index].isSelected!;
+            value =dashPro.interests[index].isSelected;
             dashPro.interests[index].isSelected = !value ;
             if(dashPro.interests.where((element) => element.isSelected == true).isEmpty){
               dashPro.formCheck[dashPro.pageIndex]=-1;

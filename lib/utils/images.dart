@@ -8,6 +8,7 @@ class AppImages {
    static var othersIcon = "assets/images/othersIcon.png";
   static var naughty = "assets/images/naughty.png";
   static var ill = "assets/images/ill.png";
+  static var noNotification = "assets/images/noNotification.png";
   static var happy = "assets/images/happy.png";
   static var love = "assets/images/love.png";
   static var balloon = "assets/images/balloon.png";

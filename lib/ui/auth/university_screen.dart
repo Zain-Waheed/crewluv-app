@@ -91,9 +91,6 @@ class _UniversityState extends State<University> {
             controller: dashPro.cityController,
             decoration: AppInputDecoration.circularFieldDecoration(null, 'city', null,),),
           SizedBox(height: Get.width * 0.15),
-
-
-
         ],
       ),
     );

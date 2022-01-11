@@ -1,13 +1,16 @@
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
+import 'package:amigos/models/notification_model.dart';
+import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({Key? key}) : super(key: key);
+
 
   @override
   _NotificationScreenState createState() => _NotificationScreenState();
@@ -15,27 +18,43 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.whiteBackground,
-     appBar: PreferredSize(
-       preferredSize: Size.fromHeight(Get.width*0.17),
-       child: CustomAppBar(
-       backButton: true,
-       function: (){Get.back();},
-       title: 'notifications',
-       ),
-     ),
-      body: SingleChildScrollView(
-        child: Column(
-         children: List.generate(6, (index) => notificationWidget()),
 
-        ),
-      ),
+  void initState() {
+    var model = Provider.of<DashboardProvider>(context,listen: false);
+    for(int i=0;i<model.notifications.length;i++)
+      {
+        model.notifications[i].isSeen=true;
 
-    );
+      }
+    model.update();
+    super.initState();
   }
-  Widget notificationWidget(){
+
+  @override
+  Widget build(BuildContext context) {
+   return Consumer<DashboardProvider>(builder: (context,provider,_){
+      return Scaffold(
+        backgroundColor: AppColors.whiteBackground,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(Get.width*0.17),
+          child: CustomAppBar(
+            backButton: true,
+            function: (){Get.back();},
+            title: 'notifications',
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: List.generate(provider.notifications.length, (index) => notificationWidget(provider.notifications[index])),
+
+          ),
+        ),
+
+      );
+    },);
+
+  }
+  Widget notificationWidget(NotificationModel model){
     return Container(
       margin: EdgeInsets.symmetric(horizontal: Get.width*0.03,vertical: Get.width*0.015),
       decoration: BoxDecoration(
@@ -50,15 +69,24 @@ class _NotificationScreenState extends State<NotificationScreen> {
       ),
 
       child: ListTile(
-        leading: Image.asset(AppImages.notification1),
+        leading: Container(
+          child: Image.asset(model.image),
+          padding: EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            border:Border.all(width: 2,color: AppColors.redColor),
+            shape: BoxShape.circle,
+
+
+          ),
+        ),
         title: Row(
           children: [
             Container(
               padding: EdgeInsets.symmetric(vertical: 5),
               child: Row(
                 children: [
-                  Text('Nelly,',style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.04, FontWeight.w500),),
-                  Text('38',style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.04, FontWeight.w500),),
+                  Text(model.name,style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.04, FontWeight.w500),),
+                  Text(model.age.toString(),style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.04, FontWeight.w500),),
                 ],
               ),
             ),
@@ -66,12 +94,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                children: [
-                 Text('now',style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.03, FontWeight.w400),),
+                 Text(model.time,style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.03, FontWeight.w400),),
                ],
              )
           ],
         ),
-        subtitle: Text(AppDummyData.mediumText,maxLines: 2,overflow:TextOverflow.ellipsis ,),
+        subtitle: Text(model.description,maxLines: 2,overflow:TextOverflow.ellipsis ,),
         minVerticalPadding: 20,
        contentPadding: EdgeInsets.symmetric(horizontal: Get.width*0.03,vertical: Get.width*0.01),
       ),

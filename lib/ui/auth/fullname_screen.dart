@@ -28,27 +28,26 @@ class _EnterFullNameState extends State<EnterFullName> {
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,dashPro,_){
-      return Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: Get.width * 0.1,
-            ),
-            Text(
-              getTranslated(context, 'enter_full_name') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
-            ),
-            SizedBox(
-              height: Get.width * 0.05,
-            ),
-            Text(
-              getTranslated(context, 'name_description') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
-            ),
-            SizedBox(height: Get.width * 0.15),
+      return ListView(
+       // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: Get.width * 0.1,
+          ),
+          Text(
+            getTranslated(context, 'enter_full_name') ?? "",
+            style: AppTextStyle.montserrat(
+                AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
+          ),
+          SizedBox(
+            height: Get.width * 0.05,
+          ),
+          Text(
+            getTranslated(context, 'name_description') ?? "",
+            style: AppTextStyle.montserrat(
+                AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
+          ),
+          SizedBox(height: Get.width * 0.15),
           Theme(
             data: ThemeData().copyWith(
               colorScheme: ThemeData().colorScheme.copyWith(
@@ -79,12 +78,11 @@ class _EnterFullNameState extends State<EnterFullName> {
               decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,scale: 2.5,color: focus.hasFocus?AppColors.themeColor:AppColors.slateGrey,),),
             ),
           ),
-            SizedBox(height: Get.width * 0.15),
+          SizedBox(height: Get.width * 0.15),
 
 
 
-          ],
-        ),
+        ],
       );
     });
   }

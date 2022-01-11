@@ -14,11 +14,12 @@ class CongraulationBottomSheet extends StatefulWidget {
 }
 
 class _CongraulationBottomSheetState extends State<CongraulationBottomSheet> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: Get.width,
-      height: Get.width * 0.7,
+      height: Get.height*0.35,
       decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: const BorderRadius.only(
@@ -30,15 +31,15 @@ class _CongraulationBottomSheetState extends State<CongraulationBottomSheet> {
           SizedBox(
             height: Get.width*0.1,
           ),
-          Image.asset(AppImages.congratulationLogo,scale: 3,),
+          Image.asset(AppImages.congratulationLogo,height: Get.height*0.13,width: Get.width*0.3,),
           Text(getTranslated(context, 'congratulations')??"",
-            style: AppTextStyle.montserrat(AppColors.black, Get.width*0.06, FontWeight.w700),
+            style: AppTextStyle.montserrat(AppColors.black, Get.width*0.05, FontWeight.w700),
           ),
           SizedBox(
             height: Get.width*0.05,
           ),
           Text(getTranslated(context, widget.text)??"",
-            style: AppTextStyle.montserrat(AppColors.blackLite, Get.width*0.05, FontWeight.w400),
+            style: AppTextStyle.montserrat(AppColors.blackLite, Get.width*0.045, FontWeight.w400),
             textAlign: TextAlign.center,
           ),
 

@@ -2,7 +2,7 @@
 
 class PreferenceModel{
   String?  name;
-  bool? isSelected;
+  bool isSelected;
 
   PreferenceModel({this.name,this.isSelected=false});
 }

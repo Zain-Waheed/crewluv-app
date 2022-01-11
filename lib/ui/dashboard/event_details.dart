@@ -35,7 +35,7 @@ class _EventDetailsState extends State<EventDetails> {
           preferredSize: Size.fromHeight(Get.width*0.17),
           child: CustomAppBar(
             function: (){
-              Get.to(DashBoardScreen());
+               Get.back();
               },
             title: "event_details",
             backButton: true,

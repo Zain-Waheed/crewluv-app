@@ -122,7 +122,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                             provider.filters.musicTaste.length,
                                 (index) => GestureDetector(
                                      onTap: (){
-                                       value =provider.filters.musicTaste[index].isSelected??false;
+                                       value =provider.filters.musicTaste[index].isSelected;
                                        provider.filters.musicTaste[index].isSelected=!value;
                                        setState(() {
 
@@ -154,7 +154,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                             provider.filters.eventTypes.length,
                                 (index) => GestureDetector(
                                     onTap: (){
-                                      value =provider.filters.eventTypes[index].isSelected??false;
+                                      value =provider.filters.eventTypes[index].isSelected;
                                       provider.filters.eventTypes[index].isSelected=!value;
                                       setState(() {
 
@@ -187,7 +187,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                             provider.filters.friend.length,
                                 (index) => GestureDetector(
                                     onTap: (){
-                                      value =provider.filters.friend[index].isSelected??false;
+                                      value =provider.filters.friend[index].isSelected;
                                       provider.filters.friend[index].isSelected=!value;
                                       setState(() {
 
@@ -218,7 +218,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                             provider.filters.timeDuration.length,
                                 (index) => GestureDetector(
                                     onTap: (){
-                                      value =provider.filters.timeDuration[index].isSelected??false;
+                                      value =provider.filters.timeDuration[index].isSelected;
                                       provider.filters.timeDuration[index].isSelected=!value;
                                       setState(() {
 

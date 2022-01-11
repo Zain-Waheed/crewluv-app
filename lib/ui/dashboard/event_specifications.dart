@@ -4,6 +4,7 @@ import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/dashboard/event_details.dart';
 import 'package:amigos/ui/dashboard/home_screen.dart';
 import 'package:amigos/ui/dashboard/terms_of_use.dart';
@@ -79,11 +80,12 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                 Get.bottomSheet(
                     const CongraulationBottomSheet(text: 'event_posted',)
                 );
-                  Future.delayed(Duration(seconds: 3),(){
+                  Future.delayed(const Duration(seconds: 3),(){
                   Get.to(
                     EventDetails(index: 0)
                   );
                   });
+
               },
               buttonText: 'post_event',
               isWhite: false,

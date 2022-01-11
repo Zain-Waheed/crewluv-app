@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static Color whiteColor = const Color(0xffFFFFFF);
+  static Color redColor = const Color(0xffF81F1F);
   static Color skyblue = const Color(0xffF3F4F9);
   static Color versionColor= const Color(0xff8C98A8);
   static Color greenishBlue = const Color(0xff37BBCA);

@@ -44,9 +44,10 @@ class _ChatDetailsState extends State<ChatDetails> {
                     boxShadow: [
                       BoxShadow(
                           color: AppColors.black.withOpacity(0.5),
-                          offset: Offset(0, 4),
-                          blurRadius: 5.0)
-                    ]),
+                          offset: Offset(0, 1),
+                          blurRadius: 2)
+                    ]
+                ),
                 child: Padding(
                   padding:  EdgeInsets.only(left: 8.0),
                   child: IconButton(

@@ -36,74 +36,6 @@ class _AllEventsState extends State<AllEvents> {
            ),
            body: Column(
              children: [
-               // Container(
-               //   height: Get.width*0.11,
-               //   width: Get.width*0.9,
-               //   margin: EdgeInsets.symmetric(horizontal: Get.width*0.05),
-               //   decoration: BoxDecoration(
-               //       borderRadius: BorderRadius.circular(20),
-               //       border: Border.all(color: AppColors.genderBorder),
-               //       color: AppColors.offWhite
-               //   ),
-               //   child: Row(
-               //     children: [
-               //       Expanded(
-               //         child: GestureDetector(
-               //           onTap: (){
-               //             allEventsIndex=0;
-               //             allEventsController.jumpToPage(allEventsIndex);
-               //             setState(() {
-               //
-               //             });
-               //           },
-               //           child: Container(
-               //             decoration: BoxDecoration(
-               //               borderRadius: BorderRadius.circular(20),
-               //               color: allEventsIndex==0?AppColors.themeColor:AppColors.offWhite,
-               //             ),
-               //             child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(allEventsIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
-               //           ),
-               //         ),
-               //       ),
-               //       Expanded(
-               //         child: GestureDetector(
-               //           onTap: (){
-               //             allEventsIndex=1;
-               //             allEventsController.jumpToPage(allEventsIndex);
-               //             setState(() {
-               //
-               //             });
-               //           },
-               //           child: Container(
-               //             decoration: BoxDecoration(
-               //               borderRadius: BorderRadius.circular(20),
-               //               color: allEventsIndex==1?AppColors.themeColor:AppColors.offWhite,
-               //             ),
-               //             child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(allEventsIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
-               //           ),
-               //         ),
-               //       ),
-               //       Expanded(
-               //         child: GestureDetector(
-               //           onTap: (){
-               //             allEventsIndex=2;
-               //             allEventsController.jumpToPage(allEventsIndex);
-               //             setState(() {
-               //
-               //             });
-               //           },
-               //           child: Container(
-               //             decoration: BoxDecoration(
-               //               borderRadius: BorderRadius.circular(20),
-               //               color: allEventsIndex==2?AppColors.themeColor:AppColors.offWhite,
-               //             ),
-               //             child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(allEventsIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
-               //           ),
-               //         ),
-               //       ),
-               //     ],
-               //   ),
-               // ),
                ToggleButtons(
                  borderRadius: BorderRadius.circular(20),
                  constraints: BoxConstraints(
@@ -117,40 +49,42 @@ class _AllEventsState extends State<AllEvents> {
                  children: [
                    GestureDetector(
                      onTap: (){
-
-                       allEventsController.jumpToPage(0);
-                     },
-                     child: Container(
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(allEventsIndex==0?20:0),
-                         color: allEventsIndex==0?AppColors.themeColor:AppColors.offWhite,
-                       ),
-                       child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(allEventsIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
-                     ),
-                   ),
-                   GestureDetector(
-                     onTap: (){
-                       allEventsController.jumpToPage(1);
-                     },
-                     child: Container(
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(allEventsIndex==1?20:0),
-                         color: allEventsIndex==1?AppColors.themeColor:AppColors.offWhite,
-                       ),
-                       child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(allEventsIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
-                     ),
-                   ),
-                   GestureDetector(
-                     onTap: (){
-                       allEventsController.jumpToPage(2);
+                       provider.allEventPageIndex=0;
+                       provider.update();
 
                      },
                      child: Container(
                        decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(allEventsIndex==2?20:0),
-                         color: allEventsIndex==2?AppColors.themeColor:AppColors.offWhite,
+                         borderRadius: BorderRadius.circular(provider.allEventPageIndex==0?20:0),
+                         color: provider.allEventPageIndex==0?AppColors.themeColor:AppColors.offWhite,
                        ),
-                       child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(allEventsIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
+                       child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(provider.allEventPageIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
+                     ),
+                   ),
+                   GestureDetector(
+                     onTap: (){
+                       provider.allEventPageIndex=1;
+                       provider.update();
+                     },
+                     child: Container(
+                       decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(provider.allEventPageIndex==1?20:0),
+                         color: provider.allEventPageIndex==1?AppColors.themeColor:AppColors.offWhite,
+                       ),
+                       child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(provider.allEventPageIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
+                     ),
+                   ),
+                   GestureDetector(
+                     onTap: (){
+                       provider.allEventPageIndex=2;
+                       provider.update();
+                     },
+                     child: Container(
+                       decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(provider.allEventPageIndex==2?20:0),
+                         color: provider.allEventPageIndex==2?AppColors.themeColor:AppColors.offWhite,
+                       ),
+                       child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(provider.allEventPageIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
                      ),
                    ),
 
@@ -158,16 +92,8 @@ class _AllEventsState extends State<AllEvents> {
                  ],
                ),
                Expanded(
-                 child: PageView(
-                   controller:allEventsController,
-                   physics: const NeverScrollableScrollPhysics(),
-                   onPageChanged: (value){
-                     allEventsIndex = value;
-                     print("All Event Page $value");
-                     setState(() {
-
-                     });
-                   },
+                 child: IndexedStack(
+                   index: provider.allEventPageIndex,
                    children: [
                      SingleChildScrollView(
                        child: Column(

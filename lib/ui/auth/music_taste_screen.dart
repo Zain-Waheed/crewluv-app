@@ -42,14 +42,16 @@ class _MusicTasteState extends State<MusicTaste> {
               SizedBox(
                 height: Get.width*0.08,
               ),
-              SingleChildScrollView(
-                child: Wrap(
-                  children:
-                  List.generate(
-                      provider.musicTaste.length,
-                          (index) => AppButtonSmall(preference: provider.musicTaste[index])
-                  )
-                  ,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Wrap(
+                    children:
+                    List.generate(
+                        provider.musicTaste.length,
+                            (index) => AppButtonSmall(preference: provider.musicTaste[index])
+                    )
+                    ,
+                  ),
                 ),
               ),
             ],

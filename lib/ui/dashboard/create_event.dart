@@ -6,9 +6,12 @@ import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/event_type_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/dashboard/event_specifications.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
+import 'package:geocode/geocode.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:amigos/utils/validation.dart';
@@ -29,6 +32,8 @@ class CreateEvent extends StatefulWidget {
 
 class _CreateEventState extends State<CreateEvent> {
   GlobalKey<FormState> formKey =  GlobalKey<FormState>();
+  final Geolocator geolocator = Geolocator();
+  late Address address;
   DateTime eventDateTime =DateTime.now();
   String startDate = "Dec 12";
   String endDate = "Dec 12";
@@ -52,10 +57,10 @@ class _CreateEventState extends State<CreateEvent> {
        locationController.text = widget.editEventModel!.liveLocation??'';
        startDate = widget.editEventModel!.day??'';
        endDate =widget.editEventModel!.day??'';
-       startHour = widget.editEventModel!.startTime![0] + widget.editEventModel!.startTime![1];
-       startMinute = widget.editEventModel!.startTime![3] + widget.editEventModel!.startTime![4];
-       endHour =widget.editEventModel!.endTime![0] + widget.editEventModel!.endTime![1];
-       endMinute =widget.editEventModel!.endTime![3] + widget.editEventModel!.endTime![4];
+       startHour = "${widget.editEventModel!.startTime![0]} ${widget.editEventModel!.startTime![1]}";
+       startMinute = "${widget.editEventModel!.startTime![3]} + ${widget.editEventModel!.startTime![4]}";
+       endHour ="${widget.editEventModel!.endTime![0]} + ${widget.editEventModel!.endTime![1]}";
+       endMinute ="${widget.editEventModel!.endTime![3]}${widget.editEventModel!.endTime![4]}";
        alreadyWithController.text= widget.editEventModel!.withFriends.toString();
        maxController.text=widget.editEventModel!.maxFriends.toString();
 
@@ -387,6 +392,22 @@ class _CreateEventState extends State<CreateEvent> {
 
       });
     }
+
+  }
+  _getLocation() async
+  {
+    GeoCode geoCode = GeoCode();
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    try {
+       address = await geoCode.reverseGeocoding(latitude: position.latitude,longitude: position.longitude);
+       print("city ${address.city}");
+       print("city ${address}");
+       locationController.text= address.countryName.toString() + address.city.toString() + address.streetAddress.toString();
+    } catch (e) {
+      print(e);
+    }
+
+
   }
 
 }

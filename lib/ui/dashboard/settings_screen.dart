@@ -76,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         children: [
                           Text(getTranslated(context, 'email')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
                           Spacer(),
-                          Text(provider.userEmail,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
+                          Text(provider.emailController.text,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
 
                         ],
                       ),

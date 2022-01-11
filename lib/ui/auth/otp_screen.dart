@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/app_button_grey.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
@@ -129,6 +131,49 @@ class _OtpScreenState extends State<OtpScreen> {
                       });
                     },
                   ),
+                ),
+                SizedBox(height: Get.height * 0.05),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      getTranslated(context, "didn't_get_the_code") ?? "",
+                      style: AppTextStyle.montserrat(
+                          AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),
+                    ),
+                    GestureDetector(
+                      onTap: (){
+
+                        if(resend==true)
+                        {
+                          otpController.clear();
+                          resend=false;
+                          const oneSec = const Duration(seconds: 1);
+                          Timer.periodic(
+                              oneSec,
+                                  (Timer myTimer) {
+                                if (counter == 0) {
+                                  setState(() {
+                                    myTimer.cancel();
+                                    resend=true;
+                                    counter=59;
+
+                                  });
+                                }
+                                else {
+                                  setState(() {
+                                    counter--;
+                                  });
+                                }
+                              });
+
+                        }
+                      },
+                      child: Text(resend==true?getTranslated(context, "resend")??"": counter.toString(),style: AppTextStyle.poppins(AppColors.black, Get.width*.04, FontWeight.w500),),
+                    ),
+
+
+                  ],
                 ),
               ],
             ),

@@ -129,7 +129,8 @@ class _EditGenderState extends State<EditGender> {
             ),
           SizedBox(height: Get.width*0.1,),
          AppButton(buttonText: 'save_changes', onpressed: (){
-           Get.to(EditProfile());
+
+           Get.back();
          }, width: Get.width*0.9, isWhite: false)
           ],
         ),

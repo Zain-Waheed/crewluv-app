@@ -279,7 +279,7 @@ class _ProfilesState extends State<Profiles> {
             alignment: Alignment.bottomCenter,
             child: Container(
               margin: EdgeInsets.only(top:Get.height*0.6),
-              height: Get.height*0.18,
+              height: Get.height*0.2,
               width: Get.width,
               padding: EdgeInsets.symmetric(vertical: Get.height*0.02),
               decoration: BoxDecoration(

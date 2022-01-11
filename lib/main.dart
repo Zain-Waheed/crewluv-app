@@ -93,7 +93,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: const  DashBoardScreen(),
+       home: const DashBoardScreen(),
     );
   }
 }

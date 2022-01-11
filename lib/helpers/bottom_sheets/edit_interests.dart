@@ -51,7 +51,7 @@ class _EditInterestsState extends State<EditInterests> {
               Wrap(
                 children: List.generate(provider.interests.length, (index) => GestureDetector(
                     onTap: (){
-                     value= provider.interests[index].isSelected?? false;
+                     value= provider.interests[index].isSelected;
                      provider.interests[index].isSelected= !value;
                      setState(() {
 
