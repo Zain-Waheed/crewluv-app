@@ -3,9 +3,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="amigos"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyApGmXq4KtyYxWSp8NMDtVSJw_IHT_mkHg"/>
+           android:value="AIzaSyCpb6hji7opDlw1CRoxutszki-o_JHK8GU"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
