@@ -401,7 +401,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(height: Get.height*0.012,),
                       AppButton(buttonText: 'learn_more', onpressed: (){Get.dialog(GetPlanDialogBox(func: (){}, ));}, width: Get.width, isWhite: false),
-                      SizedBox(height: Get.height*0.05,),
+                      SizedBox(height: Get.height*0.15,),
 
 
                     ],

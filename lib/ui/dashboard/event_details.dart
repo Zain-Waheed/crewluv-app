@@ -1,3 +1,4 @@
+import 'package:amigos/helpers/bottom_sheets/edit_gender_bottomsheet.dart';
 import 'package:amigos/helpers/bottom_sheets/ticketbuy_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/crew_members_widget.dart';
@@ -13,7 +14,10 @@ import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:geocode/geocode.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 class EventDetails extends StatefulWidget {
@@ -26,6 +30,99 @@ class EventDetails extends StatefulWidget {
 }
 
 class _EventDetailsState extends State<EventDetails> {
+
+   Address? address;
+  Position? position;
+  bool? isLoading = true;
+  final CameraPosition _initialLocation =const CameraPosition(
+    target: LatLng(31.4564555, 74.2852029),
+    zoom: 15,
+  );
+  Set<Marker> markers = {};
+
+  // late PolylinePoints polylinePoints;
+  _getLocation() async
+  {
+     position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+     print("positionsssssssss${position}");
+
+     setState(() {
+
+     });
+
+  }
+
+
+  Set<Marker> getmarkers(/*LatLng tappedPoint*/) {
+    // getLocAddress(tappedPoint);
+    markers.add(Marker(
+      //add second marker
+      markerId: MarkerId("1"),
+      position: LatLng(  position!.latitude,position!.longitude),//position of marker
+      onTap: (){
+      },
+      icon: BitmapDescriptor.defaultMarker,//Icon for Marker
+    ));
+    return markers;
+  }
+  @override
+  void initState() {
+
+
+    _getLocation();
+    // TODO: implement initState
+    super.initState();
+
+  }
+  // // Method for retrieving the current location
+  // _getCurrentLocation() async {
+  //   await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+  //       .then((Position position) async {
+  //     setState(() {
+  //       _currentPosition = position;
+  //       log('CURRENT POS: $_currentPosition!');
+  //       mapController.animateCamera(
+  //         CameraUpdate.newCameraPosition(
+  //           CameraPosition(
+  //             target: LatLng(position.latitude, position.longitude),
+  //             zoom: 15,
+  //           ),
+  //         ),
+  //       );
+  //     });
+  //     await _getAddress();
+  //   }).catchError((e) {
+  //     log(e);
+  //   });
+  // }
+  //
+  // // Method for retrieving the address
+  // _getAddress() async {
+  //   try {
+  //     // Places are retrieved using the coordinates
+  //     List<Placemark> p = await placemarkFromCoordinates(
+  //         currentPosition!.latitude, currentPosition!.longitude);
+  //
+  //     // Taking the most probable result
+  //     Placemark place = p[0];
+  //
+  //     setState(() {
+  //       // Structuring the address
+  //       _currentAddress =
+  //       "${place.name}, ${place.locality}, ${place.postalCode}, ${place.country}";
+  //
+  //       // Update the text of the TextField
+  //       startAddressController.text = _currentAddress;
+  //
+  //       // Setting the user's present location as the starting address
+  //       startAddress = currentAddress;
+  //     });
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,provider,_){
@@ -240,6 +337,50 @@ class _EventDetailsState extends State<EventDetails> {
               widget.index!=2?AppButton(buttonText: widget.index==0? 'view_request' :"view_tickets", onpressed: (){widget.index==0?Get.to(()=>Profiles()):
               Get.dialog(TicketDialogBox());
               }, width: Get.width, isWhite: true):SizedBox(),
+              SizedBox(height:Get.height*0.05,),
+              Stack(
+                children: [
+                  Container(
+                    height: Get.height*0.25,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color:AppColors.themeColor)
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: GoogleMap(
+                        initialCameraPosition: _initialLocation,
+                        zoomControlsEnabled: false,
+                        myLocationEnabled: true,
+                        myLocationButtonEnabled: false,
+                        mapType: MapType.normal,
+                        zoomGesturesEnabled: true,
+                        markers: getmarkers(),
+
+                        // {
+                        //
+                        //   Set.from(myMarker)
+                        // },
+                        // onTap: getmarkers,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.0,left: 12),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(getTranslated(context,'route')??"",
+                        style: AppTextStyle.montserrat(
+                          AppColors.blackDark,
+                          Get.width*0.06,
+                          FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

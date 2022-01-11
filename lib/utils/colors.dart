@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppColors {
+  static Color blackDark = const Color(0xff000000);
   static Color whiteColor = const Color(0xffFFFFFF);
   static Color redColor = const Color(0xffF81F1F);
   static Color skyblue = const Color(0xffF3F4F9);
