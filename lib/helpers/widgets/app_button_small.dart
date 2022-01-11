@@ -88,12 +88,12 @@ class _AppButtonSmallState extends State<AppButtonSmall> {
             ],
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: widget.preference!.isSelected==true?AppColors.themeColor:AppColors.offWhite,
+              color: widget.preference.isSelected==true?AppColors.themeColor:AppColors.offWhite,
             ),
           ),
           child: Text(
-            getTranslated(context, widget.preference!.name ?? "")??"",
-            style: AppTextStyle.montserrat(widget.preference!.isSelected==true?AppColors.themeColor:AppColors.blackLite, Get.width*0.04, FontWeight.w400),
+            getTranslated(context, widget.preference.name ?? "")??"",
+            style: AppTextStyle.montserrat(widget.preference.isSelected==true?AppColors.themeColor:AppColors.blackLite, Get.width*0.04, FontWeight.w400),
           ),
         ),
       );

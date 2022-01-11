@@ -230,25 +230,25 @@ class DashboardProvider extends ChangeNotifier{
 
   }
   void addFilters(){
-    filters!.musicTaste.add(PreferenceModel(name:'pop' ,isSelected: false));
-    filters!.musicTaste.add(PreferenceModel(name:'rock' ,isSelected: false));
-    filters!.musicTaste.add(PreferenceModel(name:'jazz' ,isSelected: false));
-    filters!.musicTaste.add(PreferenceModel(name:'soul' ,isSelected: false));
-    filters!.musicTaste.add(PreferenceModel(name:'funk' ,isSelected: false));
+    filters.musicTaste.add(PreferenceModel(name:'pop' ,isSelected: false));
+    filters.musicTaste.add(PreferenceModel(name:'rock' ,isSelected: false));
+    filters.musicTaste.add(PreferenceModel(name:'jazz' ,isSelected: false));
+    filters.musicTaste.add(PreferenceModel(name:'soul' ,isSelected: false));
+    filters.musicTaste.add(PreferenceModel(name:'funk' ,isSelected: false));
     //
-    filters!.eventTypes.add(PreferenceModel(name:"private_events",isSelected: false));
-    filters!.eventTypes.add(PreferenceModel(name:"communication_events",isSelected: false));
-    filters!.eventTypes.add(PreferenceModel(name:"activites",isSelected: false));
+    filters.eventTypes.add(PreferenceModel(name:"private_events",isSelected: false));
+    filters.eventTypes.add(PreferenceModel(name:"communication_events",isSelected: false));
+    filters.eventTypes.add(PreferenceModel(name:"activites",isSelected: false));
     //
-    filters!.friend.add(PreferenceModel(name:"all",isSelected: false));
-    filters!.friend.add(PreferenceModel(name:"favourites",isSelected: false));
-    filters!.friend.add(PreferenceModel(name:"contact_list",isSelected: false));
-    filters!.friend.add(PreferenceModel(name:"squard",isSelected: false));
+    filters.friend.add(PreferenceModel(name:"all",isSelected: false));
+    filters.friend.add(PreferenceModel(name:"favourites",isSelected: false));
+    filters.friend.add(PreferenceModel(name:"contact_list",isSelected: false));
+    filters.friend.add(PreferenceModel(name:"squard",isSelected: false));
     //
-    filters!.timeDuration.add(PreferenceModel(name:"now",isSelected: false));
-    filters!.timeDuration.add(PreferenceModel(name:"today",isSelected: false));
-    filters!.timeDuration.add(PreferenceModel(name:"tomorrow",isSelected: false));
-    filters!.timeDuration.add(PreferenceModel(name:"week",isSelected: false));
+    filters.timeDuration.add(PreferenceModel(name:"now",isSelected: false));
+    filters.timeDuration.add(PreferenceModel(name:"today",isSelected: false));
+    filters.timeDuration.add(PreferenceModel(name:"tomorrow",isSelected: false));
+    filters.timeDuration.add(PreferenceModel(name:"week",isSelected: false));
 
 
 

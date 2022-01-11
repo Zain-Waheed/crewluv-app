@@ -52,10 +52,10 @@ class _CreateEventState extends State<CreateEvent> {
        locationController.text = widget.editEventModel!.liveLocation??'';
        startDate = widget.editEventModel!.day??'';
        endDate =widget.editEventModel!.day??'';
-       startHour = widget.editEventModel!.startTime![0] + widget.editEventModel!.startTime![1]??'';
-       startMinute = widget.editEventModel!.startTime![3] + widget.editEventModel!.startTime![4]??'';
-       endHour =widget.editEventModel!.endTime![0] + widget.editEventModel!.endTime![1]??'';
-       endMinute =widget.editEventModel!.endTime![3] + widget.editEventModel!.endTime![4]??'';
+       startHour = widget.editEventModel!.startTime![0] + widget.editEventModel!.startTime![1];
+       startMinute = widget.editEventModel!.startTime![3] + widget.editEventModel!.startTime![4];
+       endHour =widget.editEventModel!.endTime![0] + widget.editEventModel!.endTime![1];
+       endMinute =widget.editEventModel!.endTime![3] + widget.editEventModel!.endTime![4];
        alreadyWithController.text= widget.editEventModel!.withFriends.toString();
        maxController.text=widget.editEventModel!.maxFriends.toString();
 
