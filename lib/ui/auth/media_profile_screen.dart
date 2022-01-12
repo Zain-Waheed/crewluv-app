@@ -55,6 +55,7 @@ class _MediaProfileState extends State<MediaProfile> {
                     ),
                        itemCount: provider.mediaListImages.where((element) => element.path != "").length +1,
                      itemBuilder: (BuildContext context,int index){
+
                       return Visibility(
                         child: SizedBox(
                           width: Get.width * 0.3,
@@ -64,6 +65,14 @@ class _MediaProfileState extends State<MediaProfile> {
                                 GestureDetector(
                                   onTap:(){
                                     provider.getProfileImage(index);
+                                    if(provider.mediaListImages[index].path==""&&index==0)
+                                    {
+                                      provider.formCheck[8]=1;
+                                      provider.update();
+                                    }
+                                    setState(() {
+
+                                    });
                                   },
                                   child: Align(
                                     alignment: Alignment.center,
@@ -104,6 +113,13 @@ class _MediaProfileState extends State<MediaProfile> {
                                         setState(() {
                                           provider.mediaListImages[index]=File("");
                                         });
+                                        if(provider.mediaListImages[index].path==""&&index==0)
+                                        {
+                                        provider.formCheck[8]=-1;
+                                        provider.update();
+
+
+                                        }
                                       },
                                       child: Container(
                                           padding: const EdgeInsets.all(5),

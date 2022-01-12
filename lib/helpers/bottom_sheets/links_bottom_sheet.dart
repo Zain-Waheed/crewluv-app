@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/text_styles.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +17,8 @@ class LinksBottomSheet extends StatefulWidget {
 }
 
 class _LinksBottomSheetState extends State<LinksBottomSheet> {
+  List<File> files = [];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,8 +61,13 @@ class _LinksBottomSheetState extends State<LinksBottomSheet> {
             },
             child: Column(
               children: [
-                Icon(
-                  Icons.picture_in_picture_rounded,color:AppColors.black,
+                GestureDetector(
+                  onTap:(){
+                    pickFileLicense();
+                  },
+                  child: Icon(
+                    Icons.picture_in_picture_rounded,color:AppColors.black,
+                  ),
                 ),
                 Text(getTranslated(context, 'images_videos')??"",
                   style: AppTextStyle.montserrat(
@@ -72,5 +82,19 @@ class _LinksBottomSheetState extends State<LinksBottomSheet> {
         ],
       ),
     );
+  }
+  Future<void> pickFileLicense() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowMultiple: true,
+      allowedExtensions: ['pdf', 'docx', 'png', 'jpg'],
+    );
+
+    if (result != null) {
+      files = result.paths.map((path) => File(path!)).toList();
+      print(files);
+    } else {
+      // User canceled the picker
+    }
   }
 }

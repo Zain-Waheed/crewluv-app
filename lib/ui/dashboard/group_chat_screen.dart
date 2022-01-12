@@ -417,7 +417,7 @@ class _GroupChattState extends State<GroupChatt> {
                                   message: sendMessageController.text
                                       .toString(),
                                   time: "2:00",
-                                  incomingMsg: false));
+                                  incomingMsg: false,messageType: 0));
                           sendMessageController.clear();
                           // FocusScope.of(context).requestFocus(new FocusNode());
                         },

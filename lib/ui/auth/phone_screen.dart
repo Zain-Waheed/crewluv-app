@@ -34,6 +34,8 @@ class _PhoneNumberState extends State<PhoneNumber> {
   final formKey = GlobalKey<FormState>();
   String initialCountry = 'PK';
   bool validated=false;
+  FocusNode focus = FocusNode();
+
 
   @override
   Widget build(BuildContext context) {

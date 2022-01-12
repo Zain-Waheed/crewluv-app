@@ -61,15 +61,13 @@ class DashboardProvider extends ChangeNotifier{
     notifyListeners();
   }
   GlobalKey<FormState> formKey =  GlobalKey<FormState>();
-  List<int> formCheck= [-1,-1,-1,-1,-1,-1,-1,-1,1];
+  List<int> formCheck= [-1,-1,-1,-1,-1,-1,-1,-1,-1];
   int pageIndex = 0;
   TextEditingController fullNameController = TextEditingController();
   TextEditingController dobController = TextEditingController();
   TextEditingController universityController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-
-
   int gender=0;
 
 
@@ -222,8 +220,8 @@ class DashboardProvider extends ChangeNotifier{
 
   void addMessages()
   {
-    messages.add(ChatDetailsModel(message: "Lorem ipsum dolor sit amet, consect adip iscing elit, sed do eiusmod. tempor…..incididunt ut labore et dolore magna aliqua",time: '2:00 am',incomingMsg: true));
-    messages.add(ChatDetailsModel(message: "Hey Julian",time: '2:00 am',incomingMsg: false));
+    messages.add(ChatDetailsModel(message: "Lorem ipsum dolor sit amet, consect adip iscing elit, sed do eiusmod. tempor…..incididunt ut labore et dolore magna aliqua",time: '2:00 am',incomingMsg: true,messageType: 0));
+    messages.add(ChatDetailsModel(message: "Hey Julian",time: '2:00 am',incomingMsg: false,messageType: 0));
     notifyListeners();
   }
 

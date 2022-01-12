@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:amigos/helpers/bottom_sheets/links_bottom_sheet.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/chat_details_model.dart';
@@ -6,6 +8,7 @@ import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:amigos/utils/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_3.dart';
@@ -234,61 +237,6 @@ class _ChatDetailsState extends State<ChatDetails> {
                             ),
                           ],
                         );
-                        // return Column(
-                        //   children: [
-                        //     Visibility(
-                        //       visible:index%2==0?true:false,
-                        //       child: Padding(
-                        //         padding:  EdgeInsets.symmetric(vertical: Get.height*0.01),
-                        //         child: Text('Today',
-                        //           style: AppTextStyle.poppins(
-                        //               AppColors.grey, Get.height * 0.02,
-                        //               FontWeight.w500),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //     Container(
-                        //       padding: EdgeInsets.symmetric(vertical: Get.height*0.01,horizontal: Get.height*0.02),
-                        //       child: Align(
-                        //           alignment: provider.messages[index].incomingMsg==true?Alignment.topLeft:Alignment.topRight,
-                        //           child: Row(
-                        //             mainAxisSize: MainAxisSize.min,
-                        //             children: [
-                        //               Container(
-                        //                 padding: EdgeInsets.all(Get.height*0.02),
-                        //                 constraints: BoxConstraints(minWidth: Get.width*0.3, maxWidth: Get.height*0.3),
-                        //                 decoration: BoxDecoration(
-                        //                   border:Border.all(
-                        //                     color: AppColors.blackLite,
-                        //                   ),
-                        //                   color: provider.messages[index].incomingMsg==true?AppColors.whiteColor:AppColors.pinkLight,
-                        //                   borderRadius: const BorderRadius.only(
-                        //                     topLeft: Radius.circular(12),
-                        //                     topRight: Radius.circular(12),
-                        //                     bottomRight: Radius.circular(12),
-                        //                     bottomLeft: Radius.circular(12),
-                        //                   ),
-                        //
-                        //                 ),
-                        //                 child: Column(
-                        //                   crossAxisAlignment: CrossAxisAlignment.start,
-                        //                   children: [
-                        //                     Text(provider.messages[index].message?? "",
-                        //                       style: AppTextStyle.montserrat(
-                        //                           provider.messages[index].incomingMsg==true?AppColors.grey:AppColors.greyDark, Get.height * 0.02,
-                        //                           FontWeight.w400),),
-                        //                     Text(provider.messages[index].time?? "", style: AppTextStyle.montserrat(
-                        //                         provider.messages[index].incomingMsg==true?AppColors.grey:AppColors.greyDark, Get.height * 0.015,
-                        //                         FontWeight.w400),),
-                        //                   ],
-                        //                 ),
-                        //               ),
-                        //             ],
-                        //           )
-                        //       ),
-                        //     ),
-                        //   ],
-                        // );
                       }),
                 ),
               ),
@@ -331,32 +279,6 @@ class _ChatDetailsState extends State<ChatDetails> {
                               ),
                             ),
                           ),
-                          // PopupMenuButton(
-                          //   child:Container(
-                          //     width: Get.width * 0.12,
-                          //     height: Get.width * 0.12,
-                          //     margin: EdgeInsets.only(right: Get.width * 0.01),
-                          //     decoration: BoxDecoration(
-                          //       color: AppColors.whiteDark,
-                          //       borderRadius: BorderRadius.circular(30),
-                          //     ),
-                          //     child: Center(
-                          //       child: Image.asset(
-                          //         AppImages.attach,
-                          //         width: Get.width * 0.06,
-                          //       ),
-                          //     ),
-                          //   ),
-                          //     itemBuilder: (context) => [
-                          //           const PopupMenuItem(
-                          //             child: Text("First"),
-                          //             value: 1,
-                          //           ),
-                          //           const PopupMenuItem(
-                          //             child: Text("Second"),
-                          //             value: 2,
-                          //           )
-                          //         ]),
                           Container(
                             height: Get.height * 0.06,
                             width: Get.width * 0.67,
@@ -409,7 +331,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                       message: sendMessageController.text
                                           .toString(),
                                       time: "2:00",
-                                      incomingMsg: false));
+                                      incomingMsg: false,messageType: 0));
                               sendMessageController.clear();
                               // FocusScope.of(context).requestFocus(new FocusNode());
                             },
@@ -431,7 +353,7 @@ class _ChatDetailsState extends State<ChatDetails> {
         );
       },
     );
-  }
 
+  }
 
 }

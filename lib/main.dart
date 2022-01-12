@@ -94,7 +94,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: EventDetails(index: 0),
+       home: SplashScreeen(),
     );
   }
 }

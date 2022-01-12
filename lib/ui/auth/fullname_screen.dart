@@ -25,6 +25,8 @@ class EnterFullName extends StatefulWidget {
 
 class _EnterFullNameState extends State<EnterFullName> {
   bool isActive=false;
+  FocusNode focus = FocusNode();
+
 
   @override
   Widget build(BuildContext context) {

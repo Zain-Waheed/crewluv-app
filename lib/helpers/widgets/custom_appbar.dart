@@ -33,17 +33,26 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   offset: Offset(0, 4),
                   blurRadius: 5.0)
             ]),
-        child:Padding(
+        child: widget.backButton
+            ? Padding(
                 padding: EdgeInsets.only(left: 8.0),
                 child: IconButton(
                   onPressed: widget.function,
                   icon: Icon(
-                    widget.backButton?Icons.arrow_back_ios:Icons.close,
+                    Icons.arrow_back_ios,
                     color: AppColors.black,
                     size: Get.width * 0.06,
                   ),
                 ),
               )
+            : IconButton(
+                onPressed: widget.function,
+                icon: Icon(
+                  Icons.close,
+                  color: AppColors.black,
+                  size: Get.width * 0.06,
+                ),
+              ),
       ),
       leadingWidth: Get.width * 0.2,
       toolbarHeight: Get.width * 0.3,

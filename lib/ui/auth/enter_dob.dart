@@ -29,6 +29,8 @@ class EnterDOB extends StatefulWidget {
 class _EnterDOBState extends State<EnterDOB> {
   DateTime _dob=DateTime.now();
   bool dateIconColor=false;
+  FocusNode focus = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,dashPro,_){

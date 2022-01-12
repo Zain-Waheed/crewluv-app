@@ -113,7 +113,7 @@ class _OnBoardingState extends State<OnBoarding> {
                             }else
                             {
                               pageIndex=4;
-                              Get.to(const PhoneNumber());
+                              Get.to(const Login());
                             }
                           },
                           buttonText: pageIndex==3?'login':'skip',
