@@ -161,78 +161,83 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget personalChatItemWidget(PersonalChatModel model) {
-    return Card(
-      elevation: 0,
-      margin: EdgeInsets.all(5),
-      child: ListTile(
-        selected: !model.seen,
-        selectedTileColor: AppColors.skyblue,
-        leading:Container(
-          height: Get.height*0.13,
-          width: Get.width*0.2,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+    return Consumer<DashboardProvider>(builder: (context,provider,_){
+      return Card(
+        elevation: 0,
+        margin: EdgeInsets.all(5),
+        child: ListTile(
+          selected: !model.seen,
+          selectedTileColor: AppColors.skyblue,
+          leading:Container(
+            height: Get.height*0.13,
+            width: Get.width*0.2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                model.seen==false?Container(
+                  height: Get.height*.13,
+                  width: Get.width*0.01,
+                  color: AppColors.themeColor,
+                ):const SizedBox(),
+                Container(
+                  height: Get.height * 0.13,
+                  width: Get.width * 0.18,
+                  padding: EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                        color: AppColors.themeColor,
+                        width: 2),
+                    color: AppColors.white,
+                  ),
+                  child: Image.asset(
+                    model.imagePath,
+                    scale: 0.5,
+                    fit: BoxFit.contain,
+                    height: Get.width * 0.23,
+                    width: Get.width * 0.23,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          title: Row(
             children: [
-              model.seen==false?Container(
-                height: Get.height*.13,
-                width: Get.width*0.01,
-                color: AppColors.themeColor,
-              ):const SizedBox(),
-              Container(
-                height: Get.height * 0.13,
-                width: Get.width * 0.18,
-                padding: EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                      color: AppColors.themeColor,
-                      width: 2),
-                  color: AppColors.white,
-                ),
-                child: Image.asset(
-                  model.imagePath,
-                  scale: 0.5,
-                  fit: BoxFit.contain,
-                  height: Get.width * 0.23,
-                  width: Get.width * 0.23,
-                ),
+              Text(
+                model.name,
+                style: AppTextStyle.montserrat(
+                    AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),
+              ),
+              const Spacer(),
+              Text(
+                model.time,
+                style: AppTextStyle.montserrat(
+                    AppColors.lightGrey, Get.width * 0.03, FontWeight.w400),
               ),
             ],
           ),
-        ),
-        title: Row(
-          children: [
-            Text(
-              model.name,
-              style: AppTextStyle.montserrat(
-                  AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),
-            ),
-            const Spacer(),
-            Text(
-              model.time,
-              style: AppTextStyle.montserrat(
-                  AppColors.lightGrey, Get.width * 0.03, FontWeight.w400),
-            ),
-          ],
-        ),
-        minLeadingWidth: Get.width*0.25,
-        horizontalTitleGap: 0,
-        subtitle: Container(
-            margin: EdgeInsets.symmetric(vertical: Get.width * 0.01),
-            child: Text(
-              model.lastMessage,
-              style: AppTextStyle.montserrat(
-                  AppColors.greyDark, Get.width * 0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis
-            )),
-        onTap: () {
-          model.seen=true;
-          setState(() {
+          minLeadingWidth: Get.width*0.25,
+          horizontalTitleGap: 0,
+          subtitle: Container(
+              margin: EdgeInsets.symmetric(vertical: Get.width * 0.01),
+              child: Text(
+                  model.lastMessage,
+                  style: AppTextStyle.montserrat(
+                      AppColors.greyDark, Get.width * 0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis
+              )),
+          onTap: () {
+            model.seen=true;
+            provider.update();
+            setState(() {
 
-          });
-          Get.to(() => ChatDetails(name: model.name));
-        },
-      ),
-    );
+            });
+            Get.to(() => ChatDetails(name: model.name));
+          },
+        ),
+      );
+
+
+    },);
   }
   Widget groupChatItemWidget(GroupChatModel model,) {
     return Card(

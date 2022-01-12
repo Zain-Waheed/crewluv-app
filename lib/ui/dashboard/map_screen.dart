@@ -30,7 +30,7 @@ class _MapScreenState extends State<MapScreen> {
   bool? isLoading = true;
 
   final CameraPosition _initialLocation =const CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target:LatLng(  37.42796133580764,-122.085749655962 ),
     zoom: 14.4746,
   );
   // const CameraPosition(target: LatLng(0.0, 0.0));
@@ -130,9 +130,10 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context , provider , _){
       return Scaffold(
+        backgroundColor: AppColors.whiteColor,
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         floatingActionButton: Padding(
-          padding:  EdgeInsets.only(top:Get.width*0.2,),
+          padding:  EdgeInsets.only(top:Get.height*0.15,),
           child: FloatingActionButton.extended(
             backgroundColor: AppColors.whiteBackground,
             onPressed: () {

@@ -27,6 +27,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
       }
     model.update();
+
     super.initState();
   }
 
@@ -39,7 +40,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
           preferredSize: Size.fromHeight(Get.width*0.17),
           child: CustomAppBar(
             backButton: true,
-            function: (){Get.back();},
+            function: (){    Get.forceAppUpdate();
+            Get.back();},
             title: 'notifications',
           ),
         ),

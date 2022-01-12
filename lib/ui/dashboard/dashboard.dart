@@ -46,16 +46,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           child: FloatingActionButton(
             child: Center(
                 child: Image.asset(
-              AppImages.addEvent,
-              scale: 2.5,
-              color: AppColors.whiteColor,
-            )),
+                  AppImages.addEvent,
+                  scale: 2.5,
+                  color: AppColors.whiteColor,
+                )),
             backgroundColor: AppColors.themeColor,
             elevation: 2.0,
             onPressed: () {
               Get.to(() => CreateEvent(
-                    comingFromEdit: false,
-                  ));
+                comingFromEdit: false,
+              ));
             },
           ),
         ),
@@ -121,7 +121,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         provider.dashboardIndex = 2;
                         provider.update();
                       },
-                      child: Image.asset(AppImages.chat2,
+                      child: Image.asset(provider.personalChats.any((element) => element.seen==false && provider.dashboardIndex==2 && provider.chatPageIndex==0)?AppImages.chatMessage:AppImages.chat2,
                           scale: 3.2,
                           color: provider.dashboardIndex == 2
                               ? AppColors.themeColor
