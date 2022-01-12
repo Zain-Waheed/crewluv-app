@@ -281,6 +281,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
             child: TextFormField(
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: dashPro.emailController,
+              keyboardType: TextInputType.emailAddress,
               focusNode: focus,
               onChanged: (val) {
                 setState(() {

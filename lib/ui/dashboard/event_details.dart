@@ -58,7 +58,7 @@ class _EventDetailsState extends State<EventDetails> {
     markers.add(Marker(
       //add second marker
       markerId: MarkerId("1"),
-      position: LatLng(  position!.latitude,position!.longitude),//position of marker
+      position: LatLng(  position?.latitude ?? 34.0,position?.longitude ?? 50),//position of marker
       onTap: (){
       },
       icon: BitmapDescriptor.defaultMarker,//Icon for Marker
@@ -139,249 +139,251 @@ class _EventDetailsState extends State<EventDetails> {
           ),
 
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              widget.index==1 && provider.events[0].personalEvent==false?Row(
-                children: [
-                  Stack(
-                    children: [
-                      Image.asset(AppImages.profileImage,height: Get.width*0.22,width: Get.width*0.22,),
-                      Positioned(
-                        right: 2,
-                        bottom:12 ,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.themeColor,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                widget.index==1 && provider.events[0].personalEvent==false?Row(
+                  children: [
+                    Stack(
+                      children: [
+                        Image.asset(AppImages.profileImage,height: Get.width*0.22,width: Get.width*0.22,),
+                        Positioned(
+                          right: 2,
+                          bottom:12 ,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.themeColor,
 
-                          ),
-                          child: Icon(Icons.add,color: AppColors.whiteColor,),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: List.generate(10, (index) =>  Container(
-                          height: Get.height * 0.12,
-                          width: Get.width * 0.15,
-                          padding: EdgeInsets.all(2),
-                          margin: EdgeInsets.symmetric(horizontal: Get.width*0.015),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: AppColors.themeColor,
-                                width: 2),
-                            color: AppColors.white,
-                          ),
-                          child: Image.asset(
-                            AppImages.notification1,
-                            fit: BoxFit.contain,
-                            height: Get.width * 0.23,
-                            width: Get.width * 0.23,
-                            scale: 0.1,
+                            ),
+                            child: Icon(Icons.add,color: AppColors.whiteColor,),
                           ),
                         ),
-                        ),
-                      ),
+                      ],
                     ),
-                  )
 
-                ],
-              ):SizedBox(),
-              SizedBox(height: Get.height*0.01,),
-              Center(
-                child: Container(padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 10),
-
-                      decoration: BoxDecoration(
-                      color: AppColors.whiteColor,
-                      borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.opacBlack,
-                        offset: Offset(0,2),
-                        blurRadius: 5
-                      )
-                    ]
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(AppImages.profile,scale: 4,),
-                          SizedBox(width: Get.width*0.02,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    provider.users[0].name ?? "",
-                                    style: AppTextStyle.montserrat(
-                                        AppColors.black3d, Get.width * 0.04, FontWeight.w500),
-                                  ),
-                                  const Text(', '),
-                                  Text(
-                                    provider.users[0].age.toString(),
-                                    style: AppTextStyle.montserrat(
-                                        AppColors.black3d, Get.width * 0.04, FontWeight.w500),
-                                  ),
-                                  SizedBox(width: Get.width*0.02,),
-                                  provider.users[0].isVerified
-                                      ? Image.asset(AppImages.verified,scale: 3,)
-                                      : SizedBox(),
-                                ],
-                              ),
-                              SizedBox(height: Get.width*0.02,),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Image.asset(AppImages.locationEvent,scale: 3,),
-                                  SizedBox(width: Get.width*0.01,),
-                                  Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),),
-                                  Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),),
-                                ],
-                              ),
-                            ],
+                    Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: List.generate(10, (index) =>  Container(
+                            height: Get.height * 0.12,
+                            width: Get.width * 0.15,
+                            padding: EdgeInsets.all(2),
+                            margin: EdgeInsets.symmetric(horizontal: Get.width*0.015),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: AppColors.themeColor,
+                                  width: 2),
+                              color: AppColors.white,
+                            ),
+                            child: Image.asset(
+                              AppImages.notification1,
+                              fit: BoxFit.contain,
+                              height: Get.width * 0.23,
+                              width: Get.width * 0.23,
+                              scale: 0.1,
+                            ),
                           ),
-                          Spacer(),
-                          Image.asset(AppImages.privateEvent,height: Get.height*0.08,),
-
-                        ],
+                          ),
+                        ),
                       ),
-                      SizedBox(height: Get.width*0.1,),
-                      Text(provider.events[0].title??"",style: AppTextStyle.montserrat(AppColors.black,Get.width*0.04,FontWeight.w700),),
-                      SizedBox(height: Get.width*0.01,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                    )
 
-                          Container(
-                            padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
-                            margin: EdgeInsets.symmetric(vertical: Get.width*0.02),
-                            decoration: BoxDecoration(
-                              color: AppColors.themeColor.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Text(provider.events[0].day??"",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
-                            margin: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.02),
-                            decoration: BoxDecoration(
-                              color: AppColors.themeColor.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Text("${provider.events[0].startTime}-${provider.events[0].endTime} ",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
-                            margin: EdgeInsets.symmetric(vertical: Get.width*0.02),
-                            decoration: BoxDecoration(
-                              color: AppColors.themeColor.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Text("${provider.events[0].distance}  ${getTranslated(context, "km")}",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
-                          ),
+                  ],
+                ):SizedBox(),
+                SizedBox(height: Get.height*0.01,),
+                Center(
+                  child: Container(padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 10),
 
-                        ],
-
-                      ),
-                      SizedBox(height: Get.width*0.01,),
-                      Text(provider.events[0].description??"",style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis,),
-                      SizedBox(height: Get.width*0.04,),
-                      Row(
-                        children: [
-                          Text(getTranslated(context,'my_crew')??'',style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
-                          Spacer(),
-                          Stack(
-                            children: [
-                              CrewMembersWidget(margin: 0, image:AppImages.crew1),
-                              CrewMembersWidget(margin:25, image:AppImages.crew2),
-                              Container(
-                                  margin: EdgeInsets.only(left: 60, top: 7.5),
-                                  decoration: BoxDecoration(
-                                      color: AppColors.coalGrey,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: AppColors.whiteColor)),
-                                  height:35,
-                                  width: 35,
-                                  child: Center(
-                                    child: Text(
-                                      "+${provider.events[0].maxFriends}",
-                                      style: AppTextStyle.montserrat(AppColors.whiteColor,Get.width*0.04,FontWeight.w500),
+                        decoration: BoxDecoration(
+                        color: AppColors.whiteColor,
+                        borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.opacBlack,
+                          offset: Offset(0,2),
+                          blurRadius: 5
+                        )
+                      ]
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(AppImages.profile,scale: 4,),
+                            SizedBox(width: Get.width*0.02,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      provider.users[0].name ?? "",
+                                      style: AppTextStyle.montserrat(
+                                          AppColors.black3d, Get.width * 0.04, FontWeight.w500),
                                     ),
-                                  )),
-                            ],
-                          ),
-                          Text("${provider.events[0].withFriends}${getTranslated(context, 'of')} ${provider.events[0].maxFriends} ${getTranslated(context, "friends")} "),
-                        ],
-                      ),
-                    ],
+                                    const Text(', '),
+                                    Text(
+                                      provider.users[0].age.toString(),
+                                      style: AppTextStyle.montserrat(
+                                          AppColors.black3d, Get.width * 0.04, FontWeight.w500),
+                                    ),
+                                    SizedBox(width: Get.width*0.02,),
+                                    provider.users[0].isVerified
+                                        ? Image.asset(AppImages.verified,scale: 3,)
+                                        : SizedBox(),
+                                  ],
+                                ),
+                                SizedBox(height: Get.width*0.02,),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Image.asset(AppImages.locationEvent,scale: 3,),
+                                    SizedBox(width: Get.width*0.01,),
+                                    Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),),
+                                    Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Spacer(),
+                            Image.asset(AppImages.privateEvent,height: Get.height*0.08,),
+
+                          ],
+                        ),
+                        SizedBox(height: Get.width*0.1,),
+                        Text(provider.events[0].title??"",style: AppTextStyle.montserrat(AppColors.black,Get.width*0.04,FontWeight.w700),),
+                        SizedBox(height: Get.width*0.01,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
+                              margin: EdgeInsets.symmetric(vertical: Get.width*0.02),
+                              decoration: BoxDecoration(
+                                color: AppColors.themeColor.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Text(provider.events[0].day??"",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
+                              margin: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.02),
+                              decoration: BoxDecoration(
+                                color: AppColors.themeColor.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Text("${provider.events[0].startTime}-${provider.events[0].endTime} ",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: Get.width*0.02,horizontal: Get.width*0.03),
+                              margin: EdgeInsets.symmetric(vertical: Get.width*0.02),
+                              decoration: BoxDecoration(
+                                color: AppColors.themeColor.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Text("${provider.events[0].distance}  ${getTranslated(context, "km")}",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
+                            ),
+
+                          ],
+
+                        ),
+                        SizedBox(height: Get.width*0.01,),
+                        Text(provider.events[0].description??"",style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w400),maxLines: 2,overflow: TextOverflow.ellipsis,),
+                        SizedBox(height: Get.width*0.04,),
+                        Row(
+                          children: [
+                            Text(getTranslated(context,'my_crew')??'',style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
+                            Spacer(),
+                            Stack(
+                              children: [
+                                CrewMembersWidget(margin: 0, image:AppImages.crew1),
+                                CrewMembersWidget(margin:25, image:AppImages.crew2),
+                                Container(
+                                    margin: EdgeInsets.only(left: 60, top: 7.5),
+                                    decoration: BoxDecoration(
+                                        color: AppColors.coalGrey,
+                                        shape: BoxShape.circle,
+                                        border: Border.all(color: AppColors.whiteColor)),
+                                    height:35,
+                                    width: 35,
+                                    child: Center(
+                                      child: Text(
+                                        "+${provider.events[0].maxFriends}",
+                                        style: AppTextStyle.montserrat(AppColors.whiteColor,Get.width*0.04,FontWeight.w500),
+                                      ),
+                                    )),
+                              ],
+                            ),
+                            Text("${provider.events[0].withFriends}${getTranslated(context, 'of')} ${provider.events[0].maxFriends} ${getTranslated(context, "friends")} "),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
+
                 ),
-
-              ),
-              SizedBox(height: Get.width*0.05,),
-              widget.index!=2?AppButton(buttonText: widget.index==0? 'view_request' :"view_tickets", onpressed: (){widget.index==0?Get.to(()=>Profiles()):
-              Get.dialog(TicketDialogBox());
-              }, width: Get.width, isWhite: true):SizedBox(),
-              SizedBox(height:Get.height*0.05,),
-              Stack(
-                children: [
-                  Container(
-                    height: Get.height*0.25,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color:AppColors.themeColor)
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: GoogleMap(
-                        initialCameraPosition: _initialLocation,
-                        zoomControlsEnabled: false,
-                        myLocationEnabled: true,
-                        myLocationButtonEnabled: false,
-                        mapType: MapType.normal,
-                        zoomGesturesEnabled: true,
-                        markers: getmarkers(),
-
-                        // {
-                        //
-                        //   Set.from(myMarker)
-                        // },
-                        // onTap: getmarkers,
+                SizedBox(height: Get.width*0.05,),
+                widget.index!=2?AppButton(buttonText: widget.index==0? 'view_request' :"view_tickets", onpressed: (){widget.index==0?Get.to(()=>Profiles()):
+                Get.dialog(TicketDialogBox());
+                }, width: Get.width, isWhite: true):SizedBox(),
+                SizedBox(height:Get.height*0.05,),
+                Stack(
+                  children: [
+                    Container(
+                      height: Get.height*0.2,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color:AppColors.themeColor)
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10.0,left: 12),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(getTranslated(context,'route')??"",
-                        style: AppTextStyle.montserrat(
-                          AppColors.blackDark,
-                          Get.width*0.06,
-                          FontWeight.w400,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: GoogleMap(
+                          initialCameraPosition: _initialLocation,
+                          zoomControlsEnabled: false,
+                          myLocationEnabled: true,
+                          myLocationButtonEnabled: false,
+                          mapType: MapType.normal,
+                          zoomGesturesEnabled: true,
+                          markers: getmarkers(),
+
+                          // {
+                          //
+                          //   Set.from(myMarker)
+                          // },
+                          // onTap: getmarkers,
                         ),
                       ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                    Padding(
+                      padding: EdgeInsets.only(top: 10.0,left: 12),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(getTranslated(context,'route')??"",
+                          style: AppTextStyle.montserrat(
+                            AppColors.blackDark,
+                            Get.width*0.06,
+                            FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: widget.index!=1?Container(

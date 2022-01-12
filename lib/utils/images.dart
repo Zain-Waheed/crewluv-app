@@ -115,4 +115,5 @@ class AppImages {
 
 
    static var send = "assets/images/send.png";
+   static var chatMessage = "assets/images/chatMessage.png";
 }
