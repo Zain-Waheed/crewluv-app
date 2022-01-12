@@ -1,13 +1,17 @@
+import 'dart:io';
+
 import 'package:amigos/helpers/bottom_sheets/links_bottom_sheet.dart';
 import 'package:amigos/helpers/widgets/crew_members_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/chat_details_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/chat_box_screen.dart';
+import 'package:amigos/ui/dashboard/display_item.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
@@ -24,6 +28,7 @@ class GroupChatt extends StatefulWidget {
 }
 
 class _GroupChattState extends State<GroupChatt> {
+  FilePickerResult? result;
   @override
   Widget build(BuildContext context) {
     TextEditingController sendMessageController = TextEditingController();
@@ -173,76 +178,7 @@ class _GroupChattState extends State<GroupChatt> {
                             ),
                           ),
                         ),
-                        ChatBubble(
-                          clipper:
-                          provider.messages[index].incomingMsg == true
-                              ? ChatBubbleClipper3(
-                              type: BubbleType.receiverBubble)
-                              : ChatBubbleClipper3(
-                              type: BubbleType.sendBubble),
-                          alignment:
-                          provider.messages[index].incomingMsg == true
-                              ? Alignment.topRight
-                              : Alignment.topLeft,
-                          margin: EdgeInsets.only(top: 20),
-                          backGroundColor:
-                          provider.messages[index].incomingMsg == true
-                              ? AppColors.whiteDark
-                              : AppColors.pinkLight,
-                          padding: const EdgeInsets.all(5),
-                          child: Container(
-                            constraints: BoxConstraints(
-                                minWidth: Get.width * 0.2,
-                                maxWidth: Get.height * 0.3),
-                            child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SizedBox(
-                                  height: Get.width * 0.02,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    provider.messages[index].message ??
-                                        "",
-                                    style: AppTextStyle.montserrat(
-                                        provider.messages[index]
-                                            .incomingMsg ==
-                                            true
-                                            ? AppColors.black
-                                            : AppColors.greyDark,
-                                        Get.height * 0.02,
-                                        FontWeight.w400),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.end,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                      EdgeInsets.only(right: 10.0),
-                                      child: Text(
-                                        provider.messages[index].time ??
-                                            "",
-                                        style: AppTextStyle.montserrat(
-                                            provider.messages[index]
-                                                .incomingMsg ==
-                                                true
-                                                ? AppColors.black
-                                                : AppColors.greyDark,
-                                            Get.height * 0.015,
-                                            FontWeight.w400),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        links(provider,index),
                         Visibility(
                           visible:
                           provider.messages[index].incomingMsg == true
@@ -268,61 +204,6 @@ class _GroupChattState extends State<GroupChatt> {
                         ),
                       ],
                     );
-                    // return Column(
-                    //   children: [
-                    //     Visibility(
-                    //       visible:index%2==0?true:false,
-                    //       child: Padding(
-                    //         padding:  EdgeInsets.symmetric(vertical: Get.height*0.01),
-                    //         child: Text('Today',
-                    //           style: AppTextStyle.poppins(
-                    //               AppColors.grey, Get.height * 0.02,
-                    //               FontWeight.w500),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       padding: EdgeInsets.symmetric(vertical: Get.height*0.01,horizontal: Get.height*0.02),
-                    //       child: Align(
-                    //           alignment: provider.messages[index].incomingMsg==true?Alignment.topLeft:Alignment.topRight,
-                    //           child: Row(
-                    //             mainAxisSize: MainAxisSize.min,
-                    //             children: [
-                    //               Container(
-                    //                 padding: EdgeInsets.all(Get.height*0.02),
-                    //                 constraints: BoxConstraints(minWidth: Get.width*0.3, maxWidth: Get.height*0.3),
-                    //                 decoration: BoxDecoration(
-                    //                   border:Border.all(
-                    //                     color: AppColors.blackLite,
-                    //                   ),
-                    //                   color: provider.messages[index].incomingMsg==true?AppColors.whiteColor:AppColors.pinkLight,
-                    //                   borderRadius: const BorderRadius.only(
-                    //                     topLeft: Radius.circular(12),
-                    //                     topRight: Radius.circular(12),
-                    //                     bottomRight: Radius.circular(12),
-                    //                     bottomLeft: Radius.circular(12),
-                    //                   ),
-                    //
-                    //                 ),
-                    //                 child: Column(
-                    //                   crossAxisAlignment: CrossAxisAlignment.start,
-                    //                   children: [
-                    //                     Text(provider.messages[index].message?? "",
-                    //                       style: AppTextStyle.montserrat(
-                    //                           provider.messages[index].incomingMsg==true?AppColors.grey:AppColors.greyDark, Get.height * 0.02,
-                    //                           FontWeight.w400),),
-                    //                     Text(provider.messages[index].time?? "", style: AppTextStyle.montserrat(
-                    //                         provider.messages[index].incomingMsg==true?AppColors.grey:AppColors.greyDark, Get.height * 0.015,
-                    //                         FontWeight.w400),),
-                    //                   ],
-                    //                 ),
-                    //               ),
-                    //             ],
-                    //           )
-                    //       ),
-                    //     ),
-                    //   ],
-                    // );
                   }),
             ),
           ),
@@ -344,10 +225,21 @@ class _GroupChattState extends State<GroupChatt> {
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: (){
-                          Get.bottomSheet(
-                            const LinksBottomSheet()
+                        onTap:() async{
+                          result=  await Get.bottomSheet(
+                            const LinksBottomSheet(),backgroundColor: Colors.transparent,
                           );
+                          provider.messages.insert(
+                              0,
+                              ChatDetailsModel(
+                                  file:result!.files.single.path,
+                                  time: "2:00",
+                                  incomingMsg: false,
+                                  messageType: 1
+                              ));
+                          setState(() {
+
+                          });
                         },
                         child: Container(
                           width: Get.width * 0.12,
@@ -438,5 +330,148 @@ class _GroupChattState extends State<GroupChatt> {
       ),
     );},);
   }
-
+  links(DashboardProvider provider, int index) {
+    if(provider.messages[index].messageType==0)
+    {
+      return   ChatBubble(
+        clipper:
+        provider.messages[index].incomingMsg == true
+            ? ChatBubbleClipper3(
+            type: BubbleType.receiverBubble)
+            : ChatBubbleClipper3(
+            type: BubbleType.sendBubble),
+        alignment:
+        provider.messages[index].incomingMsg == true
+            ? Alignment.topRight
+            : Alignment.topLeft,
+        margin: EdgeInsets.only(top: 20),
+        backGroundColor:
+        provider.messages[index].incomingMsg == true
+            ? AppColors.whiteDark
+            : AppColors.pinkLight,
+        padding: const EdgeInsets.all(5),
+        child: Container(
+          constraints: BoxConstraints(
+              minWidth: Get.width * 0.2,
+              maxWidth: Get.height * 0.3),
+          child: Column(
+            crossAxisAlignment:
+            CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: Get.width * 0.02,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  provider.messages[index].message ??
+                      "",
+                  style: AppTextStyle.montserrat(
+                      provider.messages[index]
+                          .incomingMsg ==
+                          true
+                          ? AppColors.black
+                          : AppColors.greyDark,
+                      Get.height * 0.02,
+                      FontWeight.w400),
+                ),
+              ),
+              Row(
+                mainAxisAlignment:
+                MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding:
+                    EdgeInsets.only(right: 10.0),
+                    child: Text(
+                      provider.messages[index].time ?? "",
+                      style: AppTextStyle.montserrat(
+                          provider.messages[index]
+                              .incomingMsg ==
+                              true
+                              ? AppColors.black
+                              : AppColors.greyDark,
+                          Get.height * 0.015,
+                          FontWeight.w400),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }else
+    if(provider.messages[index].messageType==1)
+    {
+      return    GestureDetector(
+        onTap:(){
+          Get.to(DisplayImage(filePath:provider.messages[index].file ?? ""));
+        },
+        child: ChatBubble(
+          clipper:
+          provider.messages[index].incomingMsg == true
+              ? ChatBubbleClipper3(
+              type: BubbleType.receiverBubble)
+              : ChatBubbleClipper3(
+              type: BubbleType.sendBubble),
+          alignment:
+          provider.messages[index].incomingMsg == true
+              ? Alignment.topRight
+              : Alignment.topLeft,
+          margin: EdgeInsets.only(top: 20),
+          backGroundColor:
+          provider.messages[index].incomingMsg == true
+              ? AppColors.whiteDark
+              : AppColors.pinkLight,
+          padding: const EdgeInsets.all(5),
+          child: Container(
+            constraints: BoxConstraints(
+              minWidth: Get.width * 0.2,
+              maxWidth: Get.height * 0.3,
+            ),
+            child:
+            Column(
+              crossAxisAlignment:
+              CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: Image.file(
+                    File( provider.messages[index].file ?? ""),
+                    fit: BoxFit.cover,
+                    height: Get.width * 0.6,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment:
+                  MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding:
+                      EdgeInsets.only(right: 10.0),
+                      child: Text(
+                        provider.messages[index].time ??
+                            "",
+                        style: AppTextStyle.montserrat(
+                            provider.messages[index]
+                                .incomingMsg ==
+                                true
+                                ? AppColors.black
+                                : AppColors.greyDark,
+                            Get.height * 0.015,
+                            FontWeight.w400),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+  }
 }

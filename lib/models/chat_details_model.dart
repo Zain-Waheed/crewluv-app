@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
+
 class ChatDetailsModel{
   String? message;
-  File? file;
+  String? file;
   String? time;
   bool? incomingMsg;
   int messageType;

@@ -313,5 +313,6 @@
   "you_have_successfully":"You have successfully subscribe a purchase plan.",
   "your_password_has":"Your password has been updated successfully.",
   "event_posted":"Your event has been posted successfully.",
-  "route":"Route"
+  "route":"Route",
+  "display_Image":"Display Image"
 }

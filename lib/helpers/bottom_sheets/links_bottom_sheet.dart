@@ -17,7 +17,6 @@ class LinksBottomSheet extends StatefulWidget {
 }
 
 class _LinksBottomSheetState extends State<LinksBottomSheet> {
-  List<File> files = [];
 
   @override
   Widget build(BuildContext context) {
@@ -57,17 +56,12 @@ class _LinksBottomSheetState extends State<LinksBottomSheet> {
        ),
           TextButton(
             onPressed: (){
-              Get.back();
+              pickFileLicense();
             },
             child: Column(
               children: [
-                GestureDetector(
-                  onTap:(){
-                    pickFileLicense();
-                  },
-                  child: Icon(
-                    Icons.picture_in_picture_rounded,color:AppColors.black,
-                  ),
+                Icon(
+                  Icons.picture_in_picture_rounded,color:AppColors.black,
                 ),
                 Text(getTranslated(context, 'images_videos')??"",
                   style: AppTextStyle.montserrat(
@@ -86,13 +80,13 @@ class _LinksBottomSheetState extends State<LinksBottomSheet> {
   Future<void> pickFileLicense() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowMultiple: true,
+      allowMultiple: false,
       allowedExtensions: ['pdf', 'docx', 'png', 'jpg'],
     );
-
     if (result != null) {
-      files = result.paths.map((path) => File(path!)).toList();
-      print(files);
+      // File file = File(result.files.single.path ?? "");
+      // print(result.files.single.extension);
+      Get.back(result: result);
     } else {
       // User canceled the picker
     }
