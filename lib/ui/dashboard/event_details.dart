@@ -9,6 +9,7 @@ import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/create_event.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
+import 'package:amigos/ui/dashboard/destinaiton_screen.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -49,9 +50,7 @@ class _EventDetailsState extends State<EventDetails> {
      setState(() {
 
      });
-
   }
-
 
   Set<Marker> getmarkers(/*LatLng tappedPoint*/) {
     // getLocAddress(tappedPoint);
@@ -350,7 +349,8 @@ class _EventDetailsState extends State<EventDetails> {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
-                        child: GoogleMap(
+                        child: DrawMapRoute(),
+                        /*GoogleMap(
                           initialCameraPosition: _initialLocation,
                           zoomControlsEnabled: false,
                           myLocationEnabled: true,
@@ -359,12 +359,14 @@ class _EventDetailsState extends State<EventDetails> {
                           zoomGesturesEnabled: true,
                           markers: getmarkers(),
 
+
+
                           // {
                           //
                           //   Set.from(myMarker)
                           // },
                           // onTap: getmarkers,
-                        ),
+                        ),*/
                       ),
                     ),
                     Padding(

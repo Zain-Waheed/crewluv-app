@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 import '../../main.dart';
 import 'complete_profile_screen.dart';
 
-
+FocusNode focus = FocusNode();
 class EnterDOB extends StatefulWidget {
   const EnterDOB({Key? key}) : super(key: key);
 

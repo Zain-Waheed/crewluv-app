@@ -17,6 +17,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
+
+
+
+
+FocusNode focus = FocusNode();
 class PhoneNumber extends StatefulWidget {
   const PhoneNumber({Key? key}) : super(key: key);
 

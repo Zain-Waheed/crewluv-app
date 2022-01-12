@@ -15,6 +15,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 import '../../main.dart';
+FocusNode focus = FocusNode();
 class EnterFullName extends StatefulWidget {
   const EnterFullName({Key? key}) : super(key: key);
 

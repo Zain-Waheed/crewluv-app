@@ -172,7 +172,6 @@ class _OtpScreenState extends State<OtpScreen> {
                       child: Text(resend==true?getTranslated(context, "resend")??"": counter.toString(),style: AppTextStyle.poppins(AppColors.black, Get.width*.04, FontWeight.w500),),
                     ),
 
-
                   ],
                 ),
               ],

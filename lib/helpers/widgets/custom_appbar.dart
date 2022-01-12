@@ -1,5 +1,6 @@
 import 'package:amigos/helpers/widgets/appbar_button.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/ui/auth/login_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -32,28 +33,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   offset: Offset(0, 4),
                   blurRadius: 5.0)
             ]),
-        child: widget.backButton
-            ? Padding(
+        child:Padding(
                 padding: EdgeInsets.only(left: 8.0),
                 child: IconButton(
                   onPressed: widget.function,
                   icon: Icon(
-                    Icons.arrow_back_ios,
+                    widget.backButton?Icons.arrow_back_ios:Icons.close,
                     color: AppColors.black,
                     size: Get.width * 0.06,
                   ),
                 ),
               )
-            : IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Icon(
-                  Icons.close,
-                  color: AppColors.black,
-                  size: Get.width * 0.06,
-                ),
-              ),
       ),
       leadingWidth: Get.width * 0.2,
       toolbarHeight: Get.width * 0.3,

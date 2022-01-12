@@ -25,8 +25,8 @@ class _MoodWidgetState extends State<MoodWidget> {
     return Consumer<DashboardProvider>(builder:(context,provider,_){
       return Scaffold(
         backgroundColor: AppColors.opacBlack,
-        body: SingleChildScrollView(
-          child: Center(
+        body: Center(
+            child: SingleChildScrollView(
               child: Container(
                 decoration: BoxDecoration(
                   color: AppColors.whiteColor,
@@ -83,9 +83,9 @@ class _MoodWidgetState extends State<MoodWidget> {
                     ),
                   ],
                 ),
-              )
+              ),
+            )
 
-          ),
         ),
       );
 

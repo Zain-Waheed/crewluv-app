@@ -11,7 +11,7 @@
         android:label="amigos"
         android:icon="@mipmap/launcher_icon">
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyCpb6hji7opDlw1CRoxutszki-o_JHK8GU"/>
+           android:value="AIzaSyCUsgLTPFck90L3IB9l_CcTPLy4H5Lnwus"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
