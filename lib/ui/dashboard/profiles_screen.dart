@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:amigos/helpers/bottom_sheets/edit_gender_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/notification_dialog.dart';
 import 'package:amigos/helpers/widgets/prefrence_widget.dart';
@@ -98,9 +100,25 @@ class _ProfilesState extends State<Profiles> {
                   ];
                   return allowedActions.contains(direction);
                 },
+
+                  overlayBuilder: (
+                      context,
+                      constraints,
+                      index,
+                      direction,
+                      swipeProgress,
+                      ) {
+                    final opacity = min(swipeProgress, 1.0);
+                    final isRight = direction == SwipeDirection.right;
+                    final isLeft = direction == SwipeDirection.left;
+                    return Opacity(
+                      opacity: isRight||isLeft ? opacity : 0,
+                      child:isRight?Image.asset(AppImages.likeIcon,scale: 1,):Image.asset(AppImages.dislike,scale:1),
+                    );
+                  },
                   onSwipeCompleted:(int, SwipeDirection){
                       print("$int" );
-                    if(controller.currentIndex==(provider.users.length-1))
+                    if(controller.currentIndex==4)
                     {
                       Get.dialog(
                           SubscriptionDialogBox()
@@ -117,7 +135,7 @@ class _ProfilesState extends State<Profiles> {
               children: [
                 GestureDetector(
                   onTap:(){
-                    controller.rewind();
+                    controller.currentIndex=0;
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.03),
@@ -141,7 +159,7 @@ class _ProfilesState extends State<Profiles> {
                 GestureDetector(
                   onTap:(){
                     print(controller.currentIndex);
-                    if(controller.currentIndex==(provider.users.length-1))
+                    if(controller.currentIndex==5)
                       {
                         Get.dialog(
                             SubscriptionDialogBox()
@@ -177,6 +195,8 @@ class _ProfilesState extends State<Profiles> {
                     Get.dialog(
                         NotificationDialogBox()
                     );
+                    provider.users.removeAt( controller.currentIndex);
+                    provider.update();
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: Get.width*0.04),
@@ -200,6 +220,8 @@ class _ProfilesState extends State<Profiles> {
                 GestureDetector(
                   onTap:(){
                     isStar=!isStar;
+                    provider.users[controller.currentIndex].favorite=true;
+                    provider.update();
                     setState(() {
 
                     });
@@ -233,6 +255,7 @@ class _ProfilesState extends State<Profiles> {
 
 
   ProfilesWidget(UserModel user,DashboardProvider provider) {
+    final _controller = PageController();
     return
     GestureDetector(
       onTap:(){
@@ -240,38 +263,30 @@ class _ProfilesState extends State<Profiles> {
       },
       child: Stack(
         children:[
-          Container(
-            width: Get.width,
-            padding: EdgeInsets.only(
-              top: Get.width * 0.099, left: Get.width * 0.06,),
-            alignment: Alignment.topLeft,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(user.coverPhoto??""),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: const BorderRadius.only(
-                bottomRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
-              ),
-            ),
+          PageView(
+            controller:_controller,
+            children: [
+              Image.asset(user.coverPhoto![0]),
+              Image.asset(user.coverPhoto![1]),
+              Image.asset(user.coverPhoto![2]),
+            ],
           ),
           Align(
             alignment: Alignment.center,
             child: Container(
-              margin: EdgeInsets.only(top: Get.height*0.4),
-              child:Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                   provider.users.length, (index) => Container(
-                  width: pageIndex == index ? Get.width*0.09 : Get.width * 0.015,
-                  height:pageIndex == index ? Get.width*0.03:Get.width * 0.015 ,
-                  margin: const EdgeInsets.only(right: 3),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: AppColors.grey
-                  ),
-                )),
+              margin: EdgeInsets.only(top: Get.height*0.35),
+              child:SmoothPageIndicator(
+                count: 3,
+                effect: ExpandingDotsEffect(
+                  expansionFactor: Get.width*0.01,
+                  strokeWidth: Get.width*0.02,
+                  dotColor: AppColors.white,
+                  dotWidth: Get.width * 0.02,
+                  dotHeight: Get.width * 0.02,
+                  spacing: Get.width * 0.01,
+                  activeDotColor: AppColors.white,
+                ),
+                controller: _controller,
               ),
             ),
           ),

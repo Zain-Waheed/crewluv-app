@@ -115,5 +115,7 @@ class AppImages {
 
 
    static var send = "assets/images/send.png";
+   static var likeIcon = "assets/images/likeIcon.png";
+   static var dislike = "assets/images/dislike.png";
    static var chatMessage = "assets/images/chatMessage.png";
 }

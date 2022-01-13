@@ -7,9 +7,10 @@ class UserModel{
    String? imagePath;
    bool isVerified;
    String activeStatus;
-   String? coverPhoto;
+   List<String>? coverPhoto;
    List<PreferenceModel>? intrests=[];
    List<PreferenceModel>? music;
+   bool? favorite;
 
-   UserModel({this.name, this.age, this.distance, this.imagePath,required this.isVerified,required this.activeStatus,this.coverPhoto,this.intrests,this.music});
+   UserModel({this.name, this.age, this.distance, this.imagePath,required this.isVerified,required this.activeStatus,this.coverPhoto,this.intrests,this.music,this.favorite});
 }

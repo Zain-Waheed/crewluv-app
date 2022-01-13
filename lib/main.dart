@@ -1,6 +1,9 @@
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/auth_provider.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/auth/complete_profile_screen.dart';
+import 'package:amigos/ui/auth/media_profile_screen.dart';
+import 'package:amigos/ui/dashboard/all_events.dart';
 import 'package:amigos/ui/dashboard/chat_details.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/ui/dashboard/edit_profile.dart';
@@ -96,7 +99,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: GroupChatt(name: 'Usama',),
+       home: AllEvents(),
     );
   }
 }

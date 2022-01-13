@@ -19,4 +19,6 @@ class AppDummyData {
   static var profileDummy = "assets/images/profileDummy.png";
   static var dummyUser2 = "assets/images/dummyUser2.png";
   static var dummyUser3 = "assets/images/dummyUser3.png";
+  static var dummyUser4 = "assets/images/dummyUser4.png";
+  static var dummyUser5 = "assets/images/dummyUser5.png";
 }

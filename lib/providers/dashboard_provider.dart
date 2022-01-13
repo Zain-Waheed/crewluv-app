@@ -226,9 +226,11 @@ class DashboardProvider extends ChangeNotifier{
   }
 
   void addUser(){
-    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: AppDummyData.profileDummy,intrests:userInterests,music: userMusicTaste ));
-    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: AppDummyData.dummyUser2,intrests:userInterests,music: userMusicTaste ));
-    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: AppDummyData.dummyUser3,intrests:userInterests,music: userMusicTaste ));
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.profileDummy,AppDummyData.profileDummy,AppDummyData.profileDummy],intrests:userInterests,music: userMusicTaste ,favorite: true),);
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser2,AppDummyData.dummyUser2,AppDummyData.dummyUser2,],intrests:userInterests,music: userMusicTaste,favorite: false ));
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser3,AppDummyData.dummyUser3,AppDummyData.dummyUser3],intrests:userInterests,music: userMusicTaste,favorite: false ));
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser4,AppDummyData.dummyUser4,AppDummyData.dummyUser4],intrests:userInterests,music: userMusicTaste,favorite: false ));
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser5,AppDummyData.dummyUser5,AppDummyData.dummyUser5],intrests:userInterests,music: userMusicTaste,favorite: false ));
 
   }
   void addChats(){
