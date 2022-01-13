@@ -97,8 +97,7 @@ class _MediaProfileState extends State<MediaProfile> {
                                                 borderRadius: BorderRadius.circular(16)
                                             ),
                                             child: Icon(Icons.add,color: AppColors.white,),
-                                          ),):ClipRRect(
-                                        borderRadius: BorderRadius.circular(16),
+                                          ),):ClipRRect(borderRadius: BorderRadius.circular(16),
                                             child: Image.file(provider.mediaListImages[index],
                                         fit: BoxFit.fill,
                                       ),
