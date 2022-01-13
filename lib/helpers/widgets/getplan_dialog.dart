@@ -1,3 +1,4 @@
+import 'package:amigos/helpers/bottom_sheets/further_subscription.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/utils/colors.dart';
@@ -11,11 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class GetPlanDialogBox extends StatefulWidget {
-  VoidCallback func;
-
-
-  GetPlanDialogBox({ required this.func});
-
+  
   @override
   _GetPlanDialogBoxState createState() => _GetPlanDialogBoxState();
 }
@@ -150,7 +147,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                   SizedBox(
                     height: Get.width*0.045,
                   ),
-                  AppButton(buttonText: 'further', onpressed: widget.func, width: Get.width*0.7, isWhite: false),
+                  AppButton(buttonText: 'further', onpressed:(){ Get.bottomSheet(FurtherSubscription());}, width: Get.width*0.7, isWhite: false),
                   TextButton(onPressed: (){Get.back();},
                       child: Text(
                         getTranslated(context, 'no_thanks')??"",

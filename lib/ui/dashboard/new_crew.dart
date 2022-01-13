@@ -1,12 +1,16 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/models/crew_model.dart';
+import 'package:amigos/models/user_model.dart';
+import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/send_invite.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class NewCrew extends StatefulWidget {
   const NewCrew({Key? key}) : super(key: key);
@@ -16,7 +20,6 @@ class NewCrew extends StatefulWidget {
 }
 
 class _NewCrewState extends State<NewCrew> {
-  bool isChecked = false;
   List<String> favorites=[
     "Julie",
     "Justin",
@@ -57,101 +60,105 @@ class _NewCrewState extends State<NewCrew> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(Get.width*0.17),
-        child: CustomAppBar(
-          function: () {Get.back();},
-          title: "my_new_crew",
-          backButton: true,
-        ),
+    return Consumer<DashboardProvider>(builder: (context,provider,_){
 
-      ),
-      body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: Get.width*0.04),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: Get.width*0.04,
-            ),
-            Text(
-              getTranslated(context, 'favorites')??"",
-              style: AppTextStyle.montserrat(
+      return Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(Get.width*0.17),
+          child: CustomAppBar(
+            function: () {Get.back();},
+            title: "my_new_crew",
+            backButton: true,
+          ),
+
+        ),
+        body: Padding(
+          padding:  EdgeInsets.symmetric(horizontal: Get.width*0.04),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: Get.width*0.04,
+              ),
+              Text(
+                getTranslated(context, 'favorites')??"",
+                style: AppTextStyle.montserrat(
                   AppColors.shadedBlack,
                   Get.width*0.05,
                   FontWeight.w500,
+                ),
               ),
-            ),
-           Column(
-             children:
-               List.generate(
-                   favorites.length,
-                       (index) => crewWidget(favorites[index],favoriteCheckValue[index])
-               )
-             ,
-           ),
-            Padding(
-              padding:  EdgeInsets.symmetric(vertical: Get.width*0.01),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    getTranslated(context, 'my_contacts')??"",
-                    style: AppTextStyle.montserrat(
-                      AppColors.shadedBlack,
-                      Get.width*0.045,
-                      FontWeight.w500,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Get.to(
-                        SendInvite()
-                      );
-                    },
-                    child: Text(
-                      getTranslated(context, 'send_invite')??"",
+              Column(
+                children:
+                List.generate(
+                        provider.crews.where((element) => element.isFavourite==true).length,
+                        (index) => crewWidget((provider.crews[index]),)
+                )
+                ,
+              ),
+              Padding(
+                padding:  EdgeInsets.symmetric(vertical: Get.width*0.01),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      getTranslated(context, 'my_contacts')??"",
                       style: AppTextStyle.montserrat(
-                        AppColors.lightGrey,
+                        AppColors.shadedBlack,
                         Get.width*0.045,
                         FontWeight.w500,
                       ),
                     ),
-                  ),
-                ],
+                    TextButton(
+                      onPressed: () {
+                        Get.to(
+                            SendInvite()
+                        );
+                      },
+                      child: Text(
+                        getTranslated(context, 'send_invite')??"",
+                        style: AppTextStyle.montserrat(
+                          AppColors.lightGrey,
+                          Get.width*0.045,
+                          FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children:
-                  List.generate(
-                      contacts.length,
-                          (index) => crewWidget(contacts[index],contactsCheckValue[index])
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children:
+                    List.generate(
+                        provider.crews.length,
+                            (index) => crewWidget(provider.crews[index]),
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: Get.width*0.04,
-            ),
-            AppButton(
+              SizedBox(
+                height: Get.width*0.04,
+              ),
+              AppButton(
                 buttonText: 'create_crew',
-                onpressed: (){},
+                onpressed: (){provider.groupChats.add(provider.groupChats[0]);Get.back();},
                 width: Get.width*1,
                 isWhite: false,
-            ),
-            SizedBox(
-              height: Get.width*0.04,
-            ),
-          ],
+              ),
+              SizedBox(
+                height: Get.width*0.04,
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+
+    },);
   }
 
-  crewWidget(String title,bool checkValue) {
+  crewWidget( CrewModel model) {
     return
       Padding(
         padding: EdgeInsets.symmetric(vertical: Get.width*0.01),
@@ -173,7 +180,7 @@ class _NewCrewState extends State<NewCrew> {
           SizedBox(
             width: Get.width*0.03,
           ),
-          Text(title,
+          Text(model.name??'',
             style: AppTextStyle.montserrat(
               AppColors.shadedBlack,
               Get.width*0.05,
@@ -181,10 +188,10 @@ class _NewCrewState extends State<NewCrew> {
             ),),
           Spacer(),
           Checkbox(
-            value: checkValue,
+            value: model.isSelected,
             activeColor: AppColors.themeColor,
             onChanged: (value) {
-              checkValue = value!;
+              model.isSelected = value!;
               setState(() {});
             },
             shape: RoundedRectangleBorder(

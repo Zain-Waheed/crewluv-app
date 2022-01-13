@@ -7,6 +7,7 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:share/share.dart';
 
 class TicketDialogBox extends StatefulWidget {
   const TicketDialogBox({Key? key}) : super(key: key);
@@ -78,9 +79,14 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                               style: AppTextStyle.montserrat(AppColors.white, Get.width*0.04, FontWeight.w400),
                             ),
                           ),
-                          Image.asset(AppImages.share,
-                            width: Get.width*0.12,
-                            height: Get.width*0.12,
+                          GestureDetector(
+                            onTap: (){
+                              Share.share('CrewLuv');
+                            },
+                            child: Image.asset(AppImages.share,
+                              width: Get.width*0.12,
+                              height: Get.width*0.12,
+                            ),
                           ),
                         ],
                       ),

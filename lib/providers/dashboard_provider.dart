@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:amigos/models/PreferenceModel.dart';
+import 'package:amigos/models/crew_model.dart';
 import 'package:amigos/models/filter_model.dart';
 import 'package:amigos/models/group_chat_model.dart';
 import 'package:amigos/models/mood_model.dart';
@@ -36,6 +37,7 @@ class DashboardProvider extends ChangeNotifier{
   int allEventPageIndex =0;
   int chatPageIndex = 0;
   int faqIndex=0;
+  List<CrewModel> crews=[];
   List<NotificationModel> notifications =[];
   List<String> names =[
     "sophie",
@@ -52,6 +54,7 @@ class DashboardProvider extends ChangeNotifier{
     addInterests();
     addNotifications();
     addUserInterets();
+    addCrews();
     addUserMusicTaste();
     addEventTypes();
     addMessages();
@@ -83,9 +86,17 @@ class DashboardProvider extends ChangeNotifier{
     MoodModel(AppImages.walking, AppImages.runningIcon, 'Walking'),
     MoodModel(AppImages.birthday, AppImages.balloon, 'Birthday'),
     MoodModel(AppImages.birthday, AppImages.balloon, 'Birthday'),
-
-
   ];
+
+  void addCrews(){
+    crews.add(CrewModel('hassan', false, false));
+    crews.add(CrewModel('usama', false, true));
+    crews.add(CrewModel('zain', false, false));
+    crews.add(CrewModel('hammad', false, false));
+    crews.add(CrewModel('muneed', false, false));
+    crews.add(CrewModel('hamza', false, true));
+
+  }
 
   void addEventTypes(){
     eventTypes.add(EventType(image: AppImages.naughty, title: 'Naughty' ));
@@ -237,9 +248,9 @@ class DashboardProvider extends ChangeNotifier{
 
   }
   void addChats(){
-    personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Julian Dasilva', lastMessage: AppDummyData.shortText,time: 'now'));
-    personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Mike Lyne', lastMessage: AppDummyData.shortText,time:"3 min ago"));
-    personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Jane Doe', lastMessage: AppDummyData.shortText,time:" yesterday"));
+    personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Julian Dasilva', lastMessage: AppDummyData.shortText,time: 'now',isFavourite: false));
+    personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Mike Lyne', lastMessage: AppDummyData.shortText,time:"3 min ago",isFavourite: true));
+    personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Jane Doe', lastMessage: AppDummyData.shortText,time:" yesterday",isFavourite: false));
   }
   void addGroupChat()
   {

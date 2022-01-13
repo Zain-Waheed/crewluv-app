@@ -48,67 +48,73 @@ class _ChatScreenState extends State<ChatScreen> {
               height: Get.width * 0.05,
             ),
 
-            ToggleButtons(
-              borderRadius: BorderRadius.circular(20),
-              constraints: BoxConstraints(
-                maxHeight: Get.height*0.05,
-                minHeight: Get.height*0.05,
-                maxWidth: Get.width*0.275,
-                minWidth: Get.width*0.237,
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.genderBorder),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: ToggleButtons(
+                borderRadius: BorderRadius.circular(20),
+                constraints: BoxConstraints(
+                  maxHeight: Get.height*0.05,
+                  minHeight: Get.height*0.05,
+                  maxWidth: Get.width*0.275,
+                  minWidth: Get.width*0.237,
 
-              ),renderBorder: false,
-              isSelected: [true,false],
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    provider.chatPageIndex=0;
-                    provider.update();
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: provider.chatPageIndex == 0
-                          ? AppColors.themeColor
-                          : AppColors.offWhite,
+                ),renderBorder: false,
+                isSelected: [true,false],
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      provider.chatPageIndex=0;
+                      provider.update();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: provider.chatPageIndex == 0
+                            ? AppColors.themeColor
+                            : AppColors.offWhite,
+                      ),
+                      child: Center(
+                          child: Text(
+                            getTranslated(context, "chats") ?? "",
+                            style: AppTextStyle.montserrat(
+                                provider.chatPageIndex == 0
+                                    ? AppColors.whiteColor
+                                    : AppColors.shadedBlack,
+                                Get.width * 0.035,
+                                FontWeight.w400),
+                          )),
                     ),
-                    child: Center(
-                        child: Text(
-                          getTranslated(context, "chats") ?? "",
-                          style: AppTextStyle.montserrat(
-                              provider.chatPageIndex == 0
-                                  ? AppColors.whiteColor
-                                  : AppColors.shadedBlack,
-                              Get.width * 0.035,
-                              FontWeight.w400),
-                        )),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    provider.chatPageIndex=1;
-                    provider.update();
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: provider.chatPageIndex == 1
-                          ? AppColors.themeColor
-                          : AppColors.offWhite,
+                  GestureDetector(
+                    onTap: () {
+                      provider.chatPageIndex=1;
+                      provider.update();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: provider.chatPageIndex == 1
+                            ? AppColors.themeColor
+                            : AppColors.offWhite,
+                      ),
+                      child: Center(
+                          child: Text(
+                            getTranslated(context, 'my_crew') ?? "",
+                            style: AppTextStyle.montserrat(
+                                provider.chatPageIndex == 1
+                                    ? AppColors.whiteColor
+                                    : AppColors.shadedBlack,
+                                Get.width * 0.035,
+                                FontWeight.w400),
+                          )),
                     ),
-                    child: Center(
-                        child: Text(
-                          getTranslated(context, 'my_crew') ?? "",
-                          style: AppTextStyle.montserrat(
-                              provider.chatPageIndex == 1
-                                  ? AppColors.whiteColor
-                                  : AppColors.shadedBlack,
-                              Get.width * 0.035,
-                              FontWeight.w400),
-                        )),
                   ),
-                ),
 
-              ],
+                ],
+              ),
             ),
             SizedBox(height: Get.height*0.02,),
             IndexedStack(
@@ -191,12 +197,20 @@ class _ChatScreenState extends State<ChatScreen> {
                         width: 2),
                     color: AppColors.white,
                   ),
-                  child: Image.asset(
-                    model.imagePath,
-                    scale: 0.5,
-                    fit: BoxFit.contain,
-                    height: Get.width * 0.23,
-                    width: Get.width * 0.23,
+                  child: Stack(
+                    children: [
+                      Image.asset(
+                        model.imagePath,
+                        scale: 0.5,
+                        fit: BoxFit.contain,
+                        height: Get.width * 0.23,
+                        width: Get.width * 0.23,
+                      ),
+                      model.isFavourite??false?Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Image.asset(AppImages.starFill,height: Get.height*0.03,width: Get.width*0.05,)):SizedBox(),
+                    ],
+
                   ),
                 ),
               ],

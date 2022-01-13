@@ -135,7 +135,7 @@ class _EventWidgetState extends State<EventWidget> {
                                   widget.user.distance.toString(),
                                   style: AppTextStyle.montserrat(
                                       AppColors.shadedBlack,
-                                      Get.width * 0.032,
+                                      Get.width * 0.028,
                                       FontWeight.w400),
                                 ),
                                 Text(
@@ -146,7 +146,7 @@ class _EventWidgetState extends State<EventWidget> {
                                       "",
                                   style: AppTextStyle.montserrat(
                                       AppColors.shadedBlack,
-                                      Get.width * 0.032,
+                                      Get.width * 0.028,
                                       FontWeight.w400),
                                 ),
                               ],
@@ -163,12 +163,13 @@ class _EventWidgetState extends State<EventWidget> {
                       ],
                     ),
                     SizedBox(
-                      height: Get.width * 0.1,
+                      height: Get.width * 0.05,
                     ),
                     Text(
                       widget.event.title ?? "",
                       style: AppTextStyle.montserrat(
                           AppColors.black, Get.width * 0.04, FontWeight.w700),
+
                     ),
                     SizedBox(
                       height: Get.width * 0.01,
@@ -234,6 +235,8 @@ class _EventWidgetState extends State<EventWidget> {
                       widget.event.description ?? "",
                       style: AppTextStyle.montserrat(AppColors.lightGrey,
                           Get.width * 0.038, FontWeight.w400),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(
                       height: Get.width * 0.04,

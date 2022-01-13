@@ -106,68 +106,74 @@ class _FaqsState extends State<Faqs> {
            SizedBox(
              height: Get.height*0.02,
            ),
-           ToggleButtons(
-             borderRadius: BorderRadius.circular(20),
-             constraints: BoxConstraints(
-               maxHeight: Get.height*0.05,
-               minHeight: Get.height*0.05,
-               maxWidth: Get.width*0.275,
-               minWidth: Get.width*0.237,
+           Container(
+             decoration: BoxDecoration(
+               border: Border.all(color: AppColors.genderBorder),
+               borderRadius: BorderRadius.circular(20),
+             ),
+             child: ToggleButtons(
+               borderRadius: BorderRadius.circular(20),
+               constraints: BoxConstraints(
+                 maxHeight: Get.height*0.05,
+                 minHeight: Get.height*0.05,
+                 maxWidth: Get.width*0.275,
+                 minWidth: Get.width*0.237,
 
-             ),renderBorder: false,
-             isSelected: [true,false],
-             children: [
-               GestureDetector(
-                 onTap: () {
-                   provider.faqIndex=0;
-                   provider.update();
+               ),renderBorder: false,
+               isSelected: [true,false],
+               children: [
+                 GestureDetector(
+                   onTap: () {
+                     provider.faqIndex=0;
+                     provider.update();
 
-                 },
-                 child: Container(
-                   decoration: BoxDecoration(
-                     borderRadius: BorderRadius.circular(20),
-                     color: provider.faqIndex == 0
-                         ? AppColors.themeColor
-                         : AppColors.offWhite,
+                   },
+                   child: Container(
+                     decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(20),
+                       color: provider.faqIndex == 0
+                           ? AppColors.themeColor
+                           : AppColors.offWhite,
+                     ),
+                     child: Center(
+                         child: Text(
+                           getTranslated(context, "faqs") ?? "",
+                           style: AppTextStyle.montserrat(
+                               provider.faqIndex == 0
+                                   ? AppColors.whiteColor
+                                   : AppColors.shadedBlack,
+                               Get.width * 0.035,
+                               FontWeight.w400),
+                         )),
                    ),
-                   child: Center(
-                       child: Text(
-                         getTranslated(context, "faqs") ?? "",
-                         style: AppTextStyle.montserrat(
-                             provider.faqIndex == 0
-                                 ? AppColors.whiteColor
-                                 : AppColors.shadedBlack,
-                             Get.width * 0.035,
-                             FontWeight.w400),
-                       )),
                  ),
-               ),
-               GestureDetector(
-                 onTap: () {
-                   provider.faqIndex=1;
-                   provider.update();
-                 },
-                 child: Container(
-                   decoration: BoxDecoration(
-                     borderRadius: BorderRadius.circular(20),
-                     color: provider.faqIndex == 1
-                         ? AppColors.themeColor
-                         : AppColors.offWhite,
+                 GestureDetector(
+                   onTap: () {
+                     provider.faqIndex=1;
+                     provider.update();
+                   },
+                   child: Container(
+                     decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(20),
+                       color: provider.faqIndex == 1
+                           ? AppColors.themeColor
+                           : AppColors.offWhite,
+                     ),
+                     child: Center(
+                         child: Text(
+                           getTranslated(context,"what's new") ?? "",
+                           style: AppTextStyle.montserrat(
+                               provider.faqIndex == 1
+                                   ? AppColors.whiteColor
+                                   : AppColors.shadedBlack,
+                               Get.width * 0.035,
+                               FontWeight.w400),
+                         )),
                    ),
-                   child: Center(
-                       child: Text(
-                         getTranslated(context,"what's new") ?? "",
-                         style: AppTextStyle.montserrat(
-                             provider.faqIndex == 1
-                                 ? AppColors.whiteColor
-                                 : AppColors.shadedBlack,
-                             Get.width * 0.035,
-                             FontWeight.w400),
-                       )),
                  ),
-               ),
 
-             ],
+               ],
+             ),
            ),
            SizedBox(
              height: Get.height*0.02,

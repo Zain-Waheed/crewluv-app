@@ -400,7 +400,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         controller: controller,
                       ),
                       SizedBox(height: Get.height*0.012,),
-                      AppButton(buttonText: 'learn_more', onpressed: (){Get.dialog(GetPlanDialogBox(func: (){}, ));}, width: Get.width, isWhite: false),
+                      AppButton(buttonText: 'learn_more', onpressed: (){Get.dialog(GetPlanDialogBox());}, width: Get.width, isWhite: false),
                       SizedBox(height: Get.height*0.15,),
 
 

@@ -2,15 +2,18 @@ import 'package:amigos/helpers/widgets/appbar_button.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/ui/auth/login_screen.dart';
 import 'package:amigos/utils/colors.dart';
+import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share/share.dart';
 
 class CustomAppBar extends StatefulWidget {
   bool backButton;
   VoidCallback function;
   String? title;
-  CustomAppBar({required this.backButton, required this.function, this.title});
+  String? suffix;
+  CustomAppBar({required this.backButton, required this.function, this.title,this.suffix});
   @override
   _CustomAppBarState createState() => _CustomAppBarState();
 }
@@ -64,6 +67,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
       centerTitle: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
+      actions: [
+        widget.suffix!= null?GestureDetector(
+          onTap: (){
+            Share.share('CrewLuv');
+          },
+            child: Image.asset(widget.suffix??'AppImages.share',height: Get.height*0.5,width: Get.width*0.1,)):SizedBox(),
+      ],
     );
   }
 }

@@ -88,6 +88,7 @@ class _EventDetailsState extends State<EventDetails> {
               },
             title: "event_details",
             backButton: true,
+            suffix: widget.index==0?AppImages.share:''
           ),
 
         ),
@@ -116,7 +117,6 @@ class _EventDetailsState extends State<EventDetails> {
                         ),
                       ],
                     ),
-
                     Expanded(
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
@@ -202,8 +202,8 @@ class _EventDetailsState extends State<EventDetails> {
                                   children: [
                                     Image.asset(AppImages.locationEvent,scale: 3,),
                                     SizedBox(width: Get.width*0.01,),
-                                    Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),),
-                                    Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),),
+                                    Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.035, FontWeight.w400),),
+                                    Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.035, FontWeight.w400),),
                                   ],
                                 ),
                               ],
@@ -213,7 +213,7 @@ class _EventDetailsState extends State<EventDetails> {
 
                           ],
                         ),
-                        SizedBox(height: Get.width*0.1,),
+                        SizedBox(height: Get.width*0.05,),
                         Text(provider.events[0].title??"",style: AppTextStyle.montserrat(AppColors.black,Get.width*0.04,FontWeight.w700),),
                         SizedBox(height: Get.width*0.01,),
                         Row(
@@ -247,7 +247,6 @@ class _EventDetailsState extends State<EventDetails> {
                               ),
                               child: Text("${provider.events[0].distance}  ${getTranslated(context, "km")}",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
                             ),
-
                           ],
 
                         ),
@@ -256,7 +255,7 @@ class _EventDetailsState extends State<EventDetails> {
                         SizedBox(height: Get.width*0.04,),
                         Row(
                           children: [
-                            Text(getTranslated(context,'my_crew')??'',style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
+                            Text(getTranslated(context,widget.index!=1?'my_crew':"joined")??'',style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
                             Spacer(),
                             Stack(
                               children: [
@@ -278,7 +277,7 @@ class _EventDetailsState extends State<EventDetails> {
                                     )),
                               ],
                             ),
-                            Text("${provider.events[0].withFriends}${getTranslated(context, 'of')} ${provider.events[0].maxFriends} ${getTranslated(context, "friends")} "),
+                            Text("${provider.events[0].withFriends} ${getTranslated(context, 'of')} ${provider.events[0].maxFriends} ${getTranslated(context, widget.index==1?"friends":'crew')} "),
                           ],
                         ),
                       ],

@@ -37,6 +37,10 @@ class _AllEventsState extends State<AllEvents> {
            body: Column(
              children: [
                Container(
+                 decoration: BoxDecoration(
+                   border: Border.all(color: AppColors.genderBorder),
+                   borderRadius: BorderRadius.circular(20),
+                 ),
                  child: ToggleButtons(
                    borderRadius: BorderRadius.circular(30),
                    borderColor: AppColors.black,

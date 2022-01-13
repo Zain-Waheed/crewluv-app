@@ -4,6 +4,7 @@ import 'package:amigos/ui/dashboard/all_events.dart';
 import 'package:amigos/ui/dashboard/chat_screen.dart';
 import 'package:amigos/ui/dashboard/create_event.dart';
 import 'package:amigos/ui/dashboard/home_screen.dart';
+import 'package:amigos/ui/dashboard/new_crew.dart';
 import 'package:amigos/ui/dashboard/profile_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -55,9 +56,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             backgroundColor: AppColors.themeColor,
             elevation: 2.0,
             onPressed: () {
-              Get.to(() => CreateEvent(
+             provider.dashboardIndex!=2?Get.to(() => CreateEvent(
                 comingFromEdit: false,
-              ));
+              )):Get.to(()=> NewCrew());
             },
           ),
         ),
@@ -72,7 +73,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                      color: AppColors.black.withOpacity(0.5),
+                      color: AppColors.black.withOpacity(0.9),
                       offset: const Offset(0, 2),
                       blurRadius: 5.0)
                 ],
