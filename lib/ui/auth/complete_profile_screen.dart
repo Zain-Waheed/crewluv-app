@@ -65,6 +65,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       return GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
+          setState(() {
+
+          });
         },
         child: WillPopScope(
           onWillPop: _willPopCallback,
@@ -310,6 +313,14 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
             onChanged: (val) {
               if(dashPro.formKey.currentState!.validate() && isChecked==true){
                 dashPro.formCheck[dashPro.pageIndex] = 1;
+                dashPro.update();
+                setState(() {
+
+                });
+
+              }
+              else{
+                dashPro.formCheck[dashPro.pageIndex] = -1;
                 dashPro.update();
                 setState(() {
 

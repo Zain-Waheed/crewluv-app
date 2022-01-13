@@ -20,7 +20,7 @@ class AppButton extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-              color: AppColors.black.withOpacity(0.2), offset: Offset(0, 4), blurRadius: 5.0)
+              color: AppColors.black.withOpacity(0.3), offset: Offset(0, 2), blurRadius: 5.0)
         ],
         gradient: isWhite==true?AppColors.buttonGradienWhite:AppColors.buttonGradientColor,
         borderRadius: BorderRadius.circular(30),
@@ -46,7 +46,7 @@ class AppButton extends StatelessWidget {
           ),
           child: Text(
             getTranslated(context, buttonText)??"",
-            style: AppTextStyle.montserrat(isWhite==true?AppColors.blackLite:AppColors.whiteColor, Get.width*0.04, FontWeight.w600),
+            style: AppTextStyle.montserrat(isWhite==true?AppColors.shadedBlack:AppColors.whiteColor, Get.width*0.04, FontWeight.w600),
           ),
         ),
       ),

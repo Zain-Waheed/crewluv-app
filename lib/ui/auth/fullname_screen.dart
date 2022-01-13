@@ -63,7 +63,6 @@ class _EnterFullNameState extends State<EnterFullName> {
               autofocus: true,
               onChanged: (val)
               {
-
                 setState(() {
                   if(dashPro.formKey.currentState!.validate())
                   {
@@ -73,6 +72,7 @@ class _EnterFullNameState extends State<EnterFullName> {
                   {
                     dashPro.formCheck[dashPro.pageIndex]=-1;
                   }
+                  dashPro.fullNameController.text.removeAllWhitespace;
                 });
                 Get.forceAppUpdate();
               },

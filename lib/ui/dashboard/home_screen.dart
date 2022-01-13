@@ -160,8 +160,9 @@ class _HomeScreenState extends State<HomeScreen> {
             physics: const NeverScrollableScrollPhysics(),
             children: [
               MapScreen(),
-              Padding(
-                padding: EdgeInsets.only(top:Get.width*0.25),
+              Container(
+                padding: EdgeInsets.only(top:Get.width*0.25,bottom: Get.height*0.1),
+                color: Colors.transparent,
                 child: SingleChildScrollView(
                   child: Column(
                     children: List.generate(provider.events.length, (index) => GestureDetector(

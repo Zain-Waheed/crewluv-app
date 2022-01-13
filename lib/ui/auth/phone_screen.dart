@@ -43,6 +43,9 @@ class _PhoneNumberState extends State<PhoneNumber> {
       return   GestureDetector(
         onTap: (){
           FocusScope.of(context).requestFocus(new FocusNode());
+          setState(() {
+
+          });
         },
         child: Scaffold(
           appBar:PreferredSize(preferredSize: Size.fromHeight(Get.width*0.17),
@@ -86,7 +89,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                       Align(
                         alignment: Alignment.center,
                         child: Container(
-                          height: Get.width * 0.15,
+                          height: Get.width * 0.16,
                           width: Get.width*0.003,
                           color: focus.hasFocus?AppColors.themeColor:AppColors.greyText,
                           margin: EdgeInsets.only(right: Get.width*0.3),
@@ -139,8 +142,9 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 borderSide: BorderSide(color: AppColors.themeColor,style: BorderStyle.solid)
                             ),
                             onInputChanged: (number) {
-                              number = number;
-                              print(number);
+                              setState(() {
+
+                              });
                             },
                             onInputValidated: (bool value) {
                               validated=value;

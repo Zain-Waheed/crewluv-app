@@ -103,11 +103,11 @@ class FieldValidator {
   }
 
   static String? validateName(String? value) {
+
     if (value!.isEmpty) {
       return getTranslated(Get.context, "name_required");
     }
-
-    if (!RegExp(r'^[a-z A-Z,.\-]+$').hasMatch(value)) {
+    if (!RegExp(r'^[a-zA-Z0-9_\-=@,\.;]+$').hasMatch(value)) {
       return getTranslated(Get.context, "invalid_name");
     }
 

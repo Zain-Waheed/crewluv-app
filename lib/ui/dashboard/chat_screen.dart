@@ -110,6 +110,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
               ],
             ),
+            SizedBox(height: Get.height*0.02,),
             IndexedStack(
               index: provider.chatPageIndex,
               children: [

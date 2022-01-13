@@ -30,6 +30,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context, provider, _) {
       return Scaffold(
+        extendBody: true,
         body: IndexedStack(
           index: provider.dashboardIndex,
           children: const [
@@ -62,7 +63,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         ),
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           child: BottomAppBar(
             clipBehavior: Clip.antiAlias,
             child: Container(
@@ -123,12 +124,30 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         provider.dashboardIndex = 2;
                         provider.update();
                       },
-                      child: Image.asset(provider.personalChats.any((element) => element.seen==false && provider.dashboardIndex==2 && provider.chatPageIndex==0)?AppImages.chatMessage:AppImages.chat2,
-                          height: Get.height*0.07,
-                          width: Get.width*0.07,
-                          color: provider.dashboardIndex == 2
-                              ? AppColors.themeColor
-                              : AppColors.slateGrey)),
+                      child: Container(
+                        height: Get.height*0.035,
+                        child: Stack(
+                          children: [
+                            Image.asset(AppImages.chat2,
+                                height: Get.height*0.07,
+                                width: Get.width*0.07,
+                                color: provider.dashboardIndex == 2
+                                    ? AppColors.themeColor
+                                    : AppColors.slateGrey),
+                            provider.personalChats.any((element) => element.seen==false && provider.dashboardIndex==2 && provider.chatPageIndex==0)?Align(
+                              alignment: Alignment.topRight,
+                              child: Container(
+                                margin: EdgeInsets.only(left: 22),
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.red
+                                ),
+                              ),
+                            ):SizedBox()
+                          ],
+                        ),
+                      )),
                   GestureDetector(
                       onTap: () {
                         provider.dashboardIndex = 3;
@@ -144,7 +163,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               ),
             ),
             shape: const CircularNotchedRectangle(),
-            elevation: 10,
+            elevation: 0,
             notchMargin: 7,
           ),
         ),

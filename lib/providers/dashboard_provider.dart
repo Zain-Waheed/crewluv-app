@@ -189,6 +189,9 @@ class DashboardProvider extends ChangeNotifier{
     events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
     events.add(EventModel( title: 'Bonfire Party', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.bonFire,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
     events.add(EventModel(title: 'Friends Mode', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.partySmall,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: false,));
+    events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
+    events.add(EventModel( title: 'Bonfire Party', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.bonFire,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
+    events.add(EventModel(title: 'Friends Mode', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.partySmall,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: false,));
   }
   void  addUserInterets()
   {

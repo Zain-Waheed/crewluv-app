@@ -71,10 +71,10 @@ class _MoodWidgetState extends State<MoodWidget> {
                       SizedBox(height: Get.width*0.01,),
                       TextFormField(
                        maxLines: 2,
-                      decoration: AppInputDecoration.lessCircularDecoration(null,getTranslated(context, 'type_here')??'',null,AppColors.silverWhite),
+                      decoration: AppInputDecoration.lessCircularDecoration(null,'type_here',null,AppColors.silverWhite),
                       ),
                       SizedBox(height: Get.width*0.05,),
-                      AppButton(width: Get.width,isWhite: false,buttonText: 'lets_go',onpressed: (){},),
+                      AppButton(width: Get.width,isWhite: false,buttonText: 'lets_go',onpressed: (){Navigator.of(context).pop();},),
                       TextButton(
                         onPressed: () {
                          Get.back();

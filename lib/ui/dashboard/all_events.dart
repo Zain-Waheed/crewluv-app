@@ -21,7 +21,7 @@ class AllEvents extends StatefulWidget {
 
 class _AllEventsState extends State<AllEvents> {
 
-
+ List<bool> selected=[true,false,false];
   @override
   Widget build(BuildContext context) {
    return Consumer<DashboardProvider>(builder:(context,provider,_)
@@ -36,88 +36,95 @@ class _AllEventsState extends State<AllEvents> {
            ),
            body: Column(
              children: [
-               ToggleButtons(
-                 borderRadius: BorderRadius.circular(20),
-                 constraints: BoxConstraints(
-                   maxHeight: Get.height*0.05,
-                   minHeight: Get.height*0.05,
-                   maxWidth: Get.width*0.275,
-                   minWidth: Get.width*0.237,
+               Container(
+                 child: ToggleButtons(
+                   borderRadius: BorderRadius.circular(30),
+                   borderColor: AppColors.black,
+                   fillColor: Colors.transparent,
+                   constraints: BoxConstraints(
+                     maxHeight: Get.height*0.05,
+                     minHeight: Get.height*0.05,
+                     maxWidth: Get.width*0.275,
+                     minWidth: Get.width*0.237,
 
-                 ),renderBorder: false,
-                 isSelected: [true,false,false],
-                 children: [
-                   GestureDetector(
-                     onTap: (){
+                   ),renderBorder: false,
+                   onPressed: (x){
+
+                     if(x==0){
                        provider.allEventPageIndex=0;
                        provider.update();
+                       selected[0]=true;
+                       selected[1]=selected[2]=false;
 
-                     },
-                     child: Container(
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(provider.allEventPageIndex==0?20:0),
-                         color: provider.allEventPageIndex==0?AppColors.themeColor:AppColors.offWhite,
-                       ),
-                       child: Center(child: Text(getTranslated(context, "my_events")??"",style: AppTextStyle.montserrat(provider.allEventPageIndex==0?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
-                     ),
-                   ),
-                   GestureDetector(
-                     onTap: (){
+                     }
+                     else if(x==1){
                        provider.allEventPageIndex=1;
                        provider.update();
-                     },
-                     child: Container(
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(provider.allEventPageIndex==1?20:0),
-                         color: provider.allEventPageIndex==1?AppColors.themeColor:AppColors.offWhite,
-                       ),
-                       child: Center(child: Text(getTranslated(context, 'joined')??"",style: AppTextStyle.montserrat(provider.allEventPageIndex==1?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
-                     ),
-                   ),
-                   GestureDetector(
-                     onTap: (){
+                       selected[1]=true;
+                       selected[0]=selected[2]=false;
+
+                     }
+                     else{
                        provider.allEventPageIndex=2;
                        provider.update();
-                     },
-                     child: Container(
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(provider.allEventPageIndex==2?20:0),
-                         color: provider.allEventPageIndex==2?AppColors.themeColor:AppColors.offWhite,
-                       ),
-                       child: Center(child: Text(getTranslated(context, "pending2")??"",style: AppTextStyle.montserrat(provider.allEventPageIndex==2?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
-                     ),
-                   ),
+                       selected[2]=true;
+                       selected[1]=selected[0]=false;
 
+                     }
 
-                 ],
+                   },
+                   isSelected: selected,
+                   children:
+                   [
+                     tabs( 'my_events',selected[0]),
+                     tabs( 'joined',selected[1]),
+                     tabs( 'pending2',selected[2]),
+
+                   ],
+                 ),
                ),
                Expanded(
-                 child: IndexedStack(
-                   index: provider.allEventPageIndex,
-                   children: [
-                     SingleChildScrollView(
-                       child: Column(
-                         children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){Get.to(EventDetails(index: allEventsIndex,));},
-                             child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
+                 child: Padding(
+                   padding: EdgeInsets.only(bottom: Get.height*0.1),
+                   child: IndexedStack(
+                     index: provider.allEventPageIndex,
+                     children: [
+                       SingleChildScrollView(
+                         child: Column(
+                           children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
+                             Get.to(EventDetails(index: 0,));},
+                               child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
+                         ),
                        ),
-                     ),
-                     SingleChildScrollView(
-                       child: Column(
-                         children: List.generate(provider.events.length, (index)=> GestureDetector(  onTap: (){Get.to(EventDetails(index: allEventsIndex,));},
-                             child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
+                       SingleChildScrollView(
+                         child: Column(
+                           children: List.generate(provider.events.length, (index)=> GestureDetector(  onTap: (){
+                             Get.to(EventDetails(index: 1,));},
+                               child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
+                         ),
                        ),
-                     ),
-                     SingleChildScrollView(
-                       child: Column(
-                         children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){Get.to(EventDetails(index: allEventsIndex,));},child: EventDescriptionWidget(model: provider.events[index],titleImage: false,))),
+                       SingleChildScrollView(
+                         child: Column(
+                           children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
+                             Get.to(EventDetails(index: 2,));},child: EventDescriptionWidget(model: provider.events[index],titleImage: false,))),
+                         ),
                        ),
-                     ),
-                   ],
+                     ],
+                   ),
                  ),
                ),
              ],
            ),
          );
        });
+  }
+  Widget tabs(String? text,bool selected){
+    return   Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(selected?20:0),
+        color: selected?AppColors.themeColor:AppColors.offWhite,
+      ),
+      child: Center(child: Text(getTranslated(context, text??'')??"",style: AppTextStyle.montserrat(selected?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
+    );
   }
 }

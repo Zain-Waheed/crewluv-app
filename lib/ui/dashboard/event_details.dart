@@ -73,53 +73,6 @@ class _EventDetailsState extends State<EventDetails> {
     super.initState();
 
   }
-  // // Method for retrieving the current location
-  // _getCurrentLocation() async {
-  //   await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-  //       .then((Position position) async {
-  //     setState(() {
-  //       _currentPosition = position;
-  //       log('CURRENT POS: $_currentPosition!');
-  //       mapController.animateCamera(
-  //         CameraUpdate.newCameraPosition(
-  //           CameraPosition(
-  //             target: LatLng(position.latitude, position.longitude),
-  //             zoom: 15,
-  //           ),
-  //         ),
-  //       );
-  //     });
-  //     await _getAddress();
-  //   }).catchError((e) {
-  //     log(e);
-  //   });
-  // }
-  //
-  // // Method for retrieving the address
-  // _getAddress() async {
-  //   try {
-  //     // Places are retrieved using the coordinates
-  //     List<Placemark> p = await placemarkFromCoordinates(
-  //         currentPosition!.latitude, currentPosition!.longitude);
-  //
-  //     // Taking the most probable result
-  //     Placemark place = p[0];
-  //
-  //     setState(() {
-  //       // Structuring the address
-  //       _currentAddress =
-  //       "${place.name}, ${place.locality}, ${place.postalCode}, ${place.country}";
-  //
-  //       // Update the text of the TextField
-  //       startAddressController.text = _currentAddress;
-  //
-  //       // Setting the user's present location as the starting address
-  //       startAddress = currentAddress;
-  //     });
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
 
 
   @override
@@ -144,7 +97,7 @@ class _EventDetailsState extends State<EventDetails> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                widget.index==1 && provider.events[0].personalEvent==false?Row(
+                widget.index==1 && provider.events[0].personalEvent==true?Row(
                   children: [
                     Stack(
                       children: [
@@ -350,23 +303,8 @@ class _EventDetailsState extends State<EventDetails> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: DrawMapRoute(),
-                        /*GoogleMap(
-                          initialCameraPosition: _initialLocation,
-                          zoomControlsEnabled: false,
-                          myLocationEnabled: true,
-                          myLocationButtonEnabled: false,
-                          mapType: MapType.normal,
-                          zoomGesturesEnabled: true,
-                          markers: getmarkers(),
 
 
-
-                          // {
-                          //
-                          //   Set.from(myMarker)
-                          // },
-                          // onTap: getmarkers,
-                        ),*/
                       ),
                     ),
                     Padding(
