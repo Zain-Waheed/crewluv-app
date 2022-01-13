@@ -82,6 +82,15 @@ class DashboardProvider extends ChangeNotifier{
     File(""),
     File(""),
   ];
+
+  File? profileImage;
+  Future getProfileImage(int index) async {
+    await ImagePicker().pickImage(source: ImageSource.gallery).then((value) {
+      mediaListImages[index] = File(value!.path);
+      notifyListeners();
+    });
+  }
+
   List<MoodModel> moods=[
     MoodModel(AppImages.walking, AppImages.runningIcon, 'Walking'),
     MoodModel(AppImages.birthday, AppImages.balloon, 'Birthday'),
@@ -105,13 +114,6 @@ class DashboardProvider extends ChangeNotifier{
     eventTypes.add(EventType(image: AppImages.laughing, title: 'Laughing' ));
     eventTypes.add(EventType(image: AppImages.happy, title: 'Happy' ));
     eventTypes.add(EventType(image: AppImages.party, title: 'Party' ));
-  }
-   File? profileImage;
-  Future getProfileImage(int index) async {
-    await ImagePicker().pickImage(source: ImageSource.gallery).then((value) {
-    mediaListImages[index] = File(value!.path);
-      notifyListeners();
-    });
   }
   void  addFavoriteDrinks(  )
   {

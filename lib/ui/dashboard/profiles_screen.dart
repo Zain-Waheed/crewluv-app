@@ -89,6 +89,7 @@ class _ProfilesState extends State<Profiles> {
                 swipeAnchor: SwipeAnchor.top,
                 itemCount: provider.users.length,
                 stackClipBehaviour: Clip.antiAliasWithSaveLayer,
+                swipeAssistDuration: Duration(milliseconds: 100),
                 builder: (context, index, constraints) {
                   pageIndex=index;
                   return  ProfilesWidget(provider.users[index],provider);
@@ -100,7 +101,6 @@ class _ProfilesState extends State<Profiles> {
                   ];
                   return allowedActions.contains(direction);
                 },
-
                   overlayBuilder: (
                       context,
                       constraints,
@@ -118,11 +118,17 @@ class _ProfilesState extends State<Profiles> {
                   },
                   onSwipeCompleted:(int, SwipeDirection){
                       print("$int" );
-                    if(controller.currentIndex==4)
+                    if(controller.currentIndex==3)
                     {
                       Get.dialog(
                           SubscriptionDialogBox()
                       );
+                    }
+                    if( isStar=isStar){
+                      isStar=!isStar;
+                      setState(() {
+
+                      });
                     }
               }
               ),
@@ -159,7 +165,7 @@ class _ProfilesState extends State<Profiles> {
                 GestureDetector(
                   onTap:(){
                     print(controller.currentIndex);
-                    if(controller.currentIndex==5)
+                    if(controller.currentIndex==3)
                       {
                         Get.dialog(
                             SubscriptionDialogBox()
@@ -195,8 +201,17 @@ class _ProfilesState extends State<Profiles> {
                     Get.dialog(
                         NotificationDialogBox()
                     );
-                    provider.users.removeAt( controller.currentIndex);
-                    provider.update();
+                    if(controller.currentIndex==3)
+                    {
+                      Get.dialog(
+                          SubscriptionDialogBox()
+                      );
+                    }else
+                    {
+                      controller.next(
+                          swipeDirection: SwipeDirection.right
+                      );
+                    }
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: Get.width*0.04),
@@ -219,6 +234,9 @@ class _ProfilesState extends State<Profiles> {
                 ),
                 GestureDetector(
                   onTap:(){
+                    Get.dialog(
+                        NotificationDialogBox()
+                    );
                     isStar=!isStar;
                     provider.users[controller.currentIndex].favorite=true;
                     provider.update();

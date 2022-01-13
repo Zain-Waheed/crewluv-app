@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:amigos/helpers/bottom_sheets/edit_gender_bottomsheet.dart';
 import 'package:amigos/helpers/bottom_sheets/ticketbuy_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
@@ -14,6 +16,7 @@ import 'package:amigos/ui/dashboard/profiles_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
@@ -31,11 +34,11 @@ class EventDetails extends StatefulWidget {
 }
 
 class _EventDetailsState extends State<EventDetails> {
-
-   Address? address;
+  Address? address;
   Position? position;
   bool? isLoading = true;
-  final CameraPosition _initialLocation =const CameraPosition(
+  FilePickerResult? result;
+  final CameraPosition _initialLocation = const CameraPosition(
     target: LatLng(31.4564555, 74.2852029),
     zoom: 15,
   );
@@ -66,8 +69,6 @@ class _EventDetailsState extends State<EventDetails> {
   }
   @override
   void initState() {
-
-
     _getLocation();
     // TODO: implement initState
     super.initState();
@@ -88,7 +89,6 @@ class _EventDetailsState extends State<EventDetails> {
               },
             title: "event_details",
             backButton: true,
-            suffix: widget.index==0?AppImages.share:''
           ),
 
         ),
@@ -117,6 +117,7 @@ class _EventDetailsState extends State<EventDetails> {
                         ),
                       ],
                     ),
+
                     Expanded(
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
@@ -202,8 +203,8 @@ class _EventDetailsState extends State<EventDetails> {
                                   children: [
                                     Image.asset(AppImages.locationEvent,scale: 3,),
                                     SizedBox(width: Get.width*0.01,),
-                                    Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.035, FontWeight.w400),),
-                                    Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.035, FontWeight.w400),),
+                                    Text(provider.users[0].distance.toString(),style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),),
+                                    Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w400),),
                                   ],
                                 ),
                               ],
@@ -213,7 +214,7 @@ class _EventDetailsState extends State<EventDetails> {
 
                           ],
                         ),
-                        SizedBox(height: Get.width*0.05,),
+                        SizedBox(height: Get.width*0.1,),
                         Text(provider.events[0].title??"",style: AppTextStyle.montserrat(AppColors.black,Get.width*0.04,FontWeight.w700),),
                         SizedBox(height: Get.width*0.01,),
                         Row(
@@ -247,6 +248,7 @@ class _EventDetailsState extends State<EventDetails> {
                               ),
                               child: Text("${provider.events[0].distance}  ${getTranslated(context, "km")}",style: AppTextStyle.montserrat(AppColors.themeColor, Get.width*0.035, FontWeight.w700),),
                             ),
+
                           ],
 
                         ),
@@ -255,7 +257,7 @@ class _EventDetailsState extends State<EventDetails> {
                         SizedBox(height: Get.width*0.04,),
                         Row(
                           children: [
-                            Text(getTranslated(context,widget.index!=1?'my_crew':"joined")??'',style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
+                            Text(getTranslated(context,'my_crew')??'',style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
                             Spacer(),
                             Stack(
                               children: [
@@ -277,60 +279,82 @@ class _EventDetailsState extends State<EventDetails> {
                                     )),
                               ],
                             ),
-                            Text("${provider.events[0].withFriends} ${getTranslated(context, 'of')} ${provider.events[0].maxFriends} ${getTranslated(context, widget.index==1?"friends":'crew')} "),
+                            Text("${provider.events[0].withFriends}${getTranslated(context, 'of')} ${provider.events[0].maxFriends} ${getTranslated(context, "friends")} "),
                           ],
                         ),
                       ],
                     ),
+                  )),
+                  SizedBox(
+                    height: Get.width * 0.05,
                   ),
-
-                ),
-                SizedBox(height: Get.width*0.05,),
-                widget.index!=2?AppButton(buttonText: widget.index==0? 'view_request' :"view_tickets", onpressed: (){widget.index==0?Get.to(()=>Profiles()):
-                Get.dialog(TicketDialogBox());
-                }, width: Get.width, isWhite: true):SizedBox(),
-                SizedBox(height:Get.height*0.05,),
-                Stack(
-                  children: [
-                    Container(
-                      height: Get.height*0.2,
-                      width: Get.width,
-                      decoration: BoxDecoration(
+                  widget.index != 2
+                      ? AppButton(
+                          buttonText: widget.index == 0
+                              ? 'view_request'
+                              : "view_tickets",
+                          onpressed: () {
+                            widget.index == 0
+                                ? Get.to(() => Profiles())
+                                : Get.dialog(TicketDialogBox());
+                          },
+                          width: Get.width,
+                          isWhite: true)
+                      : SizedBox(),
+                  SizedBox(
+                    height: Get.height * 0.05,
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        height: Get.height * 0.2,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: AppColors.themeColor)),
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color:AppColors.themeColor)
+                          child: DrawMapRoute(),
+                        ),
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: DrawMapRoute(),
-
-
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10.0,left: 12),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(getTranslated(context,'route')??"",
-                          style: AppTextStyle.montserrat(
-                            AppColors.blackDark,
-                            Get.width*0.06,
-                            FontWeight.w400,
+                      Padding(
+                        padding: EdgeInsets.only(top: 10.0, left: 12),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            getTranslated(context, 'route') ?? "",
+                            style: AppTextStyle.montserrat(
+                              AppColors.blackDark,
+                              Get.width * 0.06,
+                              FontWeight.w400,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-        bottomNavigationBar: widget.index!=1?Container(
-          padding:const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-          child:AppButton(buttonText: widget.index==0?'edit2':'pending3' , onpressed: (){Get.to(()=>CreateEvent(comingFromEdit: true,editEventModel:provider.events[0],));}, width: Get.width, isWhite: widget.index!=2? false: true),
-        ):const SizedBox(),
-      );
-
-    },);
+          bottomNavigationBar: widget.index != 1
+              ? Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: AppButton(
+                      buttonText: widget.index == 0 ? 'edit2' : 'pending3',
+                      onpressed: () {
+                        Get.to(() => CreateEvent(
+                              comingFromEdit: true,
+                              editEventModel: provider.events[0],
+                            ));
+                      },
+                      width: Get.width,
+                      isWhite: widget.index != 2 ? false : true),
+                )
+              : const SizedBox(),
+        );
+      },
+    );
   }
 }
