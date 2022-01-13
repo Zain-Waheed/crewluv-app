@@ -45,10 +45,10 @@ class _EventDescriptionWidgetState extends State<EventDescriptionWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(AppImages.location,scale: 2.5,),
+              Image.asset(AppImages.location,width: Get.width*0.03,height: Get.height*0.03,),
               SizedBox(width: Get.width*0.01,),
-              Text('${widget.model.distance} ',style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.035, FontWeight.w400),),
-              Text(widget.model.liveLocation??",Wapda Town",style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.035, FontWeight.w400)),
+              Text('${widget.model.distance} ',style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.04, FontWeight.w400),),
+              Text(widget.model.liveLocation??",Wapda Town",style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.04, FontWeight.w400)),
               const Spacer(),
               Text(widget.model.day??"",style: AppTextStyle.montserrat(AppColors.eventGrey, Get.width*0.03, FontWeight.w400)),
               const SizedBox(width: 2,),

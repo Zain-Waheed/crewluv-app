@@ -37,7 +37,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
           color: AppColors.whiteColor,
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: Get.width*0.02,
+          horizontal: Get.width*0.05,
         ),
         child: Column(
           children: [
@@ -243,7 +243,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                         ),
                         Spacer(),
                         Text(
-                          "${_values.start}-${_values.end}y/o",
+                          "${_values.start.toStringAsFixed(0)}-${_values.end.toStringAsFixed(0)}y/o",
                           style: AppTextStyle.montserrat(
                             AppColors.shadedBlack,
                             Get.width*0.035,
@@ -272,8 +272,8 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                           color: AppColors.whiteColor,
                         ),
                       ),
-                      min: 2.0,
-                      max: 10.0,
+                      min: 0,
+                      max: 70.0,
                       interval: 1,
                       activeColor: AppColors.themeColor,
                       inactiveColor: AppColors.grey,
@@ -300,7 +300,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                         ),
                         Spacer(),
                         Text(
-                          "${_currentSliderValue.toString()} mi",
+                          "${_currentSliderValue.toStringAsFixed(1)} mi",
                           style: AppTextStyle.montserrat(
                             AppColors.shadedBlack,
                             Get.width*0.035,

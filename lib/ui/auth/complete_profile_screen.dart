@@ -24,7 +24,6 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
-FocusNode focus = FocusNode();
 
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({Key? key}) : super(key: key);
@@ -277,7 +276,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   }
 
   Widget emailScreen(DashboardProvider dashPro) {
-    FocusNode focus = FocusNode();
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -310,10 +308,19 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               });
             },
             onChanged: (val) {
+              if(dashPro.formKey.currentState!.validate() && isChecked==true){
+                dashPro.formCheck[dashPro.pageIndex] = 1;
+                dashPro.update();
+                setState(() {
+
+                });
+
+              }
               setState(() {
 
                 });
               },
+
               validator: (value) =>
                   FieldValidator.validateEmail(dashPro.emailController.text),
               decoration: AppInputDecoration.circularFieldDecoration(
@@ -334,14 +341,19 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 value: isChecked,
                 activeColor: AppColors.themeColor,
                 onChanged: (value) {
-                  if(value==true ){
+                  if(value==true && dashPro.formKey.currentState!.validate()){
                     dashPro.formCheck[dashPro.pageIndex] = 1;
+                    dashPro.update();
                     setState(() {
 
                     });
                   }else
                     {
                       dashPro.formCheck[dashPro.pageIndex] = -1;
+                      dashPro.update();
+                      setState(() {
+
+                      });
                     }
                   isChecked = value!;
                   setState(() {});

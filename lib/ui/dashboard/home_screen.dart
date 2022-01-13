@@ -32,75 +32,98 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,provider,_)
     {
-      return Scaffold(
-        floatingActionButton: Align(
-          alignment: Alignment.topCenter,
-          child: Padding(
-            padding:  EdgeInsets.only(top: Get.height*0.1,left:Get.width*0.05,right: Get.width*0.02, ),
-            child: Row(
-              children: [
-                Container(
-                  height: Get.width*0.1,
-                  width: Get.width*0.3,
-                  margin: const EdgeInsets.only(left: 5),
-                  decoration: BoxDecoration(
+      return GestureDetector(
+        onTap: (){
+          Get.back();
 
-                      boxShadow: [
-                        BoxShadow(color: AppColors.black.withOpacity(0.1), offset: const Offset(0, 1), blurRadius: 12.0)
-                      ]
-                  ),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                          pageIndex=0;
-                          setState(() {
+        },
+        child: Scaffold(
+          floatingActionButton: Align(
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding:  EdgeInsets.only(top: Get.height*0.1,left:Get.width*0.05,right: Get.width*0.02, ),
+              child: Row(
+                children: [
+                  Container(
+                    height: Get.width*0.1,
+                    width: Get.width*0.3,
+                    margin: const EdgeInsets.only(left: 5),
+                    decoration: BoxDecoration(
 
-                          });
-                          _controller.jumpToPage(pageIndex);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: Get.width*0.02,vertical: 2),
+                        boxShadow: [
+                          BoxShadow(color: AppColors.black.withOpacity(0.1), offset: const Offset(0, 1), blurRadius: 12.0)
+                        ]
+                    ),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            pageIndex=0;
+                            setState(() {
 
-                          decoration: BoxDecoration(
-                            color: pageIndex==1?AppColors.whiteColor:AppColors.themeColor,
-                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(16),bottomLeft: Radius.circular(16)),
+                            });
+                            _controller.jumpToPage(pageIndex);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: Get.width*0.02,vertical: 2),
+
+                            decoration: BoxDecoration(
+                              color: pageIndex==1?AppColors.whiteColor:AppColors.themeColor,
+                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(16),bottomLeft: Radius.circular(16)),
+                            ),
+                            child: Image.asset(pageIndex==0? AppImages.yourLocation2:AppImages.yourLocation,),
                           ),
-                          child: Image.asset(pageIndex==0? AppImages.yourLocation2:AppImages.yourLocation,),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          pageIndex=1;
-                          setState(() {
+                        GestureDetector(
+                          onTap: (){
+                            pageIndex=1;
+                            setState(() {
 
-                          });
-                          _controller.jumpToPage(pageIndex);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.symmetric(vertical:Get.width*0.03,horizontal: Get.width*0.02),
-                          decoration: BoxDecoration(
-                            color: pageIndex==1?AppColors.themeColor:AppColors.whiteColor,
-                            borderRadius: const BorderRadius.only(topRight: Radius.circular(16),bottomRight: Radius.circular(16)),
+                            });
+                            _controller.jumpToPage(pageIndex);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical:Get.width*0.03,horizontal: Get.width*0.02),
+                            decoration: BoxDecoration(
+                              color: pageIndex==1?AppColors.themeColor:AppColors.whiteColor,
+                              borderRadius: const BorderRadius.only(topRight: Radius.circular(16),bottomRight: Radius.circular(16)),
 
+                            ),
+                            child: Image.asset(AppImages.list,scale: 2.7,color:pageIndex==0?AppColors.black:AppColors.whiteColor,),
                           ),
-                          child: Image.asset(AppImages.list,scale: 2.7,color:pageIndex==0?AppColors.black:AppColors.whiteColor,),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const Spacer(),
-                GestureDetector(
-                    onTap:(){
-                      Get.dialog(
-                          MoodWidget()
-                      );
+                  const Spacer(),
+                  GestureDetector(
+                      onTap:(){
+                        Get.dialog(
+                            MoodWidget()
+                        );
+                      },
+                      child: Container(
+                        height: Get.width*.1,
+                        padding: EdgeInsets.all(Get.width*0.02),
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: AppColors.whiteColor,
+                            boxShadow: [
+                              BoxShadow(color: AppColors.opacBlack,blurRadius: 5)
+                            ]
+                        ),
+
+                        child: Image.asset(AppImages.party,scale: 2,),
+                      )
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>  NotificationScreen());
                     },
                     child: Container(
                       height: Get.width*.1,
-                      padding: EdgeInsets.all(Get.width*0.02),
-                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.all(Get.width*0.015),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: AppColors.whiteColor,
@@ -109,71 +132,54 @@ class _HomeScreenState extends State<HomeScreen> {
                           ]
                       ),
 
-                      child: Image.asset(AppImages.party,scale: 2,),
-                    )
-                ),
-                GestureDetector(
-                  onTap: (){
-                    Get.to(()=>  NotificationScreen());
-                  },
-                  child: Container(
-                    height: Get.width*.1,
-                    padding: EdgeInsets.all(Get.width*0.015),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: AppColors.whiteColor,
-                        boxShadow: [
-                          BoxShadow(color: AppColors.opacBlack,blurRadius: 5)
-                        ]
-                    ),
-
-                    child: Stack(
-                      alignment: Alignment.topRight,
-                      children: [
-                        Image.asset(AppImages.noNotification,scale: 2,),
-                        provider.notifications.any((element) => element.isSeen==false)?Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                            margin: EdgeInsets.only(bottom: 10),
-                            padding: EdgeInsets.all(Get.height*0.006),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.red,
+                      child: Stack(
+                        alignment: Alignment.topRight,
+                        children: [
+                          Image.asset(AppImages.noNotification,scale: 2,),
+                          provider.notifications.any((element) => element.isSeen==false)?Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              padding: EdgeInsets.all(Get.height*0.006),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.red,
+                              ),
                             ),
-                          ),
-                        ):SizedBox()
-                      ],
-                    ),
-                  )
-                ),
-              ],
-            ),
-          ),
-        ),
-        body: PageView(
-          controller: _controller,
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-            MapScreen(),
-            Padding(
-              padding: EdgeInsets.only(top:Get.width*0.25),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: List.generate(provider.events.length, (index) => GestureDetector(
-                      onTap: (){
-                        Get.dialog(EventWidget(user: provider.users.first, event :provider.events[index] ));
-                      },
-                      child: EventDescriptionWidget(model: provider.events[index],titleImage: true,))),
-                ),
+                          ):SizedBox()
+                        ],
+                      ),
+                    )
+                  ),
+                ],
               ),
             ),
-          ],
-          onPageChanged: (index){
-            pageIndex=index;
-            setState(() {
+          ),
+          body: PageView(
+            controller: _controller,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              MapScreen(),
+              Padding(
+                padding: EdgeInsets.only(top:Get.width*0.25),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: List.generate(provider.events.length, (index) => GestureDetector(
+                        onTap: (){
+                          Get.dialog(EventWidget(user: provider.users.first, event :provider.events[index] ));
+                        },
+                        child: EventDescriptionWidget(model: provider.events[index],titleImage: true,))),
+                  ),
+                ),
+              ),
+            ],
+            onPageChanged: (index){
+              pageIndex=index;
+              setState(() {
 
-            });
-          },
+              });
+            },
+          ),
         ),
       );
     });

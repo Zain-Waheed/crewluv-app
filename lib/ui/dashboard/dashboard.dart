@@ -41,13 +41,14 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Container(
-          height: Get.height * 0.1,
-          width: Get.width * 0.17,
+          height: Get.height * 0.12,
+          width: Get.width * 0.18,
           child: FloatingActionButton(
             child: Center(
                 child: Image.asset(
                   AppImages.addEvent,
-                  scale: 2.5,
+                    height: Get.height*0.05,
+                  width: Get.width*0.8,
                   color: AppColors.whiteColor,
                 )),
             backgroundColor: AppColors.themeColor,
@@ -90,7 +91,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       provider.update();
                     },
                     child: Image.asset(AppImages.home,
-                        scale: 3.2,
+                        height: Get.height*0.05,
+                        width: Get.width*0.05,
                         color: provider.dashboardIndex == 0
                             ? AppColors.themeColor
                             : AppColors.slateGrey),
@@ -101,7 +103,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       provider.update();
                     },
                     child: Image.asset(AppImages.people,
-                        scale: 3.2,
+                         height: Get.height*0.08,
+                         width: Get.width*0.09,
                         color: provider.dashboardIndex == 1
                             ? AppColors.themeColor
                             : AppColors.slateGrey),
@@ -113,7 +116,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   ),
                   Image.asset(
                     AppImages.user,
-                    scale: 3,
                     color: Colors.transparent,
                   ),
                   GestureDetector(
@@ -122,7 +124,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         provider.update();
                       },
                       child: Image.asset(provider.personalChats.any((element) => element.seen==false && provider.dashboardIndex==2 && provider.chatPageIndex==0)?AppImages.chatMessage:AppImages.chat2,
-                          scale: 3.2,
+                          height: Get.height*0.07,
+                          width: Get.width*0.07,
                           color: provider.dashboardIndex == 2
                               ? AppColors.themeColor
                               : AppColors.slateGrey)),
@@ -132,7 +135,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         provider.update();
                       },
                       child: Image.asset(AppImages.user,
-                          scale: 3.2,
+                          height: Get.height*0.05,
+                          width: Get.width*0.05,
                           color: provider.dashboardIndex == 3
                               ? AppColors.themeColor
                               : AppColors.slateGrey)),

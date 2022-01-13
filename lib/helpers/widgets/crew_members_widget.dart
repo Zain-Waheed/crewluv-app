@@ -1,3 +1,4 @@
+import 'package:amigos/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CrewMembersWidget extends StatefulWidget {
@@ -15,6 +16,12 @@ class _CrewMembersWidgetState extends State<CrewMembersWidget> {
   Widget build(BuildContext context) {
      return Container(
       margin: EdgeInsets.only(left: widget.margin),
+      padding: EdgeInsets.all(2),
+      decoration:widget.margin==0?BoxDecoration(
+        border: Border.all(color: AppColors.themeColor,width: 2),
+        shape: BoxShape.circle,
+        color: AppColors.whiteColor,
+      ):null,
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         backgroundImage: AssetImage(

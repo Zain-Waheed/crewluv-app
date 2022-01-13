@@ -75,9 +75,9 @@ class _PhoneNumberState extends State<PhoneNumber> {
                   Stack(
                     children: [
                       Container(
-                        height: Get.width * 0.15,
+                        height: Get.width * 0.16,
                         width: Get.width*0.9,
-                        margin: EdgeInsets.only(left: 10),
+                        margin: EdgeInsets.only(left: 5),
                         decoration: BoxDecoration(
                             border: Border.all(color: focus.hasFocus?AppColors.themeColor:AppColors.greyText),
                             borderRadius: BorderRadius.circular(30)),
@@ -101,7 +101,6 @@ class _PhoneNumberState extends State<PhoneNumber> {
                             focusNode: focus,
                             key: Key('phone_number'),
                             inputDecoration: InputDecoration(
-                              fillColor: AppColors.whiteColor,
                               hintText: "+183 746 8373 829",
                               suffixIcon: validated==true?Container(
                                 margin: EdgeInsets.only(right: Get.width*0.03),
@@ -135,7 +134,6 @@ class _PhoneNumberState extends State<PhoneNumber> {
                                 borderSide: BorderSide(color:Colors.transparent),
                               ),
                               isDense: true,
-                              filled: true,
                             ),
                             inputBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: AppColors.themeColor,style: BorderStyle.solid)

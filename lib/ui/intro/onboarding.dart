@@ -59,7 +59,7 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.only(top: Get.width*0.01,bottom: Get.width*0.09),
+              padding:  EdgeInsets.only(top: Get.width*0.07,bottom: Get.width*0.09),
               child: SmoothPageIndicator(
                 count: 4,
                 effect: ExpandingDotsEffect(

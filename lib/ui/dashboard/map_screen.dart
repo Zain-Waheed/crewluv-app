@@ -147,7 +147,7 @@ class _MapScreenState extends State<MapScreen> {
                 Text(
                   getTranslated(context, 'filter')??"",
                   style: AppTextStyle.montserrat(
-                      AppColors.blackLite, Get.width*0.04, FontWeight.w700
+                      AppColors.black, Get.width*0.04, FontWeight.w700
                   ),
                 ),
                 SizedBox(

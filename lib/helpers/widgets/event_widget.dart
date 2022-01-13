@@ -112,7 +112,7 @@ class _EventWidgetState extends State<EventWidget> {
                                   widget.user.activeStatus,
                                   style: AppTextStyle.montserrat(
                                       AppColors.shadedBlack,
-                                      Get.width * 0.035,
+                                      Get.width * 0.032,
                                       FontWeight.w400),
                                 ),
                               ],
@@ -135,7 +135,7 @@ class _EventWidgetState extends State<EventWidget> {
                                   widget.user.distance.toString(),
                                   style: AppTextStyle.montserrat(
                                       AppColors.shadedBlack,
-                                      Get.width * 0.035,
+                                      Get.width * 0.032,
                                       FontWeight.w400),
                                 ),
                                 Text(
@@ -146,7 +146,7 @@ class _EventWidgetState extends State<EventWidget> {
                                       "",
                                   style: AppTextStyle.montserrat(
                                       AppColors.shadedBlack,
-                                      Get.width * 0.035,
+                                      Get.width * 0.032,
                                       FontWeight.w400),
                                 ),
                               ],
@@ -251,7 +251,7 @@ class _EventWidgetState extends State<EventWidget> {
                             CrewMembersWidget(margin: 0, image: AppImages.crew1),
                             CrewMembersWidget(margin: 25, image: AppImages.crew2),
                             Container(
-                                margin: EdgeInsets.only(left: 60, top: 7.5),
+                                margin: EdgeInsets.only(left: 50, top: 7.5),
                                 decoration: BoxDecoration(
                                     color: AppColors.coalGrey,
                                     shape: BoxShape.circle,
@@ -264,7 +264,7 @@ class _EventWidgetState extends State<EventWidget> {
                                     "+${widget.event.maxFriends}",
                                     style: AppTextStyle.montserrat(
                                         AppColors.whiteColor,
-                                        Get.width * 0.04,
+                                        Get.width * 0.037,
                                         FontWeight.w500),
                                   ),
                                 )),
