@@ -13,7 +13,9 @@ import 'package:amigos/ui/dashboard/create_event.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/ui/dashboard/destinaiton_screen.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
+import 'package:amigos/ui/dashboard/stories_screen.dart';
 import 'package:amigos/utils/colors.dart';
+import 'package:amigos/utils/global_function.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:file_picker/file_picker.dart';
@@ -22,6 +24,7 @@ import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class EventDetails extends StatefulWidget {
@@ -37,7 +40,7 @@ class _EventDetailsState extends State<EventDetails> {
   Address? address;
   Position? position;
   bool? isLoading = true;
-  File? pickedFile;
+  FilePickerResult? result;
   final CameraPosition _initialLocation = const CameraPosition(
     target: LatLng(31.4564555, 74.2852029),
     zoom: 15,
@@ -102,15 +105,10 @@ class _EventDetailsState extends State<EventDetails> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              provider.events[0].stories.isNotEmpty
+                              provider.events[0].stories.isEmpty
                                   ? GestureDetector(
                                       onTap: () {
-                                        result=pickFile() as FilePickerResult?;
-                                      provider.events[0].stories.add(result!.files.single.path.toString());
-                                      provider.update();
-                                      setState(() {
-
-                                      });
+                                        pickFile(provider);
                                       },
                                       child: Stack(
                                         children: [
@@ -501,13 +499,14 @@ class _EventDetailsState extends State<EventDetails> {
   }
 
   void pickFile(DashboardProvider provider) {
-    final services = getFile();
-   services.pickFile().then(  (value)async {
-     setState(() {
-       provider.events[0].stories.add(value);
-     });
-   }
+    final services=getFile();
+    services.pickFile().then((value)
+    {
+      setState(() {
+        provider.events[0].stories.add(value);
+        provider.update();
+      });
+    }
     );
   }
-
 }

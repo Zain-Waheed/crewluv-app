@@ -46,7 +46,7 @@ class _SubscriptionDialogBoxState extends State<SubscriptionDialogBox> {
                       color: AppColors.geryLight,
                     ),
                     onPressed: () {
-                      Get.to(Profiles());
+                      Get.off(Profiles());
                     },
                   ),
                 ),

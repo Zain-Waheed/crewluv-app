@@ -84,8 +84,7 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: const [
         Locale('en', 'US'),
-        // Locale('en', 'US'),
-        // Locale('en', 'US'),
+
       ],
       localeResolutionCallback:
           (Locale? deviceLocale, Iterable<Locale> supportedLocales) {
@@ -99,7 +98,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: SplashScreeen(),
+       home: AllEvents(),
     );
   }
 }

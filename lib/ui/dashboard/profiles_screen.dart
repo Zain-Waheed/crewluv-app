@@ -31,241 +31,246 @@ class Profiles extends StatefulWidget {
 class _ProfilesState extends State<Profiles> {
   final controller = SwipableStackController();
   bool isStar=false;
-  final _controller = PageController();
   int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context, provider, _) {
-    return Scaffold(
-      floatingActionButton: Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: Get.width * 0.099, left: Get.width * 0.06,),
-          child: FloatingActionButton(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            child: Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                        color: AppColors.black.withOpacity(0.5),
-                        offset: Offset(0, 4),
-                        blurRadius: 5.0)
-                  ]
-              ),
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: AppColors.black,
+    return WillPopScope(
+      onWillPop: (){
+        return Future.value(false);
+      },
+      child: Scaffold(
+        floatingActionButton: Align(
+          alignment: Alignment.topLeft,
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: Get.width * 0.099, left: Get.width * 0.06,),
+            child: FloatingActionButton(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.black.withOpacity(0.5),
+                          offset: Offset(0, 4),
+                          blurRadius: 5.0)
+                    ]
                 ),
-              ),
-            ),
-            onPressed: () {  },
-          ),
-        ),
-      ),
-      body:Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AppImages.profilesBackground),
-            fit: BoxFit.cover,
-          )
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: Get.height*0.83,
-              width: Get.width,
-              child: SwipableStack(
-                controller:controller,
-                swipeAnchor: SwipeAnchor.top,
-                itemCount: provider.users.length,
-                stackClipBehaviour: Clip.antiAliasWithSaveLayer,
-                swipeAssistDuration: Duration(milliseconds: 100),
-                builder: (context, index, constraints) {
-                  pageIndex=index;
-                  return  ProfilesWidget(provider.users[index],provider);
-                },
-                onWillMoveNext: (index, direction) {
-                  final allowedActions = [
-                    SwipeDirection.right,
-                    SwipeDirection.left,
-                  ];
-                  return allowedActions.contains(direction);
-                },
-                  overlayBuilder: (
-                      context,
-                      constraints,
-                      index,
-                      direction,
-                      swipeProgress,
-                      ) {
-                    final opacity = min(swipeProgress, 1.0);
-                    final isRight = direction == SwipeDirection.right;
-                    final isLeft = direction == SwipeDirection.left;
-                    return Opacity(
-                      opacity: isRight||isLeft ? opacity : 0,
-                      child:isRight?Image.asset(AppImages.likeIcon,scale: 1,):Image.asset(AppImages.dislike,scale:1),
-                    );
+                child: IconButton(
+                  onPressed: () {
+                    Get.back();
                   },
-                  onSwipeCompleted:(int, SwipeDirection){
-                      print("$int" );
-                    if(controller.currentIndex==3)
-                    {
-                      Get.dialog(
-                          SubscriptionDialogBox()
-                      );
-                    }
-                    if( isStar=isStar){
-                      isStar=!isStar;
-                      setState(() {
-
-                      });
-                    }
-              }
-              ),
-            ),
-            SizedBox(
-              height: Get.width*0.04,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap:(){
-                    controller.currentIndex=0;
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.03),
-                    width:Get.width*0.14,
-                    height:Get.width*0.14,
-                    alignment: Alignment.center,
-                    padding:  const EdgeInsets.all(18),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                            color: AppColors.black.withOpacity(0.5),
-                            offset: Offset(0, 4),
-                            blurRadius: 5.0)
-                      ],
-                    ),
-                    child: Image.asset(AppImages.rewind,scale: 3,),
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: AppColors.black,
                   ),
                 ),
-                GestureDetector(
-                  onTap:(){
-                    print(controller.currentIndex);
-                    if(controller.currentIndex==3)
+              ),
+              onPressed: () {  },
+            ),
+          ),
+        ),
+        body:Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(AppImages.profilesBackground),
+              fit: BoxFit.cover,
+            )
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: Get.height*0.83,
+                width: Get.width,
+                child: SwipableStack(
+                  controller:controller,
+                  swipeAnchor: SwipeAnchor.top,
+                  itemCount: provider.users.length,
+                  stackClipBehaviour: Clip.antiAliasWithSaveLayer,
+                  swipeAssistDuration: Duration(milliseconds: 100),
+                  builder: (context, index, constraints) {
+                    pageIndex=index;
+                    return  ProfilesWidget(provider.users[index],provider);
+                  },
+                  onWillMoveNext: (index, direction) {
+                    final allowedActions = [
+                      SwipeDirection.right,
+                      SwipeDirection.left,
+                    ];
+                    return allowedActions.contains(direction);
+                  },
+                    overlayBuilder: (
+                        context,
+                        constraints,
+                        index,
+                        direction,
+                        swipeProgress,
+                        ) {
+                      final opacity = min(swipeProgress, 1.0);
+                      final isRight = direction == SwipeDirection.right;
+                      final isLeft = direction == SwipeDirection.left;
+                      return Opacity(
+                        opacity: isRight||isLeft ? opacity : 0,
+                        child:isRight?Image.asset(AppImages.likeIcon,scale: 1,):Image.asset(AppImages.dislike,scale:1),
+                      );
+                    },
+                    onSwipeCompleted:(int, SwipeDirection){
+                        print("$int" );
+                      if(controller.currentIndex==3||controller.currentIndex>3)
+                      {
+                        print(controller.currentIndex);
+                        Get.dialog(
+                            SubscriptionDialogBox()
+                        );
+                      }
+                      if( isStar=isStar){
+                        isStar=!isStar;
+                        setState(() {
+
+                        });
+                      }
+                }
+                ),
+              ),
+              SizedBox(
+                height: Get.width*0.04,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap:(){
+                      controller.currentIndex=0;
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.03),
+                      width:Get.width*0.14,
+                      height:Get.width*0.14,
+                      alignment: Alignment.center,
+                      padding:  const EdgeInsets.all(18),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                              color: AppColors.black.withOpacity(0.5),
+                              offset: Offset(0, 4),
+                              blurRadius: 5.0)
+                        ],
+                      ),
+                      child: Image.asset(AppImages.rewind,scale: 3,),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap:(){
+                      print(controller.currentIndex);
+                      if(controller.currentIndex==3)
+                        {
+                          Get.dialog(
+                              SubscriptionDialogBox()
+                          );
+                        }else
+                          {
+                            controller.next(
+                                swipeDirection: SwipeDirection.right
+                            );
+                          }
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: Get.width*0.04),
+                      width:Get.width*0.16,
+                      height:Get.width*0.16,
+                      alignment: Alignment.center,
+                      padding:  const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                              color: AppColors.black.withOpacity(0.5),
+                              offset: Offset(0, 4),
+                              blurRadius: 5.0)
+                        ],
+                      ),
+                      child: Image.asset(AppImages.close),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap:(){
+                      Get.dialog(
+                          NotificationDialogBox()
+                      );
+                      if(controller.currentIndex==3)
                       {
                         Get.dialog(
                             SubscriptionDialogBox()
                         );
                       }else
-                        {
-                          controller.next(
-                              swipeDirection: SwipeDirection.right
-                          );
-                        }
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: Get.width*0.04),
-                    width:Get.width*0.16,
-                    height:Get.width*0.16,
-                    alignment: Alignment.center,
-                    padding:  const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                            color: AppColors.black.withOpacity(0.5),
-                            offset: Offset(0, 4),
-                            blurRadius: 5.0)
-                      ],
+                      {
+                        controller.next(
+                            swipeDirection: SwipeDirection.right
+                        );
+                      }
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: Get.width*0.04),
+                      width:Get.width*0.16,
+                      height:Get.width*0.16,
+                      alignment: Alignment.center,
+                      padding:  const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                              color: AppColors.black.withOpacity(0.5),
+                              offset: Offset(0, 4),
+                              blurRadius: 5.0)
+                        ],
+                      ),
+                      child: Image.asset(AppImages.heartGreen),
                     ),
-                    child: Image.asset(AppImages.close),
                   ),
-                ),
-                GestureDetector(
-                  onTap:(){
-                    Get.dialog(
-                        NotificationDialogBox()
-                    );
-                    if(controller.currentIndex==3)
-                    {
+                  GestureDetector(
+                    onTap:(){
                       Get.dialog(
-                          SubscriptionDialogBox()
+                          NotificationDialogBox()
                       );
-                    }else
-                    {
-                      controller.next(
-                          swipeDirection: SwipeDirection.right
-                      );
-                    }
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: Get.width*0.04),
-                    width:Get.width*0.16,
-                    height:Get.width*0.16,
-                    alignment: Alignment.center,
-                    padding:  const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                            color: AppColors.black.withOpacity(0.5),
-                            offset: Offset(0, 4),
-                            blurRadius: 5.0)
-                      ],
-                    ),
-                    child: Image.asset(AppImages.heartGreen),
-                  ),
-                ),
-                GestureDetector(
-                  onTap:(){
-                    Get.dialog(
-                        NotificationDialogBox()
-                    );
-                    isStar=!isStar;
-                    provider.users[controller.currentIndex].favorite=true;
-                    provider.update();
-                    setState(() {
+                      isStar=!isStar;
+                      provider.users[controller.currentIndex].favorite=true;
+                      provider.update();
+                      setState(() {
 
-                    });
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.04),
-                    width:Get.width*0.14,
-                    height:Get.width*0.14,
-                    alignment: Alignment.center,
-                    padding:  const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                            color: AppColors.black.withOpacity(0.5),
-                            offset: const Offset(0, 4),
-                            blurRadius: 5.0)
-                      ],
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: Get.width*0.04,top: Get.height*0.04),
+                      width:Get.width*0.14,
+                      height:Get.width*0.14,
+                      alignment: Alignment.center,
+                      padding:  const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                              color: AppColors.black.withOpacity(0.5),
+                              offset: const Offset(0, 4),
+                              blurRadius: 5.0)
+                        ],
+                      ),
+                      child: Image.asset(isStar?AppImages.starFill:AppImages.starBlank),
                     ),
-                    child: Image.asset(isStar?AppImages.starFill:AppImages.starBlank),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );},);

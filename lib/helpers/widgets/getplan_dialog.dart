@@ -46,121 +46,116 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
   ).createShader(const Rect.fromLTWH(0.0, 0.0, 70.0, 200.0));
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        Get.back();
-      },
-      child: Scaffold(
-        backgroundColor: AppColors.black.withOpacity(0.4),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Container(
-              width: Get.width*0.9,
-              padding: EdgeInsets.symmetric(vertical: Get.width*0.05,horizontal: Get.width*0.05),
-              decoration: BoxDecoration(
-                color: AppColors.whiteColor,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    getTranslated(context, 'get_premium_plan')??"",
-                    style: AppTextStyle.montserrat(
-                        AppColors.themeColor,
-                        Get.width*0.045,
-                        FontWeight.w700,
-                    ),
+    return Scaffold(
+      backgroundColor: AppColors.black.withOpacity(0.4),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Container(
+            width: Get.width*0.9,
+            padding: EdgeInsets.symmetric(vertical: Get.width*0.05,horizontal: Get.width*0.05),
+            decoration: BoxDecoration(
+              color: AppColors.whiteColor,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  getTranslated(context, 'get_premium_plan')??"",
+                  style: AppTextStyle.montserrat(
+                      AppColors.themeColor,
+                      Get.width*0.045,
+                      FontWeight.w700,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(AppImages.subscription,width: Get.width*0.08,height: Get.height*0.08,),
-                      SizedBox(
-                        width: Get.width*0.01,
-                      ),
-                      Text(getTranslated(context, 'intro_text')??"",
-                        style: AppTextStyle.montserrat(
-                            AppColors.blackLite,
-                            Get.width*0.045,
-                            FontWeight.w700,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: Get.width*0.06,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(AppImages.subscription,width: Get.width*0.08,height: Get.height*0.08,),
+                    SizedBox(
+                      width: Get.width*0.01,
                     ),
-                    child: Text(AppDummyData.shortText,
+                    Text(getTranslated(context, 'intro_text')??"",
                       style: AppTextStyle.montserrat(
-                        AppColors.blackLite,
-                        Get.width*0.04,
-                        FontWeight.w400,
+                          AppColors.blackLite,
+                          Get.width*0.045,
+                          FontWeight.w700,
                       ),
-                      textAlign: TextAlign.left,
                     ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Get.width*0.06,
                   ),
-                  SizedBox(
-                    height: Get.width*0.045,
+                  child: Text(AppDummyData.shortText,
+                    style: AppTextStyle.montserrat(
+                      AppColors.blackLite,
+                      Get.width*0.04,
+                      FontWeight.w400,
+                    ),
+                    textAlign: TextAlign.left,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(3, (index) => Container(
-                      width: pageIndex == index ? Get.width*0.09 : Get.width * 0.015,
-                      height:pageIndex == index ? Get.width*0.03:Get.width * 0.015 ,
-                      margin: const EdgeInsets.only(right: 3),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: pageIndex == index ? AppColors.themeColor : AppColors.grey
-                      ),
-                    )),
-                  ),
-                  SizedBox(
-                    height: Get.width*0.07,
-                  ),
-                  CarouselSlider(
-                    carouselController: carouselController,
-                    options: CarouselOptions(
-                      height: Get.width*0.45,
-                      enlargeCenterPage:true,
-                      aspectRatio: 2.8 / 1,
-                      viewportFraction: 0.39,
-                      initialPage: 0,
-                      enableInfiniteScroll: true,
-                      reverse: false,
-                      autoPlay: false,
-                      onPageChanged: (index, pageReason) {
-                        pageIndex = index;
-                        setState(() {});
+                ),
+                SizedBox(
+                  height: Get.width*0.045,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(3, (index) => Container(
+                    width: pageIndex == index ? Get.width*0.09 : Get.width * 0.015,
+                    height:pageIndex == index ? Get.width*0.03:Get.width * 0.015 ,
+                    margin: const EdgeInsets.only(right: 3),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: pageIndex == index ? AppColors.themeColor : AppColors.grey
+                    ),
+                  )),
+                ),
+                SizedBox(
+                  height: Get.width*0.07,
+                ),
+                CarouselSlider(
+                  carouselController: carouselController,
+                  options: CarouselOptions(
+                    height: Get.width*0.45,
+                    enlargeCenterPage:true,
+                    aspectRatio: 2.8 / 1,
+                    viewportFraction: 0.39,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: false,
+                    onPageChanged: (index, pageReason) {
+                      pageIndex = index;
+                      setState(() {});
 
-                      },
-                      autoPlayInterval: const Duration(seconds: 3),
-                      autoPlayAnimationDuration:
-                      const Duration(milliseconds: 800),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      scrollDirection: Axis.horizontal,
-                    ),
-                    items:  List.generate(
-                        3, (index) => priceWidget(months[index], pricePerMonth[index], price[index],isPopular[index],index),
-                    ),
+                    },
+                    autoPlayInterval: const Duration(seconds: 3),
+                    autoPlayAnimationDuration:
+                    const Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    scrollDirection: Axis.horizontal,
                   ),
-                  SizedBox(
-                    height: Get.width*0.045,
+                  items:  List.generate(
+                      3, (index) => priceWidget(months[index], pricePerMonth[index], price[index],isPopular[index],index),
                   ),
-                  AppButton(buttonText: 'further', onpressed:(){ Get.bottomSheet(FurtherSubscription());}, width: Get.width*0.7, isWhite: false),
-                  TextButton(onPressed: (){Get.back();},
-                      child: Text(
-                        getTranslated(context, 'no_thanks')??"",
-                        style: AppTextStyle.
-                        montserrat(
-                            AppColors.lightGrey,
-                            Get.width*0.04,
-                            FontWeight.w600,
-                        ),
+                ),
+                SizedBox(
+                  height: Get.width*0.045,
+                ),
+                AppButton(buttonText: 'further', onpressed:(){ Get.bottomSheet(FurtherSubscription());}, width: Get.width*0.7, isWhite: false),
+                TextButton(onPressed: (){Get.back();},
+                    child: Text(
+                      getTranslated(context, 'no_thanks')??"",
+                      style: AppTextStyle.
+                      montserrat(
+                          AppColors.lightGrey,
+                          Get.width*0.04,
+                          FontWeight.w600,
                       ),
-                  ),
-                ],
-              ),
+                    ),
+                ),
+              ],
             ),
           ),
         ),

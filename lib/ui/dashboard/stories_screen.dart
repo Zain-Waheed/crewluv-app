@@ -6,6 +6,7 @@ import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/global_function.dart';
 import 'package:amigos/utils/images.dart';
+import 'package:amigos/utils/text_styles.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -54,30 +55,45 @@ class _StoriesScreenState extends State<StoriesScreen> {
                   alignment:Alignment.topLeft,
                   child: Padding(
                     padding: EdgeInsets.only(top: Get.height*0.07,left:Get.width*0.06 ),
-                    child: GestureDetector(
-                      onTap: (){
-                        pickFile(provider);
-                      },
-                      child: ClipRRect(
-                        child: Stack(
-                          children: [
-                            Image.asset(AppImages.profileImage,height: Get.width*0.15,width: Get.width*0.15,),
-                            Visibility(
-                              child: Positioned(
-                                right: 2,
-                                bottom:8 ,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.themeColor,
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            pickFile(provider);
+                          },
+                          child: ClipRRect(
+                            child: Stack(
+                              children: [
+                                Image.asset(AppImages.profileImage,height: Get.width*0.15,width: Get.width*0.15,),
+                                Visibility(
+                                  child: Positioned(
+                                    right: 2,
+                                    bottom:8 ,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: AppColors.themeColor,
+                                      ),
+                                      child: Icon(Icons.add,color: AppColors.whiteColor,size: Get.width*0.04,),
+                                    ),
                                   ),
-                                  child: Icon(Icons.add,color: AppColors.whiteColor,size: Get.width*0.04,),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                        SizedBox(
+                          width: Get.width*0.02,
+                        ),
+                        Text(
+                          'Usama',
+                          style: AppTextStyle.montserrat(
+                              AppColors.whiteColor,
+                              Get.width*0.04,
+                              FontWeight.w700,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

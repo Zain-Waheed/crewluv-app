@@ -33,7 +33,7 @@ class _MapScreenState extends State<MapScreen> {
     target:LatLng(  37.42796133580764,-122.085749655962 ),
     zoom: 14.4746,
   );
-  // const CameraPosition(target: LatLng(0.0, 0.0));
+
   Completer<GoogleMapController> mapController = Completer();
   final Set<Marker> markers = Set();
   Set<Marker> getmarkers(/*LatLng tappedPoint*/DashboardProvider provider) {
