@@ -4,5 +4,6 @@ class PersonalChatModel{
   String lastMessage;
   String time;
   bool seen=false;
-  PersonalChatModel({required this.imagePath, required this.name, required this.lastMessage,required this.time});
+  bool? isFavourite=false;
+  PersonalChatModel({required this.imagePath, required this.name, required this.lastMessage,required this.time,this.isFavourite});
 }

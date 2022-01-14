@@ -13,9 +13,7 @@ import 'package:amigos/ui/dashboard/create_event.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/ui/dashboard/destinaiton_screen.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
-import 'package:amigos/ui/dashboard/stories_screen.dart';
 import 'package:amigos/utils/colors.dart';
-import 'package:amigos/utils/global_function.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:file_picker/file_picker.dart';
@@ -24,7 +22,6 @@ import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class EventDetails extends StatefulWidget {
@@ -105,9 +102,15 @@ class _EventDetailsState extends State<EventDetails> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              provider.events[0].stories.isEmpty ? GestureDetector(
+                              provider.events[0].stories.isNotEmpty
+                                  ? GestureDetector(
                                       onTap: () {
-                                        pickFile(provider);
+                                        result=pickFile() as FilePickerResult?;
+                                      provider.events[0].stories.add(result!.files.single.path.toString());
+                                      provider.update();
+                                      setState(() {
+
+                                      });
                                       },
                                       child: Stack(
                                         children: [
@@ -134,7 +137,8 @@ class _EventDetailsState extends State<EventDetails> {
                                           ),
                                         ],
                                       ),
-                                    ) : GestureDetector(
+                                    )
+                                  : GestureDetector(
                                       onTap: () {
                                         Get.to(StoriesScreen());
                                       },
@@ -163,30 +167,25 @@ class _EventDetailsState extends State<EventDetails> {
                               Row(
                                 children: List.generate(
                                   10,
-                                  (index) => GestureDetector(
-                                    onTap: () {
-                                      Get.to(StoriesScreen());
-                                    },
-                                    child: Container(
-                                      height: Get.height * 0.12,
-                                      width: Get.width * 0.15,
-                                      padding: EdgeInsets.all(2),
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: Get.width * 0.015),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                            color: AppColors.themeColor,
-                                            width: 2),
-                                        color: AppColors.white,
-                                      ),
-                                      child: Image.asset(
-                                        AppImages.notification1,
-                                        fit: BoxFit.contain,
-                                        height: Get.width * 0.23,
-                                        width: Get.width * 0.23,
-                                        scale: 0.1,
-                                      ),
+                                  (index) => Container(
+                                    height: Get.height * 0.12,
+                                    width: Get.width * 0.15,
+                                    padding: EdgeInsets.all(2),
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: Get.width * 0.015),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: AppColors.themeColor,
+                                          width: 2),
+                                      color: AppColors.white,
+                                    ),
+                                    child: Image.asset(
+                                      AppImages.notification1,
+                                      fit: BoxFit.contain,
+                                      height: Get.width * 0.23,
+                                      width: Get.width * 0.23,
+                                      scale: 0.1,
                                     ),
                                   ),
                                 ),

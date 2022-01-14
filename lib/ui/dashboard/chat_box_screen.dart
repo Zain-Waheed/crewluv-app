@@ -223,8 +223,8 @@ class _ChatBoxState extends State<ChatBox> {
                 width:Get.width*0.1,
                 height:Get.width*0.1,
                 margin:EdgeInsets.only(left: Get.width*0.02),
-                decoration: const BoxDecoration(
-                  color: Colors.orange,
+                decoration:  BoxDecoration(
+                  gradient: AppColors.buttonGradientColor,
                   shape: BoxShape.circle,
                 ),
                 child:Icon(

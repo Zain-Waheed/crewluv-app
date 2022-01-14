@@ -130,6 +130,7 @@ class _CreateEventState extends State<CreateEvent> {
                                  provider.eventTypes[i].isSelected =false;
                                }
                                provider.eventTypes[index].isSelected= !isSelected;
+                               provider.update();
                                setState(() {
 
                                });
@@ -164,6 +165,7 @@ class _CreateEventState extends State<CreateEvent> {
                     TextFormField(
                       decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location', Icon(Icons.my_location,color: AppColors.solidGrey,)),
                       controller: locationController,
+                      onTap: _getLocation,
                       validator: (value)=> FieldValidator.validateText(locationController.text),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),

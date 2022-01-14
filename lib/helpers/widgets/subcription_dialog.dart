@@ -94,7 +94,7 @@ class _SubscriptionDialogBoxState extends State<SubscriptionDialogBox> {
                     buttonText: 'view_plans',
                     onpressed: (){
                       Get.dialog(
-                        GetPlanDialogBox(func:(){Get.bottomSheet(FurtherSubscription());})
+                        GetPlanDialogBox()
                       );
                     },
                     width: 450,
