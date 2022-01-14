@@ -35,90 +35,93 @@ class _EnterDOBState extends State<EnterDOB> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,dashPro,_){
       return Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: Get.width * 0.1,
-            ),
-
-            Text(
-              getTranslated(context, 'dob') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
-            ),
-            SizedBox(
-              height: Get.width * 0.05,
-            ),
-            Text(
-              getTranslated(context, 'age_available') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
-            ),
-            SizedBox(height: Get.width * 0.2),
-            Theme(
-              data: ThemeData().copyWith(
-                colorScheme: ThemeData().colorScheme.copyWith(
-                  primary: createMaterialColor(AppColors.themeColor),
-                  secondary: createMaterialColor(AppColors.themeColor),
-
-                ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: Get.width * 0.1,
               ),
-              child: TextFormField(
-                focusNode: focus,
-                  readOnly: true,
-                  autofocus: true,
-                  validator: (value)=> FieldValidator.empty(dashPro.dobController.text),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: dashPro.dobController,
-                  decoration: AppInputDecoration.circularFieldDecoration(null, 'd/m/y', Image.asset(AppImages.calendarIcon,color: dateIconColor?AppColors.themeColor:AppColors.slateGrey,),),
-                  onTap:(){
-                    showDatePicker(
-                      context: context,
-                      builder: (BuildContext context, Widget? child) {
-                        return Theme(
-                          data: ThemeData(
-                            primarySwatch: Colors.grey,
-                            splashColor: Colors.black,
-                            textTheme: const TextTheme(
-                              subtitle1: TextStyle(color: Colors.black),
-                              button: TextStyle(color: Colors.black),
+
+              Text(
+                getTranslated(context, 'dob') ?? "",
+                style: AppTextStyle.montserrat(
+                    AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
+              ),
+              SizedBox(
+                height: Get.width * 0.05,
+              ),
+              Text(
+                getTranslated(context, 'age_available') ?? "",
+                style: AppTextStyle.montserrat(
+                    AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
+              ),
+              SizedBox(height: Get.width * 0.2),
+              Theme(
+                data: ThemeData().copyWith(
+                  colorScheme: ThemeData().colorScheme.copyWith(
+                    primary: createMaterialColor(AppColors.themeColor),
+                    secondary: createMaterialColor(AppColors.themeColor),
+
+                  ),
+                ),
+                child: TextFormField(
+                  focusNode: focus,
+                    readOnly: true,
+                    autofocus: true,
+                    validator: (value)=> FieldValidator.empty(dashPro.dobController.text),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    controller: dashPro.dobController,
+                    decoration: AppInputDecoration.circularFieldDecoration(null, 'd/m/y', Image.asset(AppImages.calendarIcon,color: dateIconColor?AppColors.themeColor:AppColors.slateGrey,),),
+                    onTap:(){
+                      showDatePicker(
+                        context: context,
+                        builder: (BuildContext context, Widget? child) {
+                          return Theme(
+                            data: ThemeData(
+                              primarySwatch: Colors.grey,
+                              splashColor: Colors.black,
+                              textTheme: const TextTheme(
+                                subtitle1: TextStyle(color: Colors.black),
+                                button: TextStyle(color: Colors.black),
+                              ),
+                              colorScheme: ColorScheme.light(
+                                  primary: AppColors.orangeDark,
+                                  onPrimary: Color(0xFFFFFFFF),
+                                  surface: Colors.black,
+                                  onSurface: Colors.black,
+                                  secondary: Colors.black),
                             ),
-                            colorScheme: ColorScheme.light(
-                                primary: AppColors.orangeDark,
-                                onPrimary: Color(0xFFFFFFFF),
-                                surface: Colors.black,
-                                onSurface: Colors.black,
-                                secondary: Colors.black),
-                          ),
-                          child: child ??Text(""),
-                        );
-                      },
-                      initialDate: _dob,
-                      firstDate: DateTime(1930),
-                      lastDate: DateTime.now(),
-                  ).then((date){
-                    setState(() {
-                      _dob=date!;
-                      final DateFormat formatter = DateFormat('dd-MM-yyyy');
-                      final String formatted = formatter.format(date);
-                      dashPro.dobController.text=formatted;
-                      if(dashPro.dobController.text.isNotEmpty)
-                      {
-                        dashPro.formCheck[dashPro.pageIndex]=1;
-                      }
-                      else
-                      {
-                        dashPro.formCheck[dashPro.pageIndex]=-1;
-                      }
-                      Get.forceAppUpdate();
-                    });
-                    dateIconColor=true;
-                  },
-                  );
-                }
-            ),)
-          ],
+                            child: child ??Text(""),
+                          );
+                        },
+                        initialDate: _dob,
+                        firstDate: DateTime(1930),
+                        lastDate: DateTime.now(),
+                    ).then((date){
+                      setState(() {
+                        _dob=date!;
+                        final DateFormat formatter = DateFormat('dd-MM-yyyy');
+                        final String formatted = formatter.format(date);
+                        dashPro.dobController.text=formatted;
+                        if(dashPro.dobController.text.isNotEmpty)
+                        {
+                          dashPro.formCheck[dashPro.pageIndex]=1;
+                        }
+                        else
+                        {
+                          dashPro.formCheck[dashPro.pageIndex]=-1;
+                        }
+                        Get.forceAppUpdate();
+                      });
+                      dateIconColor=true;
+                    },
+                    );
+                  }
+              ),)
+            ],
+          ),
         ),
       );
     });

@@ -25,33 +25,38 @@ class _FavoriteDrinksState extends State<FavoriteDrinks> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,provider,_){
       return Scaffold(
-      body:Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: Get.width*0.1,
-          ),
-          Text(getTranslated(context, 'favorite_drinks')??"",
-            style: AppTextStyle.montserrat(AppColors.black, Get.width*0.06, FontWeight.w600),
-          ),
-          SizedBox(
-            height: Get.width*0.06,
-          ),
-          Text(getTranslated(context, 'share_any_three')??"",
-            style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w400),
-          ),
-          SizedBox(
-            height: Get.width*0.08,
-          ),
-          Wrap(
-            children:
-              List.generate(
-                  provider.favoriteDrinks.length,
-                      (index) => AppButtonSmall(preference: provider.favoriteDrinks[index])
-              )
-            ,
-          ),
-        ],
+      body:Padding(
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: Get.width*0.1,
+            ),
+            Text(getTranslated(context, 'favorite_drinks')??"",
+              style: AppTextStyle.montserrat(AppColors.black, Get.width*0.06, FontWeight.w600),
+            ),
+            SizedBox(
+              height: Get.width*0.06,
+            ),
+            Text(getTranslated(context, 'share_any_three')??"",
+              style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w400),
+            ),
+            SizedBox(
+              height: Get.width*0.08,
+            ),
+            Expanded(
+              child: Wrap(
+                children:
+                  List.generate(
+                      provider.favoriteDrinks.length,
+                          (index) => AppButtonSmall(preference: provider.favoriteDrinks[index])
+                  )
+                ,
+              ),
+            ),
+          ],
+        ),
       )
     );
     });

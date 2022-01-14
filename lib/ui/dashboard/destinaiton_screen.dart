@@ -82,7 +82,8 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
     return markers;
   }
 
-
+  late PolylinePoints polylinePoints;
+  Map<PolylineId, Polyline> polylines = {};
   _addPolyLine() {
     PolylineId id = PolylineId("${polylineCoordinates.first}");
     Polyline polyline = Polyline(
@@ -94,9 +95,6 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
     print("polyline added");
     // notifyListeners();
   }
-
-  late PolylinePoints polylinePoints;
-  Map<PolylineId, Polyline> polylines = {};
   createRoute(double lat1, double lng1, double lat2, double lng2) async {
     print("in poly method");
     polylines.clear();

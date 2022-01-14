@@ -25,37 +25,40 @@ class _IntersetsState extends State<Intersets> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,provider,_){
       return Scaffold(
-          body:Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: Get.width*0.1,
-              ),
-              Text(getTranslated(context, 'your_interests')??"",
-                style: AppTextStyle.montserrat(AppColors.black, Get.width*0.06, FontWeight.w600),
-              ),
-              SizedBox(
-                height: Get.width*0.06,
-              ),
-              Text(getTranslated(context, 'share_with_others')??"",
-                style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w400),
-              ),
-              SizedBox(
-                height: Get.width*0.08,
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Wrap(
-                    children:
-                    List.generate(
-                        provider.interests.length,
-                            (index) => AppButtonSmall(preference: provider.interests[index])
-                    )
-                    ,
+          body:Padding(
+            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: Get.width*0.1,
+                ),
+                Text(getTranslated(context, 'your_interests')??"",
+                  style: AppTextStyle.montserrat(AppColors.black, Get.width*0.06, FontWeight.w600),
+                ),
+                SizedBox(
+                  height: Get.width*0.06,
+                ),
+                Text(getTranslated(context, 'share_with_others')??"",
+                  style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w400),
+                ),
+                SizedBox(
+                  height: Get.width*0.08,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Wrap(
+                      children:
+                      List.generate(
+                          provider.interests.length,
+                              (index) => AppButtonSmall(preference: provider.interests[index])
+                      )
+                      ,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
       );
     });

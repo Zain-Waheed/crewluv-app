@@ -23,8 +23,11 @@ class _MusicTasteState extends State<MusicTaste> {
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,provider,_){
-      return Scaffold(
-          body:Column(
+      return Container(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
@@ -42,20 +45,17 @@ class _MusicTasteState extends State<MusicTaste> {
               SizedBox(
                 height: Get.width*0.08,
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Wrap(
-                    children:
-                    List.generate(
-                        provider.musicTaste.length,
-                            (index) => AppButtonSmall(preference: provider.musicTaste[index])
-                    )
-                    ,
-                  ),
-                ),
+              Wrap(
+                children:
+                List.generate(
+                    provider.musicTaste.length,
+                        (index) => AppButtonSmall(preference: provider.musicTaste[index])
+                )
+                ,
               ),
             ],
-          )
+          ),
+        ),
       );
     });
   }

@@ -22,7 +22,8 @@ class _UniversityState extends State<University> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,dashPro,_){
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

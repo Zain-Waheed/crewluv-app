@@ -31,61 +31,61 @@ class _EnterFullNameState extends State<EnterFullName> {
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,dashPro,_){
-      return ListView(
-       // crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: Get.width * 0.1,
-          ),
-          Text(
-            getTranslated(context, 'enter_full_name') ?? "",
-            style: AppTextStyle.montserrat(
-                AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
-          ),
-          SizedBox(
-            height: Get.width * 0.05,
-          ),
-          Text(
-            getTranslated(context, 'name_description') ?? "",
-            style: AppTextStyle.montserrat(
-                AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
-          ),
-          SizedBox(height: Get.width * 0.15),
-          Theme(
-            data: ThemeData().copyWith(
-              colorScheme: ThemeData().colorScheme.copyWith(
-                primary: createMaterialColor(AppColors.grey),
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+        child: ListView(
+         // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: Get.width * 0.1,
+            ),
+            Text(
+              getTranslated(context, 'enter_full_name') ?? "",
+              style: AppTextStyle.montserrat(
+                  AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
+            ),
+            SizedBox(
+              height: Get.width * 0.05,
+            ),
+            Text(
+              getTranslated(context, 'name_description') ?? "",
+              style: AppTextStyle.montserrat(
+                  AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
+            ),
+            SizedBox(height: Get.width * 0.15),
+            Theme(
+              data: ThemeData().copyWith(
+                colorScheme: ThemeData().colorScheme.copyWith(
+                  primary: createMaterialColor(AppColors.grey),
+                ),
+              ),
+              child: TextFormField(
+                focusNode:focus ,
+                validator: (value)=> FieldValidator.validateName(dashPro.fullNameController.text),
+                autofocus: true,
+                onChanged: (val)
+                {
+                  setState(() {
+                    if(dashPro.formKey.currentState!.validate())
+                    {
+                      dashPro.formCheck[dashPro.pageIndex]=1;
+                    }
+                    else
+                    {
+                      dashPro.formCheck[dashPro.pageIndex]=-1;
+                    }
+                    dashPro.fullNameController.text.removeAllWhitespace;
+                  });
+                  Get.forceAppUpdate();
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: dashPro.fullNameController,
+                decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,scale: 2.5,color: focus.hasFocus?AppColors.themeColor:AppColors.slateGrey,),),
               ),
             ),
-            child: TextFormField(
-              focusNode:focus ,
-              validator: (value)=> FieldValidator.validateName(dashPro.fullNameController.text),
-              autofocus: true,
-              onChanged: (val)
-              {
-                setState(() {
-                  if(dashPro.formKey.currentState!.validate())
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=1;
-                  }
-                  else
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=-1;
-                  }
-                  dashPro.fullNameController.text.removeAllWhitespace;
-                });
-                Get.forceAppUpdate();
-              },
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              controller: dashPro.fullNameController,
-              decoration: AppInputDecoration.circularFieldDecoration(null, 'enter_name', Image.asset(AppImages.fullNameIcon,scale: 2.5,color: focus.hasFocus?AppColors.themeColor:AppColors.slateGrey,),),
-            ),
-          ),
-          SizedBox(height: Get.width * 0.15),
-
-
-
-        ],
+            SizedBox(height: Get.width * 0.15),
+          ],
+        ),
       );
     });
   }

@@ -112,8 +112,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               height: dashPro.pageIndex == 5 ||
                       dashPro.pageIndex == 6 ||
                       dashPro.pageIndex == 7 ||
-                      dashPro.pageIndex == 3 ||
-                      dashPro.pageIndex==0
+                      dashPro.pageIndex == 3
                   ? Get.width * 0.3
                   : Get.width * 0.2,
               margin: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
@@ -129,7 +128,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           buttonText: dashPro.pageIndex == 8 ? 'done' : 'further',
                           onpressed: () {
                             if (dashPro.formKey.currentState!.validate() && isChecked == true) {
-                              if (dashPro.pageIndex <= 8) {
+                              if (dashPro.pageIndex <=8) {
                                 dashPro.pageIndex++;
                                 dashPro.update();
                                 if (dashPro.pageIndex != 9) {
@@ -216,16 +215,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               ],
             ),
           ),
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
-
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: Get.width * 0.1,
-                ),
-                Row(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: Get.width * 0.1,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+                child: Row(
                   children: [
                     Expanded(
                       child: LinearPercentIndicator(
@@ -244,34 +242,33 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     )
                   ],
                 ),
-                Form(
-                  key: dashPro.formKey,
-                  // autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: Expanded(
-                    child: PageView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: _controller,
-                      onPageChanged: (index) {
-                        setState(() {
-                          dashPro.pageIndex = index;
-                        });
-                      },
-                      children: [
-                        emailScreen(dashPro),
-                        const EnterFullName(),
-                        const EnterDOB(),
-                        const University(),
-                        const SelectGender(),
-                        const FavoriteDrinks(),
-                        const MusicTaste(),
-                        const Intersets(),
-                        const MediaProfile(),
-                      ],
-                    ),
+              ),
+              Form(
+                key: dashPro.formKey,
+                child: Expanded(
+                  child: PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: _controller,
+                    onPageChanged: (index) {
+                      setState(() {
+                        dashPro.pageIndex = index;
+                      });
+                    },
+                    children: [
+                      emailScreen(dashPro),
+                      const EnterFullName(),
+                      const EnterDOB(),
+                      const University(),
+                      const SelectGender(),
+                      const FavoriteDrinks(),
+                      const MusicTaste(),
+                      const Intersets(),
+                      const MediaProfile(),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ));
@@ -280,108 +277,111 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
   Widget emailScreen(DashboardProvider dashPro) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: Get.width * 0.1,
-          ),
-          Text(
-            getTranslated(context, 'enter_email_address') ?? "",
-            style: AppTextStyle.montserrat(
-                AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
-          ),
-          SizedBox(
-            height: Get.width * 0.05,
-          ),
-          Text(
-            getTranslated(context, 'confirm_email') ?? "",
-            style: AppTextStyle.montserrat(
-                AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
-          ),
-          SizedBox(height: Get.width * 0.15),
-          TextFormField(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            controller: dashPro.emailController,
-            keyboardType: TextInputType.emailAddress,
-            focusNode: focus,
-            onTap: (){
-              setState(() {
-
-              });
-            },
-            onChanged: (val) {
-              if(dashPro.formKey.currentState!.validate() && isChecked==true){
-                dashPro.formCheck[dashPro.pageIndex] = 1;
-                dashPro.update();
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: Get.width * 0.1,
+            ),
+            Text(
+              getTranslated(context, 'enter_email_address') ?? "",
+              style: AppTextStyle.montserrat(
+                  AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
+            ),
+            SizedBox(
+              height: Get.width * 0.05,
+            ),
+            Text(
+              getTranslated(context, 'confirm_email') ?? "",
+              style: AppTextStyle.montserrat(
+                  AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
+            ),
+            SizedBox(height: Get.width * 0.15),
+            TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              controller: dashPro.emailController,
+              keyboardType: TextInputType.emailAddress,
+              focusNode: focus,
+              onTap: (){
                 setState(() {
-
-                });
-
-              }
-              else{
-                dashPro.formCheck[dashPro.pageIndex] = -1;
-                dashPro.update();
-                setState(() {
-
-                });
-
-              }
-              setState(() {
 
                 });
               },
+              onChanged: (val) {
+                if(dashPro.formKey.currentState!.validate() && isChecked==true){
+                  dashPro.formCheck[dashPro.pageIndex] = 1;
+                  dashPro.update();
+                  setState(() {
 
-              validator: (value) =>
-                  FieldValidator.validateEmail(dashPro.emailController.text),
-              decoration: AppInputDecoration.circularFieldDecoration(
-                null,
-                'enter_email',
-                Image.asset(
-                  AppImages.emailIcon,
-                  color:
-                      focus.hasFocus ? AppColors.themeColor : AppColors.slateGrey,
+                  });
+
+                }
+                else{
+                  dashPro.formCheck[dashPro.pageIndex] = -1;
+                  dashPro.update();
+                  setState(() {
+
+                  });
+
+                }
+                setState(() {
+
+                  });
+                },
+
+                validator: (value) =>
+                    FieldValidator.validateEmail(dashPro.emailController.text),
+                decoration: AppInputDecoration.circularFieldDecoration(
+                  null,
+                  'enter_email',
+                  Image.asset(
+                    AppImages.emailIcon,
+                    color:
+                        focus.hasFocus ? AppColors.themeColor : AppColors.slateGrey,
+                  ),
                 ),
               ),
-            ),
-          SizedBox(height: Get.width * 0.15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Checkbox(
-                value: isChecked,
-                activeColor: AppColors.themeColor,
-                onChanged: (value) {
-                  if(value==true && dashPro.formKey.currentState!.validate()){
-                    dashPro.formCheck[dashPro.pageIndex] = 1;
-                    dashPro.update();
-                    setState(() {
-
-                    });
-                  }else
-                    {
-                      dashPro.formCheck[dashPro.pageIndex] = -1;
+            SizedBox(height: Get.width * 0.15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Checkbox(
+                  value: isChecked,
+                  activeColor: AppColors.themeColor,
+                  onChanged: (value) {
+                    if(value==true && dashPro.formKey.currentState!.validate()){
+                      dashPro.formCheck[dashPro.pageIndex] = 1;
                       dashPro.update();
                       setState(() {
 
                       });
-                    }
-                  isChecked = value!;
-                  setState(() {});
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                    }else
+                      {
+                        dashPro.formCheck[dashPro.pageIndex] = -1;
+                        dashPro.update();
+                        setState(() {
+
+                        });
+                      }
+                    isChecked = value!;
+                    setState(() {});
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-              ),
-              Expanded(
-                  child: Text(
-                getTranslated(context, "like_to_update") ?? "",
-                style: AppTextStyle.montserrat(
-                    AppColors.lightGrey, Get.width * 0.027, FontWeight.w400),
-              )),
-            ],
-          )
-        ],
+                Expanded(
+                    child: Text(
+                  getTranslated(context, "like_to_update") ?? "",
+                  style: AppTextStyle.montserrat(
+                      AppColors.lightGrey, Get.width * 0.027, FontWeight.w400),
+                )),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

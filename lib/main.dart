@@ -98,7 +98,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: AllEvents(),
+       home: CompleteProfileScreen(),
     );
   }
 }
