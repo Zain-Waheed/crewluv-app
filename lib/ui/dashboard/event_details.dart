@@ -40,7 +40,7 @@ class _EventDetailsState extends State<EventDetails> {
   Address? address;
   Position? position;
   bool? isLoading = true;
-  FilePickerResult? result;
+  File? pickedFile;
   final CameraPosition _initialLocation = const CameraPosition(
     target: LatLng(31.4564555, 74.2852029),
     zoom: 15,
@@ -105,15 +105,9 @@ class _EventDetailsState extends State<EventDetails> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              provider.events[0].stories.isNotEmpty
-                                  ? GestureDetector(
+                              provider.events[0].stories.isEmpty ? GestureDetector(
                                       onTap: () {
-                                        result=pickFile() as FilePickerResult?;
-                                      provider.events[0].stories.add(result!.files.single.path.toString());
-                                      provider.update();
-                                      setState(() {
-
-                                      });
+                                        pickFile(provider);
                                       },
                                       child: Stack(
                                         children: [
@@ -140,8 +134,7 @@ class _EventDetailsState extends State<EventDetails> {
                                           ),
                                         ],
                                       ),
-                                    )
-                                  : GestureDetector(
+                                    ) : GestureDetector(
                                       onTap: () {
                                         Get.to(StoriesScreen());
                                       },
@@ -170,25 +163,30 @@ class _EventDetailsState extends State<EventDetails> {
                               Row(
                                 children: List.generate(
                                   10,
-                                  (index) => Container(
-                                    height: Get.height * 0.12,
-                                    width: Get.width * 0.15,
-                                    padding: EdgeInsets.all(2),
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: Get.width * 0.015),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                          color: AppColors.themeColor,
-                                          width: 2),
-                                      color: AppColors.white,
-                                    ),
-                                    child: Image.asset(
-                                      AppImages.notification1,
-                                      fit: BoxFit.contain,
-                                      height: Get.width * 0.23,
-                                      width: Get.width * 0.23,
-                                      scale: 0.1,
+                                  (index) => GestureDetector(
+                                    onTap: () {
+                                      Get.to(StoriesScreen());
+                                    },
+                                    child: Container(
+                                      height: Get.height * 0.12,
+                                      width: Get.width * 0.15,
+                                      padding: EdgeInsets.all(2),
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: Get.width * 0.015),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                            color: AppColors.themeColor,
+                                            width: 2),
+                                        color: AppColors.white,
+                                      ),
+                                      child: Image.asset(
+                                        AppImages.notification1,
+                                        fit: BoxFit.contain,
+                                        height: Get.width * 0.23,
+                                        width: Get.width * 0.23,
+                                        scale: 0.1,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -502,4 +500,15 @@ class _EventDetailsState extends State<EventDetails> {
       },
     );
   }
+
+  void pickFile(DashboardProvider provider) {
+    final services = getFile();
+   services.pickFile().then(  (value)async {
+     setState(() {
+       provider.events[0].stories.add(value);
+     });
+   }
+    );
+  }
+
 }

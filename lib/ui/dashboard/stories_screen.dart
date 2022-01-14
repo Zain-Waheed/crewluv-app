@@ -21,7 +21,7 @@ class StoriesScreen extends StatefulWidget {
 
 class _StoriesScreenState extends State<StoriesScreen> {
   final StoryController storyController = StoryController();
-  FilePickerResult? result;
+  File? pickedFile;
   List<String> urls=[
     "https://images.unsplash.com/photo-1553531384-cc64ac80f931?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bW91bnRhaW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     "https://image.ibb.co/cU4WGx/Omotuo-Groundnut-Soup-braperucci-com-1.jpg",
@@ -56,9 +56,7 @@ class _StoriesScreenState extends State<StoriesScreen> {
                     padding: EdgeInsets.only(top: Get.height*0.07,left:Get.width*0.06 ),
                     child: GestureDetector(
                       onTap: (){
-                        result=pickFile() as FilePickerResult?;
-                        provider.events[0].stories.add(result!.files.single.path.toString());
-                        provider.update();
+                        pickFile(provider);
                       },
                       child: ClipRRect(
                         child: Stack(
@@ -87,6 +85,15 @@ class _StoriesScreenState extends State<StoriesScreen> {
             ),
           );
         }
+    );
+  }
+  void pickFile(DashboardProvider provider) {
+    final services = getFile();
+    services.pickFile().then(  (value)async {
+      setState(() {
+        provider.events[0].stories.add(value);
+      });
+    }
     );
   }
 }
