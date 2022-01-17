@@ -114,8 +114,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       dashPro.pageIndex == 7 ||
                       dashPro.pageIndex == 3
                   ? Get.width * 0.3
-                  : Get.width * 0.2,
-              margin: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
+                  : Get.width * 0.25,
+              margin: EdgeInsets.only(left: Get.width * 0.07,right:Get.width * 0.07,bottom: Get.width*0.03),
               child: Column(
                 children: [
                   SizedBox(
@@ -205,7 +205,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         },
                         child: Text(
                           getTranslated(context, 'skip') ?? "",
-                          style: AppTextStyle.poppins(AppColors.blackLite,
+                          style: AppTextStyle.montserrat(AppColors.blackLite,
                               Get.width * 0.04, FontWeight.w500),
                         ),
                       ),

@@ -113,7 +113,7 @@ class _OnBoardingState extends State<OnBoarding> {
                             }else
                             {
                               pageIndex=4;
-                              Get.to(const Login());
+                              Get.to(const PhoneNumber());
                             }
                           },
                           buttonText: pageIndex==3?'login':'skip',
@@ -129,7 +129,7 @@ class _OnBoardingState extends State<OnBoarding> {
                             }else
                             {
                               pageIndex=4;
-                              Get.offAll(const PhoneNumber());
+                              Get.offAll(const Login());
                             }
                           },
                           buttonText: pageIndex==3?'register':'next',
@@ -138,6 +138,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         ),
                       ],
                     ),
+                    SizedBox(height: Get.height*0.0002),
                   ],
                 ),
               ),

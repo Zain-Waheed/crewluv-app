@@ -1,10 +1,14 @@
+import 'package:amigos/helpers/widgets/mood_wideget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/auth_provider.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/auth/media_profile_screen.dart';
+import 'package:amigos/ui/auth/otp_screen.dart';
+import 'package:amigos/ui/auth/phone_screen.dart';
 import 'package:amigos/ui/dashboard/all_events.dart';
 import 'package:amigos/ui/dashboard/chat_details.dart';
+import 'package:amigos/ui/dashboard/chat_screen.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/ui/dashboard/edit_profile.dart';
 import 'package:amigos/ui/dashboard/event_details.dart';
@@ -20,6 +24,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
+import 'helpers/widgets/getplan_dialog.dart';
 
 bool isLoggedIn = false;
 
@@ -98,7 +104,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: SplashScreeen(),
+       home: DashBoardScreen(),
     );
   }
 }

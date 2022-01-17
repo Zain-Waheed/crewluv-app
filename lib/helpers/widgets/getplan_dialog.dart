@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class GetPlanDialogBox extends StatefulWidget {
   
@@ -19,8 +20,9 @@ class GetPlanDialogBox extends StatefulWidget {
 
 class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
   CarouselController   carouselController = CarouselController();
+  PageController controller = PageController();
+  int pageIndex=0;
   final _controller = PageController();
-  int pageIndex = 0;
   List <int> months=[
     12,
     11,
@@ -37,8 +39,8 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
     97.95,
   ];
   List <bool> isPopular=[
-    true,
     false,
+    true,
     false,
   ];
   final Shader linearGradient = const LinearGradient(
@@ -52,7 +54,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
         child: SingleChildScrollView(
           child: Container(
             width: Get.width*0.9,
-            padding: EdgeInsets.symmetric(vertical: Get.width*0.05,horizontal: Get.width*0.05),
+            padding: EdgeInsets.symmetric(vertical: Get.width*0.05),
             decoration: BoxDecoration(
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(30),
@@ -67,33 +69,59 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                       FontWeight.w700,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(AppImages.subscription,width: Get.width*0.08,height: Get.height*0.08,),
-                    SizedBox(
-                      width: Get.width*0.01,
-                    ),
-                    Text(getTranslated(context, 'intro_text')??"",
-                      style: AppTextStyle.montserrat(
-                          AppColors.blackLite,
-                          Get.width*0.045,
-                          FontWeight.w700,
+                SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: Get.width*0.3,
+                        child: PageView(
+                            controller: controller,
+                            onPageChanged: (value){
+                              pageIndex = value;
+                              setState(() {
+
+                              });
+
+                            },
+                            children:List.generate(5, (index) =>  Column(children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: AppColors.brownColor,
+                                      ),
+                                      child: Image.asset(AppImages.subscription,width: Get.width*0.07,height: Get.height*0.07,)),
+                                  SizedBox(
+                                    width: Get.width*0.01,
+                                  ),
+                                  Text('intro Text',
+                                    style: AppTextStyle.montserrat(
+                                      AppColors.blackLite,
+                                      Get.width*0.045,
+                                      FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: Get.width*0.06,),
+                                child: Text(AppDummyData.shortText,
+                                  style: AppTextStyle.montserrat(
+                                    AppColors.blackLite,
+                                    Get.width*0.04,
+                                    FontWeight.w400,
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),)
+
+                            ],))
+
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: Get.width*0.06,
-                  ),
-                  child: Text(AppDummyData.shortText,
-                    style: AppTextStyle.montserrat(
-                      AppColors.blackLite,
-                      Get.width*0.04,
-                      FontWeight.w400,
-                    ),
-                    textAlign: TextAlign.left,
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -101,7 +129,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(3, (index) => Container(
+                  children: List.generate(5, (index) => Container(
                     width: pageIndex == index ? Get.width*0.09 : Get.width * 0.015,
                     height:pageIndex == index ? Get.width*0.03:Get.width * 0.015 ,
                     margin: const EdgeInsets.only(right: 3),
@@ -114,32 +142,14 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                 SizedBox(
                   height: Get.width*0.07,
                 ),
-                CarouselSlider(
-                  carouselController: carouselController,
-                  options: CarouselOptions(
-                    height: Get.width*0.45,
-                    enlargeCenterPage:true,
-                    aspectRatio: 2.8 / 1,
-                    viewportFraction: 0.39,
-                    initialPage: 0,
-                    enableInfiniteScroll: true,
-                    reverse: false,
-                    autoPlay: false,
-                    onPageChanged: (index, pageReason) {
-                      pageIndex = index;
-                      setState(() {});
 
-                    },
-                    autoPlayInterval: const Duration(seconds: 3),
-                    autoPlayAnimationDuration:
-                    const Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    scrollDirection: Axis.horizontal,
-                  ),
-                  items:  List.generate(
-                      3, (index) => priceWidget(months[index], pricePerMonth[index], price[index],isPopular[index],index),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    3, (index) => priceWidget(months[index], pricePerMonth[index], price[index],isPopular[index],index),
                   ),
                 ),
+
                 SizedBox(
                   height: Get.width*0.045,
                 ),
@@ -164,26 +174,99 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
   }
 
   priceWidget(int months,int pricePerMonth,double price,bool isPopular,int index) {
-  return  Container(
-    decoration:pageIndex==index? BoxDecoration(
-      gradient: AppColors.brownGradient,
-      borderRadius: BorderRadius.circular(16),
-    ):const BoxDecoration(),
+  return  Padding(
+    padding: EdgeInsets.symmetric(horizontal: Get.width*0.01),
     child: Stack(
       children: [
         SizedBox(
-          height: Get.width*0.5,
-          child: Card(
-            semanticContainer: true,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(16),
+          height: isPopular?Get.width*0.45:Get.width*0.35,
+          width: isPopular?Get.width*0.3:Get.width*0.27,
+          child: Container(
+            decoration:isPopular?BoxDecoration(
+          gradient: AppColors.brownGradient,
+            borderRadius: BorderRadius.circular(14),
+          ):const BoxDecoration(),
+            child: isPopular?Card(
+              semanticContainer: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(14),
+                ),
               ),
-            ),
-            child: SingleChildScrollView(
               child: Padding(
                 padding:  EdgeInsets.symmetric(
-                  horizontal: Get.width*0.04,
+                  horizontal: Get.width*0.01
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: Get.height*0.03,
+                    ),
+                    Text(
+                      months.toString(),
+                      style: AppTextStyle.
+                      montserrat(
+                        AppColors.shadedBlack,
+                        Get.width*0.07,
+                        FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.width*0.005,
+                    ),
+                    Text(
+                      getTranslated(context, 'months')??"",
+                      style: AppTextStyle.
+                      montserrat(
+                        AppColors.shadedBlack,
+                        Get.width*0.04,
+                        FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      "\$"+pricePerMonth.toString()+"/mo",
+                      style: AppTextStyle.
+                      montserrat(
+                        AppColors.slateGrey,
+                        Get.width*0.04,
+                        FontWeight.w400,
+                      ),
+                    ),
+                    Padding(
+                      padding:  EdgeInsets.symmetric(vertical: Get.width*0.008),
+                      child: Text(
+                        "${getTranslated(context, 'save')} 50\%",
+                        style: AppTextStyle.
+                        montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.04,
+                          FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '\$'+price.toString(),
+                      style: GoogleFonts.montserrat(
+                          fontSize:Get.width*0.065,
+                          fontWeight: FontWeight.bold,
+                          foreground: Paint()..shader = linearGradient),
+                    ),
+                    SizedBox(
+                      height: Get.height*0.01,
+                    ),
+                  ],
+                ),
+              ),
+            ):Card(
+              semanticContainer: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(14),
+                ),
+              ),
+              child: Padding(
+                padding:  EdgeInsets.symmetric(
+                  horizontal: Get.width*0.012,
                 ),
                 child: Column(
                   children: [
@@ -195,7 +278,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                       style: AppTextStyle.
                       montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.07,
+                        Get.width*0.06,
                         FontWeight.w600,
                       ),
                     ),
@@ -204,7 +287,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                       style: AppTextStyle.
                       montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.035,
+                        Get.width*0.03,
                         FontWeight.w600,
                       ),
                     ),
@@ -213,7 +296,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                       style: AppTextStyle.
                       montserrat(
                         AppColors.slateGrey,
-                        Get.width*0.035,
+                        Get.width*0.03,
                         FontWeight.w400,
                       ),
                     ),
@@ -222,7 +305,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                       style: AppTextStyle.
                       montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.04,
+                        Get.width*0.03,
                         FontWeight.w600,
                       ),
                     ),
@@ -239,28 +322,25 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
             ),
           ),
         ),
-        Visibility(
-          visible: pageIndex==index,
-          child: Container(
-            height: Get.width*0.06,
-            width: Get.width,
-            alignment: Alignment.center,
-            decoration:  BoxDecoration(
-               gradient: AppColors.brownGradient,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                )
-            ),
-              child: Text(isPopular?getTranslated(context, 'most_popular')??"":"",
-              style: AppTextStyle.montserrat(
-                  AppColors.white,
-                  Get.width*0.035,
-                  FontWeight.w600,
-              ),
-              ),
+        isPopular?Container(
+          height: Get.width*0.06,
+          width: Get.width*0.3,
+          alignment: Alignment.center,
+          decoration:  BoxDecoration(
+             gradient: AppColors.brownGradient,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+              )
           ),
-        ),
+            child: Text(isPopular?getTranslated(context, 'most_popular')??"":"",
+            style: AppTextStyle.montserrat(
+                AppColors.white,
+                Get.width*0.035,
+                FontWeight.w600,
+            ),
+            ),
+        ):SizedBox(),
       ],
     ),
   );

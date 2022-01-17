@@ -24,76 +24,78 @@ class _UniversityState extends State<University> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: Get.width * 0.1,
-            ),
-            Text(
-              getTranslated(context, 'university') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
-            ),
-            SizedBox(
-              height: Get.width * 0.05,
-            ),
-            Text(
-              getTranslated(context, 'your_university_will') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
-            ),
-            SizedBox(height: Get.width * 0.15),
-            TextFormField(
-              validator: (value)=> FieldValidator.validateText(
-                  dashPro.universityController.text
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: Get.width * 0.1,
               ),
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              controller: dashPro.universityController,
-              onChanged: (val)
-              {
-
-                setState(() {
-
-                  if(dashPro.formKey.currentState!.validate())
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=1;
-                  }
-                  else
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=-1;
-                  }
-                });
-                Get.forceAppUpdate();
-              },
-              decoration: AppInputDecoration.circularFieldDecoration(null, 'university', null,),
-            ),
-            SizedBox(height: Get.width * 0.05),
-            TextFormField(
-              validator: (value)=> FieldValidator.validateText(
-                  dashPro.cityController.text
+              Text(
+                getTranslated(context, 'university') ?? "",
+                style: AppTextStyle.montserrat(
+                    AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
               ),
-              onChanged: (val)
-              {
+              SizedBox(
+                height: Get.width * 0.05,
+              ),
+              Text(
+                getTranslated(context, 'your_university_will') ?? "",
+                style: AppTextStyle.montserrat(
+                    AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
+              ),
+              SizedBox(height: Get.width * 0.15),
+              TextFormField(
+                validator: (value)=> FieldValidator.validateText(
+                    dashPro.universityController.text
+                ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: dashPro.universityController,
+                onChanged: (val)
+                {
 
-                setState(() {
+                  setState(() {
 
-                  if(dashPro.formKey.currentState!.validate())
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=1;
-                  }
-                  else
-                  {
-                    dashPro.formCheck[dashPro.pageIndex]=-1;
-                  }
-                });
-                Get.forceAppUpdate();
-              },
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              controller: dashPro.cityController,
-              decoration: AppInputDecoration.circularFieldDecoration(null, 'city', null,),),
-            SizedBox(height: Get.width * 0.15),
-          ],
+                    if(dashPro.formKey.currentState!.validate())
+                    {
+                      dashPro.formCheck[dashPro.pageIndex]=1;
+                    }
+                    else
+                    {
+                      dashPro.formCheck[dashPro.pageIndex]=-1;
+                    }
+                  });
+                  Get.forceAppUpdate();
+                },
+                decoration: AppInputDecoration.circularFieldDecoration(null, 'university', null,),
+              ),
+              SizedBox(height: Get.width * 0.05),
+              TextFormField(
+                validator: (value)=> FieldValidator.validateText(
+                    dashPro.cityController.text
+                ),
+                onChanged: (val)
+                {
+
+                  setState(() {
+
+                    if(dashPro.formKey.currentState!.validate())
+                    {
+                      dashPro.formCheck[dashPro.pageIndex]=1;
+                    }
+                    else
+                    {
+                      dashPro.formCheck[dashPro.pageIndex]=-1;
+                    }
+                  });
+                  Get.forceAppUpdate();
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: dashPro.cityController,
+                decoration: AppInputDecoration.circularFieldDecoration(null, 'city', null,),),
+              SizedBox(height: Get.width * 0.15),
+            ],
+          ),
         ),
       ),
     );

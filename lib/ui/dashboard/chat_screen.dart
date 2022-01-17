@@ -112,7 +112,6 @@ class _ChatScreenState extends State<ChatScreen> {
                           )),
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -310,7 +309,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         onTap: () {
           Get.to(() =>
-              GroupChatt(name: model.chatName)
+              GroupChat(name: model.chatName)
           );
         },
       ),
