@@ -133,28 +133,14 @@ class _MapScreenState extends State<MapScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         floatingActionButton: Padding(
           padding:  EdgeInsets.only(top:Get.height*0.15,),
-          child: FloatingActionButton.extended(
+          child: FloatingActionButton(
             backgroundColor: AppColors.whiteBackground,
             onPressed: () {
               Get.bottomSheet(
                 FiltersBottomSheet(), isScrollControlled: true,
               );
             },
-            label: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  getTranslated(context, 'filter')??"",
-                  style: AppTextStyle.montserrat(
-                      AppColors.black, Get.width*0.04, FontWeight.w700
-                  ),
-                ),
-                SizedBox(
-                  width: Get.width*0.02,
-                ),
-                Image.asset(AppImages.filter,),
-              ],
-            ),
+           child:Image.asset(AppImages.filter,scale: 3.5,),
           ),
         ),
         body: isLoading==true? SizedBox() : GoogleMap(

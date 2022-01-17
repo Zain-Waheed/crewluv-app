@@ -54,10 +54,10 @@ class _MediaProfileState extends State<MediaProfile> {
                         crossAxisSpacing: 10,
                         mainAxisSpacing:10,
                       ),
-                         itemCount:provider.mediaListImages.where((element) => element.path != "").length +1<7?
-                         provider.mediaListImages.where((element) => element.path != "").length +1:
-                         provider.mediaListImages.where((element) => element.path != "").length,
-                       itemBuilder: (BuildContext context,int index){
+                      itemCount:provider.mediaListImages.where((element) => element.path != "").length +1<7?
+                      provider.mediaListImages.where((element) => element.path != "").length +1:
+                      provider.mediaListImages.where((element) => element.path != "").length,
+                      itemBuilder: (BuildContext context,int index){
 
                         return Visibility(
                           child: SizedBox(
@@ -66,16 +66,15 @@ class _MediaProfileState extends State<MediaProfile> {
                             child: Stack(
                                 children:[
                                   GestureDetector(
-                                    onTap:(){
-                                      provider.getProfileImage(index);
-                                      if(provider.mediaListImages[index].path==""&&index==0)
+                                    onTap:()async
+                                    {
+                                     await provider.getProfileImage(index);
+                                     provider.update();
+                                      if(provider.mediaListImages[0].path!="")
                                       {
                                         provider.formCheck[8]=1;
                                         provider.update();
                                       }
-                                      setState(() {
-
-                                      });
                                     },
                                     child: Align(
                                       alignment: Alignment.center,
@@ -92,17 +91,17 @@ class _MediaProfileState extends State<MediaProfile> {
                                         child: provider.mediaListImages[index].path==""?Align(
                                           alignment: Alignment.center,
                                           child: Container(
-                                              padding: const EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                  gradient: AppColors.percantageBarGradientColor,
-                                                  borderRadius: BorderRadius.circular(16)
-                                              ),
-                                              child: Icon(Icons.add,color: AppColors.white,),
-                                            ),):ClipRRect(borderRadius: BorderRadius.circular(16),
-                                              child: Image.file(provider.mediaListImages[index],
-                                          fit: BoxFit.fill,
-                                        ),
+                                            padding: const EdgeInsets.all(4),
+                                            decoration: BoxDecoration(
+                                                gradient: AppColors.percantageBarGradientColor,
+                                                borderRadius: BorderRadius.circular(16)
                                             ),
+                                            child: Icon(Icons.add,color: AppColors.white,),
+                                          ),):ClipRRect(borderRadius: BorderRadius.circular(16),
+                                          child: Image.file(provider.mediaListImages[index],
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -117,28 +116,28 @@ class _MediaProfileState extends State<MediaProfile> {
                                           });
                                           if(provider.mediaListImages[index].path==""&&index==0)
                                           {
-                                          provider.formCheck[8]=-1;
-                                          provider.update();
+                                            provider.formCheck[8]=-1;
+                                            provider.update();
 
 
                                           }
                                         },
                                         child: Container(
-                                            padding: const EdgeInsets.all(5),
-                                            decoration: BoxDecoration(
-                                                gradient: AppColors.percantageBarGradientColor,
-                                                borderRadius: BorderRadius.circular(16)
-                                            ),
-                                            child: Icon(Icons.close,color: AppColors.white,size: Get.width*0.04,),
+                                          padding: const EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                              gradient: AppColors.percantageBarGradientColor,
+                                              borderRadius: BorderRadius.circular(16)
                                           ),
-                                      ),
+                                          child: Icon(Icons.close,color: AppColors.white,size: Get.width*0.04,),
+                                        ),
                                       ),
                                     ),
+                                  ),
                                 ]
                             ),
                           ),
                         );
-                       }
+                      }
                   ),
                 ),
               ],

@@ -19,15 +19,15 @@ import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_3.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-class GroupChatt extends StatefulWidget {
+class GroupChat extends StatefulWidget {
  final  String name;
-  const GroupChatt({Key? key, required this.name}) : super(key: key);
+  const GroupChat({Key? key, required this.name}) : super(key: key);
 
   @override
-  _GroupChattState createState() => _GroupChattState();
+  _GroupChatState createState() => _GroupChatState();
 }
 
-class _GroupChattState extends State<GroupChatt> {
+class _GroupChatState extends State<GroupChat> {
   FilePickerResult? result;
   @override
   Widget build(BuildContext context) {
@@ -35,111 +35,112 @@ class _GroupChattState extends State<GroupChatt> {
     return Consumer<DashboardProvider>(builder: (context, provider, _) {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(Get.width * 0.17),
-        child: AppBar(
-          leading: Container(
-            height: Get.height*0.06,
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-            padding: const EdgeInsets.symmetric(vertical: 4) ,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(14),
-                boxShadow: [
-                  BoxShadow(
-                      color: AppColors.black.withOpacity(0.5),
-                      offset: Offset(0, 4),
-                      blurRadius: 5.0)
-                ]),
-            child: Padding(
-              padding:  EdgeInsets.only(left: 8.0),
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: AppColors.black,
-                  size: Get.width*0.06,
-                ),
-              ),
-            ),
-          ),
-          title: GestureDetector(
-            onTap:(){
-              Get.to( const ChatBox(name: 'American Party',));
-            },
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: Get.height*0.04),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: Get.width * 0.08,
+                Container(
+                  height: Get.height*0.045,
+                  width: Get.width*0.1,
+                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            color: AppColors.black.withOpacity(0.5),
+                            offset: Offset(0, 1),
+                            blurRadius: 2)
+                      ]
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Padding(
+                      padding: const EdgeInsets.only(left: 6),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.black,
+                        size: Get.width*0.045,
+                      ),
+                    ),
+                  ),
                 ),
-                Stack(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(1),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                            color: AppColors.maroon, width: Get.height * 0.002),
+                GestureDetector(
+                  onTap:(){
+                    Get.to( const ChatBox(name: 'American Party',));
+                  },
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: Get.width * 0.15,
                       ),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        backgroundImage: AssetImage(
-                            AppImages.crew2
-                        ),
-                        radius: 12,
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left:10),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        backgroundImage: AssetImage(
-                          AppImages.crew2
-                        ),
-                        radius: 14,
-                      ),
-                    ),
-                    Container(
-                        margin: const EdgeInsets.only(left: 20,),
-                        decoration: BoxDecoration(
-                            color: AppColors.greyText,
-                            shape: BoxShape.circle,
-                        ),
-                        height: 30,
-                        width: 30,
-                        child: Center(
-                          child: Text(
-                            "+9",
-                            style: AppTextStyle.montserrat(
-                                AppColors.whiteColor,
-                                Get.width * 0.02,
-                                FontWeight.w500),
+                      Stack(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(1),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: AppColors.maroon, width: Get.height * 0.002),
+                            ),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              backgroundImage: AssetImage(
+                                  AppImages.crew2
+                              ),
+                              radius: 12,
+                            ),
                           ),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  width: Get.width * 0.02,
-                ),
-                Text(
-                  widget.name,
-                  style: AppTextStyle.montserrat(
-                      AppColors.black, Get.width * 0.05, FontWeight.bold),
+                          Container(
+                            margin: const EdgeInsets.only(left:10),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              backgroundImage: AssetImage(
+                                  AppImages.crew2
+                              ),
+                              radius: 14,
+                            ),
+                          ),
+                          Container(
+                              margin: const EdgeInsets.only(left: 20,),
+                              decoration: BoxDecoration(
+                                color: AppColors.greyText,
+                                shape: BoxShape.circle,
+                              ),
+                              height: 30,
+                              width: 30,
+                              child: Center(
+                                child: Text(
+                                  "+9",
+                                  style: AppTextStyle.montserrat(
+                                      AppColors.whiteColor,
+                                      Get.width * 0.02,
+                                      FontWeight.w500),
+                                ),
+                              )),
+                        ],
+                      ),
+                      SizedBox(
+                        width: Get.width * 0.02,
+                      ),
+                      Text(
+                        widget.name,
+                        style: AppTextStyle.montserrat(
+                            AppColors.black, Get.width * 0.05, FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          leadingWidth: Get.width * 0.2,
-          toolbarHeight: Get.width * 0.3,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          elevation: 0,
-        ),
-      ),
-      body: Column(
-        children: [
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(bottom: 5.0,left: Get.width*0.03,right:Get.width*0.03),
@@ -147,6 +148,7 @@ class _GroupChattState extends State<GroupChatt> {
                   itemCount: provider.messages.length,
                   shrinkWrap: true,
                   reverse:true,
+                  padding: EdgeInsets.symmetric(vertical: Get.height * 0.01),
                   itemBuilder: (context, index) {
                     return Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -171,14 +173,14 @@ class _GroupChattState extends State<GroupChatt> {
                                   width: Get.height * 0.002),
                             ),
                             child: const CircleAvatar(
-                              radius: 20,
+                              radius: 16,
                               backgroundImage: CachedNetworkImageProvider(
                                 'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
                               ),
                             ),
                           ),
                         ),
-                        links(provider,index),
+                        chatBubble(provider,index),
                         Visibility(
                           visible:
                           provider.messages[index].incomingMsg == true
@@ -195,7 +197,7 @@ class _GroupChattState extends State<GroupChatt> {
                                   width: Get.height * 0.002),
                             ),
                             child: const CircleAvatar(
-                              radius: 20,
+                              radius: 16,
                               backgroundImage: CachedNetworkImageProvider(
                                 'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
                               ),
@@ -217,7 +219,7 @@ class _GroupChattState extends State<GroupChatt> {
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.opacBlack,
-                        offset: const Offset(5,0.0),
+                        offset: const Offset(0,-4),
                         blurRadius: 5,
                       )
                     ],
@@ -242,8 +244,8 @@ class _GroupChattState extends State<GroupChatt> {
                           });
                         },
                         child: Container(
-                          width: Get.width * 0.12,
-                          height: Get.width * 0.12,
+                          width: Get.width * 0.10,
+                          height: Get.width * 0.10,
                           margin: EdgeInsets.only(right: Get.width * 0.01),
                           decoration: BoxDecoration(
                             color: AppColors.whiteDark,
@@ -252,14 +254,12 @@ class _GroupChattState extends State<GroupChatt> {
                           child: Center(
                             child: Image.asset(
                               AppImages.attach,
-                              width: Get.width * 0.06,
+                              width: Get.width * 0.04,
                             ),
                           ),
                         ),
                       ),
-                      Container(
-                        height: Get.height * 0.06,
-                        width: Get.width * 0.67,
+                      Expanded(
                         child: TextField(
                           controller: sendMessageController,
                           keyboardType: TextInputType.multiline,
@@ -270,13 +270,14 @@ class _GroupChattState extends State<GroupChatt> {
                             suffixStyle: TextStyle(
                               color: AppColors.grey,
                             ),
+                            contentPadding: EdgeInsets.only(top: Get.height*0.015,bottom:Get.height*0.015,left: Get.width*0.03 ),
                             filled: true,
                             fillColor: AppColors.whiteDark,
                             hintText: getTranslated(
                                 Get.context, "start_typing"),
                             hintStyle: AppTextStyle.montserrat(
                                 AppColors.blackLite,
-                                Get.width * 0.04,
+                                Get.width * 0.03,
                                 FontWeight.w400),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -299,7 +300,6 @@ class _GroupChattState extends State<GroupChatt> {
                           ),
                         ),
                       ),
-                      const Spacer(),
                       GestureDetector(
                         onTap: () {
                           setState(() {});
@@ -309,31 +309,39 @@ class _GroupChattState extends State<GroupChatt> {
                                   message: sendMessageController.text
                                       .toString(),
                                   time: "2:00",
-                                  incomingMsg: false,messageType: 0));
+                                  incomingMsg: false,
+                                  messageType: 0
+                              )
+                          );
                           sendMessageController.clear();
                           // FocusScope.of(context).requestFocus(new FocusNode());
                         },
                         child: Container(
                           alignment: Alignment.center,
-                          padding: const EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(10),
+                          margin: EdgeInsets.only(left: Get.width * 0.02),
                           decoration: BoxDecoration(
                             gradient: AppColors.orangeGradientColor,
                             color: AppColors.whiteDark,
                             shape: BoxShape.circle,
                           ),
-                          child: Image.asset(AppImages.send,width: Get.width*0.05,height: Get.width*0.05,),
+                          child: Image.asset(AppImages.send,width: Get.width*0.04,height: Get.width*0.04,),
                         ),
                       ),
                     ],
                   ))),
+          SizedBox(
+            height: Get.width*0.04,
+          ),
         ],
       ),
     );},);
   }
-  links(DashboardProvider provider, int index) {
+  chatBubble(DashboardProvider provider, int index) {
     if(provider.messages[index].messageType==0)
     {
       return   ChatBubble(
+        elevation: 0,
         clipper:
         provider.messages[index].incomingMsg == true
             ? ChatBubbleClipper3(
@@ -360,10 +368,10 @@ class _GroupChattState extends State<GroupChatt> {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                height: Get.width * 0.02,
+                height: Get.width * 0.01,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(7.0),
                 child: Text(
                   provider.messages[index].message ??
                       "",
@@ -373,7 +381,7 @@ class _GroupChattState extends State<GroupChatt> {
                           true
                           ? AppColors.black
                           : AppColors.greyDark,
-                      Get.height * 0.02,
+                      Get.height * 0.018,
                       FontWeight.w400),
                 ),
               ),
@@ -425,11 +433,10 @@ class _GroupChattState extends State<GroupChatt> {
           provider.messages[index].incomingMsg == true
               ? AppColors.whiteDark
               : AppColors.pinkLight,
-          padding: const EdgeInsets.all(5),
+
           child: Container(
             constraints: BoxConstraints(
               minWidth: Get.width * 0.2,
-              maxWidth: Get.height * 0.3,
             ),
             child:
             Column(
@@ -451,7 +458,7 @@ class _GroupChattState extends State<GroupChatt> {
                   children: [
                     Padding(
                       padding:
-                      EdgeInsets.only(right: 10.0),
+                      EdgeInsets.only(right: 10.0,top: 10.0),
                       child: Text(
                         provider.messages[index].time ??
                             "",

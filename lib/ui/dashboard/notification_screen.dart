@@ -77,21 +77,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
           decoration: BoxDecoration(
             border:Border.all(width: 2,color: AppColors.redColor),
             shape: BoxShape.circle,
-
-
           ),
         ),
         title: Row(
           children: [
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 5),
-              child: Row(
-                children: [
-                  Text(model.name,style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.04, FontWeight.w500),),
-                  Text(model.age.toString(),style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.04, FontWeight.w500),),
-                ],
-              ),
-            ),
+            Text(model.name,style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.04, FontWeight.w500),),
+            Text(model.age.toString(),style: AppTextStyle.montserrat(AppColors.greyDark, Get.width*0.04, FontWeight.w500),),
             Spacer(),
              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -103,7 +94,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         ),
         subtitle: Text(model.description,maxLines: 2,overflow:TextOverflow.ellipsis ,),
         minVerticalPadding: 20,
-       contentPadding: EdgeInsets.symmetric(horizontal: Get.width*0.03,vertical: Get.width*0.01),
+       contentPadding: EdgeInsets.symmetric(horizontal: Get.width*0.03,vertical: Get.width*0.02),
       ),
     );
   }

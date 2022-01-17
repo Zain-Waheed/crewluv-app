@@ -16,18 +16,29 @@ class _ListViewScreenState extends State<ListViewScreen> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,provider,_){
       return Scaffold(
-        body: ListView(
-          padding: EdgeInsets.only(top:Get.width*0.3,bottom: Get.height*0.1),
-          children: List.generate(provider.events.length, (index) => GestureDetector(
-              onTap: (){
-                Get.dialog(EventWidget(user: provider.users.first, event :provider.events[index] ));
-              },
-              child: EventDescriptionWidget(model: provider.events[index],titleImage: true,))),
+        // padding: EdgeInsets.only(top:Get.width*0.3,bottom: Get.height*0.1),
+        body: Column(
+          children: [
+            Container(
+              width: Get.width,
+              padding: EdgeInsets.only(top:Get.width*0.1,bottom: Get.height*0.1),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children:
+                  List.generate(provider.events.length, (index) => GestureDetector(
+                      onTap: (){
+                        Get.dialog(EventWidget(user: provider.users.first, event :provider.events[index] ));
+                      },
+                      child: EventDescriptionWidget(model: provider.events[index],titleImage: true,))),
+                ),
+              ),
+            ),
+          ],
         ),
       );
 
     });
-
-
   }
 }

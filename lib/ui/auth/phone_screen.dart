@@ -53,7 +53,8 @@ class _PhoneNumberState extends State<PhoneNumber> {
           ),
           bottomNavigationBar: Container(
             height: Get.width*0.2,
-            padding: EdgeInsets.symmetric(horizontal: Get.width*0.07,vertical: Get.width*0.03),
+            margin: EdgeInsets.only(left: Get.width * 0.07,right:Get.width * 0.07,bottom: Get.width*0.03),
+            padding: EdgeInsets.only(bottom: Get.height*0.03),
             child:  validated==false?AppButtonGrey("request_otp"):AppButton(isWhite: false,width: Get.width*0.6,buttonText: 'request_otp',
               onpressed: (){
                 if(formKey.currentState!.validate())

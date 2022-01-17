@@ -172,6 +172,9 @@
   "in_mood": "Is in mood for",
   "lets_go": "Let's Go!",
   "settings": "SETTINGS",
+  "in_mood": "In mood for",
+  "lets_go": "LET'S GO!",
+  "settings": "Settings",
   "edit": "Edit",
   "privacy": "Privacy",
   "hosted": "Hosted",
@@ -291,7 +294,7 @@
   "age_range":"Age Range",
   "distance":"Distance",
   "filter":"Filter",
-  "filters":"Apply Filters",
+  "filters":"Filters",
   "apply_filters":"APPLY FILTERS",
 
   "payments_details":"Payments Details",

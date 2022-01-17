@@ -1,5 +1,6 @@
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/app_button_selected.dart';
+import 'package:amigos/helpers/widgets/filters_button.dart';
 import 'package:amigos/helpers/widgets/mood_type_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
@@ -37,54 +38,57 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
           borderRadius: const BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
           color: AppColors.whiteColor,
         ),
-        padding: EdgeInsets.symmetric(
-          horizontal: Get.width*0.05,
-        ),
         child: Column(
           children: [
             SizedBox(
-              height: Get.width*0.03,
+              height: Get.width*0.015,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: Get.width*0.4,
+                ),
+                Text(
+                  getTranslated(context, 'filters')??"",
+                  style: AppTextStyle.montserrat(
+                    AppColors.black,
+                    Get.width*0.05,
+                    FontWeight.bold,
+                  ),
+                ),
+                Spacer(),
+                IconButton(
+                  onPressed: (){Get.back();},
+                  icon:  Icon(Icons.close,size: Get.width*0.07),
+                ),
+                SizedBox(
+                  width: Get.width*0.025,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: Get.width*0.001,
             ),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: Get.width*0.4,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
+                      child: Text(
+                        getTranslated(context, 'moods')??"",
+                        style: AppTextStyle.montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.04,
+                          FontWeight.w500,
                         ),
-                        Text(
-                          getTranslated(context, 'filters')??"",
-                          style: AppTextStyle.montserrat(
-                              AppColors.black,
-                              Get.width*0.045,
-                              FontWeight.bold,
-                          ),
-                        ),
-                        Spacer(),
-                        IconButton(
-                            onPressed: (){Get.back();},
-                            icon:  Icon(Icons.close,size: Get.width*0.08),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: Get.width*0.04,
-                    ),
-                    Text(
-                      getTranslated(context, 'moods')??"",
-                      style: AppTextStyle.montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.04,
-                        FontWeight.w500,
                       ),
                     ),
                     SizedBox(
-                      height: Get.width*0.02,
+                      height: Get.width*0.015,
                     ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -105,16 +109,19 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                         }),
                       ),
                     ),
-                    Text(
-                      getTranslated(context, 'music_taste')??"",
-                      style: AppTextStyle.montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.04,
-                        FontWeight.w500,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
+                      child: Text(
+                        getTranslated(context, 'music_taste')??"",
+                        style: AppTextStyle.montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.04,
+                          FontWeight.w500,
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: Get.width*0.02,
+                      height: Get.width*0.008,
                     ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -126,27 +133,28 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                                        value =provider.filters.musicTaste[index].isSelected;
                                        provider.filters.musicTaste[index].isSelected=!value;
                                        setState(() {
-
                                        });
-
                                      },
-                                    child: AppButtonSelected(model: provider.filters.musicTaste[index],))
+                                    child: FiltersButton(model: provider.filters.musicTaste[index],))
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: Get.width*0.04,
+                      height: Get.width*0.008,
                     ),
-                    Text(
-                      getTranslated(context, 'type_of_events')??"",
-                      style: AppTextStyle.montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.04,
-                        FontWeight.w500,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
+                      child: Text(
+                        getTranslated(context, 'type_of_events')??"",
+                        style: AppTextStyle.montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.04,
+                          FontWeight.w500,
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: Get.width*0.02,
+                      height: Get.width*0.008,
                     ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -158,28 +166,28 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                                       value =provider.filters.eventTypes[index].isSelected;
                                       provider.filters.eventTypes[index].isSelected=!value;
                                       setState(() {
-
-
                                       });
-
                                     },
-                                    child: AppButtonSelected(model: provider.filters.eventTypes[index],))
+                                    child: FiltersButton(model: provider.filters.eventTypes[index],))
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: Get.width*0.04,
+                      height: Get.width*0.008,
                     ),
-                    Text(
-                      getTranslated(context, 'friends')??"",
-                      style: AppTextStyle.montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.04,
-                        FontWeight.w500,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
+                      child: Text(
+                        getTranslated(context, 'friends')??"",
+                        style: AppTextStyle.montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.04,
+                          FontWeight.w500,
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: Get.width*0.02,
+                      height: Get.width*0.008,
                     ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -194,23 +202,26 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
 
                                       });
                                     },
-                                    child: AppButtonSelected(model: provider.filters.friend[index],))
+                                    child: FiltersButton(model: provider.filters.friend[index],))
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: Get.width*0.04,
+                      height: Get.width*0.008,
                     ),
-                    Text(
-                      getTranslated(context, 'time_duration')??"",
-                      style: AppTextStyle.montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.04,
-                        FontWeight.w500,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
+                      child: Text(
+                        getTranslated(context, 'time_duration')??"",
+                        style: AppTextStyle.montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.04,
+                          FontWeight.w500,
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: Get.width*0.02,
+                      height: Get.width*0.008,
                     ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -225,36 +236,39 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
 
                                       });
                                     },
-                                    child: AppButtonSelected(model:provider.filters.timeDuration[index]))
+                                    child: FiltersButton(model:provider.filters.timeDuration[index]))
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: Get.width*0.04,
+                      height: Get.width*0.008,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          getTranslated(context, 'age_range')??"",
-                          style: AppTextStyle.montserrat(
-                            AppColors.shadedBlack,
-                            Get.width*0.04,
-                            FontWeight.w500,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
+                      child: Row(
+                        children: [
+                          Text(
+                            getTranslated(context, 'age_range')??"",
+                            style: AppTextStyle.montserrat(
+                              AppColors.shadedBlack,
+                              Get.width*0.04,
+                              FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        Spacer(),
-                        Text(
-                          "${_values.start.toStringAsFixed(0)}-${_values.end.toStringAsFixed(0)}y/o",
-                          style: AppTextStyle.montserrat(
-                            AppColors.shadedBlack,
-                            Get.width*0.035,
-                            FontWeight.w500,
+                          Spacer(),
+                          Text(
+                            "${_values.start.toStringAsFixed(0)}-${_values.end.toStringAsFixed(0)}y/o",
+                            style: AppTextStyle.montserrat(
+                              AppColors.shadedBlack,
+                              Get.width*0.035,
+                              FontWeight.w500,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(
-                      height: Get.width*0.02,
+                      height: Get.width*0.008,
                     ),
                     SfRangeSlider(
                       startThumbIcon: Container(
@@ -286,31 +300,34 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       },
                     ),
                     SizedBox(
-                      height: Get.width*0.02,
+                      height: Get.width*0.008,
                     ),
-                    Row(
-                      children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
+                      child: Row(
+                        children: [
 
-                        Text(
-                          getTranslated(context, 'distance')??"",
-                          style: AppTextStyle.montserrat(
-                            AppColors.shadedBlack,
-                            Get.width*0.04,
-                            FontWeight.w500,
+                          Text(
+                            getTranslated(context, 'distance')??"",
+                            style: AppTextStyle.montserrat(
+                              AppColors.shadedBlack,
+                              Get.width*0.04,
+                              FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        Spacer(),
-                        Text(
-                          "${_currentSliderValue.toStringAsFixed(1)} mi",
-                          style: AppTextStyle.montserrat(
-                            AppColors.shadedBlack,
-                            Get.width*0.035,
-                            FontWeight.w500,
+                          Spacer(),
+                          Text(
+                            "${_currentSliderValue.toStringAsFixed(1)} mi",
+                            style: AppTextStyle.montserrat(
+                              AppColors.shadedBlack,
+                              Get.width*0.035,
+                              FontWeight.w500,
+                            ),
                           ),
-                        ),
 
 
-                      ],
+                        ],
+                      ),
                     ),
                     SfSlider(
                       thumbIcon: Container(
@@ -335,8 +352,15 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                       },
                     ),
                     SizedBox(
-                      height: Get.width*0.02,
+                      height: Get.width*0.008,
                     ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
+                      child: AppButton(
+                          buttonText: 'apply_filters',
+                          onpressed: (){
+                            provider.filters.age=_values;
+                            provider.filters.distance=_currentSliderValue;
                     AppButton(
                         buttonText: 'apply_filters',
                         onpressed: (){
@@ -345,12 +369,13 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                           Fluttertoast.showToast(msg: 'filters Applied',);
                           Get.back();
 
-                        },
-                        width: Get.width*0.95,
-                        isWhite:false
+                          },
+                          width: Get.width*0.95,
+                          isWhite:false
+                      ),
                     ),
                     SizedBox(
-                      height: Get.width*0.02,
+                      height: Get.width*0.03,
                     ),
                   ],
                 ),

@@ -37,7 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
       return GestureDetector(
         onTap: (){
           Get.back();
-
         },
         child: Scaffold(
           floatingActionButton: Align(
@@ -47,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 children: [
                   Container(
-                    height: Get.width*0.1,
+                    height: Get.width*0.09,
                     width: Get.width*0.3,
                     margin: const EdgeInsets.only(left: 5),
                     decoration: BoxDecoration(
@@ -68,12 +67,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: Get.width*0.02,vertical: 2),
-
                             decoration: BoxDecoration(
                               color: pageIndex==1?AppColors.whiteColor:AppColors.themeColor,
                               borderRadius: const BorderRadius.only(topLeft: Radius.circular(16),bottomLeft: Radius.circular(16)),
                             ),
-                            child: Image.asset(pageIndex==0? AppImages.yourLocation2:AppImages.yourLocation,),
+                            child: pageIndex==0?Image.asset( AppImages.yourLocation2,):
+                            Padding(   padding: EdgeInsets.all(4),child: Image.asset(AppImages.yourLocation),
+                            ),
                           ),
                         ),
                         GestureDetector(
@@ -85,13 +85,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             _controller.jumpToPage(pageIndex);
                           },
                           child: Container(
-                            padding: EdgeInsets.symmetric(vertical:Get.width*0.03,horizontal: Get.width*0.02),
+                            padding: EdgeInsets.all(Get.width*0.035),
                             decoration: BoxDecoration(
                               color: pageIndex==1?AppColors.themeColor:AppColors.whiteColor,
                               borderRadius: const BorderRadius.only(topRight: Radius.circular(16),bottomRight: Radius.circular(16)),
 
                             ),
-                            child: Image.asset(AppImages.list,scale: 2.7,color:pageIndex==0?AppColors.black:AppColors.whiteColor,),
+                            child: Image.asset(AppImages.list,color:pageIndex==0?AppColors.black:AppColors.whiteColor,),
                           ),
                         ),
                       ],

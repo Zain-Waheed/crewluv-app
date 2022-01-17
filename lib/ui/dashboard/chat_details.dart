@@ -36,76 +36,75 @@ class _ChatDetailsState extends State<ChatDetails> {
     return Consumer<DashboardProvider>(builder: (context, provider, _) {
         return Scaffold(
           backgroundColor: AppColors.whiteColor,
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(Get.width * 0.17),
-            child: AppBar(
-              leading: Container(
-                height: Get.height*0.06,
-                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                padding: const EdgeInsets.symmetric(vertical: 4) ,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(14),
-                    boxShadow: [
-                      BoxShadow(
-                          color: AppColors.black.withOpacity(0.5),
-                          offset: Offset(0, 1),
-                          blurRadius: 2)
-                    ]
-                ),
-                child: Padding(
-                  padding:  EdgeInsets.only(left: 8.0),
-                  child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: AppColors.black,
-                      size: Get.width*0.06,
-                    ),
-                  ),
-                ),
-              ),
-              title: Row(
-                children: [
-                  SizedBox(
-                    width: Get.width * 0.08,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                          color: AppColors.blue, width: Get.height * 0.002),
-                    ),
-                    child: const CircleAvatar(
-                      radius: 10,
-                      backgroundImage: CachedNetworkImageProvider(
-                        'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.03,
-                  ),
-                  Text(
-                    widget.name,
-                    style: AppTextStyle.montserrat(
-                        AppColors.black, Get.width * 0.05, FontWeight.bold),
-                  ),
-                ],
-              ),
-              centerTitle: true,
-              leadingWidth: Get.width * 0.2,
-              toolbarHeight: Get.width * 0.3,
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              elevation: 0,
-            ),
-          ),
           body: Column(
             children: [
+              Container(
+                margin: EdgeInsets.only(top: Get.height*0.04),
+                child:Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: Get.height*0.04,
+                      width: Get.width*0.09,
+                      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                      // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                                color: AppColors.black.withOpacity(0.5),
+                                offset: Offset(0, 1),
+                                blurRadius: 2)
+                          ]
+                      ),
+                      child: IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: Padding(
+                          padding: const EdgeInsets.only(left: 6),
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: AppColors.black,
+                            size: Get.width*0.04,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: Get.width * 0.15,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: AppColors.blue, width: Get.height * 0.002),
+                          ),
+                          child: const CircleAvatar(
+                            radius: 10,
+                            backgroundImage: CachedNetworkImageProvider(
+                              'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.03,
+                        ),
+                        Text(
+                          widget.name,
+                          style: AppTextStyle.montserrat(
+                              AppColors.black, Get.width * 0.05, FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 5.0,left: Get.width*0.03,right:Get.width*0.03),
@@ -138,14 +137,14 @@ class _ChatDetailsState extends State<ChatDetails> {
                                       width: Get.height * 0.002),
                                 ),
                                 child: const CircleAvatar(
-                                  radius: 20,
+                                  radius: 16,
                                   backgroundImage: CachedNetworkImageProvider(
                                     'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
                                   ),
                                 ),
                               ),
                             ),
-                             links(provider,index),
+                             chatBubble(provider,index),
                             Visibility(
                               visible:
                               provider.messages[index].incomingMsg == true
@@ -162,7 +161,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                       width: Get.height * 0.002),
                                 ),
                                 child: const CircleAvatar(
-                                  radius: 20,
+                                  radius: 16,
                                   backgroundImage: CachedNetworkImageProvider(
                                     'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
                                   ),
@@ -184,7 +183,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                         boxShadow: [
                           BoxShadow(
                             color: AppColors.opacBlack,
-                            offset: const Offset(5,0.0),
+                            offset: const Offset(0,-4),
                             blurRadius: 5,
                           )
                         ],
@@ -209,8 +208,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                               });
                             },
                             child: Container(
-                              width: Get.width * 0.12,
-                              height: Get.width * 0.12,
+                              width: Get.width * 0.10,
+                              height: Get.width * 0.10,
                               margin: EdgeInsets.only(right: Get.width * 0.01),
                               decoration: BoxDecoration(
                                 color: AppColors.whiteDark,
@@ -219,14 +218,12 @@ class _ChatDetailsState extends State<ChatDetails> {
                               child: Center(
                                 child: Image.asset(
                                   AppImages.attach,
-                                  width: Get.width * 0.06,
+                                  width: Get.width * 0.04,
                                 ),
                               ),
                             ),
                           ),
-                          Container(
-                            height: Get.height * 0.06,
-                            width: Get.width * 0.67,
+                          Expanded(
                             child: TextField(
                               controller: sendMessageController,
                               keyboardType: TextInputType.multiline,
@@ -237,13 +234,14 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 suffixStyle: TextStyle(
                                   color: AppColors.grey,
                                 ),
+                                contentPadding: EdgeInsets.only(top: Get.height*0.015,bottom:Get.height*0.015,left: Get.width*0.03 ),
                                 filled: true,
                                 fillColor: AppColors.whiteDark,
                                 hintText: getTranslated(
                                     Get.context, "start_typing"),
                                 hintStyle: AppTextStyle.montserrat(
                                     AppColors.blackLite,
-                                    Get.width * 0.04,
+                                    Get.width * 0.03,
                                     FontWeight.w400),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
@@ -266,7 +264,6 @@ class _ChatDetailsState extends State<ChatDetails> {
                               ),
                             ),
                           ),
-                          const Spacer(),
                           GestureDetector(
                             onTap: () {
                               setState(() {});
@@ -285,17 +282,21 @@ class _ChatDetailsState extends State<ChatDetails> {
                             },
                             child: Container(
                               alignment: Alignment.center,
-                              padding: const EdgeInsets.all(12),
+                              padding: const EdgeInsets.all(10),
+                              margin: EdgeInsets.only(left: Get.width * 0.02),
                               decoration: BoxDecoration(
                                 gradient: AppColors.orangeGradientColor,
                                 color: AppColors.whiteDark,
                                 shape: BoxShape.circle,
                               ),
-                              child: Image.asset(AppImages.send,width: Get.width*0.05,height: Get.width*0.05,),
+                              child: Image.asset(AppImages.send,width: Get.width*0.04,height: Get.width*0.04,),
                             ),
                           ),
                         ],
                       ))),
+              SizedBox(
+                height: Get.width*0.04,
+              ),
             ],
           ),
         );
@@ -304,10 +305,11 @@ class _ChatDetailsState extends State<ChatDetails> {
 
   }
 
-  links(DashboardProvider provider, int index) {
+  chatBubble(DashboardProvider provider, int index) {
     if(provider.messages[index].messageType==0)
       {
      return   ChatBubble(
+       elevation: 0,
           clipper:
           provider.messages[index].incomingMsg == true
               ? ChatBubbleClipper3(
@@ -334,10 +336,10 @@ class _ChatDetailsState extends State<ChatDetails> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
-                  height: Get.width * 0.02,
+                  height: Get.width * 0.01,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(7.0),
                   child: Text(
                     provider.messages[index].message ??
                         "",
@@ -347,7 +349,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                             true
                             ? AppColors.black
                             : AppColors.greyDark,
-                        Get.height * 0.02,
+                        Get.height * 0.018,
                         FontWeight.w400),
                   ),
                 ),
