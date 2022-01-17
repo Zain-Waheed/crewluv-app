@@ -36,18 +36,16 @@ class _OtpScreenState extends State<OtpScreen> {
         oneSec,
             (Timer myTimer) {
           if (counter == 0) {
-            setState(() {
-              myTimer.cancel();
-              resend=true;
-              counter=59;
+            myTimer.cancel();
+            resend=true;
+            counter=59;
 
-            });
           }
           else {
-            setState(() {
-              counter--;
-            });
+            counter--;
           }
+          setState(() {
+          });
         });
     super.initState();
   }
@@ -175,18 +173,17 @@ class _OtpScreenState extends State<OtpScreen> {
                               oneSec,
                                   (Timer myTimer) {
                                 if (counter == 0) {
-                                  setState(() {
-                                    myTimer.cancel();
-                                    resend=true;
-                                    counter=59;
-
-                                  });
+                                  myTimer.cancel();
+                                  resend=true;
+                                  counter=59;
                                 }
                                 else {
-                                  setState(() {
-                                    counter--;
-                                  });
+                                  counter--;
+
                                 }
+                                setState(() {
+
+                                });
                               });
 
                         }

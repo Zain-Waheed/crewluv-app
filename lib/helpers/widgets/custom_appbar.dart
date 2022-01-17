@@ -23,39 +23,34 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       leading: Container(
-        height: Get.height * 0.06,
+        height: Get.height*0.035,
+        width: Get.width*0.1,
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-        padding: const EdgeInsets.symmetric(vertical: 4),
+        // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: AppColors.white,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
                   color: AppColors.black.withOpacity(0.5),
-                  offset: Offset(0, 4),
-                  blurRadius: 5.0)
-            ]),
-        child: widget.backButton
-            ? Padding(
-                padding: EdgeInsets.only(left: 8.0),
-                child: IconButton(
-                  onPressed: widget.function,
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.black,
-                    size: Get.width * 0.06,
-                  ),
-                ),
-              )
-            : IconButton(
-                onPressed: widget.function,
-                icon: Icon(
-                  Icons.close,
-                  color: AppColors.black,
-                  size: Get.width * 0.06,
-                ),
-              ),
+                  offset: Offset(0, 1),
+                  blurRadius: 2)
+            ]
+        ),
+        child: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Padding(
+            padding: const EdgeInsets.only(left: 6),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.black,
+              size: Get.width*0.045,
+            ),
+          ),
+        ),
       ),
       leadingWidth: Get.width * 0.2,
       toolbarHeight: Get.width * 0.3,
@@ -72,7 +67,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
           onTap: (){
             Share.share('CrewLuv');
           },
-            child: Image.asset(widget.suffix??'AppImages.share',height: Get.height*0.5,width: Get.width*0.1,)):SizedBox(),
+            child: Container(
+                 margin: EdgeInsets.only(right: 10),
+                child: Image.asset(widget.suffix??'AppImages.share',height: Get.height*0.4,width: Get.width*0.07,))):SizedBox(),
       ],
     );
   }

@@ -38,7 +38,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             HomeScreen(),
             AllEvents(),
             ChatScreen(),
-            ProfileScreen(),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -49,8 +48,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             child: Center(
                 child: Image.asset(
                   AppImages.addEvent,
-                    height: Get.height*0.05,
-                  width: Get.width*0.8,
+                    height: Get.height*0.04,
+                  width: Get.width*0.7,
                   color: AppColors.whiteColor,
                 )),
             backgroundColor: AppColors.themeColor,
@@ -151,8 +150,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       )),
                   GestureDetector(
                       onTap: () {
-                        provider.dashboardIndex = 3;
-                        provider.update();
+                        Get.to(()=> ProfileScreen());
                       },
                       child: Image.asset(AppImages.user,
                           height: Get.height*0.05,

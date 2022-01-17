@@ -147,7 +147,7 @@ class _ChatBoxState extends State<ChatBox> {
                 "Admin",
                 style: AppTextStyle.montserrat(
                   AppColors.shadedBlack,
-                  Get.width*0.05,
+                  Get.width*0.04,
                   FontWeight.w500,
                 ),
               ),
@@ -192,7 +192,7 @@ class _ChatBoxState extends State<ChatBox> {
                 "Members",
                 style: AppTextStyle.montserrat(
                   AppColors.shadedBlack,
-                  Get.width*0.05,
+                  Get.width*0.04,
                   FontWeight.w500,
                 ),
               ),

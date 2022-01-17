@@ -76,7 +76,7 @@ class AppImages {
   static var privacy = "assets/images/privacy.png";
   static var profileImage = "assets/images/profileImage.png";
   static var smallLogo= "assets/images/smallLogo.png";
-  static var appLogoSmall= "assets/images/appLogoSmall.png";
+  static var logo= "assets/images/logo.png";
   static var draw = "assets/images/draw.png";
   static var logout = "assets/images/logout.png";
   static var aboutApplication = "assets/images/aboutApplication.png";

@@ -8,6 +8,7 @@ import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -341,6 +342,8 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                         onpressed: (){
                           provider.filters.age=_values;
                           provider.filters.distance=_currentSliderValue;
+                          Fluttertoast.showToast(msg: 'filters Applied',);
+                          Get.back();
 
                         },
                         width: Get.width*0.95,

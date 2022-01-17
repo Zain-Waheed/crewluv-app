@@ -10,6 +10,7 @@ import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/dashboard/event_specifications.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:amigos/utils/input_decorations.dart';
@@ -47,7 +48,6 @@ class _CreateEventState extends State<CreateEvent> {
   TextEditingController locationController = TextEditingController();
   EventModel model=EventModel(personalEvent: false);
   bool isSelected = false;
-
   @override
   void initState() {
    if(widget.comingFromEdit==true)
@@ -101,7 +101,7 @@ class _CreateEventState extends State<CreateEvent> {
                     model.day=startDate;
                     model.startTime= startHour+':'+startMinute;
                     model.endTime= endHour+':'+endMinute;
-                    Get.to(()=>  EventSpecifications(model: model,comingFromdit: widget.comingFromEdit==false?false:true,));
+                    Get.to(()=>  EventSpecifications(model: model,comingFromdit: widget.comingFromEdit,));
                   }
 
                 },
@@ -165,165 +165,163 @@ class _CreateEventState extends State<CreateEvent> {
                     TextFormField(
                       decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location', Icon(Icons.my_location,color: AppColors.solidGrey,)),
                       controller: locationController,
-                      onTap: _getLocation,
+                      onTap: (){
+                        Fluttertoast.showToast(msg: 'fetching_location');
+                        _getLocation();
+                      },
                       validator: (value)=> FieldValidator.validateText(locationController.text),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                     SizedBox(height: Get.width*0.04,),
                     Text(getTranslated(context, "date_time")??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
                     SizedBox(height: Get.width*0.04,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            margin: const EdgeInsets.only(left: 7),
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: AppColors.black.withOpacity(0.05))
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                GestureDetector(
-                                  onTap:() {
-                                    _selectDate(context,1);
-                                  },
-                                  child: Container(
-                                    height: Get.width*0.12,
-                                    width: Get.width*0.32,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.themeBlue,
-                                      borderRadius:const BorderRadius.only(topRight:Radius.circular(12),topLeft: Radius.circular(12)),
+                    Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(color: AppColors.black.withOpacity(0.05),blurRadius: 5,offset: Offset(0,5))
+                        ]
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 7),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                    onTap:() {
+                                      _selectDate(context,1);
+                                    },
+                                    child: Container(
+                                      height: Get.width*0.12,
+                                      width: Get.width*0.32,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.themeBlue,
+                                        borderRadius:const BorderRadius.only(topRight:Radius.circular(12),topLeft: Radius.circular(12)),
+                                      ),
+                                      child: Center(child: Text(startDate,style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.035, FontWeight.w500),)),
                                     ),
-                                    child: Center(child: Text(startDate,style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.035, FontWeight.w500),)),
                                   ),
-                                ),
-                                GestureDetector(
-                                  onTap: (){
-                                    _selectTime(context, 1);
-                                  },
-                                  child: Container(
-                                    height: Get.width*0.18,
-                                    width: Get.width*0.32,
-                                    padding: EdgeInsets.symmetric(horizontal:Get.width*0.015),
-                                    decoration: BoxDecoration(
-                                        color: AppColors.whiteColor,
-                                        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5),)
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          height: Get.width*0.13,
-                                          width: Get.width*0.13,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(color: AppColors.genderBorder),
-                                            borderRadius: BorderRadius.circular(5),
-                                            color: AppColors.silverWhite,
+                                  GestureDetector(
+                                    onTap: (){
+                                      _selectTime(context, 1);
+                                    },
+                                    child: Container(
+                                      height: Get.width*0.18,
+                                      width: Get.width*0.32,
+                                      padding: EdgeInsets.symmetric(horizontal:Get.width*0.015),
+                                      decoration: BoxDecoration(
+                                          color: AppColors.whiteColor,
+                                          borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5),)
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: Get.width*0.13,
+                                            width: Get.width*0.13,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: AppColors.genderBorder),
+                                              borderRadius: BorderRadius.circular(5),
+                                              color: AppColors.silverWhite,
+                                            ),
+                                            child: Center(child: Text(startHour)),
                                           ),
-                                          child: Center(child: Text(startHour)),
-                                        ),
-                                        const Text(':'),
-                                        Container(
-                                          height: Get.width*0.13,
-                                          width: Get.width*0.13,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(color: AppColors.genderBorder),
-                                            borderRadius: BorderRadius.circular(5),
-                                            color: AppColors.silverWhite,
+                                          const Text(':'),
+                                          Container(
+                                            height: Get.width*0.13,
+                                            width: Get.width*0.13,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: AppColors.genderBorder),
+                                              borderRadius: BorderRadius.circular(5),
+                                              color: AppColors.silverWhite,
+                                            ),
+                                            child: Center(child: Text(startMinute)),
                                           ),
-                                          child: Center(child: Text(startMinute)),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
+
                                     ),
+                                  )
 
-                                  ),
-                                )
+                                ],
 
-                              ],
-
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            margin: const EdgeInsets.only(left: 7),
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: AppColors.black.withOpacity(0.05))
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                GestureDetector(
-                                  onTap:() {
-                                    _selectDate(context,2);
-                                  },
-                                  child: Container(
-                                    height: Get.width*0.12,
-                                    width: Get.width*0.32,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.themeBlue,
-                                      borderRadius:const BorderRadius.only(topRight:Radius.circular(12),topLeft: Radius.circular(12)),
-                                    ),
-                                    child: Center(child: Text(endDate,style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.035, FontWeight.w500),)),
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: (){
-                                    _selectTime(context, 2);
-                                  },
-                                  child: Container(
-                                    height: Get.width*0.18,
-                                    width: Get.width*0.32,
-                                    padding: EdgeInsets.symmetric(horizontal:Get.width*0.015),
-                                    decoration: BoxDecoration(
-                                        color: AppColors.whiteColor,
-                                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5))
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          height: Get.width*0.13,
-                                          width: Get.width*0.13,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(color: AppColors.genderBorder),
-                                            borderRadius: BorderRadius.circular(5),
-                                            color: AppColors.silverWhite,
-                                          ),
-                                          child: Center(child: Text(endHour)),
-                                        ),
-                                        const Text(':'),
-                                        Container(
-                                          height: Get.width*0.13,
-                                          width: Get.width*0.13,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(color: AppColors.genderBorder),
-                                            borderRadius: BorderRadius.circular(5),
-                                            color: AppColors.silverWhite,
-                                          ),
-                                          child: Center(child: Text(endMinute)),
-                                        ),
-                                      ],
-                                    ),
-
-                                  ),
-                                )
-
-                              ],
-
+                              ),
                             ),
                           ),
-                        ),
+                          Expanded(
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 7),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                    onTap:() {
+                                      _selectDate(context,2);
+                                    },
+                                    child: Container(
+                                      height: Get.width*0.12,
+                                      width: Get.width*0.32,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.themeBlue,
+                                        borderRadius:const BorderRadius.only(topRight:Radius.circular(12),topLeft: Radius.circular(12)),
+                                      ),
+                                      child: Center(child: Text(endDate,style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.035, FontWeight.w500),)),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: (){
+                                      _selectTime(context, 2);
+                                    },
+                                    child: Container(
+                                      height: Get.width*0.18,
+                                      width: Get.width*0.32,
+                                      padding: EdgeInsets.symmetric(horizontal:Get.width*0.015),
+                                      decoration: BoxDecoration(
+                                          color: AppColors.whiteColor,
+                                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5))
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: Get.width*0.13,
+                                            width: Get.width*0.13,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: AppColors.genderBorder),
+                                              borderRadius: BorderRadius.circular(5),
+                                              color: AppColors.silverWhite,
+                                            ),
+                                            child: Center(child: Text(endHour)),
+                                          ),
+                                          const Text(':'),
+                                          Container(
+                                            height: Get.width*0.13,
+                                            width: Get.width*0.13,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: AppColors.genderBorder),
+                                              borderRadius: BorderRadius.circular(5),
+                                              color: AppColors.silverWhite,
+                                            ),
+                                            child: Center(child: Text(endMinute)),
+                                          ),
+                                        ],
+                                      ),
+
+                                    ),
+                                  )
+
+                                ],
+
+                              ),
+                            ),
+                          ),
 
 
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(height: Get.width*0.04,),
                   ],

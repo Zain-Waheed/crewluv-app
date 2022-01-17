@@ -13,9 +13,10 @@ import 'package:amigos/models/event_type_model.dart';
 import 'package:amigos/models/user_model.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
+import 'package:emojis/emojis.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:emojis/emoji.dart';
 class DashboardProvider extends ChangeNotifier{
   List<EventType> eventTypes=[];
   List<PreferenceModel>  favoriteDrinks=[];
@@ -109,12 +110,12 @@ class DashboardProvider extends ChangeNotifier{
   }
 
   void addEventTypes(){
-    eventTypes.add(EventType(image: AppImages.naughty, title: 'Naughty' ));
-    eventTypes.add(EventType(image: AppImages.balloon, title: 'Birthday' ));
-    eventTypes.add(EventType(image: AppImages.ill, title: 'ill' ));
-    eventTypes.add(EventType(image: AppImages.laughing, title: 'Laughing' ));
-    eventTypes.add(EventType(image: AppImages.happy, title: 'Happy' ));
-    eventTypes.add(EventType(image: AppImages.party, title: 'Party' ));
+    eventTypes.add(EventType(image: Emojis.hamburger, title: 'Naughty' ));
+    eventTypes.add(EventType(image: Emojis.birthdayCake, title: 'Birthday' ));
+    eventTypes.add(EventType(image: Emojis.hospital, title: 'ill' ));
+    eventTypes.add(EventType(image: Emojis.smilingFace, title: 'Laughing' ));
+    eventTypes.add(EventType(image: Emojis.smilingFaceWithHeartEyes, title: 'Happy' ));
+    eventTypes.add(EventType(image: Emojis.partyPopper, title: 'Party' ));
   }
   void  addFavoriteDrinks(  )
   {
@@ -200,7 +201,7 @@ class DashboardProvider extends ChangeNotifier{
     interests.add(PreferenceModel(name: 'photography',isSelected: false));
   }
   void addEvents(){
-    events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
+    events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true,));
     events.add(EventModel( title: 'Bonfire Party', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.bonFire,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
     events.add(EventModel(title: 'Friends Mode', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.partySmall,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: false,));
     events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));

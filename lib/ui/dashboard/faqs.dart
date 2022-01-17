@@ -1,4 +1,5 @@
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
+import 'package:amigos/helpers/widgets/tabs_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/utils/colors.dart';
@@ -18,6 +19,8 @@ class Faqs extends StatefulWidget {
 
 class _FaqsState extends State<Faqs> {
   PageController faqController = PageController();
+  List<bool> selected=[true,false];
+
   @override
   Widget build(BuildContext context) {
    return Consumer<DashboardProvider> (builder: (context,provider,_){
@@ -112,6 +115,9 @@ class _FaqsState extends State<Faqs> {
                borderRadius: BorderRadius.circular(20),
              ),
              child: ToggleButtons(
+               fillColor: Colors.transparent,
+               hoverColor: Colors.transparent,
+               splashColor: Colors.transparent,
                borderRadius: BorderRadius.circular(20),
                constraints: BoxConstraints(
                  maxHeight: Get.height*0.05,
@@ -119,59 +125,28 @@ class _FaqsState extends State<Faqs> {
                  maxWidth: Get.width*0.275,
                  minWidth: Get.width*0.237,
 
+
                ),renderBorder: false,
-               isSelected: [true,false],
+               isSelected:selected,
+               onPressed: (x){
+                 if(x==0){
+                   provider.faqIndex=0;
+                   provider.update();
+                   selected[0]=true;
+                   selected[1]=false;
+
+                 }
+                 else{
+                   provider.faqIndex=1;
+                   provider.update();
+                   selected[1]=true;
+                   selected[0]=false;
+
+                 }
+               },
                children: [
-                 GestureDetector(
-                   onTap: () {
-                     provider.faqIndex=0;
-                     provider.update();
-
-                   },
-                   child: Container(
-                     decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(20),
-                       color: provider.faqIndex == 0
-                           ? AppColors.themeColor
-                           : AppColors.offWhite,
-                     ),
-                     child: Center(
-                         child: Text(
-                           getTranslated(context, "faqs") ?? "",
-                           style: AppTextStyle.montserrat(
-                               provider.faqIndex == 0
-                                   ? AppColors.whiteColor
-                                   : AppColors.shadedBlack,
-                               Get.width * 0.035,
-                               FontWeight.w400),
-                         )),
-                   ),
-                 ),
-                 GestureDetector(
-                   onTap: () {
-                     provider.faqIndex=1;
-                     provider.update();
-                   },
-                   child: Container(
-                     decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(20),
-                       color: provider.faqIndex == 1
-                           ? AppColors.themeColor
-                           : AppColors.offWhite,
-                     ),
-                     child: Center(
-                         child: Text(
-                           getTranslated(context,"what's new") ?? "",
-                           style: AppTextStyle.montserrat(
-                               provider.faqIndex == 1
-                                   ? AppColors.whiteColor
-                                   : AppColors.shadedBlack,
-                               Get.width * 0.035,
-                               FontWeight.w400),
-                         )),
-                   ),
-                 ),
-
+                 TabsWidget('faqs', selected[0]),
+                 TabsWidget("what's new", selected[1]),
                ],
              ),
            ),

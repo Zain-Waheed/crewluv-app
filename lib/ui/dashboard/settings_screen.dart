@@ -137,7 +137,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         shape: BoxShape.circle,
                                         color: AppColors.brownColor,
                                       ),
-                                      child: Image.asset(AppImages.appLogoSmall,width: Get.width*0.08,height: Get.height*0.08,)),
+                                      child: Image.asset(AppImages.logo,width: Get.width*0.08,height: Get.height*0.08,)),
                                   SizedBox(
                                     width: Get.height*0.005,
                                   ),

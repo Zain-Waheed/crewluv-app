@@ -90,6 +90,7 @@ class _EventDetailsState extends State<EventDetails> {
               },
               title: "event_details",
               backButton: true,
+                suffix: widget.index==0?AppImages.share:'',
             ),
           ),
           body: SingleChildScrollView(
@@ -199,7 +200,7 @@ class _EventDetailsState extends State<EventDetails> {
                   Center(
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 10),
+                          vertical: 15, horizontal: 15),
                       decoration: BoxDecoration(
                           color: AppColors.whiteColor,
                           borderRadius: BorderRadius.circular(15),
@@ -486,8 +487,7 @@ class _EventDetailsState extends State<EventDetails> {
           ),
           bottomNavigationBar: widget.index != 1
               ? Container(
-            padding:
-            const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
             child: AppButton(
                 buttonText: widget.index == 0 ? 'edit2' : 'pending3',
                 onpressed: () {

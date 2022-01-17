@@ -5,6 +5,7 @@ import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/auth/complete_profile_screen.dart';
+import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/ui/dashboard/event_details.dart';
 import 'package:amigos/ui/dashboard/home_screen.dart';
 import 'package:amigos/ui/dashboard/terms_of_use.dart';
@@ -64,7 +65,6 @@ class _EventSpecificationsState extends State<EventSpecifications> {
               width: Get.width * 0.9,
               onpressed: () {
 
-                provider.events.add(widget.model);
                 if(widget.comingFromdit==true)
                   {
 
@@ -75,15 +75,20 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                   widget.model.withFriends=int.parse(alreadyWithController.text);
                   widget.model.maxFriends=int.parse(maxController.text);
                   widget.model.entryType=joinEventBy;
+                  provider.events.insert(0,widget.model);
+
 
                 }
                 Get.bottomSheet(
                     const CongraulationBottomSheet(text: 'event_posted',)
                 );
                   Future.delayed(const Duration(seconds: 3),(){
-                  Get.to(
-                    EventDetails(index: 0)
-                  );
+                   provider.dashboardIndex=1;
+                   provider.update();
+                   Get.to(DashBoardScreen());
+                   setState(() {
+                     
+                   });
                   });
 
               },
@@ -267,15 +272,16 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                       color: AppColors.silverWhite),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
+
                       borderRadius: BorderRadius.circular(30),
                       focusColor: AppColors.silverWhite,
                       elevation: 0,
-                      dropdownColor: AppColors.silverWhite,
+                      dropdownColor: AppColors.whiteColor,
+                      isDense: true,
                       style: AppTextStyle.montserrat(AppColors.shadedBlack,
                           Get.width * 0.04, FontWeight.w500),
                       items: <String>[
                         getTranslated(context, "join_on_request") ?? "",getTranslated(context, "buy_ticket")??"",
-                        getTranslated(context, "but_ticket") ?? "",
                       ].map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,

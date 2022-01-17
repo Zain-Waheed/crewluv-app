@@ -29,6 +29,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int pageIndex=0;
   final _controller = PageController();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,provider,_)
@@ -52,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(
 
                         boxShadow: [
-                          BoxShadow(color: AppColors.black.withOpacity(0.1), offset: const Offset(0, 1), blurRadius: 12.0)
+                          BoxShadow(color: AppColors.black.withOpacity(0.1),offset:Offset(-15,-1),blurRadius:10  )
                         ]
                     ),
                     child: Row(
@@ -115,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ]
                         ),
 
-                        child: Image.asset(provider.mood,scale: 2,),
+                        child: Image.asset(provider.mood,height: Get.height*0.075,width: Get.width*0.06,),
                       )
                   ),
                   GestureDetector(
@@ -136,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Stack(
                         alignment: Alignment.topRight,
                         children: [
-                          Image.asset(AppImages.noNotification,scale: 2,),
+                          Image.asset(AppImages.noNotification,height: Get.height*0.07,width: Get.width*0.05,),
                           provider.notifications.any((element) => element.isSeen==false)?Align(
                             alignment: Alignment.topRight,
                             child: Container(

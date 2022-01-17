@@ -1,4 +1,5 @@
 import 'package:amigos/helpers/widgets/event_description_widget.dart';
+import 'package:amigos/helpers/widgets/tabs_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/dashboard/event_details.dart';
@@ -45,6 +46,8 @@ class _AllEventsState extends State<AllEvents> {
                    borderRadius: BorderRadius.circular(30),
                    borderColor: AppColors.black,
                    fillColor: Colors.transparent,
+                   hoverColor: Colors.transparent,
+                   splashColor: Colors.transparent,
                    constraints: BoxConstraints(
                      maxHeight: Get.height*0.05,
                      minHeight: Get.height*0.05,
@@ -80,9 +83,9 @@ class _AllEventsState extends State<AllEvents> {
                    isSelected: selected,
                    children:
                    [
-                     tabs( 'my_events',selected[0]),
-                     tabs( 'joined',selected[1]),
-                     tabs( 'pending2',selected[2]),
+                     TabsWidget( 'my_events',selected[0]),
+                     TabsWidget( 'joined',selected[1]),
+                     TabsWidget( 'pending2',selected[2]),
 
                    ],
                  ),
@@ -120,13 +123,5 @@ class _AllEventsState extends State<AllEvents> {
          );
        });
   }
-  Widget tabs(String? text,bool selected){
-    return   Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(selected?20:0),
-        color: selected?AppColors.themeColor:AppColors.offWhite,
-      ),
-      child: Center(child: Text(getTranslated(context, text??'')??"",style: AppTextStyle.montserrat(selected?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
-    );
-  }
+
 }

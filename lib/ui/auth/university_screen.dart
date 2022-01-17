@@ -45,9 +45,7 @@ class _UniversityState extends State<University> {
             ),
             SizedBox(height: Get.width * 0.15),
             TextFormField(
-              validator: (value)=> FieldValidator.validateText(
-                  dashPro.universityController.text
-              ),
+              validator: (value)=> FieldValidator.validateTitle(dashPro.universityController.text),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: dashPro.universityController,
               onChanged: (val)
@@ -70,9 +68,7 @@ class _UniversityState extends State<University> {
             ),
             SizedBox(height: Get.width * 0.05),
             TextFormField(
-              validator: (value)=> FieldValidator.validateText(
-                  dashPro.cityController.text
-              ),
+              validator: (value)=> FieldValidator.validateTitle(dashPro.cityController.text),
               onChanged: (val)
               {
 

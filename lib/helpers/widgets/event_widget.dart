@@ -40,7 +40,7 @@ class _EventWidgetState extends State<EventWidget> {
             body: Center(
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                padding:  const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                padding:  const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
                 decoration: BoxDecoration(
                     color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(15)),

@@ -51,7 +51,7 @@ class _EditProfileState extends State<EditProfile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: Get.width * 0.05,
+                    height: Get.width * 0.1,
                   ),
                   Text(
                     getTranslated(context, 'media') ?? "",
@@ -60,6 +60,14 @@ class _EditProfileState extends State<EditProfile> {
                       Get.width * 0.04,
                       FontWeight.w500,
                     ),
+                  ),
+                  SizedBox(
+                    height: Get.width * 0.02,
+                  ),
+                  Text(
+                    getTranslated(context, 'who_you_are') ?? "",
+                    style: AppTextStyle.montserrat(
+                        AppColors.black, Get.width * 0.035, FontWeight.w400),
                   ),
                   SizedBox(
                     width: Get.width,
@@ -175,33 +183,25 @@ class _EditProfileState extends State<EditProfile> {
                       maxLines: 3,
                       decoration: AppInputDecoration.lessCircularDecoration(
                         null,
-                        'describe_what_you',
+                        'about_you',
                         null,
-                        AppColors.offWhite,
+                        AppColors.whiteColor,
                       )),
                   SizedBox(
                     height: Get.width * 0.02,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        getTranslated(context, 'interests') ?? "",
-                        style: AppTextStyle.montserrat(
-                          AppColors.shadedBlack,
-                          Get.width * 0.04,
-                          FontWeight.w500,
-                        ),
+                  GestureDetector(
+                    onTap: (){
+                      Get.bottomSheet(EditInterests());
+                    },
+                    child: Text(
+                      getTranslated(context, 'interests') ?? "",
+                      style: AppTextStyle.montserrat(
+                        AppColors.shadedBlack,
+                        Get.width * 0.04,
+                        FontWeight.w500,
                       ),
-                      Spacer(),
-                      GestureDetector(
-                          onTap: () {
-                            Get.bottomSheet(EditInterests());
-                          },
-                          child: Image.asset(
-                            AppImages.draw,
-                            scale: 4,
-                          )),
-                    ],
+                    ),
                   ),
                   Container(
                     width: Get.width,

@@ -1,5 +1,6 @@
 import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/crew_members_widget.dart';
+import 'package:amigos/helpers/widgets/tabs_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/group_chat_model.dart';
 import 'package:amigos/models/personal_chat_model.dart';
@@ -26,7 +27,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-
+  List<bool> selected=[true,false];
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +45,6 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         body: Column(
           children: [
-            SizedBox(
-              height: Get.width * 0.05,
-            ),
-
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: AppColors.genderBorder),
@@ -55,6 +52,9 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               child: ToggleButtons(
                 borderRadius: BorderRadius.circular(20),
+                fillColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                splashColor: Colors.transparent,
                 constraints: BoxConstraints(
                   maxHeight: Get.height*0.05,
                   minHeight: Get.height*0.05,
@@ -62,56 +62,28 @@ class _ChatScreenState extends State<ChatScreen> {
                   minWidth: Get.width*0.237,
 
                 ),renderBorder: false,
-                isSelected: [true,false],
+                isSelected: selected,
+                onPressed: (x){
+                  if(x==0){
+                    provider.chatPageIndex=0;
+                    provider.update();
+                    selected[0]=true;
+                    selected[1]=false;
+
+                  }
+                  else{
+                    provider.chatPageIndex=1;
+                    provider.update();
+                    selected[1]=true;
+                    selected[0]=false;
+
+                  }
+                },
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      provider.chatPageIndex=0;
-                      provider.update();
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: provider.chatPageIndex == 0
-                            ? AppColors.themeColor
-                            : AppColors.offWhite,
-                      ),
-                      child: Center(
-                          child: Text(
-                            getTranslated(context, "chats") ?? "",
-                            style: AppTextStyle.montserrat(
-                                provider.chatPageIndex == 0
-                                    ? AppColors.whiteColor
-                                    : AppColors.shadedBlack,
-                                Get.width * 0.035,
-                                FontWeight.w400),
-                          )),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      provider.chatPageIndex=1;
-                      provider.update();
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: provider.chatPageIndex == 1
-                            ? AppColors.themeColor
-                            : AppColors.offWhite,
-                      ),
-                      child: Center(
-                          child: Text(
-                            getTranslated(context, 'my_crew') ?? "",
-                            style: AppTextStyle.montserrat(
-                                provider.chatPageIndex == 1
-                                    ? AppColors.whiteColor
-                                    : AppColors.shadedBlack,
-                                Get.width * 0.035,
-                                FontWeight.w400),
-                          )),
-                    ),
-                  ),
+                 TabsWidget("chats", selected[0]),
+
+                  TabsWidget("my_crew", selected[1]),
+
 
                 ],
               ),
@@ -179,6 +151,7 @@ class _ChatScreenState extends State<ChatScreen> {
         child: ListTile(
           selected: !model.seen,
           selectedTileColor: AppColors.skyblue,
+          contentPadding: EdgeInsets.all(5),
           leading:Container(
             height: Get.height*0.13,
             width: Get.width*0.2,

@@ -81,10 +81,10 @@ class _NewCrewState extends State<NewCrew> {
                 height: Get.width*0.04,
               ),
               Text(
-                getTranslated(context, 'favorites')??"",
+                getTranslated(context, 'favourites')??"",
                 style: AppTextStyle.montserrat(
                   AppColors.shadedBlack,
-                  Get.width*0.05,
+                  Get.width*0.04,
                   FontWeight.w500,
                 ),
               ),
@@ -105,7 +105,7 @@ class _NewCrewState extends State<NewCrew> {
                       getTranslated(context, 'my_contacts')??"",
                       style: AppTextStyle.montserrat(
                         AppColors.shadedBlack,
-                        Get.width*0.045,
+                        Get.width*0.04,
                         FontWeight.w500,
                       ),
                     ),
@@ -119,7 +119,7 @@ class _NewCrewState extends State<NewCrew> {
                         getTranslated(context, 'send_invite')??"",
                         style: AppTextStyle.montserrat(
                           AppColors.lightGrey,
-                          Get.width*0.045,
+                          Get.width*0.04,
                           FontWeight.w500,
                         ),
                       ),
@@ -160,7 +160,7 @@ class _NewCrewState extends State<NewCrew> {
 
   crewWidget( CrewModel model) {
     return
-      Padding(
+      Container(
         padding: EdgeInsets.symmetric(vertical: Get.width*0.01),
         child: Row(
           children: [
@@ -180,7 +180,7 @@ class _NewCrewState extends State<NewCrew> {
           SizedBox(
             width: Get.width*0.03,
           ),
-          Text(model.name??'',
+          Text(model.name,
             style: AppTextStyle.montserrat(
               AppColors.shadedBlack,
               Get.width*0.05,

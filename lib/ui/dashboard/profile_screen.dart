@@ -52,18 +52,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Container(
                 margin: EdgeInsets.symmetric(
-                    horizontal: Get.width * 0.05, vertical: Get.width * 0.02),
+                    horizontal: Get.width * 0.01, vertical: Get.width * 0.02),
                 padding: EdgeInsets.symmetric(
                     horizontal: Get.width * 0.07, vertical: Get.height * 0.02),
-                decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                          color: AppColors.black.withOpacity(0.3),
-                          offset: const Offset(0, 4),
-                          blurRadius: 5)
-                    ]),
                 child: Column(
                   children: [
                     Container(
@@ -104,7 +95,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: Get.width * 0.01,
                     ),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -161,8 +151,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Get.to(()=> const SettingsScreen());
                                 },
                                 child: Container(
-                                  height: Get.height * 0.08,
-                                  width: Get.width * 0.13,
+                                  height: Get.height * 0.07,
+                                  width: Get.width * 0.11,
                                   padding: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
@@ -225,8 +215,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Get.to(()=>const EditProfile());
                                 },
                                 child: Container(
-                                  height: Get.height * 0.08,
-                                  width: Get.width * 0.13,
+                                  height: Get.height * 0.07,
+                                  width: Get.width * 0.11,
                                   margin: EdgeInsets.only(top: Get.height*0.05),
                                   padding: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
@@ -294,8 +284,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Get.to(TermsOfUse(termsOfUse: false));
                                 },
                                 child: Container(
-                                  height: Get.height * 0.08,
-                                  width: Get.width * 0.13,
+                                  height: Get.height * 0.07,
+                                  width: Get.width * 0.11,
                                   padding: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
@@ -334,7 +324,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05,vertical: Get.height*0.01),
                 decoration: BoxDecoration(
                   color: AppColors.whiteColor,
-                  borderRadius: const BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
+                  borderRadius: const BorderRadius.only(topRight: Radius.circular(30),topLeft: Radius.circular(30)),
                   boxShadow: [
                     BoxShadow(
                         color: AppColors.black.withOpacity(0.9),
@@ -366,7 +356,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         shape: BoxShape.circle,
                                         color: AppColors.brownColor,
                                       ),
-                                      child: Image.asset(AppImages.appLogoSmall,width: Get.width*0.07,height: Get.height*0.07,)),
+                                      child: Image.asset(AppImages.logo,width: Get.width*0.07,height: Get.height*0.07,)),
                                   SizedBox(
                                     width: Get.width*0.01,
                                   ),
@@ -399,7 +389,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         controller: controller,
                       ),
-                      SizedBox(height: Get.height*0.012,),
+                      SizedBox(height: Get.height*0.05,),
                       AppButton(buttonText: 'learn_more', onpressed: (){Get.dialog(GetPlanDialogBox());}, width: Get.width, isWhite: false),
                       SizedBox(height: Get.height*0.15,),
 

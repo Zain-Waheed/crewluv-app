@@ -4,6 +4,7 @@ import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/main.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/auth/email_screen.dart';
 import 'package:amigos/ui/auth/enter_dob.dart';
 import 'package:amigos/ui/auth/favorite_drinks_screen.dart';
 import 'package:amigos/ui/auth/fullname_screen.dart';
@@ -37,7 +38,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final _controller = PageController();
   int percentage = 10;
   double percent = 0.1;
-  bool isChecked = false;
   bool isGrey = true;
   bool isFocused = false;
   //var model = Provider.<DashboardProvider>of(context , listen: false);
@@ -127,24 +127,24 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           width: Get.width * 0.9,
                           buttonText: dashPro.pageIndex == 8 ? 'done' : 'further',
                           onpressed: () {
-                            if (dashPro.formKey.currentState!.validate() && isChecked == true) {
-                              if (dashPro.pageIndex <=8) {
-                                dashPro.pageIndex++;
-                                dashPro.update();
-                                if (dashPro.pageIndex != 9) {
-                                  _controller.jumpToPage(dashPro.pageIndex);
-                                }
-                                else {
-                                  Get.bottomSheet(const CongraulationBottomSheet(
-                                    text: 'your_profile_has_been_completed',
-                                  ));
-                                  Future.delayed(const Duration(seconds: 2),(){
-                                    Get.offAll(const DashBoardScreen());
-                                  });
-                                }
-                                percentageValue(dashPro);
-                              }
+                            dashPro.pageIndex++;
+                            dashPro.update();
+                            print(dashPro.pageIndex.toString());
+                            if (dashPro.pageIndex <= 8) {
+                              _controller.jumpToPage(dashPro.pageIndex);
+                              percentageValue(dashPro);
                             }
+                            else{
+                              Get.bottomSheet(const CongraulationBottomSheet(
+                                text: 'your_profile_has_been_completed',
+                              ));
+                              Future.delayed(Duration(seconds: 3),(){
+                                Get.to(
+                                    DashBoardScreen()
+                                );
+                              });
+                            }
+
                           },
                         )
                       : ElevatedButton(
@@ -180,33 +180,30 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            if (isChecked == true) {
+                            dashPro.pageIndex++;
+                            dashPro.update();
+                            print(dashPro.pageIndex.toString());
                               if (dashPro.pageIndex <= 8) {
-                                dashPro.pageIndex++;
-                                dashPro.update();
-                                print("dash check");
-                                if (dashPro.pageIndex != 9) {
-                                  print("check");
-                                  _controller.jumpToPage(dashPro.pageIndex);
-                                } else {
-                                  Get.bottomSheet(const CongraulationBottomSheet(
-                                    text: 'your_profile_has_been_completed',
-                                  ));
-                                  Future.delayed(Duration(seconds: 3),(){
-                                    Get.to(
-                                        DashBoardScreen()
-                                    );
-                                  });
-                                }
+                                _controller.jumpToPage(dashPro.pageIndex);
                                 percentageValue(dashPro);
                               }
-                            }
+                              else{
+                                Get.bottomSheet(const CongraulationBottomSheet(
+                                  text: 'your_profile_has_been_completed',
+                                ));
+                                Future.delayed(Duration(seconds: 3),(){
+                                  Get.to(
+                                      DashBoardScreen()
+                                  );
+                                });
+                              }
+
 
                         },
                         child: Text(
                           getTranslated(context, 'skip') ?? "",
-                          style: AppTextStyle.poppins(AppColors.blackLite,
-                              Get.width * 0.04, FontWeight.w500),
+                          style: AppTextStyle.montserrat(AppColors.blackLite,
+                              Get.width * 0.04, FontWeight.w600),
                         ),
                       ),
                     ],
@@ -255,7 +252,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       });
                     },
                     children: [
-                      emailScreen(dashPro),
+                      const EmailScreen(),
                       const EnterFullName(),
                       const EnterDOB(),
                       const University(),
@@ -275,116 +272,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     });
   }
 
-  Widget emailScreen(DashboardProvider dashPro) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: Get.width * 0.1,
-            ),
-            Text(
-              getTranslated(context, 'enter_email_address') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
-            ),
-            SizedBox(
-              height: Get.width * 0.05,
-            ),
-            Text(
-              getTranslated(context, 'confirm_email') ?? "",
-              style: AppTextStyle.montserrat(
-                  AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
-            ),
-            SizedBox(height: Get.width * 0.15),
-            TextFormField(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              controller: dashPro.emailController,
-              keyboardType: TextInputType.emailAddress,
-              focusNode: focus,
-              onTap: (){
-                setState(() {
 
-                });
-              },
-              onChanged: (val) {
-                if(dashPro.formKey.currentState!.validate() && isChecked==true){
-                  dashPro.formCheck[dashPro.pageIndex] = 1;
-                  dashPro.update();
-                  setState(() {
-
-                  });
-
-                }
-                else{
-                  dashPro.formCheck[dashPro.pageIndex] = -1;
-                  dashPro.update();
-                  setState(() {
-
-                  });
-
-                }
-                setState(() {
-
-                  });
-                },
-
-                validator: (value) =>
-                    FieldValidator.validateEmail(dashPro.emailController.text),
-                decoration: AppInputDecoration.circularFieldDecoration(
-                  null,
-                  'enter_email',
-                  Image.asset(
-                    AppImages.emailIcon,
-                    color:
-                        focus.hasFocus ? AppColors.themeColor : AppColors.slateGrey,
-                  ),
-                ),
-              ),
-            SizedBox(height: Get.width * 0.15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Checkbox(
-                  value: isChecked,
-                  activeColor: AppColors.themeColor,
-                  onChanged: (value) {
-                    if(value==true && dashPro.formKey.currentState!.validate()){
-                      dashPro.formCheck[dashPro.pageIndex] = 1;
-                      dashPro.update();
-                      setState(() {
-
-                      });
-                    }else
-                      {
-                        dashPro.formCheck[dashPro.pageIndex] = -1;
-                        dashPro.update();
-                        setState(() {
-
-                        });
-                      }
-                    isChecked = value!;
-                    setState(() {});
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                Expanded(
-                    child: Text(
-                  getTranslated(context, "like_to_update") ?? "",
-                  style: AppTextStyle.montserrat(
-                      AppColors.lightGrey, Get.width * 0.027, FontWeight.w400),
-                )),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
 
   void percentageValue(DashboardProvider dashPro) {
     if (dashPro.pageIndex == 0) {
