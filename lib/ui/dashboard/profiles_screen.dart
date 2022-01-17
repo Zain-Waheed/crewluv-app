@@ -289,9 +289,9 @@ class _ProfilesState extends State<Profiles> {
           PageView(
             controller:_controller,
             children: [
-              Image.asset(user.coverPhoto![0]),
-              Image.asset(user.coverPhoto![1]),
-              Image.asset(user.coverPhoto![2]),
+              Image.asset(user.coverPhoto![0],fit: BoxFit.cover,),
+              Image.asset(user.coverPhoto![1],fit: BoxFit.cover,),
+              Image.asset(user.coverPhoto![2],fit: BoxFit.cover,),
             ],
           ),
           Align(

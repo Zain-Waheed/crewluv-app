@@ -129,7 +129,7 @@ class _OnBoardingState extends State<OnBoarding> {
                             }else
                             {
                               pageIndex=4;
-                              Get.offAll(const Login());
+                              Get.offAll(const PhoneNumber());
                             }
                           },
                           buttonText: pageIndex==3?'register':'next',

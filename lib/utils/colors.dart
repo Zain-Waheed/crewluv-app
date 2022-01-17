@@ -89,8 +89,8 @@ class AppColors {
     end: Alignment.bottomCenter,
     stops: [0.0, 0.9],
     colors: [
-      Color(0xffFFFFFF),
-      Color(0xffFFFFFF),
+      Color(0xffF2F2F3),
+      Color(0xffF2F2F3),
     ],
   );
 

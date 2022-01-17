@@ -31,47 +31,53 @@ class _EditInterestsState extends State<EditInterests> {
 
         ),
         padding: EdgeInsets.symmetric(horizontal: Get.width*0.05),
-        child:SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                width: Get.width*0.25,
-                padding: EdgeInsets.symmetric(vertical: Get.width*0.008),
-                margin: EdgeInsets.symmetric(vertical: Get.width*0.03),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.themeColor
+        child:Column(
+          children: [
+            Container(
+              width: Get.width*0.25,
+              padding: EdgeInsets.symmetric(vertical: Get.width*0.008),
+              margin: EdgeInsets.symmetric(vertical: Get.width*0.03),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: AppColors.themeColor
 
+              ),
+
+            ),
+            SizedBox(height: Get.width*0.01,),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text(getTranslated(context, "edit_interests")??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
+                    SizedBox(height: Get.width*0.1,),
+                    Wrap(
+                      children: List.generate(provider.interests.length, (index) => GestureDetector(
+                          onTap: (){
+                            value= provider.interests[index].isSelected;
+                            provider.interests[index].isSelected= !value;
+                            setState(() {
+
+                            });
+
+                          },
+                          child: AppButtonSelected(model: provider.interests[index]))),
+                    ),
+                    SizedBox(height: Get.width*0.07,),
+                    AppButton(buttonText: 'save_changes', onpressed: (){
+                      provider.update();
+                      setState(() {
+
+                      });
+                      Get.back();
+                    }, width: Get.width*0.9, isWhite: false),
+                    SizedBox(height: Get.width*0.03,),
+                  ],
                 ),
-
               ),
-              SizedBox(height: Get.width*0.01,),
-              Text(getTranslated(context, "edit_interests")??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),),
-              SizedBox(height: Get.width*0.1,),
-              Wrap(
-                children: List.generate(provider.interests.length, (index) => GestureDetector(
-                    onTap: (){
-                     value= provider.interests[index].isSelected;
-                     provider.interests[index].isSelected= !value;
-                     setState(() {
+            ),
 
-                     });
-
-                    },
-                    child: AppButtonSelected(model: provider.interests[index]))),
-              ),
-              SizedBox(height: Get.width*0.07,),
-              AppButton(buttonText: 'save_changes', onpressed: (){
-                provider.update();
-                setState(() {
-
-                });
-                Get.back();
-              }, width: Get.width*0.9, isWhite: false),
-              SizedBox(height: Get.width*0.03,),
-
-            ],
-          ),
+          ],
         ),
       );
 

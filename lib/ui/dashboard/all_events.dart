@@ -88,35 +88,33 @@ class _AllEventsState extends State<AllEvents> {
                  ),
                ),
                Expanded(
-                 child: Padding(
-                   padding: EdgeInsets.only(bottom: Get.height*0.1),
+                 child: Container(
+                   padding: EdgeInsets.only(top: 20),
                    child: IndexedStack(
                      index: provider.allEventPageIndex,
                      children: [
-                       SingleChildScrollView(
-                         child: Column(
-                           children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
-                             Get.to(EventDetails(index: 0,));},
-                               child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
-                         ),
+                       ListView(
+                         padding: EdgeInsets.only(bottom: Get.height*0.1),
+                         children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
+                           Get.to(EventDetails(index: 0,));},
+                             child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
                        ),
-                       SingleChildScrollView(
-                         child: Column(
-                           children: List.generate(provider.events.length, (index)=> GestureDetector(  onTap: (){
-                             Get.to(EventDetails(index: 1,));},
-                               child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
-                         ),
+                       ListView(
+                         padding: EdgeInsets.only(bottom: Get.height*0.1),
+                         children: List.generate(provider.events.length, (index)=> GestureDetector(  onTap: (){
+                           Get.to(EventDetails(index: 1,));},
+                             child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
                        ),
-                       SingleChildScrollView(
-                         child: Column(
-                           children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
-                             Get.to(EventDetails(index: 2,));},child: EventDescriptionWidget(model: provider.events[index],titleImage: false,))),
-                         ),
+                       ListView(
+                         padding: EdgeInsets.only(bottom: Get.height*0.1),
+                         children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
+                           Get.to(EventDetails(index: 2,));},child: EventDescriptionWidget(model: provider.events[index],titleImage: false,))),
                        ),
                      ],
                    ),
                  ),
                ),
+
              ],
            ),
          );

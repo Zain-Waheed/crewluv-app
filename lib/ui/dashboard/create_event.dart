@@ -181,7 +181,7 @@ class _CreateEventState extends State<CreateEvent> {
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
-                                    color: AppColors.black.withOpacity(0.05), offset: Offset(0, 1), blurRadius: 5.0)
+                                    color: AppColors.black.withOpacity(0.05))
                               ],
                             ),
                             child: Column(
@@ -211,7 +211,7 @@ class _CreateEventState extends State<CreateEvent> {
                                     padding: EdgeInsets.symmetric(horizontal:Get.width*0.015),
                                     decoration: BoxDecoration(
                                         color: AppColors.whiteColor,
-                                        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5))
+                                        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5),)
                                     ),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -254,7 +254,7 @@ class _CreateEventState extends State<CreateEvent> {
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
-                                    color: AppColors.black.withOpacity(0.05), offset: Offset(0, 1), blurRadius: 5.0)
+                                    color: AppColors.black.withOpacity(0.05))
                               ],
                             ),
                             child: Column(

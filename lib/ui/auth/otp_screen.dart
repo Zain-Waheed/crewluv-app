@@ -26,9 +26,31 @@ class _OtpScreenState extends State<OtpScreen> {
   String? otpText;
   TextEditingController otpController = TextEditingController();
   int counter = 60;
-  bool resend = true;
+  bool resend = false;
   final formKey = GlobalKey<FormState>();
   bool greyButton=true;
+  @override
+  void initState() {
+    const oneSec = const Duration(seconds: 1);
+    Timer.periodic(
+        oneSec,
+            (Timer myTimer) {
+          if (counter == 0) {
+            setState(() {
+              myTimer.cancel();
+              resend=true;
+              counter=59;
+
+            });
+          }
+          else {
+            setState(() {
+              counter--;
+            });
+          }
+        });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

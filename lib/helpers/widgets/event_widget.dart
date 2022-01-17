@@ -112,7 +112,7 @@ class _EventWidgetState extends State<EventWidget> {
                                   widget.user.activeStatus,
                                   style: AppTextStyle.montserrat(
                                       AppColors.shadedBlack,
-                                      Get.width * 0.032,
+                                      Get.width * 0.035,
                                       FontWeight.w400),
                                 ),
                               ],
@@ -135,7 +135,7 @@ class _EventWidgetState extends State<EventWidget> {
                                   widget.user.distance.toString(),
                                   style: AppTextStyle.montserrat(
                                       AppColors.shadedBlack,
-                                      Get.width * 0.028,
+                                      Get.width * 0.035,
                                       FontWeight.w400),
                                 ),
                                 Text(
@@ -146,7 +146,7 @@ class _EventWidgetState extends State<EventWidget> {
                                       "",
                                   style: AppTextStyle.montserrat(
                                       AppColors.shadedBlack,
-                                      Get.width * 0.028,
+                                      Get.width * 0.035,
                                       FontWeight.w400),
                                 ),
                               ],
@@ -158,7 +158,7 @@ class _EventWidgetState extends State<EventWidget> {
                           widget.event.personalEvent
                               ? AppImages.privateEvent
                               : AppImages.barIcon,
-                          height: Get.height * 0.08,
+                          scale: 3.5,
                         ),
                       ],
                     ),
@@ -274,7 +274,7 @@ class _EventWidgetState extends State<EventWidget> {
                           ],
                         ),
                         Text(
-                            "${widget.event.withFriends}${getTranslated(context, 'of')} ${widget.event.maxFriends} ${getTranslated(context, "friends")} "),
+                            "${widget.event.withFriends} ${getTranslated(context, 'of')} ${widget.event.maxFriends} ${getTranslated(context, "friends")} "),
                       ],
                     ),
                     SizedBox(

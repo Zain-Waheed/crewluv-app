@@ -366,7 +366,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         shape: BoxShape.circle,
                                         color: AppColors.brownColor,
                                       ),
-                                      child: Image.asset(AppImages.appLogoSmall,width: Get.width*0.08,height: Get.height*0.08,)),
+                                      child: Image.asset(AppImages.appLogoSmall,width: Get.width*0.07,height: Get.height*0.07,)),
                                   SizedBox(
                                     width: Get.width*0.01,
                                   ),

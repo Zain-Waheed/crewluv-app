@@ -7,6 +7,7 @@ import 'package:amigos/helpers/widgets/ticket_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/List_view.dart';
 import 'package:amigos/ui/dashboard/all_events.dart';
 import 'package:amigos/ui/dashboard/notification_screen.dart';
 import 'package:amigos/ui/dashboard/map_screen.dart';
@@ -114,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ]
                         ),
 
-                        child: Image.asset(AppImages.party,scale: 2,),
+                        child: Image.asset(provider.mood,scale: 2,),
                       )
                   ),
                   GestureDetector(
@@ -160,19 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
             physics: const NeverScrollableScrollPhysics(),
             children: [
               MapScreen(),
-              Container(
-                padding: EdgeInsets.only(top:Get.width*0.25,bottom: Get.height*0.1),
-                color: Colors.transparent,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: List.generate(provider.events.length, (index) => GestureDetector(
-                        onTap: (){
-                          Get.dialog(EventWidget(user: provider.users.first, event :provider.events[index] ));
-                        },
-                        child: EventDescriptionWidget(model: provider.events[index],titleImage: true,))),
-                  ),
-                ),
-              ),
+              ListViewScreen(),
             ],
             onPageChanged: (index){
               pageIndex=index;

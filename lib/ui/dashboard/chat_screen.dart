@@ -117,49 +117,53 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
             SizedBox(height: Get.height*0.02,),
-            IndexedStack(
-              index: provider.chatPageIndex,
-              children: [
-                Column(
-                  children: List.generate(provider.personalChats.length,
-                      (index) => Slidable(
-                          enabled: true,
-                          endActionPane:  ActionPane(
-                            extentRatio: 0.25,
-                            motion: const ScrollMotion(),
-                            children: [
-                              GestureDetector(
-                                onTap: (){
-                                  setState(() {
+            Expanded(
+              child: IndexedStack(
+                index: provider.chatPageIndex,
+                children: [
+                  ListView(
+                    padding: EdgeInsets.only(bottom: Get.height*0.1),
+                    children: List.generate(provider.personalChats.length,
+                        (index) => Slidable(
+                            enabled: true,
+                            endActionPane:  ActionPane(
+                              extentRatio: 0.25,
+                              motion: const ScrollMotion(),
+                              children: [
+                                GestureDetector(
+                                  onTap: (){
+                                    setState(() {
 
-                                  });
-                                  provider.personalChats.removeAt(index);
-                                },
-                                child: Container(
-                                  width:Get.width*0.1,
-                                  height:Get.width*0.1,
-                                  margin:EdgeInsets.only(left: Get.width*0.02),
-                                  decoration:  BoxDecoration(
-                                    gradient: AppColors.buttonGradientColor,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child:Icon(
-                                    Icons.delete,
-                                    color: AppColors.white,
+                                    });
+                                    provider.personalChats.removeAt(index);
+                                  },
+                                  child: Container(
+                                    width:Get.width*0.1,
+                                    height:Get.width*0.1,
+                                    margin:EdgeInsets.only(left: Get.width*0.02),
+                                    decoration:  BoxDecoration(
+                                      gradient: AppColors.buttonGradientColor,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child:Icon(
+                                      Icons.delete,
+                                      color: AppColors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          child: personalChatItemWidget(provider.personalChats[index]))),
-                ),
-                Column(
-                  children: List.generate(
-                      provider.groupChats.length,
-                      (index) =>
-                          groupChatItemWidget(provider.groupChats[index])),
-                ),
-              ],
+                              ],
+                            ),
+                            child: personalChatItemWidget(provider.personalChats[index]))),
+                  ),
+                  ListView(
+                    padding: EdgeInsets.only(bottom: Get.height*0.1),
+                    children: List.generate(
+                        provider.groupChats.length,
+                        (index) =>
+                            groupChatItemWidget(provider.groupChats[index])),
+                  ),
+                ],
+              ),
             )
           ],
         ),

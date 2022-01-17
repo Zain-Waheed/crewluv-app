@@ -25,7 +25,7 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
   BitmapDescriptor? icon1;
   BitmapDescriptor? icon2;
   bool? isLoading = true;
-  final CameraPosition _initialLocation = const CameraPosition(target: LatLng(31.4564555, 74.2852029));
+  final CameraPosition _initialLocation = const CameraPosition(target: LatLng(31.4564555, 74.2852029), zoom: 17,);
   late GoogleMapController mapController;
   loc.Location location = loc.Location();
   Position? _currentPosition;
@@ -42,7 +42,7 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
           CameraUpdate.newCameraPosition(
             CameraPosition(
               target: LatLng(position.latitude, position.longitude),
-              zoom: 15,
+              zoom: 25,
             ),
           ),
         );
@@ -66,7 +66,7 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
     markers.add(Marker(
       //add second marker
       markerId: MarkerId("1"),
-      position: LatLng(_currentPosition!.latitude,  _currentPosition!.longitude),//position of marker
+      position: isLoading == true?LatLng(_currentPosition!.latitude,  _currentPosition!.longitude):LatLng(31.4564555, 74.2852029),//position of marker
       onTap: (){
       },
       icon: icon1!, //Icon for Marker
@@ -129,7 +129,6 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
       await getBytesFromAsset(AppImages.location, 84).then((onValue) {
         icon1 = BitmapDescriptor.fromBytes(onValue);
         setState(() {});
-        isLoading = false;
       });
       await getBytesFromAsset(AppImages.clubLocation, 84).then((onValue) {
         icon2 = BitmapDescriptor.fromBytes(onValue);
@@ -146,7 +145,7 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
     Consumer<DashboardProvider>(builder:(context,provider,_){
       return Scaffold(
         body: isLoading==true? SizedBox() :GoogleMap(
-          polylines: Set<Polyline>.of(polylines.values),
+          // polylines: Set<Polyline>.of(polylines.values),
           markers: getmarkers(provider),
           initialCameraPosition: _initialLocation,
           myLocationEnabled: true,

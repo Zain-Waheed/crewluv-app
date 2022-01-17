@@ -101,89 +101,34 @@ class _EventDetailsState extends State<EventDetails> {
                 children: [
                   widget.index == 1 && provider.events[0].personalEvent == true
                       ? SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        provider.events[0].stories.isEmpty
+                            ? GestureDetector(
+                          onTap: () {
+                            pickFile(provider);
+                          },
+                          child: Stack(
                             children: [
-                              provider.events[0].stories.isEmpty
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        pickFile(provider);
-                                      },
-                                      child: Stack(
-                                        children: [
-                                          Image.asset(
-                                            AppImages.profileImage,
-                                            height: Get.width * 0.22,
-                                            width: Get.width * 0.22,
-                                          ),
-                                          Visibility(
-                                            child: Positioned(
-                                              right: 2,
-                                              bottom: 12,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: AppColors.themeColor,
-                                                ),
-                                                child: Icon(
-                                                  Icons.add,
-                                                  color: AppColors.whiteColor,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  : GestureDetector(
-                                      onTap: () {
-                                        Get.to(StoriesScreen());
-                                      },
-                                      child: Container(
-                                        height: Get.height * 0.12,
-                                        width: Get.width * 0.15,
-                                        padding: EdgeInsets.all(2),
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: Get.width * 0.015),
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                              color: AppColors.themeColor,
-                                              width: 2),
-                                          color: AppColors.white,
-                                        ),
-                                        child: Image.asset(
-                                          AppImages.person2,
-                                          fit: BoxFit.contain,
-                                          height: Get.width * 0.23,
-                                          width: Get.width * 0.23,
-                                          scale: 0.1,
-                                        ),
-                                      ),
-                                    ),
-                              Row(
-                                children: List.generate(
-                                  10,
-                                  (index) => Container(
-                                    height: Get.height * 0.12,
-                                    width: Get.width * 0.15,
-                                    padding: EdgeInsets.all(2),
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: Get.width * 0.015),
+                              Image.asset(
+                                AppImages.profileImage,
+                                height: Get.width * 0.22,
+                                width: Get.width * 0.22,
+                              ),
+                              Visibility(
+                                child: Positioned(
+                                  right: 2,
+                                  bottom: 12,
+                                  child: Container(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      border: Border.all(
-                                          color: AppColors.themeColor,
-                                          width: 2),
-                                      color: AppColors.white,
+                                      color: AppColors.themeColor,
                                     ),
-                                    child: Image.asset(
-                                      AppImages.notification1,
-                                      fit: BoxFit.contain,
-                                      height: Get.width * 0.23,
-                                      width: Get.width * 0.23,
-                                      scale: 0.1,
+                                    child: Icon(
+                                      Icons.add,
+                                      color: AppColors.whiteColor,
                                     ),
                                   ),
                                 ),
@@ -191,6 +136,62 @@ class _EventDetailsState extends State<EventDetails> {
                             ],
                           ),
                         )
+                            : GestureDetector(
+                          onTap: () {
+                            Get.to(StoriesScreen());
+                          },
+                          child: Container(
+                            height: Get.height * 0.12,
+                            width: Get.width * 0.15,
+                            padding: EdgeInsets.all(2),
+                            margin: EdgeInsets.symmetric(
+                                horizontal: Get.width * 0.015),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: AppColors.themeColor,
+                                  width: 2),
+                              color: AppColors.white,
+                            ),
+                            child: Image.asset(
+                              AppImages.person2,
+                              fit: BoxFit.contain,
+                              height: Get.width * 0.23,
+                              width: Get.width * 0.23,
+                              scale: 0.1,
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: List.generate(
+                            10,
+                                (index) =>
+                                Container(
+                                  height: Get.height * 0.12,
+                                  width: Get.width * 0.15,
+                                  padding: EdgeInsets.all(2),
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: Get.width * 0.015),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: AppColors.themeColor,
+                                        width: 2),
+                                    color: AppColors.white,
+                                  ),
+                                  child: Image.asset(
+                                    AppImages.notification1,
+                                    fit: BoxFit.contain,
+                                    height: Get.width * 0.23,
+                                    width: Get.width * 0.23,
+                                    scale: 0.1,
+                                  ),
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                       : SizedBox(),
                   SizedBox(
                     height: Get.height * 0.01,
@@ -248,9 +249,9 @@ class _EventDetailsState extends State<EventDetails> {
                                       ),
                                       provider.users[0].isVerified
                                           ? Image.asset(
-                                              AppImages.verified,
-                                              scale: 3,
-                                            )
+                                        AppImages.verified,
+                                        scale: 3,
+                                      )
                                           : SizedBox(),
                                     ],
                                   ),
@@ -259,7 +260,7 @@ class _EventDetailsState extends State<EventDetails> {
                                   ),
                                   Row(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Image.asset(
@@ -273,18 +274,18 @@ class _EventDetailsState extends State<EventDetails> {
                                         provider.users[0].distance.toString(),
                                         style: AppTextStyle.montserrat(
                                             AppColors.shadedBlack,
-                                            Get.width * 0.04,
+                                            Get.width * 0.035,
                                             FontWeight.w400),
                                       ),
                                       Text(
                                         getTranslated(
-                                              context,
-                                              "miles_away",
-                                            ) ??
+                                          context,
+                                          "miles_away",
+                                        ) ??
                                             "",
                                         style: AppTextStyle.montserrat(
                                             AppColors.shadedBlack,
-                                            Get.width * 0.04,
+                                            Get.width * 0.035,
                                             FontWeight.w400),
                                       ),
                                     ],
@@ -293,13 +294,12 @@ class _EventDetailsState extends State<EventDetails> {
                               ),
                               Spacer(),
                               Image.asset(
-                                AppImages.privateEvent,
-                                height: Get.height * 0.08,
+                                AppImages.privateEvent, scale: 4,
                               ),
                             ],
                           ),
                           SizedBox(
-                            height: Get.width * 0.1,
+                            height: Get.width * 0.05,
                           ),
                           Text(
                             provider.events[0].title ?? "",
@@ -342,7 +342,8 @@ class _EventDetailsState extends State<EventDetails> {
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                                 child: Text(
-                                  "${provider.events[0].startTime}-${provider.events[0].endTime} ",
+                                  "${provider.events[0].startTime}-${provider
+                                      .events[0].endTime} ",
                                   style: AppTextStyle.montserrat(
                                       AppColors.themeColor,
                                       Get.width * 0.035,
@@ -360,7 +361,9 @@ class _EventDetailsState extends State<EventDetails> {
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                                 child: Text(
-                                  "${provider.events[0].distance}  ${getTranslated(context, "km")}",
+                                  "${provider.events[0]
+                                      .distance}  ${getTranslated(
+                                      context, "km")}",
                                   style: AppTextStyle.montserrat(
                                       AppColors.themeColor,
                                       Get.width * 0.035,
@@ -385,7 +388,7 @@ class _EventDetailsState extends State<EventDetails> {
                           Row(
                             children: [
                               Text(
-                                getTranslated(context, 'my_crew') ?? '',
+                                getTranslated(context, widget.index!=2?'my_crew':"joined") ?? '',
                                 style: AppTextStyle.montserrat(AppColors.black,
                                     Get.width * 0.04, FontWeight.w700),
                               ),
@@ -398,7 +401,7 @@ class _EventDetailsState extends State<EventDetails> {
                                       margin: 25, image: AppImages.crew2),
                                   Container(
                                       margin:
-                                          EdgeInsets.only(left: 60, top: 7.5),
+                                      EdgeInsets.only(left: 50, top: 5),
                                       decoration: BoxDecoration(
                                           color: AppColors.coalGrey,
                                           shape: BoxShape.circle,
@@ -418,7 +421,11 @@ class _EventDetailsState extends State<EventDetails> {
                                 ],
                               ),
                               Text(
-                                  "${provider.events[0].withFriends}${getTranslated(context, 'of')} ${provider.events[0].maxFriends} ${getTranslated(context, "friends")} "),
+                                  "${provider.events[0]
+                                      .withFriends}${getTranslated(
+                                      context, 'of')} ${provider.events[0]
+                                      .maxFriends} ${getTranslated(
+                                      context, "friends")} "),
                             ],
                           ),
                         ],
@@ -430,16 +437,16 @@ class _EventDetailsState extends State<EventDetails> {
                   ),
                   widget.index != 2
                       ? AppButton(
-                          buttonText: widget.index == 0
-                              ? 'view_request'
-                              : "view_tickets",
-                          onpressed: () {
-                            widget.index == 0
-                                ? Get.to(() => Profiles())
-                                : Get.dialog(TicketDialogBox());
-                          },
-                          width: Get.width,
-                          isWhite: true)
+                      buttonText: widget.index == 0
+                          ? 'view_request'
+                          : "view_tickets",
+                      onpressed: () {
+                        widget.index == 0
+                            ? Get.to(() => Profiles())
+                            : Get.dialog(TicketDialogBox());
+                      },
+                      width: Get.width,
+                      isWhite: true)
                       : SizedBox(),
                   SizedBox(
                     height: Get.height * 0.05,
@@ -479,19 +486,20 @@ class _EventDetailsState extends State<EventDetails> {
           ),
           bottomNavigationBar: widget.index != 1
               ? Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: AppButton(
-                      buttonText: widget.index == 0 ? 'edit2' : 'pending3',
-                      onpressed: () {
-                        Get.to(() => CreateEvent(
-                              comingFromEdit: true,
-                              editEventModel: provider.events[0],
-                            ));
-                      },
-                      width: Get.width,
-                      isWhite: widget.index != 2 ? false : true),
-                )
+            padding:
+            const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            child: AppButton(
+                buttonText: widget.index == 0 ? 'edit2' : 'pending3',
+                onpressed: () {
+                  Get.to(() =>
+                      CreateEvent(
+                        comingFromEdit: true,
+                        editEventModel: provider.events[0],
+                      ));
+                },
+                width: Get.width,
+                isWhite: widget.index != 2 ? false : true),
+          )
               : const SizedBox(),
         );
       },
@@ -499,9 +507,8 @@ class _EventDetailsState extends State<EventDetails> {
   }
 
   void pickFile(DashboardProvider provider) {
-    final services=getFile();
-    services.pickFile().then((value)
-    {
+    final services = getFile();
+    services.pickFile().then((value) {
       setState(() {
         provider.events[0].stories.add(value);
         provider.update();

@@ -51,14 +51,12 @@ class _AboutApplicationState extends State<AboutApplication> {
               child: Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: Get.height * 0.010),
                     decoration: BoxDecoration(
-                      color: AppColors.themeColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Image.asset(
-                      AppImages.appLogoSmall,
-                      scale: 1.5,
+                      AppImages.smallLogo,
+                      scale: 3.5,
                     ),
                   ),
                   Spacer(),

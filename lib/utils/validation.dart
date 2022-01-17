@@ -1,5 +1,3 @@
-
-
 import 'package:amigos/localization/app_localization.dart';
 import 'package:get/get.dart';
 

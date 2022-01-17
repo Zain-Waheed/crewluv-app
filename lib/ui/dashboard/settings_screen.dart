@@ -118,7 +118,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        height: Get.width*0.25,
+                        height: Get.width*0.3,
                         child: PageView(
                             controller: controller,
                             onPageChanged: (value){

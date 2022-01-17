@@ -74,7 +74,11 @@ class _MoodWidgetState extends State<MoodWidget> {
                       decoration: AppInputDecoration.lessCircularDecoration(null,'type_here',null,AppColors.silverWhite),
                       ),
                       SizedBox(height: Get.width*0.05,),
-                      AppButton(width: Get.width,isWhite: false,buttonText: 'lets_go',onpressed: (){Navigator.of(context).pop();},),
+                      AppButton(width: Get.width,isWhite: false,buttonText: 'lets_go',onpressed: (){
+                        int moodIndex=provider.moods.indexWhere((element) => element.selected==true);
+                        provider.mood=provider.moods[moodIndex].iconImagePath;
+                        provider.update();
+                        Navigator.of(context).pop();},),
                       TextButton(
                         onPressed: () {
                          Get.back();
@@ -111,13 +115,17 @@ class _MoodWidgetState extends State<MoodWidget> {
         children: [
 
           Container(
-              height: Get.height*0.28,
+              height: Get.height*0.25,
               width: Get.width*0.40,
               decoration: BoxDecoration(
-                image: DecorationImage(image:AssetImage(model.ImagePath,),colorFilter: ColorFilter.mode(
+                image: DecorationImage(
+                  image:AssetImage(model.ImagePath,)
+                  ,colorFilter: ColorFilter.mode(
                     model.selected?AppColors.blue.withOpacity(0.5):Colors.transparent,
-                    BlendMode.darken),),
-                borderRadius: BorderRadius.circular(16),
+                    BlendMode.darken),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(20),
               ),
 
             ),

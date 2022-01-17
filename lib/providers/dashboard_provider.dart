@@ -37,6 +37,7 @@ class DashboardProvider extends ChangeNotifier{
   int allEventPageIndex =0;
   int chatPageIndex = 0;
   int faqIndex=0;
+  String mood= AppImages.party;
   List<CrewModel> crews=[];
   List<NotificationModel> notifications =[];
   List<String> names =[

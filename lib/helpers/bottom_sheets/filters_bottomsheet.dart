@@ -341,6 +341,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                         onpressed: (){
                           provider.filters.age=_values;
                           provider.filters.distance=_currentSliderValue;
+
                         },
                         width: Get.width*0.95,
                         isWhite:false

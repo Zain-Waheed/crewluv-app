@@ -104,7 +104,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                             focusNode: focus,
                             key: Key('phone_number'),
                             inputDecoration: InputDecoration(
-                              hintText: "+183 746 8373 829",
+                              hintText: "746 8373 829",
                               suffixIcon: validated==true?Container(
                                 margin: EdgeInsets.only(right: Get.width*0.03),
                                 decoration: BoxDecoration(
@@ -161,6 +161,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                             autoValidateMode: AutovalidateMode.onUserInteraction,
                             selectorTextStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
                             textFieldController: phoneController,
+                            countrySelectorScrollControlled: false,
                           ),
                         ),
                       ),
