@@ -54,9 +54,7 @@ class _MediaProfileState extends State<MediaProfile> {
                         crossAxisSpacing: 10,
                         mainAxisSpacing:10,
                       ),
-                      itemCount:provider.mediaListImages.where((element) => element.path != "").length +1<7?
-                      provider.mediaListImages.where((element) => element.path != "").length +1:
-                      provider.mediaListImages.where((element) => element.path != "").length,
+                      itemCount:provider.mediaListImages.length,
                       itemBuilder: (BuildContext context,int index){
 
                         return Visibility(

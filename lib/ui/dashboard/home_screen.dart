@@ -42,13 +42,13 @@ class _HomeScreenState extends State<HomeScreen> {
           floatingActionButton: Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding:  EdgeInsets.only(top: Get.height*0.1,left:Get.width*0.05,right: Get.width*0.02, ),
+              padding:  EdgeInsets.only(top: Get.height*0.1,left:Get.width*0.08,right: Get.width*0.02,),
               child: Row(
                 children: [
                   Container(
                     height: Get.width*0.09,
                     width: Get.width*0.3,
-                    margin: const EdgeInsets.only(left: 5),
+                    // margin: const EdgeInsets.only(left: 5),
                     decoration: BoxDecoration(
 
                         boxShadow: [
@@ -61,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: (){
                             pageIndex=0;
                             setState(() {
-
                             });
                             _controller.jumpToPage(pageIndex);
                           },
@@ -105,9 +104,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                       child: Container(
-                        height: Get.width*.1,
-                        padding: EdgeInsets.all(Get.width*0.02),
-                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        height: Get.width*0.09,
+                        width: Get.width*0.08,
+                        padding: EdgeInsets.all(Get.width*0.015),
+                        margin: EdgeInsets.only(right: 14),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             color: AppColors.whiteColor,
@@ -124,8 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       Get.to(()=>  NotificationScreen());
                     },
                     child: Container(
-                      height: Get.width*.1,
-                      padding: EdgeInsets.all(Get.width*0.015),
+                      height: Get.width*0.09,
+                      width: Get.width*0.08,
+                      padding: EdgeInsets.all(Get.width*0.02),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: AppColors.whiteColor,
@@ -133,16 +134,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             BoxShadow(color: AppColors.opacBlack,blurRadius: 5)
                           ]
                       ),
-
                       child: Stack(
                         alignment: Alignment.topRight,
                         children: [
-                          Image.asset(AppImages.noNotification,height: Get.height*0.07,width: Get.width*0.05,),
+                          Image.asset(AppImages.noNotification,),
                           provider.notifications.any((element) => element.isSeen==false)?Align(
                             alignment: Alignment.topRight,
                             child: Container(
-                              margin: EdgeInsets.only(bottom: 10),
-                              padding: EdgeInsets.all(Get.height*0.006),
+                              margin: EdgeInsets.only(bottom: 10,left: 10),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,

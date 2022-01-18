@@ -20,14 +20,14 @@ import 'package:amigos/utils/dummy.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SplashScreeen extends StatefulWidget {
-  const SplashScreeen({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  _SplashScreeenState createState() => _SplashScreeenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreeenState extends State<SplashScreeen> {
+class _SplashScreenState extends State<SplashScreen> {
 
   void initState() {
     Future.delayed(const Duration(seconds: 1),(){
@@ -35,8 +35,8 @@ class _SplashScreeenState extends State<SplashScreeen> {
     },
     );
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -21,6 +21,7 @@ class MoodWidget extends StatefulWidget {
 }
 
 class _MoodWidgetState extends State<MoodWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context, provider, _) {
@@ -92,6 +93,7 @@ class _MoodWidgetState extends State<MoodWidget> {
                     height: Get.width * 0.01,
                   ),
                   TextFormField(
+                    controller:provider.moodController,
                     maxLines: 2,
                     decoration: AppInputDecoration.lessCircularDecoration(
                         null, 'type_here', null, AppColors.silverWhite),

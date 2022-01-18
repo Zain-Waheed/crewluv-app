@@ -23,7 +23,7 @@ class _TabsWidgetState extends State<TabsWidget> {
         borderRadius: BorderRadius.circular(20),
         color: widget.selected?AppColors.themeColor:AppColors.offWhite,
       ),
-      child: Center(child: Text(getTranslated(context, widget.text??'')??"",style: AppTextStyle.montserrat(widget.selected?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
+      child: Center(child: Text(getTranslated(context, widget.text)??"",style: AppTextStyle.montserrat(widget.selected?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),
     );
   }
 }
