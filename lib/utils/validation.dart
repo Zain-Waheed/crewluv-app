@@ -1,5 +1,6 @@
 import 'package:amigos/localization/app_localization.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class FieldValidator {
   static String? validateEmail(String? value) {
@@ -32,6 +33,15 @@ class FieldValidator {
   static String? empty(String? value) {
     if (value!.isEmpty) {
       return getTranslated(Get.context, "required");
+    }
+    return null;
+  }
+  static String? dateCheck(String? value) {
+    if (value!.isEmpty) {
+      return getTranslated(Get.context, "empty");
+    }
+    if(int.parse(value)>=DateTime.now().year){
+      return getTranslated(Get.context, "invalid");
     }
     return null;
   }

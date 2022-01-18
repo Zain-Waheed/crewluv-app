@@ -337,6 +337,21 @@
   "place":"Place",
   "date":"Date",
   "id":"ID",
+
+  "23":"23",
+
+  "invalid":"Invalid",
+  "are_you_sure":"Are you sure?",
+  "you_have_entered":"You have entered the right date of birth, because it is not possible to change afterwards. ",
+  "no":"No",
+
+  "03":"03",
+  "1998":"1998",
+  "empty":"empty",
+  "day":"Day",
+  "month":"Month",
+  "year":"Year",
+
   "cost":"Cost",
   "location":"Location",
   "applying_filters": "applying filters",

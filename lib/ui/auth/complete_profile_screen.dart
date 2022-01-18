@@ -1,6 +1,7 @@
 import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
+import 'package:amigos/helpers/widgets/date_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/main.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
@@ -85,7 +86,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     } else {
                       dashPro.pageIndex = 0;
                        dashPro.emailController.clear();
-                       dashPro.dobController.clear();
+                       dashPro.dayController.clear();
+                      dashPro.monthController.clear();
+                      dashPro.yearController.clear();
                        dashPro.fullNameController.clear();
                        dashPro.universityController.clear();
                        dashPro.cityController.clear();
@@ -126,7 +129,21 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           isWhite: false,
                           width: Get.width * 0.9,
                           buttonText: dashPro.pageIndex == 8 ? 'done' : 'further',
-                          onpressed: () {
+                          onpressed: dashPro.pageIndex==2?(){
+
+                             Get.dialog(
+                                 DateDialogBox()).then((value)
+                             {
+                             if(value==true)
+                               {
+                                 dashPro.pageIndex++;
+                                 dashPro.update();
+                                 _controller.jumpToPage(dashPro.pageIndex);
+                                 percentageValue(dashPro);
+                               }
+                             });
+
+                          }:() {
                             dashPro.pageIndex++;
                             dashPro.update();
                             print(dashPro.pageIndex.toString());
@@ -144,7 +161,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                 );
                               });
                             }
-
                           },
                         )
                       : ElevatedButton(

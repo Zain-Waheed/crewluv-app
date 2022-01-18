@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:share/share.dart';
 
 class CustomAppBar extends StatefulWidget {
-  bool backButton;
+  bool  backButton;
   VoidCallback function;
   String? title;
   String? suffix;
@@ -22,10 +22,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Container(
-        height: Get.height*0.035,
-        width: Get.width*0.1,
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      leading:Container(
+        margin:  EdgeInsets.symmetric(vertical: Get.width*0.035, horizontal:Get.width*0.05),
         // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -39,15 +37,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
             ]
         ),
         child: IconButton(
-          onPressed: () {
-            Get.back();
-          },
+          onPressed:widget.function,
           icon: Padding(
             padding: const EdgeInsets.only(left: 6),
             child: Icon(
-              Icons.arrow_back_ios,
+              widget.backButton?Icons.arrow_back_ios:Icons.close,
               color: AppColors.black,
-              size: Get.width*0.045,
+              size: Get.width*0.04,
             ),
           ),
         ),

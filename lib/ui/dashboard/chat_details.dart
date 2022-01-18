@@ -14,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_3.dart';
+import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_5.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
@@ -312,9 +313,9 @@ class _ChatDetailsState extends State<ChatDetails> {
        elevation: 0,
           clipper:
           provider.messages[index].incomingMsg == true
-              ? ChatBubbleClipper3(
+              ? ChatBubbleClipper5(
               type: BubbleType.receiverBubble)
-              : ChatBubbleClipper3(
+              : ChatBubbleClipper5(
               type: BubbleType.sendBubble),
           alignment:
           provider.messages[index].incomingMsg == true
@@ -388,9 +389,9 @@ class _ChatDetailsState extends State<ChatDetails> {
           child: ChatBubble(
                 clipper:
                 provider.messages[index].incomingMsg == true
-                    ? ChatBubbleClipper3(
+                    ? ChatBubbleClipper5(
                     type: BubbleType.receiverBubble)
-                    : ChatBubbleClipper3(
+                    : ChatBubbleClipper5(
                     type: BubbleType.sendBubble),
                 alignment:
                 provider.messages[index].incomingMsg == true

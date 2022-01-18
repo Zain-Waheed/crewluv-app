@@ -132,16 +132,20 @@ class _MapScreenState extends State<MapScreen> {
       return Scaffold(
 
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-        floatingActionButton: Padding(
-          padding:  EdgeInsets.only(top:Get.height*0.15,),
-          child: FloatingActionButton(
-            backgroundColor: AppColors.whiteBackground,
-            onPressed: () {
-              Get.bottomSheet(
-                FiltersBottomSheet(), isScrollControlled: true,
-              );
-            },
-           child:Image.asset(AppImages.filter,scale: 3.5,),
+        floatingActionButton: GestureDetector(
+          onTap: (){
+            Get.bottomSheet(FiltersBottomSheet(),isScrollControlled: true);
+          },
+          child: Padding(
+            padding:  EdgeInsets.only(top:Get.height*0.15,),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                shape: BoxShape.circle,
+              ),
+              child:Image.asset(AppImages.filter,scale: 3.5 ,),
+            ),
           ),
         ),
         body: isLoading==true? SizedBox() : GoogleMap(

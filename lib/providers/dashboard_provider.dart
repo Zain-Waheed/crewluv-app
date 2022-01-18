@@ -69,10 +69,13 @@ class DashboardProvider extends ChangeNotifier{
   List<int> formCheck= [-1,-1,-1,-1,-1,-1,-1,-1,-1];
   int pageIndex = 0;
   TextEditingController fullNameController = TextEditingController();
-  TextEditingController dobController = TextEditingController();
+  TextEditingController dayController = TextEditingController();
+  TextEditingController monthController = TextEditingController();
+  TextEditingController yearController = TextEditingController();
   TextEditingController universityController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController moodController=new TextEditingController();
   int gender=0;
   List<File> mediaListImages = [
     File(""),

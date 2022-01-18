@@ -86,7 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         children: [
                           Text(getTranslated(context, 'dob2')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
                           Spacer(),
-                          Text(provider.dobController.text,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
+                          Text(provider.dayController.text+"-"+provider.monthController.text+provider.yearController.text,style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
 
                         ],
                       ),
