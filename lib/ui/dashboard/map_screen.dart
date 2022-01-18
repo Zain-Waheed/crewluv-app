@@ -130,6 +130,7 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context , provider , _){
       return Scaffold(
+
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         floatingActionButton: Padding(
           padding:  EdgeInsets.only(top:Get.height*0.15,),

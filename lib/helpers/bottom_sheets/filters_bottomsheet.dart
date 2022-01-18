@@ -359,7 +359,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                         onpressed: (){
                           provider.filters.age=_values;
                           provider.filters.distance=_currentSliderValue;
-                          Fluttertoast.showToast(msg: 'filters Applied',);
+                          Fluttertoast.showToast(msg: getTranslated(context, 'applying_filters')??'',);
                           Get.back();
 
                           },

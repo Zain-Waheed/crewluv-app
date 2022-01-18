@@ -8,6 +8,7 @@ import 'package:amigos/ui/dashboard/new_crew.dart';
 import 'package:amigos/ui/dashboard/profile_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,7 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
+  List<String> icons =[AppImages.home,AppImages.people,AppImages.chat,AppImages.user];
   @override
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
@@ -53,7 +55,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   color: AppColors.whiteColor,
                 )),
             backgroundColor: AppColors.themeColor,
-            elevation: 2.0,
+            elevation: 2,
             onPressed: () {
              provider.dashboardIndex!=2?Get.to(() => CreateEvent(
                 comingFromEdit: false,
@@ -104,8 +106,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       provider.update();
                     },
                     child: Image.asset(AppImages.people,
-                         height: Get.height*0.08,
-                         width: Get.width*0.09,
+                        height: Get.height*0.08,
+                        width: Get.width*0.09,
                         color: provider.dashboardIndex == 1
                             ? AppColors.themeColor
                             : AppColors.slateGrey),
@@ -140,8 +142,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                 margin: EdgeInsets.only(left: 22),
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.red
+                                    shape: BoxShape.circle,
+                                    color: Colors.red
                                 ),
                               ),
                             ):SizedBox()

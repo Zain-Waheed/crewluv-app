@@ -90,7 +90,7 @@ class _EventDetailsState extends State<EventDetails> {
               },
               title: "event_details",
               backButton: true,
-                suffix: widget.index==0?AppImages.share:'',
+                suffix: widget.index==0?AppImages.share:null,
             ),
           ),
           body: SingleChildScrollView(

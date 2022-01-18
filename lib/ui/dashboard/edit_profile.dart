@@ -53,169 +53,224 @@ class _EditProfileState extends State<EditProfile> {
                   SizedBox(
                     height: Get.width * 0.1,
                   ),
-                  Text(
-                    getTranslated(context, 'media') ?? "",
-                    style: AppTextStyle.montserrat(
-                      AppColors.shadedBlack,
-                      Get.width * 0.04,
-                      FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.02,
-                  ),
-                  Text(
-                    getTranslated(context, 'who_you_are') ?? "",
-                    style: AppTextStyle.montserrat(
-                        AppColors.black, Get.width * 0.035, FontWeight.w400),
-                  ),
-                  SizedBox(
-                    width: Get.width,
-                    height: Get.height * 0.42,
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 150,
-                          childAspectRatio: 1.3 / 2,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                        ),
-                        itemCount: provider.mediaListImages.where((element) =>element.path!="").length+1,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Visibility(
-                            child: SizedBox(
-                              width: Get.width * 0.3,
-                              height: Get.width * 0.42,
-                              child: Stack(children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    provider.getProfileImage(index);
-                                  },
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      width: Get.width * 0.26,
-                                      height: Get.width * 0.38,
-                                      decoration: BoxDecoration(
-                                        color: AppColors.offWhite,
-                                        border: Border.all(
-                                          color: AppColors.borderShadow,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: provider
+                  Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20,vertical:15 ),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.dotColor),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            getTranslated(context, 'media') ?? "",
+                            style: AppTextStyle.montserrat(
+                              AppColors.shadedBlack,
+                              Get.width * 0.04,
+                              FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(
+                            height: Get.width * 0.02,
+                          ),
+                          Text(
+                            getTranslated(context, 'who_you_are') ?? "",
+                            style: AppTextStyle.montserrat(
+                                AppColors.greyText, Get.width * 0.035, FontWeight.w400),
+                          ),
+                          SizedBox(height: 5,),
+                          SizedBox(
+                            width: Get.width,
+                            height: Get.height * 0.42,
+                            child: GridView.builder(
+                                gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 150,
+                                  childAspectRatio: 1.3 / 2,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                ),
+                                itemCount: provider.mediaListImages.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Visibility(
+                                    child: SizedBox(
+                                      width: Get.width * 0.3,
+                                      height: Get.width * 0.42,
+                                      child: Stack(children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            provider.getProfileImage(index);
+                                          },
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: Container(
+                                              width: Get.width * 0.26,
+                                              height: Get.width * 0.38,
+                                              decoration: BoxDecoration(
+                                                color: AppColors.offWhite,
+                                                border: Border.all(
+                                                  color: AppColors.borderShadow,
+                                                ),
+                                                borderRadius: BorderRadius.circular(12),
+                                              ),
+                                              child: provider
                                                   .mediaListImages[index].path ==
-                                              ""
-                                          ? Align(
-                                              alignment: Alignment.center,
+                                                  ""
+                                                  ? Align(
+                                                alignment: Alignment.center,
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(4),
+                                                  decoration: BoxDecoration(
+                                                      gradient: AppColors
+                                                          .percantageBarGradientColor,
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          16)),
+                                                  child: Icon(
+                                                    Icons.add,
+                                                    color: AppColors.white,
+                                                  ),
+                                                ),
+                                              )
+                                                  : ClipRRect(
+                                                borderRadius:
+                                                BorderRadius.circular(16),
+                                                child: Image.file(
+                                                  provider.mediaListImages[index],
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Visibility(
+                                          visible:
+                                          provider.mediaListImages[index].path == ""
+                                              ? false
+                                              : true,
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  provider.mediaListImages[index] =
+                                                      File("");
+                                                });
+                                              },
                                               child: Container(
-                                                padding: const EdgeInsets.all(4),
+                                                padding: const EdgeInsets.all(5),
                                                 decoration: BoxDecoration(
                                                     gradient: AppColors
                                                         .percantageBarGradientColor,
                                                     borderRadius:
-                                                        BorderRadius.circular(
-                                                            16)),
+                                                    BorderRadius.circular(16)),
                                                 child: Icon(
-                                                  Icons.add,
+                                                  Icons.close,
                                                   color: AppColors.white,
+                                                  size: Get.width * 0.04,
                                                 ),
                                               ),
-                                            )
-                                          : ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(16),
-                                              child: Image.file(
-                                                provider.mediaListImages[index],
-                                                fit: BoxFit.fill,
-                                              ),
                                             ),
-                                    ),
-                                  ),
-                                ),
-                                Visibility(
-                                  visible:
-                                      provider.mediaListImages[index].path == ""
-                                          ? false
-                                          : true,
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          provider.mediaListImages[index] =
-                                              File("");
-                                        });
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                            gradient: AppColors
-                                                .percantageBarGradientColor,
-                                            borderRadius:
-                                                BorderRadius.circular(16)),
-                                        child: Icon(
-                                          Icons.close,
-                                          color: AppColors.white,
-                                          size: Get.width * 0.04,
+                                          ),
                                         ),
-                                      ),
+                                      ]),
                                     ),
-                                  ),
-                                ),
-                              ]),
-                            ),
-                          );
-                        }),
+                                  );
+                                }),
+                          ),
+                        ],
+                      )
+
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: Get.width * 0.04),
-                    child: Text(
-                      getTranslated(context, 'about') ?? "",
-                      style: AppTextStyle.montserrat(
-                        AppColors.shadedBlack,
-                        Get.width * 0.04,
-                        FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  TextFormField(
-                      maxLines: 3,
-                      decoration: AppInputDecoration.lessCircularDecoration(
-                        null,
-                        'about_you',
-                        null,
-                        AppColors.whiteColor,
-                      )),
                   SizedBox(
-                    height: Get.width * 0.02,
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      Get.bottomSheet(EditInterests());
-                    },
-                    child: Text(
-                      getTranslated(context, 'interests') ?? "",
-                      style: AppTextStyle.montserrat(
-                        AppColors.shadedBlack,
-                        Get.width * 0.04,
-                        FontWeight.w500,
-                      ),
-                    ),
+                    height: Get.width * 0.05,
                   ),
                   Container(
-                    width: Get.width,
-                    child: Wrap(
-                      children: List.generate(
-                          provider.interests
-                              .where((element) => element.isSelected == true)
-                              .length, (index) {
-                        List<PreferenceModel> filterList = provider.interests
-                            .where((element) => element.isSelected == true)
-                            .toList();
-                        return AppButtonSmall(preference: filterList[index]);
-                      }),
+                    padding: EdgeInsets.symmetric(horizontal: 20,vertical:15 ),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.dotColor),
+                      borderRadius: BorderRadius.circular(12),
                     ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          getTranslated(context, 'about') ?? "",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width * 0.04,
+                            FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 5,),
+                        Text(getTranslated(context, "write_something_funny")??'',style: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.035, FontWeight.w400),),
+                        SizedBox(height: 10,),
+                        TextFormField(
+                            maxLines: 3,
+                            decoration: AppInputDecoration.lessCircularDecoration(
+                              null,
+                              'write_here',
+                              null,
+                              AppColors.offWhite,
+                            )),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: Get.width * 0.05,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20,vertical:15 ),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.dotColor),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            Get.bottomSheet(EditInterests());
+                          },
+                          child: Text(
+                            getTranslated(context, 'interests') ?? "",
+                            style: AppTextStyle.montserrat(
+                              AppColors.shadedBlack,
+                              Get.width * 0.04,
+                              FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 5,),
+                        Text(
+                          getTranslated(context, 'what_you_like') ?? "",
+                          style: AppTextStyle.montserrat(
+                            AppColors.greyText,
+                            Get.width * 0.035,
+                            FontWeight.w400,
+                          ),
+                        ),
+                        Container(
+                          width: Get.width,
+                          child: Wrap(
+                            children: List.generate(
+                                provider.interests
+                                    .where((element) => element.isSelected == true)
+                                    .length, (index) {
+                              List<PreferenceModel> filterList = provider.interests
+                                  .where((element) => element.isSelected == true)
+                                  .toList();
+                              return AppButtonSmall(preference: filterList[index]);
+                            }),
+                          ),
+                        ),
+                      ],
+                    )
+
+                  ),
+                  SizedBox(
+                    height: Get.width * 0.02,
                   ),
                   SizedBox(
                     height: Get.width * 0.04,

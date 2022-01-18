@@ -6,6 +6,7 @@ import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class AboutApplication extends StatefulWidget {
@@ -107,6 +108,7 @@ class _AboutApplicationState extends State<AboutApplication> {
                   Spacer(),
                   GestureDetector(
                     onTap: (){
+                      Fluttertoast.showToast(msg: getTranslated(context, 'copied')??'');
                       Clipboard.setData(ClipboardData(text: 'WWW.CrewLuv.com'));
                     },
                     child: Container(

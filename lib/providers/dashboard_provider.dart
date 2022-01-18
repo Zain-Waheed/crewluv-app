@@ -74,8 +74,6 @@ class DashboardProvider extends ChangeNotifier{
   TextEditingController cityController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   int gender=0;
-
-
   List<File> mediaListImages = [
     File(""),
     File(""),

@@ -69,7 +69,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           },
             child: Container(
                  margin: EdgeInsets.only(right: 10),
-                child: Image.asset(widget.suffix??'AppImages.share',height: Get.height*0.4,width: Get.width*0.07,))):SizedBox(),
+                child: Image.asset(widget.suffix??'',height: Get.height*0.3,width: Get.width*0.055,))):SizedBox(),
       ],
     );
   }

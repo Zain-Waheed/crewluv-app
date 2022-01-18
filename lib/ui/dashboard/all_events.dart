@@ -1,3 +1,4 @@
+import 'package:amigos/helpers/widgets/empty_screen_widget.dart';
 import 'package:amigos/helpers/widgets/event_description_widget.dart';
 import 'package:amigos/helpers/widgets/tabs_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
@@ -96,23 +97,23 @@ class _AllEventsState extends State<AllEvents> {
                    child: IndexedStack(
                      index: provider.allEventPageIndex,
                      children: [
-                       ListView(
+                       provider.events.isNotEmpty?ListView(
                          padding: EdgeInsets.only(bottom: Get.height*0.1),
                          children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
                            Get.to(EventDetails(index: 0,));},
                              child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
-                       ),
-                       ListView(
+                       ):EmptyScreenWidget(image: AppImages.noEvent, title: 'no_event',subtitle: 'no_event_yet'),
+                       provider.events.isNotEmpty?ListView(
                          padding: EdgeInsets.only(bottom: Get.height*0.1),
                          children: List.generate(provider.events.length, (index)=> GestureDetector(  onTap: (){
                            Get.to(EventDetails(index: 1,));},
                              child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
-                       ),
-                       ListView(
+                       ):EmptyScreenWidget(image: AppImages.noEvent, title: 'no_joined_event',subtitle: 'no_joined_event_yet'),
+                       provider.events.isNotEmpty?ListView(
                          padding: EdgeInsets.only(bottom: Get.height*0.1),
                          children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
                            Get.to(EventDetails(index: 2,));},child: EventDescriptionWidget(model: provider.events[index],titleImage: false,))),
-                       ),
+                       ):EmptyScreenWidget(image: AppImages.noEvent, title: 'no_pending_event',subtitle: 'no_pending_event_yet'),
                      ],
                    ),
                  ),

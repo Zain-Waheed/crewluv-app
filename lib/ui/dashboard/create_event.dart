@@ -58,8 +58,8 @@ class _CreateEventState extends State<CreateEvent> {
        startDate = widget.editEventModel!.day??'';
        endDate =widget.editEventModel!.day??'';
        startHour = "${widget.editEventModel!.startTime![0]} ${widget.editEventModel!.startTime![1]}";
-       startMinute = "${widget.editEventModel!.startTime![3]} + ${widget.editEventModel!.startTime![4]}";
-       endHour ="${widget.editEventModel!.endTime![0]} + ${widget.editEventModel!.endTime![1]}";
+       startMinute = "${widget.editEventModel!.startTime![3]}${widget.editEventModel!.startTime![4]}";
+       endHour ="${widget.editEventModel!.endTime![0]}${widget.editEventModel!.endTime![1]}";
        endMinute ="${widget.editEventModel!.endTime![3]}${widget.editEventModel!.endTime![4]}";
        alreadyWithController.text= widget.editEventModel!.withFriends.toString();
        maxController.text=widget.editEventModel!.maxFriends.toString();
@@ -166,7 +166,7 @@ class _CreateEventState extends State<CreateEvent> {
                       decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location', Icon(Icons.my_location,color: AppColors.solidGrey,)),
                       controller: locationController,
                       onTap: (){
-                        Fluttertoast.showToast(msg: 'fetching_location');
+                        Fluttertoast.showToast(msg: getTranslated(context, 'fetching_location')??'');
                         _getLocation();
                       },
                       validator: (value)=> FieldValidator.validateText(locationController.text),

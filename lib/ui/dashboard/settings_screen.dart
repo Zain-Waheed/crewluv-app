@@ -40,7 +40,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(Get.width*0.17),
           child: CustomAppBar(
-            title: 'settings',
+            title: 'settings2',
             backButton: true,
             function: (){Get.back();},
           ),

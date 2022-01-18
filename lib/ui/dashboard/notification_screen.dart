@@ -1,4 +1,5 @@
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
+import 'package:amigos/helpers/widgets/empty_screen_widget.dart';
 import 'package:amigos/models/notification_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/utils/colors.dart';
@@ -45,12 +46,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
             title: 'notifications',
           ),
         ),
-        body: SingleChildScrollView(
+
+        body: provider.notifications.isNotEmpty?SingleChildScrollView(
           child: Column(
             children: List.generate(provider.notifications.length, (index) => notificationWidget(provider.notifications[index])),
-
           ),
-        ),
+        ): EmptyScreenWidget(image: AppImages.noNotification2,title: "no_notification",subtitle: "no_notification_yet",),
 
       );
     },);

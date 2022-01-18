@@ -1,5 +1,7 @@
 import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
+import 'package:amigos/helpers/bottom_sheets/report_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/crew_members_widget.dart';
+import 'package:amigos/helpers/widgets/empty_screen_widget.dart';
 import 'package:amigos/helpers/widgets/tabs_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/group_chat_model.dart';
@@ -81,7 +83,6 @@ class _ChatScreenState extends State<ChatScreen> {
                 },
                 children: [
                  TabsWidget("chats", selected[0]),
-
                   TabsWidget("my_crew", selected[1]),
 
 
@@ -93,7 +94,7 @@ class _ChatScreenState extends State<ChatScreen> {
               child: IndexedStack(
                 index: provider.chatPageIndex,
                 children: [
-                  ListView(
+                  provider.personalChats.isNotEmpty?ListView(
                     padding: EdgeInsets.only(bottom: Get.height*0.1),
                     children: List.generate(provider.personalChats.length,
                         (index) => Slidable(
@@ -102,6 +103,21 @@ class _ChatScreenState extends State<ChatScreen> {
                               extentRatio: 0.25,
                               motion: const ScrollMotion(),
                               children: [
+                                GestureDetector(
+                                  onTap: (){
+                                    Get.bottomSheet(ReportBottomSheet(),isScrollControlled: true);
+                                  },
+                                  child: Container(
+                                      width:Get.width*0.1,
+                                      height:Get.width*0.1,
+                                      margin:EdgeInsets.only(left: Get.width*0.02),
+                                      decoration:  BoxDecoration(
+                                        color: AppColors.themeColor,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child:Icon(Icons.flag,color: AppColors.whiteColor,)
+                                  ),
+                                ),
                                 GestureDetector(
                                   onTap: (){
                                     setState(() {
@@ -114,7 +130,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                     height:Get.width*0.1,
                                     margin:EdgeInsets.only(left: Get.width*0.02),
                                     decoration:  BoxDecoration(
-                                      gradient: AppColors.buttonGradientColor,
+                                      color: AppColors.soberRed,
                                       shape: BoxShape.circle,
                                     ),
                                     child:Icon(
@@ -126,14 +142,14 @@ class _ChatScreenState extends State<ChatScreen> {
                               ],
                             ),
                             child: personalChatItemWidget(provider.personalChats[index]))),
-                  ),
-                  ListView(
+                  ):EmptyScreenWidget(image: AppImages.noChat, title: 'no_chat',subtitle: 'no_chat_yet'),
+                  provider.groupChats.isNotEmpty?ListView(
                     padding: EdgeInsets.only(bottom: Get.height*0.1),
                     children: List.generate(
                         provider.groupChats.length,
                         (index) =>
                             groupChatItemWidget(provider.groupChats[index])),
-                  ),
+                  ):EmptyScreenWidget(image: AppImages.noChat, title: 'no_crew',subtitle: 'no_crew_yet'),
                 ],
               ),
             )

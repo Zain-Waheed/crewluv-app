@@ -8,7 +8,7 @@ class AppImages {
   static var othersIcon = "assets/images/othersIcon.png";
   static var naughty = "assets/images/naughty.png";
   static var ill = "assets/images/ill.png";
-  static var noNotification = "assets/images/noNotification.png";
+  static var noNotification2 = "assets/images/noNotification2.png";
   static var happy = "assets/images/happy.png";
   static var love = "assets/images/love.png";
   static var balloon = "assets/images/balloon.png";
@@ -61,8 +61,7 @@ class AppImages {
   static var time = "assets/images/time.png";
   static var global = "assets/images/global.png";
   static var phone = "assets/images/phone.png";
-  // static var userImage = "assets/images/userImage.png";
-  // static var chat = "assets/images/chat.png";
+
   static var close = "assets/images/close.png";
   static var heart = "assets/images/heart.png";
   static var starBlank = "assets/images/starBlank.png";
@@ -106,14 +105,21 @@ class AppImages {
   static var dropDownIcon = "assets/images/dropDownIcon.png";
   static var runningIcon = "assets/images/runningIcon.png";
   static var starFill = "assets/images/starFill.png";
+    static var report = "assets/images/report.png";
+
 
   static var giftLocation = "assets/images/giftLocation.png";
   static var fireLocation = "assets/images/fireLocation.png";
   static var clubLocation = "assets/images/clubLocation.png";
   static var bollonLocation = "assets/images/bollonLocation.png";
+  static var noNotification = "assets/images/noNotification.png";
+
 
   static var send = "assets/images/send.png";
   static var likeIcon = "assets/images/likeIcon.png";
   static var dislike = "assets/images/dislike.png";
   static var chatMessage = "assets/images/chatMessage.png";
+
+  static var noEvent = "assets/images/noEvent.png";
+  static var noChat = "assets/images/noChat.png";
 }

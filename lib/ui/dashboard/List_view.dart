@@ -1,6 +1,8 @@
+import 'package:amigos/helpers/widgets/empty_screen_widget.dart';
 import 'package:amigos/helpers/widgets/event_description_widget.dart';
 import 'package:amigos/helpers/widgets/event_widget.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +26,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
               padding: EdgeInsets.only(top:Get.width*0.1,bottom: Get.height*0.1),
             ),
             Expanded(
-              child: SingleChildScrollView(
+              child:provider.events.isNotEmpty?SingleChildScrollView(
                 child: Column(
                   children:
                   List.generate(provider.events.length, (index) => GestureDetector(
@@ -33,7 +35,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                       },
                       child: EventDescriptionWidget(model: provider.events[index],titleImage: true,))),
                 ),
-              ),
+              ):EmptyScreenWidget(image: AppImages.noEvent, title: 'no_event'),
             ),
           ],
         ),

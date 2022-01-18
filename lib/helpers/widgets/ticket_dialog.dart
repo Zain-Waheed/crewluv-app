@@ -84,8 +84,7 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                               Share.share('CrewLuv');
                             },
                             child: Image.asset(AppImages.share,
-                              width: Get.width*0.12,
-                              height: Get.width*0.12,
+                              height: Get.height*0.3,width: Get.width*0.055,
                             ),
                           ),
                         ],

@@ -40,7 +40,7 @@ class _MoodWidgetState extends State<MoodWidget> {
               margin: EdgeInsets.symmetric(
                   horizontal: Get.width * 0.065, vertical: Get.width * 0.05),
               padding: EdgeInsets.symmetric(
-                  horizontal: Get.width * 0.02, vertical: Get.width * 0.03),
+                  horizontal: Get.width * 0.03, vertical: Get.width * 0.03),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
