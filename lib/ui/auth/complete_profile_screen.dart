@@ -197,13 +197,10 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                   );
                                 });
                               }
-                            }
+                            },
 
-                        },
                         child: Text(
                           getTranslated(context, 'skip') ?? "",
-                          style: AppTextStyle.montserrat(AppColors.blackLite,
-                              Get.width * 0.04, FontWeight.w600),
                           style: AppTextStyle.montserrat(AppColors.blackLite,
                               Get.width * 0.04, FontWeight.w500),
                         ),

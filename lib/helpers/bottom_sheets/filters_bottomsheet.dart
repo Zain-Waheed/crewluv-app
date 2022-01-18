@@ -354,13 +354,6 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                     SizedBox(
                       height: Get.width*0.008,
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
-                      child: AppButton(
-                          buttonText: 'apply_filters',
-                          onpressed: (){
-                            provider.filters.age=_values;
-                            provider.filters.distance=_currentSliderValue;
                     AppButton(
                         buttonText: 'apply_filters',
                         onpressed: (){
@@ -373,7 +366,6 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                           width: Get.width*0.95,
                           isWhite:false
                       ),
-                    ),
                     SizedBox(
                       height: Get.width*0.03,
                     ),
