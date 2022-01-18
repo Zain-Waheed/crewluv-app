@@ -16,7 +16,7 @@ class TicketDialogBox extends StatefulWidget {
   const TicketDialogBox({Key? key}) : super(key: key);
 
   @override
-  TicketDialogBoxState createState() => TicketDialogBoxState();
+  _TicketDialogBoxState createState() => _TicketDialogBoxState();
 }
 
 class _TicketDialogBoxState extends State<TicketDialogBox> {
