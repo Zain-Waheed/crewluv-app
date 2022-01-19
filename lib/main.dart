@@ -1,4 +1,5 @@
 import 'package:amigos/helpers/widgets/mood_wideget.dart';
+import 'package:amigos/helpers/widgets/ticket_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/auth_provider.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
@@ -106,7 +107,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: DashBoardScreen(),
+       home: TicketDialogBox(),
     );
   }
 }

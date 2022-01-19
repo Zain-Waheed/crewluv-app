@@ -153,8 +153,9 @@ class _ChatDetailsState extends State<ChatDetails> {
                                   : true,
                               child: Container(
                                 margin: EdgeInsets.only(
-                                    top: Get.width * 0.15,
-                                    left: Get.width * 0.0),
+                                    top: Get.width * 0.12,
+                                    left: Get.width * 0.02,
+                                ),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
@@ -324,13 +325,22 @@ class _ChatDetailsState extends State<ChatDetails> {
           margin: EdgeInsets.only(top: 20),
           backGroundColor:
           provider.messages[index].incomingMsg == true
-              ? AppColors.whiteDark
+              ? Colors.transparent
               : AppColors.pinkLight,
           padding: const EdgeInsets.all(5),
           child: Container(
             constraints: BoxConstraints(
                 minWidth: Get.width * 0.2,
                 maxWidth: Get.height * 0.3),
+            decoration: provider.messages[index].incomingMsg == true?BoxDecoration(
+              color:AppColors.whiteDark,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(18),
+                topRight: Radius.circular(18),
+                bottomRight: Radius.circular(18),
+              ),
+            ):null,
+            padding: provider.messages[index].incomingMsg == true?EdgeInsets.all(8):null,
             child: Column(
               crossAxisAlignment:
               CrossAxisAlignment.start,

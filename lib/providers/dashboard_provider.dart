@@ -10,6 +10,7 @@ import 'package:amigos/models/personal_chat_model.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/chat_details_model.dart';
 import 'package:amigos/models/event_type_model.dart';
+import 'package:amigos/models/ticket_model.dart';
 import 'package:amigos/models/user_model.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
@@ -41,6 +42,7 @@ class DashboardProvider extends ChangeNotifier{
   String mood= AppImages.party;
   List<CrewModel> crews=[];
   List<NotificationModel> notifications =[];
+  List<TicketModel> tickets=[];
   List<String> names =[
     "sophie",
     "lee",
@@ -63,6 +65,7 @@ class DashboardProvider extends ChangeNotifier{
     addChats();
     addGroupChat();
     addUser();
+    addTickets();
     notifyListeners();
   }
   GlobalKey<FormState> formKey =  GlobalKey<FormState>();
@@ -252,6 +255,17 @@ class DashboardProvider extends ChangeNotifier{
     users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser5,AppDummyData.dummyUser5,AppDummyData.dummyUser5],intrests:userInterests,music: userMusicTaste,favorite: false ));
 
   }
+
+
+  void addTickets(){
+    tickets.add(TicketModel(location: "342, Block D, Wapda Town",date: "21-12-21",time: "14-30",distance:325,id:12345678,cost: 231 ));
+    tickets.add(TicketModel(location: "342, Block D, Wapda Town",date: "21-12-21",time: "14-30",distance:325,id:12345679,cost: 231 ));
+    tickets.add(TicketModel(location: "342, Block D, Wapda Town",date: "21-12-21",time: "14-30",distance:325,id:123456710,cost: 231 ));
+    tickets.add(TicketModel(location: "342, Block D, Wapda Town",date: "21-12-21",time: "14-30",distance:325,id:123456711,cost: 231 ));
+
+  }
+
+
   void addChats(){
     personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Julian Dasilva', lastMessage: AppDummyData.shortText,time: 'now',isFavourite: false));
     personalChats.add(PersonalChatModel(imagePath: AppImages.notification1, name: 'Mike Lyne', lastMessage: AppDummyData.shortText,time:"3 min ago",isFavourite: true));
