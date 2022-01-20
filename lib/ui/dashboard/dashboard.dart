@@ -21,7 +21,12 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-  List<String> icons =[AppImages.home,AppImages.people,AppImages.chat,AppImages.user];
+  List<String> icons = [
+    AppImages.home,
+    AppImages.people,
+    AppImages.chat,
+    AppImages.user
+  ];
   @override
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
@@ -49,17 +54,19 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           child: FloatingActionButton(
             child: Center(
                 child: Image.asset(
-                  AppImages.addEvent,
-                    height: Get.height*0.04,
-                  width: Get.width*0.7,
-                  color: AppColors.whiteColor,
-                )),
+              AppImages.addEvent,
+              height: Get.height * 0.04,
+              width: Get.width * 0.7,
+              color: AppColors.whiteColor,
+            )),
             backgroundColor: AppColors.themeColor,
             elevation: 2,
             onPressed: () {
-             provider.dashboardIndex!=2?Get.to(() => CreateEvent(
-                comingFromEdit: false,
-              )):Get.to(()=> NewCrew());
+              provider.dashboardIndex != 2
+                  ? Get.to(() => CreateEvent(
+                        comingFromEdit: false,
+                      ))
+                  : Get.to(() => NewCrew());
             },
           ),
         ),
@@ -94,8 +101,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       provider.update();
                     },
                     child: Image.asset(AppImages.home,
-                        height: Get.height*0.05,
-                        width: Get.width*0.05,
+                        height: Get.height * 0.05,
+                        width: Get.width * 0.05,
                         color: provider.dashboardIndex == 0
                             ? AppColors.themeColor
                             : AppColors.slateGrey),
@@ -106,8 +113,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       provider.update();
                     },
                     child: Image.asset(AppImages.people,
-                        height: Get.height*0.08,
-                        width: Get.width*0.09,
+                        height: Get.height * 0.08,
+                        width: Get.width * 0.09,
                         color: provider.dashboardIndex == 1
                             ? AppColors.themeColor
                             : AppColors.slateGrey),
@@ -127,36 +134,43 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         provider.update();
                       },
                       child: Container(
-                        height: Get.height*0.035,
-                        child: Stack(
-                          children: [
-                            Image.asset(AppImages.chat2,
-                                height: Get.height*0.07,
-                                width: Get.width*0.07,
-                                color: provider.dashboardIndex == 2
-                                    ? AppColors.themeColor
-                                    : AppColors.slateGrey),
-                            provider.personalChats.any((element) => element.seen==false && provider.dashboardIndex==2 && provider.chatPageIndex==0)?Align(
-                              alignment: Alignment.topRight,
-                              child: Container(
-                                margin: EdgeInsets.only(left: 22),
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.red
-                                ),
-                              ),
-                            ):SizedBox()
-                          ],
-                        ),
-                      )),
+                          height: Get.height * 0.5,
+                          width: Get.width * 0.09,
+                          child: Stack(
+                            children: [
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: Image.asset(
+                                    AppImages.chat2,
+                                    height: Get.height * 0.6,
+                                    width: Get.width * 0.07,
+                                    color: provider.dashboardIndex==2?AppColors.themeColor:AppColors.slateGrey,
+                                  )),
+                              provider.personalChats.any((element) =>
+                                      element.seen == false &&
+                                      provider.dashboardIndex == 2 &&
+                                      provider.chatPageIndex == 0)
+                                  ? Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Container(
+                                        height: 10,
+                                        width: 10,
+                                        padding: EdgeInsets.all(2),
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.red),
+                                      ),
+                                    )
+                                  : SizedBox(),
+                            ],
+                          ))),
                   GestureDetector(
                       onTap: () {
-                        Get.to(()=> ProfileScreen());
+                        Get.to(() => ProfileScreen());
                       },
                       child: Image.asset(AppImages.user,
-                          height: Get.height*0.05,
-                          width: Get.width*0.05,
+                          height: Get.height * 0.05,
+                          width: Get.width * 0.05,
                           color: provider.dashboardIndex == 3
                               ? AppColors.themeColor
                               : AppColors.slateGrey)),

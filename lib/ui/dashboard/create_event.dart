@@ -48,6 +48,8 @@ class _CreateEventState extends State<CreateEvent> {
   TextEditingController locationController = TextEditingController();
   EventModel model=EventModel(personalEvent: false);
   bool isSelected = false;
+  FocusNode focus = new FocusNode();
+
   @override
   void initState() {
    if(widget.comingFromEdit==true)
@@ -132,7 +134,6 @@ class _CreateEventState extends State<CreateEvent> {
                                provider.eventTypes[index].isSelected= !isSelected;
                                provider.update();
                                setState(() {
-
                                });
                              },
                               child: MoodTypeWidget(type:provider.eventTypes[index])
@@ -163,7 +164,7 @@ class _CreateEventState extends State<CreateEvent> {
                     Text(getTranslated(context, 'location')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
                     SizedBox(height: Get.width*0.01,),
                     TextFormField(
-                      decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location', Icon(Icons.my_location,color: AppColors.solidGrey,)),
+                      decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location', Icon(Icons.my_location,color: focus.hasFocus?AppColors.themeColor:AppColors.solidGrey,)),
                       controller: locationController,
                       onTap: (){
                         Fluttertoast.showToast(msg: getTranslated(context, 'fetching_location')??'');

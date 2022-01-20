@@ -23,8 +23,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       leading:Container(
-        margin:  EdgeInsets.symmetric(vertical: Get.width*0.035, horizontal:Get.width*0.05),
-        // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
+        margin:  EdgeInsets.symmetric(vertical: Get.width*0.042, horizontal:Get.width*0.055),
+        padding: EdgeInsets.only(left: widget.backButton?Get.width*0.01:0),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: AppColors.white,
@@ -38,18 +38,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
         ),
         child: IconButton(
           onPressed:widget.function,
-          icon: Padding(
-            padding: const EdgeInsets.only(left: 6),
-            child: Icon(
-              widget.backButton?Icons.arrow_back_ios:Icons.close,
-              color: AppColors.black,
-              size: Get.width*0.04,
-            ),
+          icon: Icon(
+            widget.backButton?Icons.arrow_back_ios:Icons.close,
+            color: AppColors.black,
+            size: Get.width*0.04,
           ),
         ),
       ),
       leadingWidth: Get.width * 0.2,
-      toolbarHeight: Get.width * 0.3,
+      toolbarHeight: Get.width * 0.35,
       title: Text(
         getTranslated(context, widget.title ?? "") ?? "",
         style: AppTextStyle.montserrat(

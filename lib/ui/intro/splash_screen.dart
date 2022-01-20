@@ -2,7 +2,7 @@ import 'package:amigos/helpers/widgets/getplan_dialog.dart';
 import 'package:amigos/helpers/widgets/ticket_dialog.dart';
 import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/auth/favorite_drinks_screen.dart';
-import 'package:amigos/ui/dashboard/chat_box_screen.dart';
+import 'package:amigos/ui/dashboard/crew_details.dart';
 import 'package:amigos/ui/dashboard/chat_details.dart';
 import 'package:amigos/ui/dashboard/create_event.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';

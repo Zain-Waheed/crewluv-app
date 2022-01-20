@@ -5,6 +5,7 @@ import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/event_model.dart';
 import 'package:amigos/models/user_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/dashboard/restaurant_profile.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -52,9 +53,14 @@ class _EventWidgetState extends State<EventWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Image.asset(
-                          AppImages.profile,
-                          scale: 4,
+                        GestureDetector(
+                          onTap: (){
+                            widget.event.personalEvent==false?Get.to(()=> RestaurantProfile()):null;
+                          },
+                          child: Image.asset(
+                            AppImages.profile,
+                            scale: 4,
+                          ),
                         ),
                         SizedBox(
                           width: Get.width * 0.02,

@@ -27,7 +27,6 @@ class _SubscriptionDialogBoxState extends State<SubscriptionDialogBox> {
         child: SingleChildScrollView(
           child: Container(
             width: Get.width*0.9,
-            height: Get.width*1.2,
             padding: EdgeInsets.symmetric(vertical: Get.width*0.05,horizontal: Get.width*0.05),
             decoration: BoxDecoration(
               color: AppColors.whiteColor,

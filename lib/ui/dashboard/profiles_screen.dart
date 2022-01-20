@@ -49,7 +49,7 @@ class _ProfilesState extends State<Profiles> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               child: Container(
-                height: Get.height*0.04,
+                height: Get.height*0.05,
                 width: Get.width*0.09,
                 // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                 // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
@@ -69,7 +69,7 @@ class _ProfilesState extends State<Profiles> {
                     Get.back();
                   },
                   icon: Padding(
-                    padding: const EdgeInsets.only(left: 6),
+                    padding:  EdgeInsets.only(left: Get.width*0.01),
                     child: Icon(
                       Icons.arrow_back_ios,
                       color: AppColors.black,
@@ -85,8 +85,8 @@ class _ProfilesState extends State<Profiles> {
         body:Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(AppImages.profilesBackground),
-              fit: BoxFit.cover,
+              image: AssetImage(AppImages.profilesBackground,),
+              fit: BoxFit.fill,
             )
           ),
           child: Column(
@@ -305,7 +305,7 @@ class _ProfilesState extends State<Profiles> {
           Align(
             alignment: Alignment.center,
             child: Container(
-              margin: EdgeInsets.only(top: Get.height*0.35),
+              margin: EdgeInsets.only(top: Get.height*0.3),
               child:SmoothPageIndicator(
                 count: 3,
                 effect: ExpandingDotsEffect(
@@ -325,9 +325,8 @@ class _ProfilesState extends State<Profiles> {
             alignment: Alignment.bottomCenter,
             child: Container(
               margin: EdgeInsets.only(top:Get.height*0.6),
-              height: Get.height*0.2,
               width: Get.width,
-              padding: EdgeInsets.symmetric(vertical: Get.height*0.02),
+              padding: EdgeInsets.symmetric(vertical: Get.height*0.01),
               decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -369,8 +368,7 @@ class _ProfilesState extends State<Profiles> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                            height: Get.width*0.028,
-                            width: Get.width*0.028,
+
                             decoration:  BoxDecoration(
                               shape: BoxShape.circle,
                               color: AppColors.greenActive,
@@ -391,7 +389,7 @@ class _ProfilesState extends State<Profiles> {
                           Text(getTranslated(context,"miles_away",)??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width * 0.04, FontWeight.w500),),
                         ],
                       ),
-                      SizedBox(height: Get.width*0.02,),
+                     Spacer(),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -405,6 +403,7 @@ class _ProfilesState extends State<Profiles> {
                                   }),
 
                       ),
+                      SizedBox(height: Get.width*0.03,),
                     ],
                   ),
                 ],

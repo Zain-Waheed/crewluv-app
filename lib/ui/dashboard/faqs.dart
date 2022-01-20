@@ -41,23 +41,33 @@ class _FaqsState extends State<Faqs> {
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
                    Container(
+                     height: Get.height*0.05,
+                     width: Get.width*0.09,
+                     // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                     // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
+                     alignment: Alignment.center,
                      decoration: BoxDecoration(
-                         shape: BoxShape.rectangle,
-                         color: AppColors.whiteColor,
-                         borderRadius: BorderRadius.circular(12),
+                         color: AppColors.white,
+                         borderRadius: BorderRadius.circular(10),
                          boxShadow: [
                            BoxShadow(
-                               color: AppColors.black.withOpacity(0.5), offset: Offset(0, 4), blurRadius: 5.0)
+                               color: AppColors.black.withOpacity(0.5),
+                               offset: Offset(0, 1),
+                               blurRadius: 2)
                          ]
                      ),
-
                      child: IconButton(
-
-                       onPressed: (){
+                       onPressed: () {
                          Get.back();
                        },
-                       icon:Icon(Icons.arrow_back_ios,color: AppColors.black,),
-
+                       icon: Padding(
+                         padding:  EdgeInsets.only(left: Get.width*0.01),
+                         child: Icon(
+                           Icons.arrow_back_ios,
+                           color: AppColors.black,
+                           size: Get.width*0.04,
+                         ),
+                       ),
                      ),
                    ),
                    Text(getTranslated(context,'faqs')??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w500),),
@@ -80,6 +90,8 @@ class _FaqsState extends State<Faqs> {
                  children: [
                    Text(getTranslated(context,'top_questions')??"",style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.04, FontWeight.w500),),
                    Container(
+                     height: Get.height*0.07,
+                     width: Get.width*0.1,
                      decoration: BoxDecoration(
                          shape: BoxShape.rectangle,
                          color: AppColors.whiteColor,
@@ -93,7 +105,7 @@ class _FaqsState extends State<Faqs> {
                      child: IconButton(
 
                        onPressed: (){},
-                       icon:Icon(Icons.search_sharp,color: AppColors.black,),
+                       icon:Icon(Icons.search_sharp,color: AppColors.black,size: Get.height*0.03,),
 
                      ),
                    ),

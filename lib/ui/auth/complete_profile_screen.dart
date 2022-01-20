@@ -36,7 +36,7 @@ class CompleteProfileScreen extends StatefulWidget {
 
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   FocusNode focus = FocusNode();
-  final _controller = PageController();
+  final PageController _controller = PageController();
   int percentage = 10;
   double percent = 0.1;
   bool isGrey = true;
@@ -112,12 +112,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   title: 'complete_profile'),
             ),
             bottomNavigationBar: Container(
-              height: dashPro.pageIndex == 5 ||
-                      dashPro.pageIndex == 6 ||
-                      dashPro.pageIndex == 7 ||
-                      dashPro.pageIndex == 3
-                  ? Get.width * 0.3
-                  : Get.width * 0.25,
+              height: Get.width * 0.35,
               margin: EdgeInsets.only(left: Get.width * 0.07,right:Get.width * 0.07,bottom: Get.width*0.03),
               child: Column(
                 children: [
@@ -152,11 +147,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               percentageValue(dashPro);
                             }
                             else{
+                              dashPro.pageIndex=0;
                               Get.bottomSheet(const CongraulationBottomSheet(
                                 text: 'your_profile_has_been_completed',
                               ));
                               Future.delayed(Duration(seconds: 3),(){
-                                Get.to(
+                                Get.offAll(
                                     DashBoardScreen()
                                 );
                               });
@@ -261,11 +257,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   child: PageView(
                     physics: const NeverScrollableScrollPhysics(),
                     controller: _controller,
-                    onPageChanged: (index) {
-                      setState(() {
-                        dashPro.pageIndex = index;
-                      });
-                    },
                     children: [
                       const EmailScreen(),
                       const EnterFullName(),

@@ -5,7 +5,7 @@ import 'package:amigos/helpers/widgets/crew_members_widget.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/models/chat_details_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
-import 'package:amigos/ui/dashboard/chat_box_screen.dart';
+import 'package:amigos/ui/dashboard/crew_details.dart';
 import 'package:amigos/ui/dashboard/display_item.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -74,7 +74,7 @@ class _GroupChatState extends State<GroupChat> {
                 ),
                 GestureDetector(
                   onTap:(){
-                    Get.to( const ChatBox(name: 'American Party',));
+                    Get.to( const CrewDetails(name: 'American Party',));
                   },
                   child: Row(
                     children: [

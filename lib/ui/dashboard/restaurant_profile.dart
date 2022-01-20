@@ -23,6 +23,7 @@ class RestaurantProfile extends StatefulWidget {
 class _RestaurantProfileState extends State<RestaurantProfile> {
   int index=0;
   bool opened=true;
+  bool liked=false;
   PageController controller =PageController();
   PageController controller2= PageController();
   List<String> drinks=[
@@ -37,107 +38,89 @@ class _RestaurantProfileState extends State<RestaurantProfile> {
     return Consumer<DashboardProvider>(builder: (context,provider,_){
       return Scaffold(
         backgroundColor: Colors.transparent,
+        floatingActionButton: Align(
+          alignment: Alignment.topLeft,
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: Get.width * 0.099, left: Get.width * 0.06,),
+            child: FloatingActionButton(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              child: Container(
+                height: Get.height*0.05,
+                width: Get.width*0.09,
+                // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.black.withOpacity(0.5),
+                          offset: Offset(0, 1),
+                          blurRadius: 2)
+                    ]
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: AppColors.black,
+                      size: Get.width*0.04,
+                    ),
+                  ),
+                ),
+              ),
+              onPressed: () {  },
+            ),
+          ),
+        ),
         body: Stack(
           children: [
-            Stack(
-                children: [
-                  Container(
-                    height: Get.height*0.5,
-                    child: PageView(
-                      controller: controller2,
-                      children: [
-                        Container(
-                          width: Get.width,
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.only(
-                            top: Get.width * 0.099, left: Get.width * 0.06,),
-                          decoration: BoxDecoration(
-                            gradient:AppColors.blackGradien,
-                            image: DecorationImage(
-                              scale: 5,
-                              image: AssetImage(AppImages.restaurantProfile,),
-                              fit: BoxFit.cover,
-                            ),
-
-                          ),
-
-                        ),
-                        Container(
-                          width: Get.width,
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.only(
-                            top: Get.width * 0.099, left: Get.width * 0.06,),
-                          decoration: BoxDecoration(
-                            gradient:AppColors.blackGradien,
-                            image: DecorationImage(
-                              scale: 5,
-                              image: AssetImage(AppImages.restaurantProfile,),
-                              fit: BoxFit.cover,
-                            ),
-
-                          ),
-
-                        ),
-                      ],
+            Container(
+              height: Get.height*0.4,
+              child: PageView(
+                controller: controller2,
+                children: List.generate(2, (index) =>   Container(
+                  width: Get.width,
+                  padding: EdgeInsets.only(
+                    top: Get.width * 0.099, left: Get.width * 0.06,),
+                  decoration: BoxDecoration(
+                    gradient:AppColors.blackGradien,
+                    image: DecorationImage(
+                      scale: 5,
+                      image: AssetImage(AppImages.restaurantProfile,),
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      margin: EdgeInsets.only(top: Get.height*0.05,left: Get.width*0.1),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                                color: AppColors.black.withOpacity(0.5),
-                                offset: const Offset(0, 4),
-                                blurRadius: 5.0)
-                          ]
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          Get.to(const DashBoardScreen());
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: AppColors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                      margin: EdgeInsets.only(top: Get.height*0.35),
-                      child: SmoothPageIndicator(
-                        count: 2,
 
-                        effect: ExpandingDotsEffect(
-                          expansionFactor: 4.5,
-                          strokeWidth: 2,
-                          dotColor: AppColors.whiteColor,
-                          dotWidth: Get.width * 0.02,
-                          dotHeight: Get.width * 0.02,
-                          spacing: Get.width * 0.01,
-                          activeDotColor: AppColors.whiteColor,
-                        ),
-                        controller: controller2,
-                      ),
-                    ),
                   ),
-                  Container(
-                    width: Get.width,
-                    height: Get.height * .55,
-                    padding: EdgeInsets.only(
-                      top: Get.width * 0.099, left: Get.width * 0.06,),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      gradient: AppColors.blackGradien,
-                    ),
+
+                ),)
+              ),
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                margin: EdgeInsets.only(top: Get.height*0.35),
+                child: SmoothPageIndicator(
+                  count: 2,
+                  effect: ExpandingDotsEffect(
+                    expansionFactor: 4.5,
+                    strokeWidth: 2,
+                    dotColor: AppColors.whiteColor,
+                    dotWidth: Get.width * 0.02,
+                    dotHeight: Get.width * 0.02,
+                    spacing: Get.width * 0.01,
+                    activeDotColor: AppColors.whiteColor,
                   ),
-                ]
+                  controller: controller2,
+                ),
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -178,7 +161,15 @@ class _RestaurantProfileState extends State<RestaurantProfile> {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       SizedBox(width: Get.width*0.35,),
-                                      Image.asset(AppImages.like,scale: 3,),
+                                      GestureDetector(
+                                          onTap: (){
+                                            liked = !liked;
+                                            setState(() {
+
+                                            });
+
+                                          },
+                                          child: Image.asset(AppImages.like,scale: 3,color: liked?AppColors.themeColor:AppColors.slateGrey,)),
                                       SizedBox(height: Get.width*0.01,),
                                       Text('263 ${getTranslated(context, 'likes')}',style: AppTextStyle.montserrat(AppColors.eventBlack, Get.width*0.03,FontWeight.w500),),
                                     ],
@@ -364,7 +355,7 @@ class _RestaurantProfileState extends State<RestaurantProfile> {
                                      child: Wrap(
 
                                        children: List.generate(3, (index) =>Container(
-                                         padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                                         padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: 10),
                                          margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
 
                                          decoration: BoxDecoration(
@@ -378,13 +369,13 @@ class _RestaurantProfileState extends State<RestaurantProfile> {
                                      ),
                                    ),
                                   SizedBox(height: Get.width*.02,),
-                                  Text(getTranslated(context, 'music_available')??'',style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
+                                  Text(getTranslated(context, 'music_availability')??'',style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.035, FontWeight.w500),),
                                   SizedBox(height: Get.width*.01,),
                                   Center(
                                     child: Wrap(
 
                                       children: List.generate(3, (index) =>Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                                        padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,vertical: 10),
                                         margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
 
                                         decoration: BoxDecoration(

@@ -1,5 +1,4 @@
 {
-
   "next": "NEXT",
   "skip": "SKIP",
   "register": "REGISTER",
@@ -26,8 +25,6 @@
   "join_Event": "Join Event",
   "music_taste": "Music Taste",
   "type_here": "Type here...",
-
-
   "share_your_music": "Share your music interest with others.",
   "pop": "Pop",
   "send": "Send",
@@ -45,7 +42,6 @@
   "reggae": "Reggae",
   "funk": "Funk",
   "country": "Country",
-
   "soul": "Soul",
   "flock": "Flock",
   "jazz": "Jazz",
@@ -54,7 +50,6 @@
   "classical": "Classical",
   "electronic": "Electronic",
   "culture": "Culture",
-
   "travelling": "Travelling",
   "fitness": "Fitness",
   "theater": "Theater",
@@ -79,18 +74,13 @@
   "hiking": "Hiking",
   "golf": "Golf",
   "photography": "Photography",
-
-
-
   "cycling": "Cycling",
   "your_interests": "Your Interests",
   "share_with_others": "Share with others, what is special in you.",
-
   "media": "Media",
   "share_some_pictures": "Share some pictures so everyone can know you.",
   "congratulations": "Congratulations",
   "your_profile_has_been_completed": "Your profile has been completed successfully.",
-
   "enter_your_number": "Enter Your Number",
   "welcome_to": "Hello, welcome to our account.",
   "otp": "OTP",
@@ -188,15 +178,19 @@
   "inappropriate_biography":"Inappropriate biography",
   "will_not_know":"This person will not know about this.",
   "report":"Report",
-
+  "reviews": "Reviews",
+  "overview": "Overview",
+  "menu":"Menu",
   "crew": "Crew",
   "learn_more": "Learn More",
+  "music_availability": "Music Availability",
   "km":"KM",
   "events": "Events",
   "new_event":"New Event",
   "buy_ticket":"Buy Ticket",
   "my_crew": "My Crew",
   "join": "Join Event",
+  "view_menu": "View Menu",
   "of":"of",
   "friends": "Friends",
   "message":"MESSAGE",
@@ -208,7 +202,6 @@
   "spending_much_time": "Spending too much time.",
   "can't_tell": "Can't tell",
   "temporary_logout": "Temporary logout",
-  "no": "No",
   "yes":"Yes",
   "edit2": "EDIT",
   "what_went_wrong2": "Describe what went wrong...",
@@ -282,7 +275,6 @@
   "app_store":"App Store",
   "membership": "Amigos Membership",
   "slogan": "Amigos making friendship easier.",
-
   "moods":"Moods",
   "type_of_events":"Type of Events",
   "private_events":"Private Events",
@@ -301,8 +293,6 @@
   "no_chat_yet": "No messages in your inbox, yet!",
   "no_crew": "No Crew",
   "no_crew_yet": "No crew has been created, yet!",
-
-
   "favourites":"Favorites",
   "contact_list":"Contact List",
   "who_you_are": "Choose photos that show who you are",
@@ -317,7 +307,6 @@
   "filter":"Filter",
   "filters":"Filters",
   "apply_filters":"APPLY FILTERS",
-
   "payments_details":"Payments Details",
   "card_details":"Card Details",
   "name_on_card":"Name on Card",
@@ -325,33 +314,26 @@
   "expiry":"Expiry",
   "cvv":"CVV",
   "pay_now":"PAY NOW",
-
   "invite":"Invite",
   "my_new_crew":"My New Crew",
   "my_contacts":"My Contacts",
   "send_invite":"SEND INVITE",
   "create_crew":"CREATE CREW",
-
   "bachelor_party":"Bachelor Party for CEO",
   "crime_bar":"Crime Bar & Night Club",
   "place":"Place",
   "date":"Date",
   "id":"ID",
-
   "23":"23",
-
-  "invalid":"Invalid",
   "are_you_sure":"Are you sure?",
   "you_have_entered":"You have entered the right date of birth, because it is not possible to change afterwards. ",
   "no":"No",
-
   "03":"03",
   "1998":"1998",
   "empty":"empty",
   "day":"Day",
   "month":"Month",
   "year":"Year",
-
   "cost":"Cost",
   "location":"Location",
   "applying_filters": "applying filters",

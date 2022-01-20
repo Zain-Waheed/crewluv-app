@@ -7,15 +7,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ChatBox extends StatefulWidget {
+class CrewDetails extends StatefulWidget {
   final  String name;
-  const ChatBox({Key? key, required this.name}) : super(key: key);
+  const CrewDetails({Key? key, required this.name}) : super(key: key);
 
   @override
-  _ChatBoxState createState() => _ChatBoxState();
+  _CrewDetailsState createState() => _CrewDetailsState();
 }
 
-class _ChatBoxState extends State<ChatBox> {
+class _CrewDetailsState extends State<CrewDetails> {
   List<String> sendInvite=[
     "Tessa",
     "John",
@@ -34,30 +34,27 @@ class _ChatBoxState extends State<ChatBox> {
           preferredSize: Size.fromHeight(Get.width * 0.17),
           child: AppBar(
             leading: Container(
-              height: Get.height*0.06,
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-              padding: const EdgeInsets.symmetric(vertical: 4) ,
+              margin:  EdgeInsets.symmetric(vertical: Get.width*0.042, horizontal:Get.width*0.055),
+              padding: EdgeInsets.only(left:7),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   color: AppColors.white,
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                         color: AppColors.black.withOpacity(0.5),
-                        offset: Offset(0, 4),
-                        blurRadius: 5.0)
-                  ]),
-              child: Padding(
-                padding:  EdgeInsets.only(left: 8.0),
-                child: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.black,
-                    size: Get.width*0.06,
-                  ),
+                        offset: Offset(0, 1),
+                        blurRadius: 2)
+                  ]
+              ),
+              child: IconButton(
+                onPressed:(){
+                  Get.back();
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: AppColors.black,
+                  size: Get.width*0.04,
                 ),
               ),
             ),
@@ -224,7 +221,7 @@ class _ChatBoxState extends State<ChatBox> {
                 height:Get.width*0.1,
                 margin:EdgeInsets.only(left: Get.width*0.02),
                 decoration:  BoxDecoration(
-                  gradient: AppColors.buttonGradientColor,
+                  color: AppColors.soberRed,
                   shape: BoxShape.circle,
                 ),
                 child:Icon(

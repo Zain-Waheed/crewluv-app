@@ -217,7 +217,7 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                                           Get.width*0.045,
                                           FontWeight.w500,
                                         ),),
-                                      Text(provider.tickets[index].id.toString()??"",
+                                      Text(provider.tickets[index].id.toString(),
                                         style: AppTextStyle.montserrat(
                                           AppColors.themeColor,
                                           Get.width*0.045,
@@ -236,7 +236,7 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                                   Get.width*0.045,
                                   FontWeight.w500,
                                 ),),
-                              Text('\$'+provider.tickets[index].cost.toString()??"",
+                              Text('\$'+provider.tickets[index].cost.toString(),
                                 style: AppTextStyle.montserrat(
                                   AppColors.themeColor,
                                   Get.width*0.045,

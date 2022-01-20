@@ -40,121 +40,123 @@ class _EnterDOBState extends State<EnterDOB> {
       return Scaffold(
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: Get.width * 0.1,
-              ),
-              Text(
-                getTranslated(context, 'dob') ?? "",
-                style: AppTextStyle.montserrat(
-                    AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
-              ),
-              SizedBox(
-                height: Get.width * 0.05,
-              ),
-              Text(
-                getTranslated(context, 'age_available') ?? "",
-                style: AppTextStyle.montserrat(
-                    AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
-              ),
-              SizedBox(height: Get.width * 0.2),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  dateWidget(dashPro.dayController, "23", "day"),
-                  SizedBox(
-                    width: Get.width * 0.04,
-                  ),
-                  dateWidget(dashPro.monthController, "03", "month"),
-                  SizedBox(
-                    width: Get.width * 0.04,
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        getTranslated(context, 'year') ?? "",
-                        style: AppTextStyle.montserrat(
-                          AppColors.shadedBlack,
-                          Get.width * 0.05,
-                          FontWeight.w400,
-                        ),
-                      ),
-                      Container(
-                        width: Get.width * 0.2,
-                        margin: EdgeInsets.only(top: Get.height * 0.01),
-                        child: TextFormField(
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(RegExp('[0-9]')),
-                            LengthLimitingTextInputFormatter(4),
-                          ],
-                          focusNode: focus,
-                          autofocus: true,
-                          validator: (value) => FieldValidator.dateCheck(dashPro.yearController.text),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: dashPro.yearController,
-                          keyboardType:
-                              TextInputType.numberWithOptions(decimal: true),
-                          decoration: InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 21, vertical: 20),
-                            fillColor: AppColors.offWhite,
-                            hintText: getTranslated(Get.context, '1998'),
-                            hintStyle: AppTextStyle.montserrat(
-                              AppColors.greyText,
-                              Get.width * 0.04,
-                              FontWeight.w400,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              borderSide:
-                                  BorderSide(color: AppColors.borderShadow),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              borderSide:
-                                  BorderSide(color: AppColors.themeColor),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              borderSide:
-                                  BorderSide(color: AppColors.themeColor),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              borderSide:
-                                  BorderSide(color: AppColors.themeColor),
-                            ),
-                            filled: true,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: Get.width * 0.1,
+                ),
+                Text(
+                  getTranslated(context, 'dob') ?? "",
+                  style: AppTextStyle.montserrat(
+                      AppColors.shadedBlack, Get.width * 0.06, FontWeight.w600),
+                ),
+                SizedBox(
+                  height: Get.width * 0.05,
+                ),
+                Text(
+                  getTranslated(context, 'age_available') ?? "",
+                  style: AppTextStyle.montserrat(
+                      AppColors.lightGrey, Get.width * 0.035, FontWeight.w400),
+                ),
+                SizedBox(height: Get.width * 0.2),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    dateWidget(dashPro.dayController, "23", "day"),
+                    SizedBox(
+                      width: Get.width * 0.04,
+                    ),
+                    dateWidget(dashPro.monthController, "03", "month"),
+                    SizedBox(
+                      width: Get.width * 0.04,
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          getTranslated(context, 'year') ?? "",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width * 0.05,
+                            FontWeight.w400,
                           ),
-                          onChanged: (val)
-                          {
-                            setState(() {
-
-                              if(dashPro.formKey.currentState!.validate())
-                              {
-                                dashPro.formCheck[dashPro.pageIndex]=1;
-                              }
-                              else
-                              {
-                                dashPro.formCheck[dashPro.pageIndex]=-1;
-                              }
-                            });
-                            Get.forceAppUpdate();
-                          },
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                        Container(
+                          width: Get.width * 0.2,
+                          margin: EdgeInsets.only(top: Get.height * 0.01),
+                          child: TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                              LengthLimitingTextInputFormatter(4),
+                            ],
+                            focusNode: focus,
+                            autofocus: true,
+                            validator: (value) => FieldValidator.dateCheck(dashPro.yearController.text),
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            controller: dashPro.yearController,
+                            keyboardType:
+                                TextInputType.numberWithOptions(decimal: true),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 21, vertical: 20),
+                              fillColor: AppColors.offWhite,
+                              hintText: getTranslated(Get.context, '1998'),
+                              hintStyle: AppTextStyle.montserrat(
+                                AppColors.greyText,
+                                Get.width * 0.04,
+                                FontWeight.w400,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                borderSide:
+                                    BorderSide(color: AppColors.borderShadow),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                borderSide:
+                                    BorderSide(color: AppColors.themeColor),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                borderSide:
+                                    BorderSide(color: AppColors.themeColor),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                borderSide:
+                                    BorderSide(color: AppColors.themeColor),
+                              ),
+                              filled: true,
+                            ),
+                            onChanged: (val)
+                            {
+                              setState(() {
+
+                                if(dashPro.formKey.currentState!.validate())
+                                {
+                                  dashPro.formCheck[dashPro.pageIndex]=1;
+                                }
+                                else
+                                {
+                                  dashPro.formCheck[dashPro.pageIndex]=-1;
+                                }
+                              });
+                              Get.forceAppUpdate();
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       );

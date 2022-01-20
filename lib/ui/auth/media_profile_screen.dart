@@ -36,7 +36,7 @@ class _MediaProfileState extends State<MediaProfile> {
                       AppColors.black, Get.width * 0.06, FontWeight.w600),
                 ),
                 SizedBox(
-                  height: Get.width * 0.06,
+                  height: Get.width * 0.03,
                 ),
                 Text(
                   getTranslated(context, 'share_some_pictures') ?? "",
@@ -44,7 +44,7 @@ class _MediaProfileState extends State<MediaProfile> {
                       AppColors.black, Get.width * 0.04, FontWeight.w400),
                 ),
                 SizedBox(
-                  height: Get.width * 0.08,
+                  height: Get.width * 0.02,
                 ),
                 Expanded(
                   child: GridView.builder(
@@ -68,7 +68,7 @@ class _MediaProfileState extends State<MediaProfile> {
                                     {
                                      await provider.getProfileImage(index);
                                      provider.update();
-                                      if(provider.mediaListImages[0].path!="")
+                                      if(provider.mediaListImages.any((element) => element.path!=""))
                                       {
                                         provider.formCheck[8]=1;
                                         provider.update();

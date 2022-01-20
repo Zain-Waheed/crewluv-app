@@ -41,6 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             function: () {
               provider.dashboardIndex=0;
               provider.update();
+              Get.back();
             },
             backButton: true,
             title: 'my_profile',
@@ -61,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
-                        height: Get.height*0.16,
+                        height: Get.height*0.2,
                         padding: EdgeInsets.symmetric(horizontal: Get.width*0.1),
                         decoration: BoxDecoration(
                           color: AppColors.themeColor,
@@ -100,9 +101,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                               onTap: (){
                                 provider.dashboardIndex=1;
-                                provider.update();
                                 provider.allEventPageIndex=1;
                                 provider.update();
+                                setState(() {
+
+                                });
                                 Get.back();
 
 
@@ -131,9 +134,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             GestureDetector(
                               onTap: (){
                                 provider.dashboardIndex=2;
-                                provider.update();
                                 provider.chatPageIndex=1;
                                 provider.update();
+                                setState(() {
+
+                                });
 
                                 Get.back();
 
@@ -165,77 +170,80 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      height: Get.height*0.25,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          color: AppColors.whiteColor,
-                          boxShadow: [
-                            BoxShadow(
-                                color: AppColors.black.withOpacity(0.2),blurRadius: 5
-                            )
-                          ]
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width:Get.width*0.3,
-                            height: Get.height*0.2,
-                            child: Stack(
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                        height: Get.height*0.26,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: AppColors.whiteColor,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: AppColors.black.withOpacity(0.2),blurRadius: 5
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width:Get.width*0.3,
+                              height: Get.height*0.2,
+                              child: Stack(
 
-                              children: [
-                                Center(
-                                  child: Container(
-                                    height: Get.height * 0.2,
-                                    width: Get.width * 0.35,
-                                    padding: EdgeInsets.all(2),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                          color: AppColors.themeColor,
-                                          width: 3),
-                                      color: AppColors.white,
-                                    ),
-                                    child: Image.asset(
-                                      AppImages.notification1,
-                                      fit: BoxFit.contain,
-                                      height: Get.width * 0.3,
-                                      width: Get.width * 0.3,
-                                      scale: 0.1,
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      height: Get.height * 0.2,
+                                      width: Get.width * 0.35,
+                                      padding: EdgeInsets.all(2),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                            color: AppColors.themeColor,
+                                            width: 3),
+                                        color: AppColors.white,
+                                      ),
+                                      child: Image.asset(
+                                        AppImages.notification1,
+                                        fit: BoxFit.contain,
+                                        height: Get.width * 0.3,
+                                        width: Get.width * 0.3,
+                                        scale: 0.1,
+                                      ),
                                     ),
                                   ),
+                                  Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Container(
+                                          margin: EdgeInsets.only(top: Get.height*0.08),
+                                          child: Image.asset(AppImages.verified,height: Get.height*0.05,width: Get.width*0.07,))),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: Get.width * 0.01,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'stella, ',
+                                  style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                                      Get.width * 0.04, FontWeight.w500),
                                 ),
-                                Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Container(
-                                        margin: EdgeInsets.only(top: Get.height*0.08),
-                                        child: Image.asset(AppImages.verified,height: Get.height*0.05,width: Get.width*0.07,))),
+                                Text(
+                                  '24',
+                                  style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                                      Get.width * 0.04, FontWeight.w500),
+                                ),
                               ],
                             ),
-                          ),
-                          SizedBox(
-                            height: Get.width * 0.01,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'stella, ',
-                                style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                                    Get.width * 0.04, FontWeight.w500),
-                              ),
-                              Text(
-                                '24',
-                                style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                                    Get.width * 0.04, FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: Get.width * 0.03,
-                          ),
-                        ],
+                            SizedBox(
+                              height: Get.width * 0.03,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
 
@@ -410,8 +418,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(height: Get.height*0.01,),
                       SmoothPageIndicator(
-                        count: 5,
-                        effect: ExpandingDotsEffect(
+                          count: 5,
+                          effect: ExpandingDotsEffect(
                           expansionFactor: 4.5,
                           strokeWidth: 2,
                           dotColor: AppColors.dotColor,
@@ -458,8 +466,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: Get.height*0.15,),
-
 
                     ],
                   ),

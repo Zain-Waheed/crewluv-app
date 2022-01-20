@@ -153,7 +153,9 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                 SizedBox(
                   height: Get.width*0.045,
                 ),
-                AppButton(buttonText: 'further', onpressed:(){ Get.bottomSheet(FurtherSubscription());}, width: Get.width*0.7, isWhite: false),
+                AppButton(buttonText: 'further', onpressed:(){
+                  Get.back();
+                  Get.bottomSheet(FurtherSubscription());}, width: Get.width*0.7, isWhite: false),
                 TextButton(onPressed: (){Get.back();},
                     child: Text(
                       getTranslated(context, 'no_thanks')??"",

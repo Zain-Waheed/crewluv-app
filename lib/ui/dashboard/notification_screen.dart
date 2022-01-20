@@ -76,7 +76,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           child: Image.asset(model.image),
           padding: EdgeInsets.all(2),
           decoration: BoxDecoration(
-            border:Border.all(width: 2,color: AppColors.redColor),
+            border:Border.all(width: 2,color: AppColors.themeColor),
             shape: BoxShape.circle,
           ),
         ),

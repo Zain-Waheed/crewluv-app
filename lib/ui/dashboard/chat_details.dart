@@ -45,9 +45,10 @@ class _ChatDetailsState extends State<ChatDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: Get.height*0.04,
+                      height: Get.height*0.05,
                       width: Get.width*0.09,
-                      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                      margin: EdgeInsets.only(left: Get.width*0.02),
+                      // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                       // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -65,7 +66,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                           Get.back();
                         },
                         icon: Padding(
-                          padding: const EdgeInsets.only(left: 6),
+                          padding:  EdgeInsets.only(left: Get.width*0.01),
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: AppColors.black,

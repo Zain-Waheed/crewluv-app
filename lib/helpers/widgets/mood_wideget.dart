@@ -149,7 +149,7 @@ class _MoodWidgetState extends State<MoodWidget> {
               BlendMode.darken),
           fit: BoxFit.cover,
         ),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(30),
       ),
       child: Align(
         alignment: Alignment.bottomCenter,
