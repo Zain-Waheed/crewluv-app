@@ -46,7 +46,7 @@ class _MediaProfileState extends State<MediaProfile> {
                 Expanded(
                   child: GridView.builder(
                       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 150,
+                        maxCrossAxisExtent: 120,
                         childAspectRatio: 1.3 / 2,
                         crossAxisSpacing: 10,
                         mainAxisSpacing:10,

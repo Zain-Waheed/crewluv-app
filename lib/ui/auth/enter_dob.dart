@@ -100,7 +100,7 @@ class _EnterDOBState extends State<EnterDOB> {
                             decoration: InputDecoration(
                               isDense: true,
                               contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 21, vertical: 20),
+                                  horizontal: 18, vertical: 20),
                               fillColor: AppColors.offWhite,
                               hintText: getTranslated(Get.context, '1998'),
                               hintStyle: AppTextStyle.montserrat(
@@ -194,7 +194,7 @@ class _EnterDOBState extends State<EnterDOB> {
             textAlign: TextAlign.center,
             decoration: InputDecoration(
               isDense: true,
-              contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               fillColor: AppColors.offWhite,
               hintText: getTranslated(Get.context, hint),
               hintStyle: AppTextStyle.montserrat(

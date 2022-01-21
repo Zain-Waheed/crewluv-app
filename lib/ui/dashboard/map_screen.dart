@@ -150,7 +150,7 @@ class _MapScreenState extends State<MapScreen> {
         ),
         body: isLoading==true? SizedBox() : GoogleMap(
           initialCameraPosition: _initialLocation,
-          zoomControlsEnabled: true,
+          zoomControlsEnabled: false,
           myLocationEnabled: true,
           myLocationButtonEnabled: false,
           mapType: MapType.normal,

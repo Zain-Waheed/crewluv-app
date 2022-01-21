@@ -345,5 +345,12 @@
   "your_password_has":"Your password has been updated successfully.",
   "event_posted":"Your event has been posted successfully.",
   "route":"Route",
-  "display_Image":"Display Image"
+  "display_Image":"Display Image",
+
+
+  "hurray":"Hurray",
+  "connection_restored": "Connection restored",
+  "uh_oh": "Uh Oh",
+  "no_internet_connection": "No Internet Connection",
+  "retry":"Retry"
 }

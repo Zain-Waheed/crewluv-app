@@ -85,7 +85,7 @@ class _EditProfileState extends State<EditProfile> {
                             child: GridView.builder(
                                 gridDelegate:
                                 const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 150,
+                                  maxCrossAxisExtent: 120,
                                   childAspectRatio: 1.3 / 2,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 10,

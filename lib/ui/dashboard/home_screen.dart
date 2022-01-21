@@ -49,12 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: Get.width*0.09,
                     width: Get.width*0.3,
                     // margin: const EdgeInsets.only(left: 5),
-                    decoration: BoxDecoration(
-
-                        boxShadow: [
-                          BoxShadow(color: AppColors.black.withOpacity(0.1),offset:Offset(-15,-1),blurRadius:10  )
-                        ]
-                    ),
+                    // decoration: BoxDecoration(
+                    //
+                    //     boxShadow: [
+                    //       BoxShadow(color: AppColors.black.withOpacity(0.1),offset:Offset(-15,-1),blurRadius:10  )
+                    //     ]
+                    // ),
                     child: Row(
                       children: [
                         GestureDetector(
@@ -136,7 +136,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Stack(
                         alignment: Alignment.topRight,
                         children: [
-                          Image.asset(AppImages.noNotification,),
+                          Padding(
+                            padding: EdgeInsets.only(right: Get.width*0.01),
+                              child: Image.asset(AppImages.noNotification,width: Get.width*0.06,height: Get.height*0.06,)),
                           provider.notifications.any((element) => element.isSeen==false)?Align(
                             alignment: Alignment.topRight,
                             child: Container(

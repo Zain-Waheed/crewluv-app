@@ -52,14 +52,21 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           height: Get.height * 0.12,
           width: Get.width * 0.18,
           child: FloatingActionButton(
-            child: Center(
-                child: Image.asset(
-              AppImages.addEvent,
-              height: Get.height * 0.04,
-              width: Get.width * 0.7,
-              color: AppColors.whiteColor,
-            )),
-            backgroundColor: AppColors.themeColor,
+            child: Container(
+              height: Get.height,
+              width: Get.width,
+              decoration: BoxDecoration(
+                gradient: AppColors.buttonGradientColor,
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                  child: Image.asset(
+                AppImages.addEvent,
+                height: Get.height * 0.04,
+                width: Get.width * 0.7,
+                color: AppColors.whiteColor,
+              )),
+            ),
             elevation: 2,
             onPressed: () {
               provider.dashboardIndex != 2
@@ -101,8 +108,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       provider.update();
                     },
                     child: Image.asset(AppImages.home,
-                        height: Get.height * 0.05,
-                        width: Get.width * 0.05,
+                        height: Get.width * 0.1,
+                        width: Get.width * 0.1,
                         color: provider.dashboardIndex == 0
                             ? AppColors.themeColor
                             : AppColors.slateGrey),

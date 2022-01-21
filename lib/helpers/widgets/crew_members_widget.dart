@@ -16,8 +16,8 @@ class _CrewMembersWidgetState extends State<CrewMembersWidget> {
   Widget build(BuildContext context) {
      return Container(
       margin: EdgeInsets.only(left: widget.margin),
-      height: 40,
-      width: 40,
+      height: 36,
+      width: 36,
       padding: EdgeInsets.all(2),
       decoration:widget.margin==0?BoxDecoration(
         border: Border.all(color: AppColors.themeColor,width: 2),
