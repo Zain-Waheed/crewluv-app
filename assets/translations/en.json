@@ -352,5 +352,12 @@
   "event_updated":"Your event has been updated successfully.",
 
   "route":"Route",
-  "display_Image":"Display Image"
+  "display_Image":"Display Image",
+
+
+  "hurray":"Hurray",
+  "connection_restored": "Connection restored",
+  "uh_oh": "Uh Oh",
+  "no_internet_connection": "No Internet Connection",
+  "retry":"Retry"
 }

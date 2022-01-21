@@ -126,7 +126,7 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
   void initState() {
     _getCurrentLocation();
     WidgetsBinding.instance!.addPostFrameCallback((_) async {
-      await getBytesFromAsset(AppImages.location, 200).then((onValue) {
+      await getBytesFromAsset(AppImages.location, 50).then((onValue) {
         icon1 = BitmapDescriptor.fromBytes(onValue);
         setState(() {});
       });

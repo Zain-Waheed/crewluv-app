@@ -258,16 +258,16 @@ class _EventWidgetState extends State<EventWidget> {
                         Stack(
                           children: [
                             CrewMembersWidget(margin: 0, image: AppImages.crew1),
-                            CrewMembersWidget(margin: 25, image: AppImages.crew2),
+                            CrewMembersWidget(margin: 21, image: AppImages.crew2),
                             Container(
-                                margin: EdgeInsets.only(left: 50, top: 7.5),
+                                margin: EdgeInsets.only(left: 40, top: 5),
                                 decoration: BoxDecoration(
                                     color: AppColors.coalGrey,
                                     shape: BoxShape.circle,
                                     border:
                                     Border.all(color: AppColors.whiteColor)),
-                                height: 35,
-                                width: 35,
+                                height: 30,
+                                width: 30,
                                 child: Center(
                                   child: Text(
                                     "+${widget.event.maxFriends}",

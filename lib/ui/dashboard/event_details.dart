@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:amigos/helpers/bottom_sheets/edit_gender_bottomsheet.dart';
 import 'package:amigos/helpers/bottom_sheets/ticketbuy_bottomsheet.dart';
+import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/crew_members_widget.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
@@ -68,7 +69,7 @@ class _EventDetailsState extends State<EventDetails> {
     ));
     return markers;
   }
-
+  ScrollController scrollController = ScrollController();
   @override
   void initState() {
     _getLocation();
@@ -93,8 +94,15 @@ class _EventDetailsState extends State<EventDetails> {
                 suffix: widget.index==0?AppImages.share:null,
             ),
           ),
-          body: SingleChildScrollView(
-            child: Padding(
+          body: Scrollbar(
+            controller: scrollController,
+            interactive: true,
+            isAlwaysShown: true,
+            thickness: 5,
+            radius: Radius.circular(10),
+            child: SingleChildScrollView(
+              controller: scrollController,
+              physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -466,6 +474,13 @@ class _EventDetailsState extends State<EventDetails> {
                         width: Get.width,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16)),
+                            borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                                color: AppColors.black.withOpacity(0.1), offset: const Offset(0, 1.5), blurRadius: 5.0)
+                          ],
+                            // border: Border.all(color: AppColors.themColor)
+                        ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(16),
                           child: DrawMapRoute(),

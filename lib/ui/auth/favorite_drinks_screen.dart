@@ -46,20 +46,22 @@ class _FavoriteDrinksState extends State<FavoriteDrinks> {
               height: Get.width*0.08,
             ),
             Expanded(
-              child: Column(
-                children: [
-                  Wrap(
-                    children:
-                      List.generate(
-                          provider.favoriteDrinks.length,
-                              (index) => AppButtonSmall(preference: provider.favoriteDrinks[index])
-                      )
-                    ,
-                  ),
-                  SizedBox(
-                    height: Get.width*0.08,
-                  ),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Wrap(
+                      children:
+                        List.generate(
+                            provider.favoriteDrinks.length,
+                                (index) => AppButtonSmall(preference: provider.favoriteDrinks[index])
+                        )
+                      ,
+                    ),
+                    SizedBox(
+                      height: Get.width*0.08,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

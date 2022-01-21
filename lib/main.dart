@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:amigos/helpers/bottom_sheets/filters_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/mood_wideget.dart';
+import 'package:amigos/helpers/widgets/nointernet_screen.dart';
 import 'package:amigos/helpers/widgets/ticket_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/auth_provider.dart';
@@ -24,6 +27,7 @@ import 'package:amigos/ui/intro/onboarding.dart';
 import 'package:amigos/ui/intro/splash_logo_screen.dart';
 import 'package:amigos/ui/intro/splash_screen.dart';
 import 'package:amigos/ui/intro/white_screen.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -70,6 +74,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  // ignore: unused_field
+  String _connectionStatus = 'Unknown';
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<ConnectivityResult> connectivitySubscription;
   Locale? _locale;
   void setLocale(Locale locale) {
     setState(() {
@@ -77,6 +85,63 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  Future<void> initConnectivity() async {
+    ConnectivityResult result=ConnectivityResult.none;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = await _connectivity.checkConnectivity();
+    } on PlatformException catch (e) {
+      // print(e.toString());
+    }
+    if (!mounted) {
+      return Future.value(null);
+    }
+
+    return _updateConnectionStatus(result);
+  }
+
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    switch (result) {
+      case ConnectivityResult.wifi:
+        {
+
+        }
+        break;
+      case ConnectivityResult.mobile:
+        {
+
+        }
+        break;
+      case ConnectivityResult.none:
+        {
+          Get.snackbar("Uh Oh!", "No Internet Connection");
+          Get.to(() => const NoInternetScreen());
+        }
+        setState(() => _connectionStatus = result.toString());
+        break;
+      default:
+
+        break;
+    }
+
+  }
+
+  void startConnectionStream() {
+    connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    connectivitySubscription.cancel();
+  }
+  @override
+  void initState() {
+    startConnectionStream();
+    setLocale(const Locale("en"));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
