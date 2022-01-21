@@ -3,7 +3,6 @@ import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/helpers/widgets/date_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
-import 'package:amigos/main.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/auth/email_screen.dart';
 import 'package:amigos/ui/auth/enter_dob.dart';
@@ -17,10 +16,7 @@ import 'package:amigos/ui/auth/select_gender.dart';
 import 'package:amigos/ui/auth/university_screen.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/utils/colors.dart';
-import 'package:amigos/utils/images.dart';
-import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
-import 'package:amigos/utils/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -65,10 +61,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     return Consumer<DashboardProvider>(builder: (context, dashPro, _) {
       return GestureDetector(
         onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
-          setState(() {
-
-          });
+          dashPro.setFocus();
         },
         child: WillPopScope(
           onWillPop: _willPopCallback,

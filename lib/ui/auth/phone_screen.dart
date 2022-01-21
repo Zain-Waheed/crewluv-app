@@ -35,147 +35,153 @@ class _PhoneNumberState extends State<PhoneNumber> {
   String initialCountry = 'PK';
   bool validated=false;
   FocusNode focus = FocusNode();
-
+  Future<bool> _willPopCallback() async {
+    Get.offAll(Login());
+    return Future.value(false);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder:(context,provider,_){
-      return   GestureDetector(
-        onTap: (){
-          FocusScope.of(context).requestFocus(new FocusNode());
-          setState(() {
+      return   WillPopScope(
+        onWillPop: _willPopCallback,
+        child: GestureDetector(
+          onTap: (){
+            FocusScope.of(context).requestFocus(new FocusNode());
+            setState(() {
 
-          });
-        },
-        child: Scaffold(
-          appBar:PreferredSize(preferredSize: Size.fromHeight(Get.width*0.17),
-              child: CustomAppBar(backButton: true,function: (){Get.to(Login());},title: '',)
-          ),
-          bottomNavigationBar: Container(
-            height: Get.width*0.2,
-            margin: EdgeInsets.only(left: Get.width * 0.07,right:Get.width * 0.07,bottom: Get.width*0.03),
-            padding: EdgeInsets.only(bottom: Get.height*0.03),
-            child:  validated==false?AppButtonGrey("request_otp"):AppButton(isWhite: false,width: Get.width*0.6,buttonText: 'request_otp',
-              onpressed: (){
-                if(formKey.currentState!.validate())
-                {
-                  provider.phone=phoneController.text;
-                  Get.to(() => const OtpScreen());
-                }
-              },
+            });
+          },
+          child: Scaffold(
+            appBar:PreferredSize(preferredSize: Size.fromHeight(Get.width*0.17),
+                child: CustomAppBar(backButton: true,function: (){Get.offAll(Login());},title: '',)
             ),
-          ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: Get.width*0.07),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: Get.width*0.1,),
-                  Text(getTranslated(context, 'enter_your_number')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.07, FontWeight.w600),),
-                  SizedBox(height: Get.width*0.03,),
-                  Text(getTranslated(context, 'welcome_to')??"",style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w400),),
-                  SizedBox(height: Get.width*0.2,),
-                  Stack(
-                    children: [
-                      Container(
-                        height: Get.width * 0.16,
-                        width: Get.width*0.9,
-                        margin: EdgeInsets.only(left: 5),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: focus.hasFocus?AppColors.themeColor:AppColors.greyText),
-                            borderRadius: BorderRadius.circular(30)),
-
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                          height: Get.width * 0.16,
-                          width: Get.width*0.003,
-                          color: focus.hasFocus?AppColors.themeColor:AppColors.greyText,
-                          margin: EdgeInsets.only(right: Get.width*0.3),
-
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 20,top: 5,right: 10),
-                        child: Form(
-                          key: formKey,
-                          child: InternationalPhoneNumberInput(
-                            focusNode: focus,
-                            key: Key('phone_number'),
-                            inputDecoration: InputDecoration(
-                              hintText: "746 8373 829",
-                              suffixIcon: validated==true?Container(
-                                margin: EdgeInsets.only(right: Get.width*0.03),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.green
-                                ),
-                                child: Center(
-                                  child: Image.asset(AppImages.tick,scale: 2,),
-                                ),
-                              ):SizedBox(),
-                              suffixIconConstraints: BoxConstraints(
-                                maxHeight: Get.width*0.05,
-                                maxWidth: Get.width*0.1,
-                              ),
-                              hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
-                              enabledBorder: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                borderSide: BorderSide(color: Colors.transparent),
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                borderSide: BorderSide(color:Colors.transparent),
-                              ),
-                              errorBorder: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                borderSide: BorderSide(color: Colors.transparent),
-                              ),
-                              focusedErrorBorder: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                borderSide: BorderSide(color:Colors.transparent),
-                              ),
-                              isDense: true,
-                            ),
-                            inputBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.themeColor,style: BorderStyle.solid)
-                            ),
-                            onInputChanged: (number) {
-                              setState(() {
-
-                              });
-                            },
-                            onInputValidated: (bool value) {
-                              validated=value;
-                              setState(() {
-
-                              });
-                            },
-                            selectorConfig: SelectorConfig(
-                              leadingPadding: 2,
-                              selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                              showFlags: true,
-                            ),
-                            ignoreBlank: false,
-                            autoValidateMode: AutovalidateMode.onUserInteraction,
-                            selectorTextStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
-                            textFieldController: phoneController,
-                            countrySelectorScrollControlled: false,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: Get.width*0.1,),
-                  Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.032, FontWeight.w500),)
-
-                ],
+            bottomNavigationBar: Container(
+              height: Get.width*0.2,
+              margin: EdgeInsets.only(left: Get.width * 0.07,right:Get.width * 0.07,bottom: Get.width*0.03),
+              padding: EdgeInsets.only(bottom: Get.height*0.03),
+              child:  validated==false?AppButtonGrey("request_otp"):AppButton(isWhite: false,width: Get.width*0.6,buttonText: 'request_otp',
+                onpressed: (){
+                  if(formKey.currentState!.validate())
+                  {
+                    provider.phone=phoneController.text;
+                    Get.to(() => const OtpScreen());
+                  }
+                },
               ),
             ),
-          ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding:  EdgeInsets.symmetric(horizontal: Get.width*0.07),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: Get.width*0.1,),
+                    Text(getTranslated(context, 'enter_your_number')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.07, FontWeight.w600),),
+                    SizedBox(height: Get.width*0.03,),
+                    Text(getTranslated(context, 'welcome_to')??"",style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.035, FontWeight.w400),),
+                    SizedBox(height: Get.width*0.2,),
+                    Stack(
+                      children: [
+                        Container(
+                          height: Get.width * 0.16,
+                          width: Get.width*0.9,
+                          margin: EdgeInsets.only(left: 5),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: focus.hasFocus?AppColors.themeColor:AppColors.greyText),
+                              borderRadius: BorderRadius.circular(30)),
 
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: Get.width * 0.16,
+                            width: Get.width*0.003,
+                            color: focus.hasFocus?AppColors.themeColor:AppColors.greyText,
+                            margin: EdgeInsets.only(right: Get.width*0.3),
+
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 20,top: 5,right: 10),
+                          child: Form(
+                            key: formKey,
+                            child: InternationalPhoneNumberInput(
+                              focusNode: focus,
+                              key: Key('phone_number'),
+                              inputDecoration: InputDecoration(
+                                hintText: "746 8373 829",
+                                suffixIcon: validated==true?Container(
+                                  margin: EdgeInsets.only(right: Get.width*0.03),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.green
+                                  ),
+                                  child: Center(
+                                    child: Image.asset(AppImages.tick,scale: 2,),
+                                  ),
+                                ):SizedBox(),
+                                suffixIconConstraints: BoxConstraints(
+                                  maxHeight: Get.width*0.05,
+                                  maxWidth: Get.width*0.1,
+                                ),
+                                hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                                  borderSide: BorderSide(color: Colors.transparent),
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                                  borderSide: BorderSide(color:Colors.transparent),
+                                ),
+                                errorBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                                  borderSide: BorderSide(color: Colors.transparent),
+                                ),
+                                focusedErrorBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                                  borderSide: BorderSide(color:Colors.transparent),
+                                ),
+                                isDense: true,
+                              ),
+                              inputBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: AppColors.themeColor,style: BorderStyle.solid)
+                              ),
+                              onInputChanged: (number) {
+                                setState(() {
+
+                                });
+                              },
+                              onInputValidated: (bool value) {
+                                validated=value;
+                                setState(() {
+
+                                });
+                              },
+                              selectorConfig: SelectorConfig(
+                                leadingPadding: 2,
+                                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                                showFlags: true,
+                              ),
+                              ignoreBlank: false,
+                              autoValidateMode: AutovalidateMode.onUserInteraction,
+                              selectorTextStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
+                              textFieldController: phoneController,
+                              countrySelectorScrollControlled: false,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: Get.width*0.1,),
+                    Text(AppDummyData.mediumText,style: AppTextStyle.montserrat(AppColors.lightGrey, Get.width*0.032, FontWeight.w500),)
+
+                  ],
+                ),
+              ),
+            ),
+
+          ),
         ),
       );
 

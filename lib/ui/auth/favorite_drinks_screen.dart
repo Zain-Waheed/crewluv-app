@@ -46,13 +46,20 @@ class _FavoriteDrinksState extends State<FavoriteDrinks> {
               height: Get.width*0.08,
             ),
             Expanded(
-              child: Wrap(
-                children:
-                  List.generate(
-                      provider.favoriteDrinks.length,
-                          (index) => AppButtonSmall(preference: provider.favoriteDrinks[index])
-                  )
-                ,
+              child: Column(
+                children: [
+                  Wrap(
+                    children:
+                      List.generate(
+                          provider.favoriteDrinks.length,
+                              (index) => AppButtonSmall(preference: provider.favoriteDrinks[index])
+                      )
+                    ,
+                  ),
+                  SizedBox(
+                    height: Get.width*0.08,
+                  ),
+                ],
               ),
             ),
           ],

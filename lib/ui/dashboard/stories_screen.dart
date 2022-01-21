@@ -105,7 +105,7 @@ class _StoriesScreenState extends State<StoriesScreen> {
   }
   void pickFile(DashboardProvider provider) {
     final services = getFile();
-    services.pickFile().then(  (value)async {
+    services.pickSingleFile().then(  (value)async {
       setState(() {
         provider.events[0].stories.add(value);
       });

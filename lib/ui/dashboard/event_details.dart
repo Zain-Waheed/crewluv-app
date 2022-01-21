@@ -508,7 +508,7 @@ class _EventDetailsState extends State<EventDetails> {
 
   void pickFile(DashboardProvider provider) {
     final services = getFile();
-    services.pickFile().then((value) {
+    services.pickSingleFile().then((value) {
       setState(() {
         provider.events[0].stories.add(value);
         provider.update();

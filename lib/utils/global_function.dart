@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 
 class getFile{
-  Future<File> pickFile() async {
+  Future<File> pickSingleFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowMultiple: false,

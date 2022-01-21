@@ -6,6 +6,7 @@ import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:amigos/utils/validation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 class EmailScreen extends StatefulWidget {
@@ -17,7 +18,6 @@ class EmailScreen extends StatefulWidget {
 
 class _EmailScreenState extends State<EmailScreen> {
   FocusNode focus= FocusNode();
-  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +51,17 @@ class _EmailScreenState extends State<EmailScreen> {
                   controller: dashPro.emailController,
                   keyboardType: TextInputType.emailAddress,
                   focusNode: focus,
+                  onFieldSubmitted: (val){
+                    dashPro.setFocus();
+                  },
+                  // autofocus: true,
                   onTap: (){
                     setState(() {
 
                     });
                   },
                   onChanged: (val) {
-                    if(dashPro.formKey.currentState!.validate() && isChecked==true){
+                    if(dashPro.formKey.currentState!.validate() && dashPro.isChecked==true){
                       dashPro.formCheck[dashPro.pageIndex] = 1;
                       dashPro.update();
                       setState(() {
@@ -95,7 +99,7 @@ class _EmailScreenState extends State<EmailScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Checkbox(
-                      value: isChecked,
+                      value: dashPro.isChecked,
                       activeColor: AppColors.themeColor,
                       onChanged: (value) {
                         if(value==true && dashPro.formKey.currentState!.validate()){
@@ -112,7 +116,8 @@ class _EmailScreenState extends State<EmailScreen> {
 
                           });
                         }
-                        isChecked = value!;
+                        dashPro.isChecked = value!;
+                        dashPro.update();
                         setState(() {});
                       },
                       shape: RoundedRectangleBorder(

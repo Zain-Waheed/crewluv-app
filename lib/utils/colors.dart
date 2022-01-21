@@ -29,8 +29,8 @@ class AppColors {
   static Color lightGrey=const Color(0xff707070);
   static Color themeColor=const Color(0xffFF7B17);
   static Color green=const Color(0xff34A853);
-  static Color orangeLite =const Color(0xffF9D80D);
-  static Color orangeDark= const Color(0xffFF7B17);
+  static Color orangeLite =const Color(0xffFBB311);
+  static Color orangeDark= const Color(0xffFE8416);
   static Color silverWhite = const Color(0xffF7F8FC);
   static Color greenActive = const Color(0xff25D660);
   static Color opacBlack =   Colors.black.withOpacity(0.2);
@@ -79,7 +79,6 @@ class AppColors {
   static LinearGradient buttonGradientColor =  LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    stops: [0.0, 0.9],
     colors: [
       AppColors.orangeLite,
       AppColors.orangeDark,

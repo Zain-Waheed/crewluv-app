@@ -84,7 +84,7 @@ class _AppButtonSmallState extends State<AppButtonSmall> {
             color: AppColors.offWhite,
             boxShadow: [
               BoxShadow(
-                  color: AppColors.black.withOpacity(0.2), offset: const Offset(0, 4), blurRadius: 5.0)
+                  color: AppColors.black.withOpacity(0.2), offset: const Offset(0, 1), blurRadius: 1.0)
             ],
             borderRadius: BorderRadius.circular(30),
             border: Border.all(

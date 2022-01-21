@@ -1,7 +1,4 @@
 import 'dart:io';
-import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
-import 'package:amigos/helpers/widgets/app_button.dart';
-import 'package:amigos/helpers/widgets/custom_appbar.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/utils/colors.dart';

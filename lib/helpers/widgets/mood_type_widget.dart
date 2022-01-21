@@ -24,7 +24,7 @@ class _MoodTypeWidgetState extends State<MoodTypeWidget> {
      return Container(
       height: Get.width*0.19,
       width: Get.width*0.15,
-      margin: const EdgeInsets.only(right: 10),
+      margin: const EdgeInsets.only(right: 5,left: 5),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

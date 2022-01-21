@@ -141,10 +141,7 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                               ),
                               Row(
                                 children: [
-                                  Image.asset(AppImages.location,width: Get.width*0.04,height: Get.width*0.04,),
-                                  SizedBox(
-                                    width: Get.width*0.02,
-                                  ),
+                                  Image.asset(AppImages.location,width: Get.width*0.09,height: Get.width*0.09,),
                                   Text(provider.tickets[index].location??"",
                                     style: AppTextStyle.montserrat(
                                       AppColors.greyDark,

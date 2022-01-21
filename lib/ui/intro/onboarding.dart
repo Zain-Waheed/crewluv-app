@@ -7,6 +7,7 @@ import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -105,14 +106,17 @@ class _OnBoardingState extends State<OnBoarding> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         AppButton(
-                          onpressed: () {
+                          onpressed: () async{
                             if(pageIndex<3)
                             {
-                              pageIndex=3;
-                              _controller.jumpToPage(pageIndex);
+                              final SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setString('isLogin', 'true');
+                              Get.to(Login());
                             }else
                             {
                               pageIndex=4;
+                              final SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setString('isLogin', 'true');
                               Get.to(const PhoneNumber());
                             }
                           },
@@ -121,7 +125,7 @@ class _OnBoardingState extends State<OnBoarding> {
                           isWhite: true,
                         ),
                         AppButton(
-                          onpressed: () {
+                          onpressed: () async{
                             pageIndex++;
                             if(pageIndex<=3)
                             {
@@ -129,6 +133,8 @@ class _OnBoardingState extends State<OnBoarding> {
                             }else
                             {
                               pageIndex=4;
+                              final SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setString('isLogin', 'true');
                               Get.offAll(const Login());
                             }
                           },

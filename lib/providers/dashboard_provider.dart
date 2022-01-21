@@ -15,7 +15,9 @@ import 'package:amigos/models/user_model.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:emojis/emojis.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:emojis/emoji.dart';
 class DashboardProvider extends ChangeNotifier{
@@ -40,6 +42,7 @@ class DashboardProvider extends ChangeNotifier{
   int chatPageIndex = 0;
   int faqIndex=0;
   String mood= AppImages.party;
+  bool isChecked = false;
   List<CrewModel> crews=[];
   List<NotificationModel> notifications =[];
   List<TicketModel> tickets=[];
@@ -97,6 +100,10 @@ class DashboardProvider extends ChangeNotifier{
     });
   }
 
+  void setFocus(){
+    FocusScope.of(Get.context!).requestFocus(new FocusNode());
+    notifyListeners();
+  }
   List<MoodModel> moods=[
     MoodModel(AppImages.walking, AppImages.runningIcon, 'Walking'),
     MoodModel(AppImages.birthday, AppImages.balloon, 'Birthday'),

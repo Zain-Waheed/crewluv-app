@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               borderRadius: const BorderRadius.only(topLeft: Radius.circular(16),bottomLeft: Radius.circular(16)),
                             ),
                             child: pageIndex==0?Image.asset( AppImages.yourLocation2,):
-                            Padding(   padding: EdgeInsets.all(4),child: Image.asset(AppImages.yourLocation),
+                            Padding(   padding: EdgeInsets.all(1),child: Image.asset(AppImages.yourLocation),
                             ),
                           ),
                         ),
@@ -126,7 +126,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       height: Get.width*0.09,
                       width: Get.width*0.08,
-                      padding: EdgeInsets.all(Get.width*0.02),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: AppColors.whiteColor,
@@ -141,7 +140,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           provider.notifications.any((element) => element.isSeen==false)?Align(
                             alignment: Alignment.topRight,
                             child: Container(
-                              margin: EdgeInsets.only(bottom: 10,left: 10),
+                              // width: Get.width*0.03,
+                              // height: Get.width*0.03,
+                              margin: EdgeInsets.only(bottom: 22,left: 12,top:4),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.red,

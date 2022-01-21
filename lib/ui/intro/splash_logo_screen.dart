@@ -1,8 +1,10 @@
+import 'package:amigos/ui/auth/login_screen.dart';
 import 'package:amigos/ui/intro/onboarding.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -23,10 +25,15 @@ class _SplashLogoScreenState extends State<SplashLogoScreen> with TickerProvider
     curve: Curves.fastOutSlowIn,
   );
   void initState() {
-    Future.delayed(Duration(seconds: 3),(){
-
-      Get.off(OnBoarding()
-      );
+    Future.delayed(Duration(seconds: 3),()async{
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? isLogin = prefs.getString("isLogin");
+      if(isLogin=='true'){
+        Get.off(Login());
+      }else
+        {
+          Get.off(OnBoarding());
+        }
     },
     );
     super.initState();

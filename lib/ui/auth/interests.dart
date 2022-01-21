@@ -47,13 +47,20 @@ class _IntersetsState extends State<Intersets> {
                 ),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: Wrap(
-                      children:
-                      List.generate(
-                          provider.interests.length,
-                              (index) => AppButtonSmall(preference: provider.interests[index])
-                      )
-                      ,
+                    child: Column(
+                      children: [
+                        Wrap(
+                          children:
+                          List.generate(
+                              provider.interests.length,
+                                  (index) => AppButtonSmall(preference: provider.interests[index])
+                          )
+                          ,
+                        ),
+                        SizedBox(
+                          height: Get.width*0.08,
+                        ),
+                      ],
                     ),
                   ),
                 ),

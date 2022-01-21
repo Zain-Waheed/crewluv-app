@@ -18,6 +18,13 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // final SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String? UserId = prefs.getString('isLogin');
+  }
+  @override
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Container(

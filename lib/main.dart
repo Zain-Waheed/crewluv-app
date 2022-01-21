@@ -1,3 +1,4 @@
+import 'package:amigos/helpers/bottom_sheets/filters_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/mood_wideget.dart';
 import 'package:amigos/helpers/widgets/ticket_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
@@ -18,6 +19,7 @@ import 'package:amigos/ui/dashboard/group_chat_screen.dart';
 import 'package:amigos/ui/dashboard/home_screen.dart';
 import 'package:amigos/ui/dashboard/profile_screen.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
+import 'package:amigos/ui/dashboard/sample_screen.dart';
 import 'package:amigos/ui/intro/onboarding.dart';
 import 'package:amigos/ui/intro/splash_logo_screen.dart';
 import 'package:amigos/ui/intro/splash_screen.dart';
@@ -107,7 +109,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: WhiteScreen(),
+       home: DashBoardScreen(),
     );
   }
 }

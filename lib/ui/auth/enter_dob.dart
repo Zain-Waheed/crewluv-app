@@ -78,7 +78,7 @@ class _EnterDOBState extends State<EnterDOB> {
                           getTranslated(context, 'year') ?? "",
                           style: AppTextStyle.montserrat(
                             AppColors.shadedBlack,
-                            Get.width * 0.05,
+                            Get.width * 0.045,
                             FontWeight.w400,
                           ),
                         ),
@@ -174,7 +174,7 @@ class _EnterDOBState extends State<EnterDOB> {
           getTranslated(context, text) ?? "",
           style: AppTextStyle.montserrat(
             AppColors.shadedBlack,
-            Get.width * 0.05,
+            Get.width * 0.045,
             FontWeight.w400,
           ),
         ),
@@ -191,10 +191,10 @@ class _EnterDOBState extends State<EnterDOB> {
             // validator: (value) => FieldValidator.dateCheck(controller.text), autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller,
             keyboardType: TextInputType.numberWithOptions(decimal: true),
+            textAlign: TextAlign.center,
             decoration: InputDecoration(
               isDense: true,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+              contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 20),
               fillColor: AppColors.offWhite,
               hintText: getTranslated(Get.context, hint),
               hintStyle: AppTextStyle.montserrat(

@@ -41,35 +41,31 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
         child: Column(
           children: [
             SizedBox(
-              height: Get.width*0.015,
+              width: Get.width*0.35,
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: Get.width*0.4,
-                ),
-                Text(
-                  getTranslated(context, 'filters')??"",
-                  style: AppTextStyle.montserrat(
-                    AppColors.black,
-                    Get.width*0.05,
-                    FontWeight.bold,
-                  ),
-                ),
-                Spacer(),
-                IconButton(
-                  onPressed: (){Get.back();},
-                  icon:  Icon(Icons.close,size: Get.width*0.07),
-                ),
-                SizedBox(
-                  width: Get.width*0.025,
-                ),
-              ],
+            Center(
+              child: Container(
+                width: Get.width * 0.25,
+                padding: EdgeInsets.symmetric(vertical: Get.width * 0.008),
+                margin: EdgeInsets.symmetric(vertical: Get.width * 0.03),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.bottomSheetGrey),
+              ),
             ),
             SizedBox(
-              height: Get.width*0.001,
+              height: Get.height * 0.0002,
+            ),
+            Text(
+              getTranslated(context, 'filters')??"",
+              style: AppTextStyle.montserrat(
+                AppColors.black,
+                Get.width*0.05,
+                FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: Get.width*0.01,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -125,17 +121,20 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                     ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children:List.generate(
-                            provider.filters.musicTaste.length,
-                                (index) => GestureDetector(
-                                     onTap: (){
-                                       value =provider.filters.musicTaste[index].isSelected;
-                                       provider.filters.musicTaste[index].isSelected=!value;
-                                       setState(() {
-                                       });
-                                     },
-                                    child: FiltersButton(model: provider.filters.musicTaste[index],))
+                      child: Padding(
+                        padding:EdgeInsets.only(left: 12.0,right: 10),
+                        child: Row(
+                          children:List.generate(
+                              provider.filters.musicTaste.length,
+                                  (index) => GestureDetector(
+                                       onTap: (){
+                                         value =provider.filters.musicTaste[index].isSelected;
+                                         provider.filters.musicTaste[index].isSelected=!value;
+                                         setState(() {
+                                         });
+                                       },
+                                      child: FiltersButton(model: provider.filters.musicTaste[index],))
+                          ),
                         ),
                       ),
                     ),
@@ -156,19 +155,22 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                     SizedBox(
                       height: Get.width*0.008,
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children:List.generate(
-                            provider.filters.eventTypes.length,
-                                (index) => GestureDetector(
-                                    onTap: (){
-                                      value =provider.filters.eventTypes[index].isSelected;
-                                      provider.filters.eventTypes[index].isSelected=!value;
-                                      setState(() {
-                                      });
-                                    },
-                                    child: FiltersButton(model: provider.filters.eventTypes[index],))
+                    Padding(
+                      padding:EdgeInsets.only(left: 12.0,right: 10),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children:List.generate(
+                              provider.filters.eventTypes.length,
+                                  (index) => GestureDetector(
+                                      onTap: (){
+                                        value =provider.filters.eventTypes[index].isSelected;
+                                        provider.filters.eventTypes[index].isSelected=!value;
+                                        setState(() {
+                                        });
+                                      },
+                                      child: FiltersButton(model: provider.filters.eventTypes[index],))
+                          ),
                         ),
                       ),
                     ),
@@ -189,20 +191,23 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                     SizedBox(
                       height: Get.width*0.008,
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children:List.generate(
-                            provider.filters.friend.length,
-                                (index) => GestureDetector(
-                                    onTap: (){
-                                      value =provider.filters.friend[index].isSelected;
-                                      provider.filters.friend[index].isSelected=!value;
-                                      setState(() {
+                    Padding(
+                      padding:EdgeInsets.only(left: 12.0,right: 10),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children:List.generate(
+                              provider.filters.friend.length,
+                                  (index) => GestureDetector(
+                                      onTap: (){
+                                        value =provider.filters.friend[index].isSelected;
+                                        provider.filters.friend[index].isSelected=!value;
+                                        setState(() {
 
-                                      });
-                                    },
-                                    child: FiltersButton(model: provider.filters.friend[index],))
+                                        });
+                                      },
+                                      child: FiltersButton(model: provider.filters.friend[index],))
+                          ),
                         ),
                       ),
                     ),
@@ -223,20 +228,23 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                     SizedBox(
                       height: Get.width*0.008,
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children:List.generate(
-                            provider.filters.timeDuration.length,
-                                (index) => GestureDetector(
-                                    onTap: (){
-                                      value =provider.filters.timeDuration[index].isSelected;
-                                      provider.filters.timeDuration[index].isSelected=!value;
-                                      setState(() {
+                    Padding(
+                      padding:EdgeInsets.only(left: 12.0,right: 10),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children:List.generate(
+                              provider.filters.timeDuration.length,
+                                  (index) => GestureDetector(
+                                      onTap: (){
+                                        value =provider.filters.timeDuration[index].isSelected;
+                                        provider.filters.timeDuration[index].isSelected=!value;
+                                        setState(() {
 
-                                      });
-                                    },
-                                    child: FiltersButton(model:provider.filters.timeDuration[index]))
+                                        });
+                                      },
+                                      child: FiltersButton(model:provider.filters.timeDuration[index]))
+                          ),
                         ),
                       ),
                     ),
@@ -257,7 +265,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                           ),
                           Spacer(),
                           Text(
-                            "${_values.start.toStringAsFixed(0)}-${_values.end.toStringAsFixed(0)}y/o",
+                            "${_values.start.toStringAsFixed(0)}-${_values.end.toStringAsFixed(0)} y/o",
                             style: AppTextStyle.montserrat(
                               AppColors.shadedBlack,
                               Get.width*0.035,
@@ -354,18 +362,21 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                     SizedBox(
                       height: Get.width*0.008,
                     ),
-                    AppButton(
-                        buttonText: 'apply_filters',
-                        onpressed: (){
-                          provider.filters.age=_values;
-                          provider.filters.distance=_currentSliderValue;
-                          Fluttertoast.showToast(msg: getTranslated(context, 'applying_filters')??'',);
-                          Get.back();
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Get.width*0.05,),
+                      child: AppButton(
+                          buttonText: 'apply_filters',
+                          onpressed: (){
+                            provider.filters.age=_values;
+                            provider.filters.distance=_currentSliderValue;
+                            Fluttertoast.showToast(msg: getTranslated(context, 'applying_filters')??'',);
+                            Get.back();
 
-                          },
-                          width: Get.width*0.95,
-                          isWhite:false
-                      ),
+                            },
+                            width: Get.width*0.95,
+                            isWhite:false
+                        ),
+                    ),
                     SizedBox(
                       height: Get.width*0.03,
                     ),
