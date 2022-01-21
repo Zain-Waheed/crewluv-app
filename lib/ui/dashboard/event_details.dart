@@ -445,7 +445,7 @@ class _EventDetailsState extends State<EventDetails> {
                   ),
                   widget.index != 2
                       ? AppButton(
-                      buttonText: widget.index == 0
+                      buttonText: widget.index == 0 && provider.events[0].personalEvent
                           ? 'view_request'
                           : "view_tickets",
                       onpressed: () {
@@ -497,11 +497,13 @@ class _EventDetailsState extends State<EventDetails> {
             child: AppButton(
                 buttonText: widget.index == 0 ? 'edit2' : 'pending3',
                 onpressed: () {
-                  Get.to(() =>
-                      CreateEvent(
-                        comingFromEdit: true,
-                        editEventModel: provider.events[0],
-                      ));
+                  if(widget.index==0){
+                    Get.to(() =>CreateEvent(
+                      comingFromEdit: true,
+                      editEventModel: provider.events[0],
+                    ));
+                  }
+
                 },
                 width: Get.width,
                 isWhite: widget.index != 2 ? false : true),

@@ -48,8 +48,6 @@ class _ChatDetailsState extends State<ChatDetails> {
                       height: Get.height*0.05,
                       width: Get.width*0.09,
                       margin: EdgeInsets.only(left: Get.width*0.02),
-                      // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                      // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: AppColors.white,
@@ -267,16 +265,19 @@ class _ChatDetailsState extends State<ChatDetails> {
                           GestureDetector(
                             onTap: () {
                               setState(() {});
-                              provider.messages.insert(
-                                  0,
-                                  ChatDetailsModel(
-                                      message: sendMessageController.text
-                                          .toString(),
-                                      time: "2:00",
-                                      incomingMsg: false,
-                                      messageType: 0
-                                  )
-                              );
+                              if(sendMessageController.text.isNotEmpty){
+                                provider.messages.insert(
+                                    0,
+                                    ChatDetailsModel(
+                                        message: sendMessageController.text
+                                            .toString(),
+                                        time: "2:00",
+                                        incomingMsg: false,
+                                        messageType: 0
+                                    )
+                                );
+
+                              }
                               sendMessageController.clear();
                               // FocusScope.of(context).requestFocus(new FocusNode());
                             },

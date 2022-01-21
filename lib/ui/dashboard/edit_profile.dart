@@ -14,6 +14,7 @@ import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +41,7 @@ class _EditProfileState extends State<EditProfile> {
               function: () {
                 Get.back();
               },
-              backButton: false,
+              backButton: true,
               title: 'edit_profile',
             ),
           ),
@@ -275,133 +276,141 @@ class _EditProfileState extends State<EditProfile> {
                   SizedBox(
                     height: Get.width * 0.04,
                   ),
-                  Text(
-                    getTranslated(context, 'university') ?? "",
-                    style: AppTextStyle.montserrat(
-                      AppColors.shadedBlack,
-                      Get.width * 0.04,
-                      FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.05,
-                  ),
-                  TextFormField(
-                      decoration: AppInputDecoration.circularFieldDecoration(
-                    null,
-                    'the_university_of_lahore',
-                    null,
-                  )),
-                  SizedBox(
-                    height: Get.width * 0.05,
-                  ),
-                  Text(
-                    getTranslated(context, 'city') ?? "",
-                    style: AppTextStyle.montserrat(
-                      AppColors.shadedBlack,
-                      Get.width * 0.04,
-                      FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.02,
-                  ),
-                  TextFormField(
-                      decoration: AppInputDecoration.circularFieldDecoration(
-                    null,
-                    'lahore',
-                    null,
-                  )),
-                  SizedBox(
-                    height: Get.width * 0.05,
-                  ),
-                  Text(
-                    getTranslated(context, 'gender') ?? "",
-                    style: AppTextStyle.montserrat(
-                      AppColors.shadedBlack,
-                      Get.width * 0.04,
-                      FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.02,
-                  ),
-                  TextFormField(
-                    decoration: AppInputDecoration.circularFieldDecoration(
-                      null,
-                      'female',
-                      null,
-                    ),
-                    readOnly: true,
-                    onTap: (){
-                      Get.bottomSheet(const EditGender());
-                    },
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.05,
-                  ),
-                  Text(
-                    getTranslated(context, 'social_media') ?? "",
-                    style: AppTextStyle.montserrat(
-                      AppColors.shadedBlack,
-                      Get.width * 0.04,
-                      FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.02,
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+                  Padding(
+                    padding: EdgeInsets.only(left: Get.width*0.05),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          getTranslated(context, 'university') ?? "",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width * 0.04,
+                            FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      minimumSize: MaterialStateProperty.all(Size(350, 50)),
-                      backgroundColor:
-                          MaterialStateProperty.all(AppColors.offWhite),
-                    ),
-                    onPressed: () {},
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: Get.width * 0.04,
-                        bottom: Get.width * 0.04,
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            AppImages.instagram,
-                            scale: 4,
+                        SizedBox(
+                          height: Get.width * 0.05,
+                        ),
+                        TextFormField(
+                            decoration: AppInputDecoration.circularFieldDecoration(
+                              null,
+                              'the_university_of_lahore',
+                              null,
+                            )),
+                        SizedBox(
+                          height: Get.width * 0.05,
+                        ),
+                        Text(
+                          getTranslated(context, 'city') ?? "",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width * 0.04,
+                            FontWeight.w500,
                           ),
-                          SizedBox(
-                            width: Get.width * 0.02,
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.02,
+                        ),
+                        TextFormField(
+                            decoration: AppInputDecoration.circularFieldDecoration(
+                              null,
+                              'lahore',
+                              null,
+                            )),
+                        SizedBox(
+                          height: Get.width * 0.05,
+                        ),
+                        Text(
+                          getTranslated(context, 'gender') ?? "",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width * 0.04,
+                            FontWeight.w500,
                           ),
-                          Text(
-                            getTranslated(context, 'connect_instagram') ?? "",
-                            style: AppTextStyle.montserrat(AppColors.blackLite,
-                                Get.width * 0.04, FontWeight.w400),
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.02,
+                        ),
+                        TextFormField(
+                          decoration: AppInputDecoration.circularFieldDecoration(
+                            null,
+                            'female',
+                            null,
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.05,
-                  ),
-                  AppButton(
-                      buttonText: 'save_changes',
-                      onpressed: () {
-                       Get.back();
+                          readOnly: true,
+                          onTap: (){
+                            Get.bottomSheet(const EditGender());
+                          },
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.05,
+                        ),
+                        Text(
+                          getTranslated(context, 'social_media') ?? "",
+                          style: AppTextStyle.montserrat(
+                            AppColors.shadedBlack,
+                            Get.width * 0.04,
+                            FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.02,
+                        ),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                            minimumSize: MaterialStateProperty.all(Size(350, 50)),
+                            backgroundColor:
+                            MaterialStateProperty.all(AppColors.offWhite),
+                          ),
+                          onPressed: () {},
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: Get.width * 0.04,
+                              bottom: Get.width * 0.04,
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppImages.instagram,
+                                  scale: 4,
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.02,
+                                ),
+                                Text(
+                                  getTranslated(context, 'connect_instagram') ?? "",
+                                  style: AppTextStyle.montserrat(AppColors.blackLite,
+                                      Get.width * 0.04, FontWeight.w400),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.05,
+                        ),
+                        AppButton(
+                            buttonText: 'save_changes',
+                            onpressed: () {
+                              Get.back();
 
-                      },
-                      width: Get.width * 1,
-                      isWhite: false),
-                  SizedBox(
-                    height: Get.width * 0.05,
-                  ),
+                            },
+                            width: Get.width * 1,
+                            isWhite: false),
+                        SizedBox(
+                          height: Get.width * 0.05,
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

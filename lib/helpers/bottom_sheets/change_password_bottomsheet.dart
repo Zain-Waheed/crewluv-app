@@ -2,7 +2,6 @@ import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
-import 'package:amigos/ui/dashboard/settings_screen.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/input_decorations.dart';
@@ -120,7 +119,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 null,
                                 'enter_password',
                                 IconButton(
-                                  icon: isShowPass?Image.asset(AppImages.eye,color: isActive==0?AppColors.themeColor:null,):Image.asset(AppImages.private,color: isActive==0?AppColors.themeColor:null,),
+                                  icon: isShowPass?Image.asset(AppImages.eye,color: isActive==0?AppColors.themeColor:null,height: Get.height*0.04,width: Get.width*0.06,):Image.asset(AppImages.private,color: isActive==0?AppColors.themeColor:AppColors.slateGrey,height:Get.height*0.04,width: Get.width*0.06,),
                                   onPressed: () {
                                     setState(() {
                                       isShowPass =
@@ -156,7 +155,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 null,
                                 'enter_password',
                                 IconButton(
-                                  icon: isShowPassNew?Image.asset(AppImages.eye,color: isActive==1?AppColors.themeColor:null,):Image.asset(AppImages.private,color: isActive==1?AppColors.themeColor:null,),
+                                  icon: isShowPassNew?Image.asset(AppImages.eye,color: isActive==1?AppColors.themeColor:AppColors.slateGrey,height: Get.height*0.04,width: Get.width*0.06,):Image.asset(AppImages.private,color: isActive==1?AppColors.themeColor:AppColors.slateGrey,height: Get.height*0.04,width: Get.width*0.06,),
                                   onPressed: () {
                                     setState(() {
                                       isShowPassNew =
@@ -182,7 +181,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 null,
                                 'confirm_password',
                                 IconButton(
-                                  icon: isShowPassConfirm?Image.asset(AppImages.eye,color: isActive==2?AppColors.themeColor:null,):Image.asset(AppImages.private,color: isActive==2?AppColors.themeColor:null,),
+                                  icon: isShowPassConfirm?Image.asset(AppImages.eye,color: isActive==2?AppColors.themeColor:AppColors.slateGrey,height: Get.height*0.04,width: Get.width*0.06,):Image.asset(AppImages.private,color: isActive==2?AppColors.themeColor:AppColors.slateGrey,height: Get.height*0.04,width: Get.width*0.06,),
                                   onPressed: () {
                                     setState(() {
                                       isShowPassConfirm =

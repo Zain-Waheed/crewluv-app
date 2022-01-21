@@ -60,7 +60,7 @@ class _OtpScreenState extends State<OtpScreen> {
           preferredSize: Size.fromHeight(Get.width * 0.17),
           child: CustomAppBar(
               function: () {
-                Get.to(() => const PhoneNumber());
+                Get.to(() => const PhoneNumberPicker());
               },
               backButton: true,
               title: 'otp'),

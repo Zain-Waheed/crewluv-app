@@ -109,7 +109,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: SplashScreen(),
+       home: DashBoardScreen(),
     );
   }
 }

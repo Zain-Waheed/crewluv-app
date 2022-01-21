@@ -78,7 +78,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             clipBehavior: Clip.antiAlias,
             child: Container(
               height: Get.width * 0.17,
-              padding: EdgeInsets.all(Get.width * 0.01),
+              padding: EdgeInsets.all(Get.width * 0.05),
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -93,7 +93,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 color: AppColors.whiteColor,
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
@@ -120,15 +120,12 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             ? AppColors.themeColor
                             : AppColors.slateGrey),
                   ),
-                  Image.asset(
-                    AppImages.user,
-                    scale: 3,
-                    color: Colors.transparent,
-                  ),
-                  Image.asset(
-                    AppImages.user,
-                    color: Colors.transparent,
-                  ),
+
+                  Image.asset(AppImages.people,
+                      height: Get.height * 0.08,
+                      width: Get.width * 0.09,
+                      color: Colors.transparent),
+
                   GestureDetector(
                       onTap: () {
                         provider.dashboardIndex = 2;

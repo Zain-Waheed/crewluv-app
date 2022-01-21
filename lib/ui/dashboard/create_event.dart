@@ -192,6 +192,7 @@ class _CreateEventState extends State<CreateEvent> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
+
                                   GestureDetector(
                                     onTap:() {
                                       _selectDate(context,1);

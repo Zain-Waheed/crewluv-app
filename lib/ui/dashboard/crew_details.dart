@@ -15,7 +15,8 @@ class CrewDetails extends StatefulWidget {
   _CrewDetailsState createState() => _CrewDetailsState();
 }
 
-class _CrewDetailsState extends State<CrewDetails> {
+class _CrewDetailsState extends State<CrewDetails> with SingleTickerProviderStateMixin {
+  TickerProvider? v;
   List<String> sendInvite=[
     "Tessa",
     "John",
@@ -25,110 +26,119 @@ class _CrewDetailsState extends State<CrewDetails> {
     "Jack",
     "Tessa",
   ];
+  late SlidableController controller;
+  @override
+  void initState() {
+   controller=SlidableController(v!);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(Get.width * 0.17),
-        child: PreferredSize(
-          preferredSize: Size.fromHeight(Get.width * 0.17),
-          child: AppBar(
-            leading: Container(
-              margin:  EdgeInsets.symmetric(vertical: Get.width*0.042, horizontal:Get.width*0.055),
-              padding: EdgeInsets.only(left:7),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                        color: AppColors.black.withOpacity(0.5),
-                        offset: Offset(0, 1),
-                        blurRadius: 2)
-                  ]
-              ),
-              child: IconButton(
-                onPressed:(){
-                  Get.back();
-                },
-                icon: Icon(
+        child: AppBar(
+          leading:Container(
+            height: Get.height*0.04,
+            width: Get.width*0.09,
+            margin:  EdgeInsets.symmetric(vertical: Get.height*0.02, horizontal: 5),
+            padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                      color: AppColors.black.withOpacity(0.5),
+                      offset: Offset(0, 1),
+                      blurRadius: 2)
+                ]
+            ),
+            child: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Padding(
+                padding:  EdgeInsets.only(left: Get.width*0.01),
+                child: Icon(
                   Icons.arrow_back_ios,
                   color: AppColors.black,
                   size: Get.width*0.04,
                 ),
               ),
             ),
-            title: GestureDetector(
-              onTap:(){
-
-              },
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: Get.width * 0.08,
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(1),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: AppColors.maroon, width: Get.height * 0.002),
-                        ),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: AssetImage(
-                              AppImages.crew2
-                          ),
-                          radius: 12,
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left:10),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: AssetImage(
-                              AppImages.crew2
-                          ),
-                          radius: 14,
-                        ),
-                      ),
-                      Container(
-                          margin: const EdgeInsets.only(left: 20,),
-                          decoration: BoxDecoration(
-                            color: AppColors.greyText,
-                            shape: BoxShape.circle,
-                          ),
-                          height: 30,
-                          width: 30,
-                          child: Center(
-                            child: Text(
-                              "+9",
-                              style: AppTextStyle.montserrat(
-                                  AppColors.whiteColor,
-                                  Get.width * 0.02,
-                                  FontWeight.w500),
-                            ),
-                          )),
-                    ],
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.02,
-                  ),
-                  Text(
-                    widget.name,
-                    style: AppTextStyle.montserrat(
-                        AppColors.black, Get.width * 0.05, FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            leadingWidth: Get.width * 0.2,
-            toolbarHeight: Get.width * 0.3,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            elevation: 0,
           ),
+
+          title: GestureDetector(
+            onTap:(){
+
+            },
+            child: Row(
+              children: [
+                SizedBox(
+                  width: Get.width * 0.08,
+                ),
+                Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(1),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: AppColors.maroon, width: Get.height * 0.002),
+                      ),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        backgroundImage: AssetImage(
+                            AppImages.crew2
+                        ),
+                        radius: 12,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left:10),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        backgroundImage: AssetImage(
+                            AppImages.crew2
+                        ),
+                        radius: 14,
+                      ),
+                    ),
+                    Container(
+                        margin: const EdgeInsets.only(left: 20,),
+                        decoration: BoxDecoration(
+                          color: AppColors.greyText,
+                          shape: BoxShape.circle,
+                        ),
+                        height: 30,
+                        width: 30,
+                        child: Center(
+                          child: Text(
+                            "+9",
+                            style: AppTextStyle.montserrat(
+                                AppColors.whiteColor,
+                                Get.width * 0.02,
+                                FontWeight.w500),
+                          ),
+                        )),
+                  ],
+                ),
+                SizedBox(
+                  width: Get.width * 0.02,
+                ),
+                Text(
+                  widget.name,
+                  style: AppTextStyle.montserrat(
+                      AppColors.black, Get.width * 0.05, FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          leadingWidth: Get.width * 0.1,
+          toolbarHeight: Get.width * 0.2,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          elevation: 0,
         ),
       ),
       body: Padding(
@@ -180,7 +190,7 @@ class _CrewDetailsState extends State<CrewDetails> {
                   Spacer(),
                   IconButton(
                     onPressed: (){},
-                    icon: Image.asset(AppImages.chat2,color: AppColors.themeColor,),
+                    icon: Image.asset(AppImages.chat2,color: AppColors.themeColor,height: Get.height*0.04,width:Get.width*0.05),
                   )
                 ],
               ),
@@ -210,28 +220,29 @@ class _CrewDetailsState extends State<CrewDetails> {
   crewInviteWidget(String title) {
     return Slidable(
       enabled: true,
-        endActionPane:  ActionPane(
-          extentRatio: 0.25,
-          motion: const ScrollMotion(),
-          children: [
-            GestureDetector(
-              onTap: (){},
-              child: Container(
-                width:Get.width*0.1,
-                height:Get.width*0.1,
-                margin:EdgeInsets.only(left: Get.width*0.02),
-                decoration:  BoxDecoration(
-                  color: AppColors.soberRed,
-                  shape: BoxShape.circle,
-                ),
-                child:Icon(
-                  Icons.delete,
-                  color: AppColors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
+        // endActionPane:  ActionPane(
+        //   extentRatio: 0.25,
+        //   motion: const ScrollMotion(),
+        //
+        //   children: [
+        //     GestureDetector(
+        //       onTap: (){},
+        //       child: Container(
+        //         width:Get.width*0.1,
+        //         height:Get.width*0.1,
+        //         margin:EdgeInsets.only(left: Get.width*0.02),
+        //         decoration:  BoxDecoration(
+        //           color: AppColors.soberRed,
+        //           shape: BoxShape.circle,
+        //         ),
+        //         child:Icon(
+        //           Icons.delete,
+        //           color: AppColors.white,
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: Get.width * 0.01),
         child: Row(
@@ -266,7 +277,7 @@ class _CrewDetailsState extends State<CrewDetails> {
             Spacer(),
             IconButton(
                 onPressed: (){},
-                icon: Image.asset(AppImages.chat2,color: AppColors.themeColor,),
+                icon: Image.asset(AppImages.chat2,color: AppColors.themeColor,height: Get.height*0.04,width:Get.width*0.05),
             )
           ],
         ),
