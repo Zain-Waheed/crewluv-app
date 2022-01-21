@@ -170,6 +170,7 @@ class _CreateEventState extends State<CreateEvent> {
                         Fluttertoast.showToast(msg: getTranslated(context, 'fetching_location')??'');
                         _getLocation();
                       },
+                      readOnly: true,
                       validator: (value)=> FieldValidator.validateText(locationController.text),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),

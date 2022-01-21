@@ -20,7 +20,7 @@ class _TabsWidgetState extends State<TabsWidget> {
 
     return  Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(widget.selected?20:0),
         color: widget.selected?AppColors.themeColor:AppColors.offWhite,
       ),
       child: Center(child: Text(getTranslated(context, widget.text)??"",style: AppTextStyle.montserrat(widget.selected?AppColors.whiteColor:AppColors.shadedBlack, Get.width*0.04, FontWeight.w400),)),

@@ -26,15 +26,15 @@ class _ListViewScreenState extends State<ListViewScreen> {
               padding: EdgeInsets.only(top:Get.width*0.1,bottom: Get.height*0.1),
             ),
             Expanded(
-              child:provider.events.isNotEmpty?SingleChildScrollView(
-                child: Column(
+              child:provider.events.isNotEmpty?ListView(
+                  padding: EdgeInsets.only(bottom: Get.height*0.15),
                   children:
                   List.generate(provider.events.length, (index) => GestureDetector(
                       onTap: (){
                         Get.dialog(EventWidget(user: provider.users.first, event :provider.events[index] ));
                       },
                       child: EventDescriptionWidget(model: provider.events[index],titleImage: true,))),
-                ),
+
               ):EmptyScreenWidget(image: AppImages.noEvent, title: 'no_event'),
             ),
           ],

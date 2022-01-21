@@ -98,19 +98,19 @@ class _AllEventsState extends State<AllEvents> {
                      index: provider.allEventPageIndex,
                      children: [
                        provider.events.isNotEmpty?ListView(
-                         padding: EdgeInsets.only(bottom: Get.height*0.1),
+                         padding: EdgeInsets.only(bottom: Get.height*0.15),
                          children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
                            Get.to(EventDetails(index: 0,));},
                              child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
                        ):EmptyScreenWidget(image: AppImages.noEvent, title: 'no_event',subtitle: 'no_event_yet'),
                        provider.events.isNotEmpty?ListView(
-                         padding: EdgeInsets.only(bottom: Get.height*0.1),
+                         padding: EdgeInsets.only(bottom: Get.height*0.15),
                          children: List.generate(provider.events.length, (index)=> GestureDetector(  onTap: (){
                            Get.to(EventDetails(index: 1,));},
                              child: EventDescriptionWidget(model: provider.events[index], titleImage: false,))),
                        ):EmptyScreenWidget(image: AppImages.noEvent, title: 'no_joined_event',subtitle: 'no_joined_event_yet'),
                        provider.events.isNotEmpty?ListView(
-                         padding: EdgeInsets.only(bottom: Get.height*0.1),
+                         padding: EdgeInsets.only(bottom: Get.height*0.15),
                          children: List.generate(provider.events.length, (index)=> GestureDetector( onTap: (){
                            Get.to(EventDetails(index: 2,));},child: EventDescriptionWidget(model: provider.events[index],titleImage: false,))),
                        ):EmptyScreenWidget(image: AppImages.noEvent, title: 'no_pending_event',subtitle: 'no_pending_event_yet'),

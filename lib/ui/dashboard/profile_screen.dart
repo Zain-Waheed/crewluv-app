@@ -35,17 +35,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context,provider,_){
       return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(Get.width * 0.17),
-          child: CustomAppBar(
-            function: () {
-              provider.dashboardIndex=0;
-              provider.update();
-              Get.back();
-            },
-            backButton: true,
-            title: 'my_profile',
-          ),
+        appBar: AppBar(
+          title: Text(getTranslated(context, "my_profile")??'',style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
+          elevation: 0,
+          centerTitle: true,
+          backgroundColor:Theme.of(context).scaffoldBackgroundColor,
+
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -75,7 +70,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               onTap: (){
                                 provider.dashboardIndex=1;
                                 provider.update();
-                                Get.back();
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -106,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 setState(() {
 
                                 });
-                                Get.back();
+
 
 
 
@@ -139,9 +133,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 setState(() {
 
                                 });
-
-                                Get.back();
-
 
                               },
                               child: Column(
@@ -471,6 +462,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: Get.height*0.15,)
 
             ],
           ),
