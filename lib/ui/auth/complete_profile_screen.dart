@@ -238,8 +238,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     ),
                     Text(
                       percentage.toString() + '%',
-                      style: AppTextStyle.montserrat(AppColors.lightGrey,
-                          Get.width * 0.04, FontWeight.w300),
+                      style: AppTextStyle.mullerText(AppColors.lightGrey,
+                          Get.width * 0.04, FontWeight.w400),
                     )
                   ],
                 ),

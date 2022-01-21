@@ -24,6 +24,10 @@ class AppInputDecoration{
         borderRadius: const BorderRadius.all(Radius.circular(30)),
         borderSide: BorderSide(color: AppColors.borderShadow),
       ),
+      border: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
+        borderSide: BorderSide(color: AppColors.borderShadow),
+      ),
       focusedBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(30)),
         borderSide: BorderSide(color: AppColors.themeColor),
@@ -96,7 +100,6 @@ class AppInputDecoration{
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         borderSide: BorderSide(color: AppColors.themeColor),
       ),
-      isDense: true,
       filled: true,
       suffixIcon: suffixIcon,
     );

@@ -127,7 +127,7 @@
   "title": "Title *",
   "description": "Description *",
   "date_time": "Date & Time",
-  "Save_&_continue": "Save & Continue",
+  "Save_&_continue": "SAVE & CONTINUE",
   "post_event": "Post Event",
   "min_characters": "Minimum 10 characters required",
   "max_characters": "Maximum 250 characters allowed",
@@ -337,6 +337,11 @@
   "cost":"Cost",
   "location":"Location",
   "applying_filters": "applying filters",
+  "enter_card_number": "Enter Card Number",
+  "complete_card_number": "Enter Complete Card number",
+  "invalid_card_number": "Invalid Card Number",
+  "enter_date": "Enter Date",
+  "invalid_date":"Invalid Date",
   "copied": "copied",
   "fetching_location": "fetching location",
   "images_videos":"Images&Videos",
@@ -344,6 +349,8 @@
   "you_have_successfully":"You have successfully subscribe a purchase plan.",
   "your_password_has":"Your password has been updated successfully.",
   "event_posted":"Your event has been posted successfully.",
+  "event_updated":"Your event has been updated successfully.",
+
   "route":"Route",
   "display_Image":"Display Image"
 }

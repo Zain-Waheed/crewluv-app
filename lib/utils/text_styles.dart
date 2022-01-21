@@ -10,6 +10,14 @@ class AppTextStyle {
         fontWeight: fw,
     );
   }
+  static TextStyle mullerText(Color color, double fs, FontWeight fw,) {
+    return TextStyle(
+      fontSize: fs,
+      color: color,
+      fontFamily: 'muller',
+      fontWeight: fw,
+    );
+  }
   static TextStyle montserratUnderlined(Color color, double fs, FontWeight fw,) {
     return GoogleFonts.montserrat(
       fontSize: fs,

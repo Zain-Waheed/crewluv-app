@@ -34,9 +34,8 @@ class _EventSpecificationsState extends State<EventSpecifications> {
 
   String? joinEventBy;
   bool agreeToTerm = false;
-
   int count = 0;
-
+  GlobalKey <FormState> key  = GlobalKey<FormState>();
 
 
 
@@ -64,300 +63,301 @@ class _EventSpecificationsState extends State<EventSpecifications> {
             child: AppButton(
               width: Get.width * 0.9,
               onpressed: () {
-
-                if(widget.comingFromdit==true)
-                  {
-
-                      provider.events[0]=widget.model;
-
-                  }
-                  else{
-                  widget.model.withFriends=int.parse(alreadyWithController.text);
-                  widget.model.maxFriends=int.parse(maxController.text);
-                  widget.model.entryType=joinEventBy;
-                  provider.events.insert(0,widget.model);
-
-
-                }
-                Get.bottomSheet(
-                    const CongraulationBottomSheet(text: 'event_posted',)
-                );
-                  Future.delayed(const Duration(seconds: 3),(){
-                   provider.dashboardIndex=1;
+               if(key.currentState!.validate()) {
+                 if (widget.comingFromdit == true) {
+                   provider.events[0] = widget.model;
+                 }
+                 else {
+                   widget.model.withFriends =
+                       int.parse(alreadyWithController.text);
+                   widget.model.maxFriends = int.parse(maxController.text);
+                   widget.model.entryType = joinEventBy;
+                   provider.events.insert(0, widget.model);
+                 }
+                 Get.bottomSheet(
+                     CongraulationBottomSheet(text: widget.comingFromdit
+                         ? "event_updated"
+                         : 'event_posted',)
+                 );
+                 Future.delayed(const Duration(seconds: 3), () {
+                   provider.dashboardIndex = 1;
                    provider.update();
                    Get.to(DashBoardScreen());
                    setState(() {
-                     
-                   });
-                  });
 
+                   });
+                 });
+               }
               },
-              buttonText: 'post_event',
+              buttonText: widget.comingFromdit?'save_changes':'post_event',
               isWhite: false,
             ),
           ),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: Get.width * 0.1,
-                ),
-                Text(
-                  getTranslated(context, "with_people") ?? "",
-                  style: AppTextStyle.montserrat(
-                      AppColors.shadedBlack, Get.width * 0.045, FontWeight.w600),
-                ),
-                SizedBox(
-                  height: Get.width * 0.03,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            child: SingleChildScrollView(
+              child: Form(
+                key: key,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        if(alreadyWithController.text.isNotEmpty){
-                          count = int.parse(alreadyWithController.text);
-                          if(count>0)
-                          {
-                            count--;
-                          }
-                          else count=0;
-                          alreadyWithController.text = count.toString();
-                          setState(() {});
-                        }
-                        else{
-                          alreadyWithController.text='0';
-                          setState(() {
-
-                          });
-                        }
-                      },
-                      child: Image.asset(AppImages.minimize,width: Get.width*0.12,height: Get.width*0.12,),
-                    ),
-
                     SizedBox(
-                      width: Get.width * 0.03,
+                      height: Get.width * 0.1,
+                    ),
+                    Text(
+                      getTranslated(context, "with_people") ?? "",
+                      style: AppTextStyle.montserrat(
+                          AppColors.shadedBlack, Get.width * 0.045, FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: Get.width * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if(alreadyWithController.text.isNotEmpty){
+                              count = int.parse(alreadyWithController.text);
+                              if(count>0)
+                              {
+                                count--;
+                              }
+                              else count=0;
+                              alreadyWithController.text = count.toString();
+                              setState(() {});
+                            }
+                            else{
+                              alreadyWithController.text='0';
+                              setState(() {
+
+                              });
+                            }
+                          },
+                          child: Image.asset(AppImages.minimize,width: Get.width*0.12,height: Get.width*0.12,),
+                        ),
+
+                        SizedBox(
+                          width: Get.width * 0.03,
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.25,
+                          height: Get.width * 0.08,
+                          child: TextFormField(
+                            decoration: AppInputDecoration.circularFieldDecoration(
+                                null, '03', null),
+                            controller: alreadyWithController,
+                            keyboardType: TextInputType.number,
+                            textAlign: TextAlign.center,
+
+                          ),
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.03,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            if(alreadyWithController.text.isNotEmpty)
+                            {
+                              count = int.parse(alreadyWithController.text);
+                              count++;
+                              alreadyWithController.text = count.toString();
+                              setState(() {});
+                            }
+                            else
+                            {
+                              alreadyWithController.text='1';
+                              setState(() {
+
+                              });
+                            }
+
+                          },
+                          child:  Image.asset(AppImages.plus,width: Get.width*0.12,height: Get.width*0.12,),
+                        ),
+
+                      ],
                     ),
                     SizedBox(
                       height: Get.width * 0.08,
-                      width: Get.width * 0.25,
-                      child: TextFormField(
-                        decoration: AppInputDecoration.circularFieldDecoration(
-                            null, '', null),
-                        controller: alreadyWithController,
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        validator: (value)=> FieldValidator.empty(maxController.text),
-
-                      ),
+                    ),
+                    Text(getTranslated(context, "max_friends") ?? "",
+                        style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                            Get.width * 0.045, FontWeight.w600)),
+                    SizedBox(
+                      height: Get.width * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if(maxController.text.isNotEmpty)
+                            {
+                              count = int.parse(maxController.text);
+                              if(count>0)
+                              {
+                                count--;
+                              }
+                              else count=0;
+                              maxController.text = count.toString();
+                              setState(() {});
+                            }
+                            else{
+                              maxController.text='0';
+                            }
+                          },
+                          child: Image.asset(AppImages.minimize,width: Get.width*0.12,height: Get.width*0.12,),
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.03,
+                        ),
+                        Container(
+                          height: Get.width * 0.08,
+                          width: Get.width * 0.25,
+                          padding: EdgeInsets.only(top: 3),
+                          child: TextFormField(
+                            decoration: AppInputDecoration.circularFieldDecoration(
+                                null, '', null),
+                            controller: maxController,
+                            keyboardType: TextInputType.number,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.03,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            if(maxController.text.isNotEmpty)
+                            {
+                              count = int.parse(maxController.text);
+                              count++;
+                              maxController.text = count.toString();
+                              setState(() {});
+                            }
+                            else{
+                              maxController.text='1';
+                            }
+                          },
+                          child: Image.asset(AppImages.plus,width: Get.width*0.12,height: Get.width*0.12,),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      width: Get.width * 0.03,
+                      height: Get.width * 0.08,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        if(alreadyWithController.text.isNotEmpty)
-                        {
-                          count = int.parse(alreadyWithController.text);
-                          count++;
-                          alreadyWithController.text = count.toString();
-                          setState(() {});
-                        }
-                        else
-                        {
-                          alreadyWithController.text='1';
-                          setState(() {
-
-                          });
-                        }
-
-                      },
-                      child:  Image.asset(AppImages.plus,width: Get.width*0.12,height: Get.width*0.12,),
-                    ),
-
-                  ],
-                ),
-                SizedBox(
-                  height: Get.width * 0.08,
-                ),
-                Text(getTranslated(context, "max_friends") ?? "",
-                    style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                        Get.width * 0.045, FontWeight.w600)),
-                SizedBox(
-                  height: Get.width * 0.03,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        if(maxController.text.isNotEmpty)
-                        {
-                          count = int.parse(maxController.text);
-                          if(count>0)
-                          {
-                            count--;
-                          }
-                          else count=0;
-                          maxController.text = count.toString();
-                          setState(() {});
-                        }
-                        else{
-                          maxController.text='0';
-                        }
-                      },
-                      child: Image.asset(AppImages.minimize,width: Get.width*0.12,height: Get.width*0.12,),
+                    Text(
+                      getTranslated(context, "can_everyone_join") ?? "",
+                      style: AppTextStyle.montserrat(
+                          AppColors.shadedBlack, Get.width * 0.045, FontWeight.w600),
+                      maxLines: 1,
+                      overflow: null,
                     ),
                     SizedBox(
-                      width: Get.width * 0.03,
+                      height: Get.width * 0.05,
                     ),
                     Container(
-                      height: Get.width * 0.08,
-                      width: Get.width * 0.25,
-                      padding: EdgeInsets.only(top: 3),
-                      child: TextFormField(
-                        decoration: AppInputDecoration.circularFieldDecoration(
-                            null, '', null),
-                        controller: maxController,
-                        keyboardType: TextInputType.number,
-                        validator: (value)=> FieldValidator.empty(maxController.text),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    SizedBox(
-                      width: Get.width * 0.03,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        if(maxController.text.isNotEmpty)
-                        {
-                          count = int.parse(maxController.text);
-                          count++;
-                          maxController.text = count.toString();
-                          setState(() {});
-                        }
-                        else{
-                          maxController.text='1';
-                        }
-                      },
-                      child: Image.asset(AppImages.plus,width: Get.width*0.12,height: Get.width*0.12,),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: Get.width * 0.08,
-                ),
-                Text(
-                  getTranslated(context, "can_everyone_join") ?? "",
-                  style: AppTextStyle.montserrat(
-                      AppColors.shadedBlack, Get.width * 0.045, FontWeight.w600),
-                  maxLines: 1,
-                  overflow: null,
-                ),
-                SizedBox(
-                  height: Get.width * 0.05,
-                ),
-                Container(
-                  width: Get.width * 0.8,
-                  height: Get.width * 0.14,
-                  margin: EdgeInsets.only(left: Get.width * 0.05),
-                  padding: EdgeInsets.only(right: Get.width * 0.05),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColors.genderBorder,
-                      ),
-                      borderRadius: BorderRadius.circular(30),
-                      color: AppColors.silverWhite),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
+                      width: Get.width * 0.8,
+                      height: Get.width * 0.14,
+                      margin: EdgeInsets.only(left: Get.width * 0.05),
+                      padding: EdgeInsets.only(right: Get.width * 0.05),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.genderBorder,
+                          ),
+                          borderRadius: BorderRadius.circular(30),
+                          color: AppColors.silverWhite),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
 
-                      borderRadius: BorderRadius.circular(30),
-                      focusColor: AppColors.silverWhite,
-                      elevation: 0,
-                      dropdownColor: AppColors.whiteColor,
-                      isDense: true,
-                      style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                          Get.width * 0.04, FontWeight.w500),
-                      items: <String>[
-                        getTranslated(context, "join_on_request") ?? "",getTranslated(context, "buy_ticket")??"",
-                      ].map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: Get.width * 0.03),
-                            child: Container(
-                              child: Text(
-                                value,
-                                style: AppTextStyle.poppins(
-                                  AppColors.shadedBlack,
-                                  Get.width * 0.035,
-                                  FontWeight.w500,
+                          borderRadius: BorderRadius.circular(30),
+                          focusColor: AppColors.silverWhite,
+                          elevation: 0,
+                          dropdownColor: AppColors.whiteColor,
+                          isDense: true,
+                          style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                              Get.width * 0.04, FontWeight.w500),
+                          items: <String>[
+                            getTranslated(context, "join_on_request") ?? "",getTranslated(context, "buy_ticket")??"",
+                          ].map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: Get.width * 0.03),
+                                child: Container(
+                                  child: Text(
+                                    value,
+                                    style: AppTextStyle.poppins(
+                                      AppColors.shadedBlack,
+                                      Get.width * 0.035,
+                                      FontWeight.w500,
+                                    ),
+                                  ),
                                 ),
+                              ),
+
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            joinEventBy = value ?? "";
+                            setState(() {});
+                          },
+                          value: joinEventBy,
+                          hint: Padding(
+                            padding:
+                            EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+                            child: Text(
+                              getTranslated(context, "join_on_request") ?? "",
+                              textAlign: TextAlign.center,
+                              style: AppTextStyle.poppins(
+                                AppColors.shadedBlack,
+                                Get.width * 0.035,
+                                FontWeight.w500,
                               ),
                             ),
                           ),
-
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        joinEventBy = value ?? "";
-                        setState(() {});
-                      },
-                      value: joinEventBy,
-                      hint: Padding(
-                        padding:
-                        EdgeInsets.symmetric(horizontal: Get.width * 0.05),
-                        child: Text(
-                          getTranslated(context, "join_on_request") ?? "",
-                          textAlign: TextAlign.center,
-                          style: AppTextStyle.poppins(
-                            AppColors.shadedBlack,
-                            Get.width * 0.035,
-                            FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.width * 0.04,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                            value: agreeToTerm,
+                            activeColor: AppColors.themeColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            onChanged: (value) {
+                              agreeToTerm = value!;
+                              setState(() {});
+                            }),
+                        Text(
+                          getTranslated(context, "agree_to_friends") ?? "",
+                          style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                              Get.width * 0.03, FontWeight.w500),
+                        ),
+                        SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: (){
+                            Get.to(()=>TermsOfUse(termsOfUse: true));
+                          },
+                          child: Text(
+                            getTranslated(context, "terms_&_condition") ?? "",
+                            style: AppTextStyle.montserrat(AppColors.themeColor,
+                                Get.width * 0.03, FontWeight.w500),
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: Get.width * 0.04,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Checkbox(
-                        value: agreeToTerm,
-                        activeColor: AppColors.themeColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        onChanged: (value) {
-                          agreeToTerm = value!;
-                          setState(() {});
-                        }),
-                    Text(
-                      getTranslated(context, "agree_to_friends") ?? "",
-                      style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                          Get.width * 0.03, FontWeight.w500),
-                    ),
-                    SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: (){
-                        Get.to(()=>TermsOfUse(termsOfUse: true));
-                      },
-                      child: Text(
-                        getTranslated(context, "terms_&_condition") ?? "",
-                        style: AppTextStyle.montserrat(AppColors.themeColor,
-                            Get.width * 0.03, FontWeight.w500),
-                      ),
+                        )
+                      ],
                     )
                   ],
-                )
-              ],
+                ),
+              ),
             ),
           ),
         ),

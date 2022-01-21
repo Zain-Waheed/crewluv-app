@@ -100,7 +100,7 @@ class _EventDetailsState extends State<EventDetails> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  widget.index == 1 && provider.events[0].personalEvent == true
+                  widget.index == 1 && provider.events[0].personalEvent == false
                       ? SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -218,9 +218,15 @@ class _EventDetailsState extends State<EventDetails> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Image.asset(
-                                AppImages.profile,
-                                scale: 4,
+                              Container(
+                                width:Get.width*0.13,
+                                height: Get.width*0.13,
+                                child: Image.asset(AppImages.notification1,fit: BoxFit.fill,),
+                                padding: EdgeInsets.all(1),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color:AppColors.themeColor),
+                                  shape: BoxShape.circle,
+                                ),
                               ),
                               SizedBox(
                                 width: Get.width * 0.02,
@@ -311,8 +317,9 @@ class _EventDetailsState extends State<EventDetails> {
                             height: Get.width * 0.01,
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              SizedBox(width: Get.width*0.02,),
                               Container(
                                 padding: EdgeInsets.symmetric(
                                     vertical: Get.width * 0.02,
@@ -452,14 +459,13 @@ class _EventDetailsState extends State<EventDetails> {
                   SizedBox(
                     height: Get.height * 0.05,
                   ),
-                  Stack(
+                  widget.index!=2?Stack(
                     children: [
                       Container(
                         height: Get.height * 0.2,
                         width: Get.width,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: AppColors.themeColor)),
+                            borderRadius: BorderRadius.circular(16)),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(16),
                           child: DrawMapRoute(),
@@ -480,7 +486,7 @@ class _EventDetailsState extends State<EventDetails> {
                         ),
                       ),
                     ],
-                  )
+                  ):SizedBox()
                 ],
               ),
             ),
