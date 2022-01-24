@@ -125,7 +125,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 : MainAxisAlignment.end,
                             children: [
                               Container(
-                                margin: EdgeInsets.only(top: Get.width * 0.15,right:Get.width*0.02 ),
+                                margin: EdgeInsets.only(top: Get.width * 0.15, left: Get.width * 0.0),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle, border: Border.all(
                                     color: AppColors.blue,
@@ -266,16 +266,19 @@ class _ChatDetailsState extends State<ChatDetails> {
                           GestureDetector(
                             onTap: () {
                               setState(() {});
-                              provider.messages.insert(
-                                  0,
-                                  ChatDetailsModel(
-                                      message: sendMessageController.text
-                                          .toString(),
-                                      time: "2:00",
-                                      incomingMsg: false,
-                                      messageType: 0
-                                  )
-                              );
+                              if(sendMessageController.text.isNotEmpty){
+                                provider.messages.insert(
+                                    0,
+                                    ChatDetailsModel(
+                                        message: sendMessageController.text
+                                            .toString(),
+                                        time: "2:00",
+                                        incomingMsg: false,
+                                        messageType: 0
+                                    )
+                                );
+
+                              }
                               sendMessageController.clear();
                               // FocusScope.of(context).requestFocus(new FocusNode());
                             },
@@ -369,21 +372,13 @@ class _ChatDetailsState extends State<ChatDetails> {
           Get.to(DisplayImage(filePath:provider.messages[index].file ?? ""));
         },
         child:  Container(
-          // color: AppColors.whiteDark,
+          color: AppColors.whiteDark,
           alignment: Alignment.topRight,
           margin: EdgeInsets.only(top: 20),
           padding: const EdgeInsets.all(5),
           constraints: BoxConstraints(
-              minWidth: Get.width * 0.2,
-              maxWidth: Get.height * 0.3
-          ),
-          decoration: BoxDecoration(
-            color:AppColors.pink,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(18),
-              topRight: Radius.circular(18),
-              bottomLeft: Radius.circular(18),
-            ),
+            minWidth: Get.width * 0.2,
+            maxWidth: Get.height * 0.3,
           ),
           child:
           Column(

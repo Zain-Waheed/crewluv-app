@@ -98,6 +98,8 @@ class _ChatScreenState extends State<ChatScreen> {
                     padding: EdgeInsets.only(bottom: Get.height*0.1),
                     children: List.generate(provider.personalChats.length,
                         (index) => Slidable(
+
+
                             enabled: true,
                             endActionPane:  ActionPane(
                               extentRatio: 0.25,

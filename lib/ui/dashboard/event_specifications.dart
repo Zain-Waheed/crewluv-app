@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/custom_appbar.dart';
@@ -145,7 +147,12 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                           height: Get.width * 0.08,
                           child: TextFormField(
                             decoration: AppInputDecoration.circularFieldDecoration(
-                                null, '03', null),
+                                null, '', null),
+                            onChanged: (value){
+                              if(int.parse(alreadyWithController.text)>=999){
+                                alreadyWithController.text='999';
+                              }
+                            },
                             controller: alreadyWithController,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
@@ -161,6 +168,9 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                             {
                               count = int.parse(alreadyWithController.text);
                               count++;
+                              if(count>999){
+                                count = 999;
+                              }
                               alreadyWithController.text = count.toString();
                               setState(() {});
                             }
@@ -220,6 +230,11 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                             decoration: AppInputDecoration.circularFieldDecoration(
                                 null, '', null),
                             controller: maxController,
+                            onChanged: (value){
+                              if(int.parse(maxController.text)>=999){
+                                maxController.text='999';
+                              }
+                            },
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                           ),
@@ -233,6 +248,9 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                             {
                               count = int.parse(maxController.text);
                               count++;
+                              if(count>999){
+                                count=999;
+                              }
                               maxController.text = count.toString();
                               setState(() {});
                             }

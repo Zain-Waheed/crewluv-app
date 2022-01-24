@@ -53,6 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: EdgeInsets.symmetric(
                     horizontal: Get.width * 0.07, vertical: Get.height * 0.02),
                 child: Stack(
+
                   children: [
                     Align(
                       alignment: Alignment.bottomCenter,
@@ -242,7 +243,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: Get.width*0.1),
+                padding: EdgeInsets.symmetric(horizontal: Get.width*0.15),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -251,47 +252,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                        children: [
                          GestureDetector(
                            onTap: (){
-                             Get.to(()=> const EditProfile());
-                           },
-                           child: Container(
-                             height: Get.height * 0.07,
-                             width: Get.width * 0.11,
-                             padding: EdgeInsets.all(10),
-                             decoration: BoxDecoration(
-                                 shape: BoxShape.circle,
-                                 color: AppColors.whiteColor,
-                                 boxShadow: [
-                                   BoxShadow(
-                                       color: AppColors.black.withOpacity(0.3),
-                                       offset: Offset(0, 4),
-                                       blurRadius: 5.0)
-                                 ]),
-                             child: Image.asset(
-                               AppImages.edit,
-                               height: Get.height*0.07,
-                               width: Get.width*0.1,
-
-                             ),
-                           ),
-                         ),
-                         Text(
-                           getTranslated(context, "edit2") ?? "",
-                           style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                               Get.width * 0.04, FontWeight.w400),
-                         )
-                       ],
-
-                     ),
-                     Column(
-                       children: [
-                         SizedBox(height: 30,),
-                         GestureDetector(
-                           onTap: (){
                              Get.to(()=> const SettingsScreen());
                            },
                            child: Container(
                              height: Get.height * 0.07,
-                             width: Get.width * 0.11,
+                             width: Get.width * 0.12,
                              padding: EdgeInsets.all(10),
                              decoration: BoxDecoration(
                                  shape: BoxShape.circle,
@@ -310,11 +275,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              ),
                            ),
                          ),
+                         SizedBox(height: 2,),
                          Text(
                            getTranslated(context, "settings") ?? "",
                            style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                               Get.width * 0.04, FontWeight.w400),
-                         )
+                               Get.width * 0.032, FontWeight.w400),
+                         ),
+
+                       ],
+
+                     ),
+                     Column(
+                       children: [
+                         SizedBox(height: 30,),
+                         GestureDetector(
+                           onTap: (){
+                             Get.to(()=> const EditProfile());
+                           },
+                           child: Container(
+                             height: Get.height * 0.07,
+                             width: Get.width * 0.12,
+                             padding: EdgeInsets.all(10),
+                             decoration: BoxDecoration(
+                                 shape: BoxShape.circle,
+                                 color: AppColors.whiteColor,
+                                 boxShadow: [
+                                   BoxShadow(
+                                       color: AppColors.black.withOpacity(0.3),
+                                       offset: Offset(0, 4),
+                                       blurRadius: 5.0)
+                                 ]),
+                             child: Image.asset(
+                               AppImages.edit,
+                               height: Get.height*0.07,
+                               width: Get.width*0.1,
+
+                             ),
+                           ),
+                         ),
+
+                         SizedBox(height: 2,),
+                         Text(
+                           getTranslated(context, "edit2") ?? "",
+                           style: AppTextStyle.montserrat(AppColors.shadedBlack,
+                               Get.width * 0.032, FontWeight.w400),
+                         ),
                        ],
 
                      ),
@@ -326,7 +331,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                            },
                            child: Container(
                              height: Get.height * 0.07,
-                             width: Get.width * 0.11,
+                             width: Get.width * 0.12,
                              padding: EdgeInsets.all(10),
                              decoration: BoxDecoration(
                                  shape: BoxShape.circle,
@@ -344,13 +349,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              ),
                            ),
                          ),
-                         SizedBox(
-                           height: Get.width * 0.01,
-                         ),
+                         SizedBox(height: 2,),
                          Text(
                            getTranslated(context, "privacy2") ?? "",
                            style: AppTextStyle.montserrat(AppColors.shadedBlack,
-                               Get.width * 0.04, FontWeight.w400),
+                               Get.width * 0.032, FontWeight.w400),
                          ),
                        ],
                      ),

@@ -117,7 +117,7 @@ class _OnBoardingState extends State<OnBoarding> {
                               pageIndex=4;
                               final SharedPreferences prefs = await SharedPreferences.getInstance();
                               prefs.setString('isLogin', 'true');
-                              Get.to(const PhoneNumber());
+                              Get.to(const PhoneNumberPicker());
                             }
                           },
                           buttonText: pageIndex==3?'login':'skip',

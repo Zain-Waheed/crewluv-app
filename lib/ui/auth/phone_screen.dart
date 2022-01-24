@@ -14,6 +14,7 @@ import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
@@ -22,17 +23,17 @@ import 'package:provider/provider.dart';
 
 
 FocusNode focus = FocusNode();
-class PhoneNumber extends StatefulWidget {
-  const PhoneNumber({Key? key}) : super(key: key);
+class PhoneNumberPicker extends StatefulWidget {
+  const PhoneNumberPicker({Key? key}) : super(key: key);
 
   @override
-  _PhoneNumberState createState() => _PhoneNumberState();
+  _PhoneNumberPickerState createState() => _PhoneNumberPickerState();
 }
 
-class _PhoneNumberState extends State<PhoneNumber> {
+class _PhoneNumberPickerState extends State<PhoneNumberPicker> {
   TextEditingController phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  String initialCountry = 'PK';
+  PhoneNumber number=PhoneNumber(isoCode: "PK");
   bool validated=false;
   FocusNode focus = FocusNode();
   Future<bool> _willPopCallback() async {
@@ -168,6 +169,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                               selectorTextStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w500),
                               textFieldController: phoneController,
                               countrySelectorScrollControlled: false,
+
                             ),
                           ),
                         ),

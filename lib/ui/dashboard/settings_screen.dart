@@ -172,6 +172,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       SizedBox(height: Get.height*0.02,),
                       AppButton(buttonText: 'learn_more', onpressed: (){Get.dialog(GetPlanDialogBox());}, width: Get.width, isWhite: false),
+                      SizedBox(height: Get.height*0.02,),
+
                     ],
                   ),
                 ),
