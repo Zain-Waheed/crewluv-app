@@ -1,6 +1,7 @@
 import 'package:amigos/helpers/bottom_sheets/further_subscription.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/localization/app_localization.dart';
+import 'package:amigos/models/plan_model.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/dummy.dart';
 import 'package:amigos/utils/images.dart';
@@ -23,26 +24,27 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
   PageController controller = PageController();
   int pageIndex=0;
   final _controller = PageController();
-  List <int> months=[
-    12,
-    11,
-    10,
-  ];
-  List <int> pricePerMonth=[
-     4,
-     3,
-     2,
-  ];
-  List <double> price=[
-    97.99,
-    97.98,
-    97.95,
-  ];
-  List <bool> isPopular=[
-    false,
-    true,
-    false,
-  ];
+  // List <int> months=[
+  //   12,
+  //   11,
+  //   10,
+  // ];
+  // List <int> pricePerMonth=[
+  //    4,
+  //    3,
+  //    2,
+  // ];
+  // List <double> price=[
+  //   97.99,
+  //   97.98,
+  //   97.95,
+  // ];
+  // List <bool> isPopular=[
+  //   false,
+  //   true,
+  //   false,
+  // ];
+  int currentIndex=1;
   final Shader linearGradient = const LinearGradient(
     colors: <Color>[Color(0xff999999),Color(0xffBA8E2E)],
   ).createShader(const Rect.fromLTWH(0.0, 0.0, 70.0, 200.0));
@@ -80,9 +82,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                             onPageChanged: (value){
                               pageIndex = value;
                               setState(() {
-
                               });
-
                             },
                             children:List.generate(5, (index) =>  Column(children: [
                               Row(
@@ -146,7 +146,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
-                    3, (index) => priceWidget(months[index], pricePerMonth[index], price[index],isPopular[index],index),
+                    plans.length, (index) => priceWidget(plans[index],index),
                   ),
                 ),
 
@@ -175,69 +175,56 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
     );
   }
 
-  priceWidget(int months,int pricePerMonth,double price,bool isPopular,int index) {
-  return  Padding(
-    padding: EdgeInsets.symmetric(horizontal: Get.width*0.01),
-    child: Stack(
-      children: [
-        SizedBox(
-          height: isPopular?Get.width*0.45:Get.width*0.35,
-          width: isPopular?Get.width*0.3:Get.width*0.27,
-          child: Container(
-            decoration:isPopular?BoxDecoration(
-          gradient: AppColors.brownGradient,
-            borderRadius: BorderRadius.circular(14),
-          ):const BoxDecoration(),
-            child: isPopular?Card(
-              semanticContainer: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(14),
+  priceWidget(PlanModel plans,int index) {
+  return  GestureDetector(
+    onTap:(){
+      currentIndex=index;
+      setState(() {
+
+      });
+    },
+    child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: Get.width*0.01),
+      child: Stack(
+        children: [
+          SizedBox(
+            height: plans.isPopular?Get.width*0.45:Get.width*0.35,
+            width: plans.isPopular?Get.width*0.3:Get.width*0.27,
+            child: Container(
+              decoration:currentIndex==index?BoxDecoration(
+            gradient: AppColors.brownGradient,
+              borderRadius: BorderRadius.circular(14),
+            ):const BoxDecoration(),
+              child: plans.isPopular?Card(
+                semanticContainer: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(14),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding:  EdgeInsets.symmetric(
-                  horizontal: Get.width*0.01
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: Get.height*0.03,
-                    ),
-                    Text(
-                      months.toString(),
-                      style: AppTextStyle.
-                      montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.07,
-                        FontWeight.w600,
+                child: Padding(
+                  padding:  EdgeInsets.symmetric(
+                    horizontal: Get.width*0.01
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: Get.height*0.03,
                       ),
-                    ),
-                    SizedBox(
-                      height: Get.width*0.005,
-                    ),
-                    Text(
-                      getTranslated(context, 'months')??"",
-                      style: AppTextStyle.
-                      montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.04,
-                        FontWeight.w600,
+                      Text(
+                        plans.months.toString(),
+                        style: AppTextStyle.
+                        montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.07,
+                          FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    Text(
-                      "\$"+pricePerMonth.toString()+"/mo",
-                      style: AppTextStyle.
-                      montserrat(
-                        AppColors.slateGrey,
-                        Get.width*0.04,
-                        FontWeight.w400,
+                      SizedBox(
+                        height: Get.width*0.005,
                       ),
-                    ),
-                    Padding(
-                      padding:  EdgeInsets.symmetric(vertical: Get.width*0.008),
-                      child: Text(
-                        "${getTranslated(context, 'save')} 50\%",
+                      Text(
+                        getTranslated(context, 'months')??"",
                         style: AppTextStyle.
                         montserrat(
                           AppColors.shadedBlack,
@@ -245,105 +232,126 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                           FontWeight.w600,
                         ),
                       ),
-                    ),
-                    Text(
-                      '\$'+price.toString(),
-                      style: GoogleFonts.montserrat(
-                          fontSize:Get.width*0.065,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()..shader = linearGradient),
-                    ),
-                    SizedBox(
-                      height: Get.height*0.01,
-                    ),
-                  ],
+                      Text(
+                        "\$"+plans.pricePerMonth.toString()+"/mo",
+                        style: AppTextStyle.
+                        montserrat(
+                          AppColors.slateGrey,
+                          Get.width*0.04,
+                          FontWeight.w400,
+                        ),
+                      ),
+                      Padding(
+                        padding:  EdgeInsets.symmetric(vertical: Get.width*0.008),
+                        child: Text(
+                          "${getTranslated(context, 'save')} 50\%",
+                          style: AppTextStyle.
+                          montserrat(
+                            AppColors.shadedBlack,
+                            Get.width*0.04,
+                            FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        '\$'+plans.price.toString(),
+                        style: GoogleFonts.montserrat(
+                            fontSize:Get.width*0.065,
+                            fontWeight: FontWeight.bold,
+                            foreground: Paint()..shader = linearGradient),
+                      ),
+                      SizedBox(
+                        height: Get.height*0.01,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ):Card(
-              semanticContainer: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(14),
+              ): Card(
+                semanticContainer: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(14),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding:  EdgeInsets.symmetric(
-                  horizontal: Get.width*0.012,
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: Get.width*0.045,
-                    ),
-                    Text(
-                      months.toString(),
-                      style: AppTextStyle.
-                      montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.06,
-                        FontWeight.w600,
+                child: Padding(
+                  padding:  EdgeInsets.symmetric(
+                    horizontal: Get.width*0.012,
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: Get.width*0.045,
                       ),
-                    ),
-                    Text(
-                      getTranslated(context, 'months')??"",
-                      style: AppTextStyle.
-                      montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.03,
-                        FontWeight.w600,
+                      Text(
+                        plans.months.toString(),
+                        style: AppTextStyle.
+                        montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.06,
+                          FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    Text(
-                      "\$"+pricePerMonth.toString()+"/mo",
-                      style: AppTextStyle.
-                      montserrat(
-                        AppColors.slateGrey,
-                        Get.width*0.03,
-                        FontWeight.w400,
+                      Text(
+                        getTranslated(context, 'months')??"",
+                        style: AppTextStyle.
+                        montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.03,
+                          FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    Text(
-                      "${getTranslated(context, 'save')} 50\%",
-                      style: AppTextStyle.
-                      montserrat(
-                        AppColors.shadedBlack,
-                        Get.width*0.03,
-                        FontWeight.w600,
+                      Text(
+                        "\$"+plans.pricePerMonth.toString()+"/mo",
+                        style: AppTextStyle.
+                        montserrat(
+                          AppColors.slateGrey,
+                          Get.width*0.03,
+                          FontWeight.w400,
+                        ),
                       ),
-                    ),
-                    Text(
-                      '\$'+price.toString(),
-                      style: GoogleFonts.montserrat(
-                          fontSize:Get.width*0.06,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()..shader = linearGradient),
-                    ),
-                  ],
+                      Text(
+                        "${getTranslated(context, 'save')} 50\%",
+                        style: AppTextStyle.
+                        montserrat(
+                          AppColors.shadedBlack,
+                          Get.width*0.03,
+                          FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        '\$'+plans.price.toString(),
+                        style: GoogleFonts.montserrat(
+                            fontSize:Get.width*0.06,
+                            fontWeight: FontWeight.bold,
+                            foreground: Paint()..shader = linearGradient),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        isPopular?Container(
-          height: Get.width*0.06,
-          width: Get.width*0.3,
-          alignment: Alignment.center,
-          decoration:  BoxDecoration(
-             gradient: AppColors.brownGradient,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
-              )
-          ),
-            child: Text(isPopular?getTranslated(context, 'most_popular')??"":"",
-            style: AppTextStyle.montserrat(
-                AppColors.white,
-                Get.width*0.035,
-                FontWeight.w600,
+          plans.isPopular?Container(
+            height: Get.width*0.06,
+            width: Get.width*0.3,
+            alignment: Alignment.center,
+            decoration:  BoxDecoration(
+               gradient: AppColors.brownGradient,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                )
             ),
-            ),
-        ):SizedBox(),
-      ],
+              child: Text(index==1?getTranslated(context, 'most_popular')??"":"",
+              style: AppTextStyle.montserrat(
+                  AppColors.white,
+                  Get.width*0.035,
+                  FontWeight.w600,
+              ),
+              ),
+          ):SizedBox(),
+        ],
+      ),
     ),
   );
   }

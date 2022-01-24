@@ -45,10 +45,9 @@ class _ChatDetailsState extends State<ChatDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: Get.height*0.05,
-                      width: Get.width*0.09,
-                      margin: EdgeInsets.only(left: Get.width*0.02),
-                      // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                      height: Get.height*0.045,
+                      width: Get.width*0.1,
+                      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                       // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -66,11 +65,11 @@ class _ChatDetailsState extends State<ChatDetails> {
                           Get.back();
                         },
                         icon: Padding(
-                          padding:  EdgeInsets.only(left: Get.width*0.01),
+                          padding: const EdgeInsets.only(left: 6),
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: AppColors.black,
-                            size: Get.width*0.04,
+                            size: Get.width*0.045,
                           ),
                         ),
                       ),
@@ -126,7 +125,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 : MainAxisAlignment.end,
                             children: [
                               Container(
-                                margin: EdgeInsets.only(top: Get.width * 0.15, left: Get.width * 0.0),
+                                margin: EdgeInsets.only(top: Get.width * 0.15,right:Get.width*0.02 ),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle, border: Border.all(
                                     color: AppColors.blue,
@@ -370,13 +369,21 @@ class _ChatDetailsState extends State<ChatDetails> {
           Get.to(DisplayImage(filePath:provider.messages[index].file ?? ""));
         },
         child:  Container(
-          color: AppColors.whiteDark,
+          // color: AppColors.whiteDark,
           alignment: Alignment.topRight,
           margin: EdgeInsets.only(top: 20),
           padding: const EdgeInsets.all(5),
           constraints: BoxConstraints(
-            minWidth: Get.width * 0.2,
-            maxWidth: Get.height * 0.3,
+              minWidth: Get.width * 0.2,
+              maxWidth: Get.height * 0.3
+          ),
+          decoration: BoxDecoration(
+            color:AppColors.pink,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(18),
+              topRight: Radius.circular(18),
+              bottomLeft: Radius.circular(18),
+            ),
           ),
           child:
           Column(
@@ -388,7 +395,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.file(
                   File( provider.messages[index].file ?? ""),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   height: Get.width * 0.6,
                 ),
               ),

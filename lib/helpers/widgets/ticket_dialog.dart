@@ -38,9 +38,9 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
           body: CarouselSlider(
               carouselController: carouselController,
               options: CarouselOptions(
-                height: Get.height*0.85,
+                height: Get.height,
                 aspectRatio: 1/9,
-                viewportFraction: 0.9,
+                viewportFraction: 0.82,
                 initialPage: 0,
                 reverse: false,
                 autoPlay: false,
@@ -57,208 +57,206 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                 scrollDirection: Axis.horizontal,
               ),
               items: List.generate(provider.tickets.length, (index){
-                return   Container(
-                  // color: Colors.red,
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SingleChildScrollView(
-                      child: CustomPaint(
-                        size: Size(Get.width*0.85,(Get.width*0.9*1.6720508156717429).toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                        painter: RPSCustomPainter(),
-                        child: Container(
-                          padding: EdgeInsets.only(left: Get.width*0.04,right: Get.width*0.04,top: Get.width*0.05,bottom:Get.width*0.09 ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    height: Get.width*0.08,
-                                    width: Get.width*0.2,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      gradient: AppColors.orangeGradientColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: AppColors.black.withOpacity(0.2), offset: const Offset(0, 4), blurRadius: 5.0)
-                                      ],
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    child: Text(getTranslated(context, 'party')??"",
-                                      style: AppTextStyle.montserrat(AppColors.white, Get.width*0.04, FontWeight.w400),
-                                    ),
+                return   Center(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(AppImages.ticketBackground),
+                          fit: BoxFit.cover,
+                        )
+                      ),
+                      padding: EdgeInsets.only(left: Get.width*0.04,right: Get.width*0.04,top: Get.width*0.1,bottom:Get.width*0.03 ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  height: Get.width*0.08,
+                                  width: Get.width*0.2,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    gradient: AppColors.orangeGradientColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: AppColors.black.withOpacity(0.2), offset: const Offset(0, 4), blurRadius: 5.0)
+                                    ],
+                                    borderRadius: BorderRadius.circular(30),
                                   ),
-                                  GestureDetector(
-                                    onTap: (){
-                                      Share.share('CrewLuv');
-                                    },
-                                    child: Container(
-                                      width: Get.width*0.12,
-                                      height: Get.width*0.12,
-                                      padding: EdgeInsets.all(10),
-                                      margin: EdgeInsets.only(right: Get.width*0.1),
-                                      child: Image.asset(AppImages.share,),
-                                    ),
+                                  child: Text(getTranslated(context, 'party')??"",
+                                    style: AppTextStyle.montserrat(AppColors.white, Get.width*0.04, FontWeight.w400),
                                   ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: Get.width*0.04,
-                              ),
-                              Text(
-                                getTranslated(context, 'bachelor_party')??"",
-                                style: AppTextStyle.montserrat(
-                                  AppColors.shadedBlack,
-                                  Get.width*0.05,
-                                  FontWeight.w700,
                                 ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Share.share('CrewLuv');
+                                  },
+                                  child: Image.asset(AppImages.share,scale: 3,),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: Get.width*0.04,
+                            ),
+                            Text(
+                              getTranslated(context, 'bachelor_party')??"",
+                              style: AppTextStyle.montserrat(
+                                AppColors.shadedBlack,
+                                Get.width*0.05,
+                                FontWeight.w700,
+                              ),
 
+                            ),
+                            Text(
+                              getTranslated(context, 'crime_bar')??"",
+                              style: AppTextStyle.montserrat(
+                                AppColors.blackLite,
+                                Get.width*0.045,
+                                FontWeight.w400,
                               ),
-                              Text(
-                                getTranslated(context, 'crime_bar')??"",
-                                style: AppTextStyle.montserrat(
-                                  AppColors.blackLite,
-                                  Get.width*0.045,
-                                  FontWeight.w400,
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
+                              width: Get.width*0.68,
+                              height: Get.height * 0.005,
+                              decoration: BoxDecoration(
+                                  color: AppColors.slateGrey,
+                                  borderRadius: BorderRadius.circular(100)),
+                            ),
+                            Text(
+                              getTranslated(context, 'place')??"",
+                              style: AppTextStyle.montserrat(
+                                AppColors.shadedBlack,
+                                Get.width*0.045,
+                                FontWeight.w500,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Image.asset(AppImages.locationTicket,width: Get.width*0.05,height: Get.width*0.05,),
+                                SizedBox(
+                                  height: Get.width*0.04,
                                 ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
-                                width: Get.width*0.68,
-                                height: Get.height * 0.005,
-                                decoration: BoxDecoration(
-                                    color: AppColors.slateGrey,
-                                    borderRadius: BorderRadius.circular(100)),
-                              ),
-                              Text(
-                                getTranslated(context, 'place')??"",
-                                style: AppTextStyle.montserrat(
-                                  AppColors.shadedBlack,
-                                  Get.width*0.045,
-                                  FontWeight.w500,
+                                Text(provider.tickets[index].location??"",
+                                  style: AppTextStyle.montserrat(
+                                    AppColors.greyDark,
+                                    Get.width*0.04,
+                                    FontWeight.w400,
+                                  ),),
+                              ],
+                            ),
+                            SizedBox(
+                              height: Get.width*0.04,
+                            ),
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(getTranslated(context, 'date')??"",
+                                      style: AppTextStyle.montserrat(
+                                        AppColors.shadedBlack,
+                                        Get.width*0.045,
+                                        FontWeight.w500,
+                                      ),),
+                                    Text(provider.tickets[index].date??"",
+                                      style: AppTextStyle.montserrat(
+                                        AppColors.themeColor,
+                                        Get.width*0.045,
+                                        FontWeight.w500,
+                                      ),),
+                                    SizedBox(
+                                      height: Get.width*0.02,
+                                    ),
+                                    Text(getTranslated(context, 'distance')??"",
+                                      style: AppTextStyle.montserrat(
+                                        AppColors.shadedBlack,
+                                        Get.width*0.045,
+                                        FontWeight.w500,
+                                      ),),
+                                    Text(provider.tickets[index].distance.toString()+'km',
+                                      style: AppTextStyle.montserrat(
+                                        AppColors.themeColor,
+                                        Get.width*0.045,
+                                        FontWeight.w500,
+                                      ),),
+                                  ],
                                 ),
-                              ),
-                              Row(
-                                children: [
-                                  Image.asset(AppImages.location,width: Get.width*0.09,height: Get.width*0.09,),
-                                  Text(provider.tickets[index].location??"",
-                                    style: AppTextStyle.montserrat(
-                                      AppColors.greyDark,
-                                      Get.width*0.04,
-                                      FontWeight.w400,
-                                    ),),
-                                ],
-                              ),
-                              SizedBox(
-                                height: Get.width*0.04,
-                              ),
-                              Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(getTranslated(context, 'date')??"",
-                                        style: AppTextStyle.montserrat(
-                                          AppColors.shadedBlack,
-                                          Get.width*0.045,
-                                          FontWeight.w500,
-                                        ),),
-                                      Text(provider.tickets[index].date??"",
-                                        style: AppTextStyle.montserrat(
-                                          AppColors.themeColor,
-                                          Get.width*0.045,
-                                          FontWeight.w500,
-                                        ),),
-                                      SizedBox(
-                                        height: Get.width*0.02,
-                                      ),
-                                      Text(getTranslated(context, 'distance')??"",
-                                        style: AppTextStyle.montserrat(
-                                          AppColors.shadedBlack,
-                                          Get.width*0.045,
-                                          FontWeight.w500,
-                                        ),),
-                                      Text(provider.tickets[index].distance.toString()+'km',
-                                        style: AppTextStyle.montserrat(
-                                          AppColors.themeColor,
-                                          Get.width*0.045,
-                                          FontWeight.w500,
-                                        ),),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: Get.width*0.25,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(getTranslated(context, 'time')??"",
-                                        style: AppTextStyle.montserrat(
-                                          AppColors.shadedBlack,
-                                          Get.width*0.045,
-                                          FontWeight.w500,
-                                        ),),
-                                      Text(provider.tickets[index].time??"",
-                                        style: AppTextStyle.montserrat(
-                                          AppColors.themeColor,
-                                          Get.width*0.045,
-                                          FontWeight.w500,
-                                        ),),
-                                      SizedBox(
-                                        height: Get.width*0.02,
-                                      ),
-                                      Text(getTranslated(context, 'id')??"",
-                                        style: AppTextStyle.montserrat(
-                                          AppColors.shadedBlack,
-                                          Get.width*0.045,
-                                          FontWeight.w500,
-                                        ),),
-                                      Text(provider.tickets[index].id.toString(),
-                                        style: AppTextStyle.montserrat(
-                                          AppColors.themeColor,
-                                          Get.width*0.045,
-                                          FontWeight.w500,
-                                        ),),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: Get.width*0.04,
-                              ),
-                              Text(getTranslated(context, 'cost')??"",
-                                style: AppTextStyle.montserrat(
-                                  AppColors.shadedBlack,
-                                  Get.width*0.045,
-                                  FontWeight.w500,
-                                ),),
-                              Text('\$'+provider.tickets[index].cost.toString(),
-                                style: AppTextStyle.montserrat(
-                                  AppColors.themeColor,
-                                  Get.width*0.045,
-                                  FontWeight.w500,
-                                ),),
-                              SizedBox(
-                                height: Get.width*0.1,
-                              ),
-                              DottedLine(
-                                direction: Axis.horizontal,
-                                lineLength: Get.width*0.7,
-                                lineThickness: 1.0,
-                                dashLength: 4.0,
-                                dashColor: Colors.black,
-                                dashRadius: 0.0,
-                                dashGapLength: 4.0,
-                                dashGapColor: Colors.transparent,
-                                dashGapRadius: 0.0,
-                              ),
-                              Padding(
-                                padding:  EdgeInsets.only(left: Get.width*0.1,right: Get.width*0.09,top: Get.width*0.03),
-                                child: Image.asset(AppImages.barCode,width: Get.width*0.5,height: Get.width*0.3,),
-                              ),
-                            ],
-                          ),
+                                SizedBox(
+                                  width: Get.width*0.25,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(getTranslated(context, 'time')??"",
+                                      style: AppTextStyle.montserrat(
+                                        AppColors.shadedBlack,
+                                        Get.width*0.045,
+                                        FontWeight.w500,
+                                      ),),
+                                    Text(provider.tickets[index].time??"",
+                                      style: AppTextStyle.montserrat(
+                                        AppColors.themeColor,
+                                        Get.width*0.045,
+                                        FontWeight.w500,
+                                      ),),
+                                    SizedBox(
+                                      height: Get.width*0.02,
+                                    ),
+                                    Text(getTranslated(context, 'id')??"",
+                                      style: AppTextStyle.montserrat(
+                                        AppColors.shadedBlack,
+                                        Get.width*0.045,
+                                        FontWeight.w500,
+                                      ),),
+                                    Text(provider.tickets[index].id.toString(),
+                                      style: AppTextStyle.montserrat(
+                                        AppColors.themeColor,
+                                        Get.width*0.045,
+                                        FontWeight.w500,
+                                      ),),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: Get.width*0.04,
+                            ),
+                            Text(getTranslated(context, 'cost')??"",
+                              style: AppTextStyle.montserrat(
+                                AppColors.shadedBlack,
+                                Get.width*0.045,
+                                FontWeight.w500,
+                              ),),
+                            Text('\$'+provider.tickets[index].cost.toString(),
+                              style: AppTextStyle.montserrat(
+                                AppColors.themeColor,
+                                Get.width*0.045,
+                                FontWeight.w500,
+                              ),),
+                            SizedBox(
+                              height: Get.width*0.14,
+                            ),
+                            DottedLine(
+                              direction: Axis.horizontal,
+                              lineLength: Get.width*0.72,
+                              lineThickness: 1.0,
+                              dashLength: 4.0,
+                              dashColor: Colors.black,
+                              dashRadius: 0.0,
+                              dashGapLength: 4.0,
+                              dashGapColor: Colors.transparent,
+                              dashGapRadius: 0.0,
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(left: Get.width*0.1,right: Get.width*0.09,),
+                              child: Image.asset(AppImages.barCode,width: Get.width*0.5,height: Get.width*0.3,),
+                            ),
+                          ],
                         ),
                       ),
                     ),

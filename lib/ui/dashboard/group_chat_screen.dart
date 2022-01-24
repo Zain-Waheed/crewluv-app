@@ -150,22 +150,45 @@ class _GroupChatState extends State<GroupChat> {
                   reverse:true,
                   padding: EdgeInsets.symmetric(vertical: Get.height * 0.01),
                   itemBuilder: (context, index) {
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment:
-                      provider.messages[index].incomingMsg!
-                          ? MainAxisAlignment.start
-                          : MainAxisAlignment.end,
-                      children: [
-                        Visibility(
-                          visible:
-                          provider.messages[index].incomingMsg == true
-                              ? true
-                              : false,
-                          child: Container(
+                    return
+                      provider.messages[index].incomingMsg == true?
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment:
+                        provider.messages[index].incomingMsg!
+                            ? MainAxisAlignment.start
+                            : MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(top: Get.width * 0.15,right:Get.width*0.02 ),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle, border: Border.all(
+                                color: AppColors.blue,
+                                width: Get.height * 0.002),
+                            ),
+                            child: const CircleAvatar(
+                              radius: 16,
+                              backgroundImage: CachedNetworkImageProvider(
+                                'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
+                              ),
+                            ),
+                          ),
+                          chatBubbleReceiver(provider,index),
+                        ],
+                      ):
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment:
+                        provider.messages[index].incomingMsg!
+                            ? MainAxisAlignment.start
+                            : MainAxisAlignment.end,
+                        children: [
+                          chatBubbleSender(provider,index),
+                          Container(
                             margin: EdgeInsets.only(
-                                top: Get.width * 0.15,
-                                left: Get.width * 0.0),
+                              top: Get.width * 0.12,
+                              left: Get.width * 0.02,
+                            ),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
@@ -179,33 +202,8 @@ class _GroupChatState extends State<GroupChat> {
                               ),
                             ),
                           ),
-                        ),
-                        chatBubble(provider,index),
-                        Visibility(
-                          visible:
-                          provider.messages[index].incomingMsg == true
-                              ? false
-                              : true,
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                top: Get.width * 0.15,
-                                left: Get.width * 0.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: AppColors.blue,
-                                  width: Get.height * 0.002),
-                            ),
-                            child: const CircleAvatar(
-                              radius: 16,
-                              backgroundImage: CachedNetworkImageProvider(
-                                'https://e8rbh6por3n.exactdn.com/sites/uploads/2020/05/villa-la-gi-thumbnail.jpg?strip=all&lossy=1&ssl=1',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
+                        ],
+                      );
                   }),
             ),
           ),
@@ -337,52 +335,99 @@ class _GroupChatState extends State<GroupChat> {
       ),
     );},);
   }
-  chatBubble(DashboardProvider provider, int index) {
+  chatBubbleSender(DashboardProvider provider, int index) {
     if(provider.messages[index].messageType==0)
     {
-      return   ChatBubble(
-        elevation: 0,
-        clipper:
-        provider.messages[index].incomingMsg == true
-            ? ChatBubbleClipper3(
-            type: BubbleType.receiverBubble)
-            : ChatBubbleClipper3(
-            type: BubbleType.sendBubble),
-        alignment:
-        provider.messages[index].incomingMsg == true
-            ? Alignment.topRight
-            : Alignment.topLeft,
+      return   Container(
+        alignment:Alignment.topRight,
         margin: EdgeInsets.only(top: 20),
-        backGroundColor:
-        provider.messages[index].incomingMsg == true
-            ? AppColors.whiteDark
-            : AppColors.pinkLight,
         padding: const EdgeInsets.all(5),
-        child: Container(
+        constraints: BoxConstraints(
+            minWidth: Get.width * 0.2,
+            maxWidth: Get.height * 0.3),
+        decoration: BoxDecoration(
+          color:AppColors.pink,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(18),
+            topRight: Radius.circular(18),
+            bottomLeft: Radius.circular(18),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment:
+          CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: Get.width * 0.01,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(7.0),
+              child: Text(
+                provider.messages[index].message ??
+                    "",
+                style: AppTextStyle.montserrat(
+                    AppColors.greyDark,
+                    Get.height * 0.018,
+                    FontWeight.w400),
+              ),
+            ),
+            Row(
+              mainAxisAlignment:
+              MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding:
+                  EdgeInsets.only(right: 10.0),
+                  child: Text(
+                    provider.messages[index].time ?? "",
+                    style: AppTextStyle.montserrat(
+                        AppColors.greyDark,
+                        Get.height * 0.015,
+                        FontWeight.w400),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    }else
+    if(provider.messages[index].messageType==1)
+    {
+      return    GestureDetector(
+        onTap:(){
+          Get.to(DisplayImage(filePath:provider.messages[index].file ?? ""));
+        },
+        child:  Container(
+          // color: AppColors.whiteDark,
+          alignment: Alignment.topRight,
+          margin: EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.all(5),
           constraints: BoxConstraints(
               minWidth: Get.width * 0.2,
-              maxWidth: Get.height * 0.3),
-          child: Column(
+              maxWidth: Get.height * 0.3
+          ),
+          decoration: BoxDecoration(
+            color:AppColors.pink,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(18),
+              topRight: Radius.circular(18),
+              bottomLeft: Radius.circular(18),
+            ),
+          ),
+          child:
+          Column(
             crossAxisAlignment:
             CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                height: Get.width * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(7.0),
-                child: Text(
-                  provider.messages[index].message ??
-                      "",
-                  style: AppTextStyle.montserrat(
-                      provider.messages[index]
-                          .incomingMsg ==
-                          true
-                          ? AppColors.black
-                          : AppColors.greyDark,
-                      Get.height * 0.018,
-                      FontWeight.w400),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.file(
+                  File( provider.messages[index].file ?? ""),
+                  fit: BoxFit.fill,
+                  height: Get.width * 0.6,
                 ),
               ),
               Row(
@@ -393,7 +438,127 @@ class _GroupChatState extends State<GroupChat> {
                     padding:
                     EdgeInsets.only(right: 10.0),
                     child: Text(
-                      provider.messages[index].time ?? "",
+                      provider.messages[index].time ??
+                          "",
+                      style: AppTextStyle.montserrat(
+                          AppColors.greyDark,
+                          Get.height * 0.015,
+                          FontWeight.w400),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+  }
+  chatBubbleReceiver(DashboardProvider provider, int index) {
+    if(provider.messages[index].messageType==0)
+    {
+      return   Container(
+        alignment:Alignment.topRight,
+        margin: EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.all(5),
+        constraints: BoxConstraints(
+            minWidth: Get.width * 0.2,
+            maxWidth: Get.height * 0.3),
+        decoration: BoxDecoration(
+          color:AppColors.whiteDark,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(18),
+            topRight: Radius.circular(18),
+            bottomRight: Radius.circular(18),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment:
+          CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: Get.width * 0.01,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(7.0),
+              child: Text(
+                provider.messages[index].message ??
+                    "",
+                style: AppTextStyle.montserrat(
+                    provider.messages[index]
+                        .incomingMsg ==
+                        true
+                        ? AppColors.black
+                        : AppColors.greyDark,
+                    Get.height * 0.018,
+                    FontWeight.w400),
+              ),
+            ),
+            Row(
+              mainAxisAlignment:
+              MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding:
+                  EdgeInsets.only(right: 10.0),
+                  child: Text(
+                    provider.messages[index].time ?? "",
+                    style: AppTextStyle.montserrat(
+                        provider.messages[index]
+                            .incomingMsg ==
+                            true
+                            ? AppColors.black
+                            : AppColors.greyDark,
+                        Get.height * 0.015,
+                        FontWeight.w400),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    }else
+    if(provider.messages[index].messageType==1)
+    {
+      return    GestureDetector(
+        onTap:(){
+          Get.to(DisplayImage(filePath:provider.messages[index].file ?? ""));
+        },
+        child:  Container(
+          color: AppColors.whiteDark,
+          alignment: Alignment.topRight,
+          margin: EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.all(5),
+          constraints: BoxConstraints(
+            minWidth: Get.width * 0.2,
+            maxWidth: Get.height * 0.3,
+          ),
+          child:
+          Column(
+            crossAxisAlignment:
+            CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.file(
+                  File( provider.messages[index].file ?? ""),
+                  fit: BoxFit.cover,
+                  height: Get.width * 0.6,
+                ),
+              ),
+              Row(
+                mainAxisAlignment:
+                MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding:
+                    EdgeInsets.only(right: 10.0),
+                    child: Text(
+                      provider.messages[index].time ??
+                          "",
                       style: AppTextStyle.montserrat(
                           provider.messages[index]
                               .incomingMsg ==
@@ -407,75 +572,6 @@ class _GroupChatState extends State<GroupChat> {
                 ],
               ),
             ],
-          ),
-        ),
-      );
-    }else
-    if(provider.messages[index].messageType==1)
-    {
-      return    GestureDetector(
-        onTap:(){
-          Get.to(DisplayImage(filePath:provider.messages[index].file ?? ""));
-        },
-        child: ChatBubble(
-          clipper:
-          provider.messages[index].incomingMsg == true
-              ? ChatBubbleClipper3(
-              type: BubbleType.receiverBubble)
-              : ChatBubbleClipper3(
-              type: BubbleType.sendBubble),
-          alignment:
-          provider.messages[index].incomingMsg == true
-              ? Alignment.topRight
-              : Alignment.topLeft,
-          margin: EdgeInsets.only(top: 20),
-          backGroundColor:
-          provider.messages[index].incomingMsg == true
-              ? AppColors.whiteDark
-              : AppColors.pinkLight,
-
-          child: Container(
-            constraints: BoxConstraints(
-              minWidth: Get.width * 0.2,
-            ),
-            child:
-            Column(
-              crossAxisAlignment:
-              CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Image.file(
-                    File( provider.messages[index].file ?? ""),
-                    fit: BoxFit.cover,
-                    height: Get.width * 0.6,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment:
-                  MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding:
-                      EdgeInsets.only(right: 10.0,top: 10.0),
-                      child: Text(
-                        provider.messages[index].time ??
-                            "",
-                        style: AppTextStyle.montserrat(
-                            provider.messages[index]
-                                .incomingMsg ==
-                                true
-                                ? AppColors.black
-                                : AppColors.greyDark,
-                            Get.height * 0.015,
-                            FontWeight.w400),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
           ),
         ),
       );

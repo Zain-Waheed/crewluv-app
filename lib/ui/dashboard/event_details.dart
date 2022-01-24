@@ -108,7 +108,7 @@ class _EventDetailsState extends State<EventDetails> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  widget.index == 1 && provider.events[0].personalEvent == false
+                  widget.index == 1 && provider.events[0].personalEvent == true
                       ? SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -175,25 +175,30 @@ class _EventDetailsState extends State<EventDetails> {
                           children: List.generate(
                             10,
                                 (index) =>
-                                Container(
-                                  height: Get.height * 0.12,
-                                  width: Get.width * 0.15,
-                                  padding: EdgeInsets.all(2),
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: Get.width * 0.015),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                        color: AppColors.themeColor,
-                                        width: 2),
-                                    color: AppColors.white,
-                                  ),
-                                  child: Image.asset(
-                                    AppImages.notification1,
-                                    fit: BoxFit.contain,
-                                    height: Get.width * 0.23,
-                                    width: Get.width * 0.23,
-                                    scale: 0.1,
+                                GestureDetector(
+                                  onTap:(){
+                                    Get.to(StoriesScreen());
+                                  },
+                                  child: Container(
+                                    height: Get.height * 0.12,
+                                    width: Get.width * 0.15,
+                                    padding: EdgeInsets.all(2),
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: Get.width * 0.015),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: AppColors.themeColor,
+                                          width: 2),
+                                      color: AppColors.white,
+                                    ),
+                                    child: Image.asset(
+                                      AppImages.notification1,
+                                      fit: BoxFit.contain,
+                                      height: Get.width * 0.23,
+                                      width: Get.width * 0.23,
+                                      scale: 0.1,
+                                    ),
                                   ),
                                 ),
                           ),
@@ -473,7 +478,6 @@ class _EventDetailsState extends State<EventDetails> {
                         height: Get.height * 0.2,
                         width: Get.width,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16)),
                             borderRadius: BorderRadius.circular(16),
                           boxShadow: [
                             BoxShadow(

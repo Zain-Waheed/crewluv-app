@@ -120,4 +120,6 @@ class AppImages {
 
   static var noEvent = "assets/images/noEvent.png";
   static var noChat = "assets/images/noChat.png";
+  static var locationTicket = "assets/images/locationTicket.png";
+  static var ticketBackground = "assets/images/ticketBackground.png";
 }
