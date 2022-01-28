@@ -36,11 +36,35 @@ class FieldValidator {
     }
     return null;
   }
-  static String? dateCheck(String? value) {
+  static String? yearCheck(String? value) {
     if (value!.isEmpty) {
       return getTranslated(Get.context, "empty");
     }
     if(int.parse(value)>=DateTime.now().year){
+      return getTranslated(Get.context, "invalid");
+    }
+    return null;
+  }
+  static String? dayCheck(String? value) {
+    if (value!.isEmpty) {
+      return getTranslated(Get.context, "empty");
+    }
+    // if(int.parse(value)>=DateTime.now().day){
+    //   return getTranslated(Get.context, "invalid");
+    // }
+    if(int.parse(value)>31){
+      return getTranslated(Get.context, "invalid");
+    }
+    return null;
+  }
+  static String? monthCheck(String? value) {
+    if (value!.isEmpty) {
+      return getTranslated(Get.context, "empty");
+    }
+    // if(int.parse(value)>=DateTime.now().month){
+    //   return getTranslated(Get.context, "invalid");
+    // }
+    if(int.parse(value)>12){
       return getTranslated(Get.context, "invalid");
     }
     return null;
@@ -169,10 +193,11 @@ class FieldValidator {
         return getTranslated(Get.context, 'enter_date')??"";
 
       }
-    else if(value.length<7 || value.length>7){
+    else if(int.parse(value.split("/").first) > 12){
+      return "Invalid Month";
+    } else if(value.length<5 || value.length>5){
       return getTranslated(Get.context, 'invalid_date')??"";
     }
-    else
       return null;
   }
 

@@ -95,7 +95,7 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                                   onTap: (){
                                     Share.share('CrewLuv');
                                   },
-                                  child: Image.asset(AppImages.share,scale: 3,),
+                                  child: Image.asset(AppImages.share,scale: 3.5,),
                                 ),
                               ],
                             ),
@@ -131,7 +131,7 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                               getTranslated(context, 'place')??"",
                               style: AppTextStyle.montserrat(
                                 AppColors.shadedBlack,
-                                Get.width*0.045,
+                                Get.width*0.04,
                                 FontWeight.w500,
                               ),
                             ),
@@ -160,7 +160,7 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                                     Text(getTranslated(context, 'date')??"",
                                       style: AppTextStyle.montserrat(
                                         AppColors.shadedBlack,
-                                        Get.width*0.045,
+                                        Get.width*0.04,
                                         FontWeight.w500,
                                       ),),
                                     Text(provider.tickets[index].date??"",
@@ -175,7 +175,7 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                                     Text(getTranslated(context, 'distance')??"",
                                       style: AppTextStyle.montserrat(
                                         AppColors.shadedBlack,
-                                        Get.width*0.045,
+                                        Get.width*0.04,
                                         FontWeight.w500,
                                       ),),
                                     Text(provider.tickets[index].distance.toString()+'km',
@@ -195,7 +195,7 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                                     Text(getTranslated(context, 'time')??"",
                                       style: AppTextStyle.montserrat(
                                         AppColors.shadedBlack,
-                                        Get.width*0.045,
+                                        Get.width*0.04,
                                         FontWeight.w500,
                                       ),),
                                     Text(provider.tickets[index].time??"",
@@ -205,12 +205,13 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                                         FontWeight.w500,
                                       ),),
                                     SizedBox(
-                                      height: Get.width*0.02,
+                                      height: Get.width*0.025,
+                                      width: Get.width*0.035,
                                     ),
                                     Text(getTranslated(context, 'id')??"",
                                       style: AppTextStyle.montserrat(
                                         AppColors.shadedBlack,
-                                        Get.width*0.045,
+                                        Get.width*0.04,
                                         FontWeight.w500,
                                       ),),
                                     Text(provider.tickets[index].id.toString(),
@@ -241,16 +242,19 @@ class _TicketDialogBoxState extends State<TicketDialogBox> {
                             SizedBox(
                               height: Get.width*0.14,
                             ),
-                            DottedLine(
-                              direction: Axis.horizontal,
-                              lineLength: Get.width*0.72,
-                              lineThickness: 1.0,
-                              dashLength: 4.0,
-                              dashColor: Colors.black,
-                              dashRadius: 0.0,
-                              dashGapLength: 4.0,
-                              dashGapColor: Colors.transparent,
-                              dashGapRadius: 0.0,
+                            Padding(
+                              padding: EdgeInsets.only(left:Get.width*0.02),
+                              child: DottedLine(
+                                direction: Axis.horizontal,
+                                lineLength: Get.width*0.7,
+                                lineThickness: 1.0,
+                                dashLength: 4.0,
+                                dashColor: Colors.black,
+                                dashRadius: 0.0,
+                                dashGapLength: 4.0,
+                                dashGapColor: Colors.transparent,
+                                dashGapRadius: 0.0,
+                              ),
                             ),
                             Padding(
                               padding:  EdgeInsets.only(left: Get.width*0.1,right: Get.width*0.09,),

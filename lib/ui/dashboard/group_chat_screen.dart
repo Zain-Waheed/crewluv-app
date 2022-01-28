@@ -43,10 +43,9 @@ class _GroupChatState extends State<GroupChat> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  height: Get.height*0.05,
-                  width: Get.width*0.09,
-                  margin: EdgeInsets.only(left: Get.width*0.02),
-                  // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  height: Get.height*0.045,
+                  width: Get.width*0.1,
+                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                   // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -64,11 +63,11 @@ class _GroupChatState extends State<GroupChat> {
                       Get.back();
                     },
                     icon: Padding(
-                      padding:  EdgeInsets.only(left: Get.width*0.01),
+                      padding: const EdgeInsets.only(left: 6),
                       child: Icon(
                         Icons.arrow_back_ios,
                         color: AppColors.black,
-                        size: Get.width*0.04,
+                        size: Get.width*0.045,
                       ),
                     ),
                   ),

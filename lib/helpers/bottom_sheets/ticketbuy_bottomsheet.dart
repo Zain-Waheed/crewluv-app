@@ -1,3 +1,4 @@
+import 'package:amigos/helpers/bottom_sheets/congratulation_bottomsheet.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/utils/colors.dart';
@@ -6,6 +7,9 @@ import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:amigos/utils/validation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class TicketBuy extends StatefulWidget {
@@ -19,7 +23,7 @@ class _TicketBuyState extends State<TicketBuy> {
   TextEditingController guestController = TextEditingController();
   TextEditingController nameOnCardController = TextEditingController();
   TextEditingController cardNumberController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
+  var dateController = new MaskedTextController(mask: '00/00');
   TextEditingController cvcController = TextEditingController();
   GlobalKey<FormState> formKey =  GlobalKey<FormState>();
 
@@ -108,22 +112,17 @@ class _TicketBuyState extends State<TicketBuy> {
                              children: [
                                GestureDetector(
                                  onTap: () {
-                                   if(guestController.text.isNotEmpty){
-                                     count = int.parse(guestController.text);
-                                     if(count>0)
-                                     {
-                                       count--;
-                                     }
-                                     else count=0;
-                                     guestController.text = count.toString();
-                                     setState(() {});
-                                   }
-                                   else{
-                                     guestController.text='0';
+                                   if(count>0)
+                                   {
                                      setState(() {
-
+                                       count--;
                                      });
-                                   }
+                                   }else
+                                     {
+                                       setState(() {
+                                         count=0;
+                                       });
+                                     }
                                  },
                                  child: Container(
                                    width: Get.width*0.12,
@@ -131,39 +130,40 @@ class _TicketBuyState extends State<TicketBuy> {
                                    child: Image.asset(AppImages.minimize),
                                  ),
                                ),
-                               SizedBox(
-                                 width: Get.width * 0.03,
-                               ),
-                               SizedBox(
+                               Container(
                                  height: Get.width * 0.1,
-                                 width: Get.width * 0.25,
-                                 child: TextField(
-                                   decoration: AppInputDecoration.circularFieldDecorationSmall(
-                                       null, '', null),
-                                   controller: guestController,
-                                   keyboardType: TextInputType.number,
-                                   textAlign: TextAlign.center,
+                                 width: Get.width * 0.3,
+                                 alignment: Alignment.center,
+                                 decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(20),
+                                   color: AppColors.offWhite,
                                  ),
-                               ),
-                               SizedBox(
-                                 width: Get.width * 0.03,
+                                 child: Text(count.toString(),
+                                 style: TextStyle(
+                                   color: AppColors.shadedBlack,
+                                   fontSize: Get.width*0.04,
+                                   fontWeight: FontWeight.w500,
+                                 ),),
                                ),
                                GestureDetector(
                                  onTap: () {
-                                   if(guestController.text.isNotEmpty)
-                                   {
-                                     count = int.parse(guestController.text);
+                                   setState(() {
                                      count++;
-                                     guestController.text = count.toString();
-                                     setState(() {});
-                                   }
-                                   else
-                                   {
-                                     guestController.text='1';
-                                     setState(() {
-
-                                     });
-                                   }
+                                   });
+                                   // if(guestController.text.isNotEmpty)
+                                   // {
+                                   //   count = int.parse(guestController.text);
+                                   //   count++;
+                                   //   guestController.text = count.toString();
+                                   //   setState(() {});
+                                   // }
+                                   // else
+                                   // {
+                                   //   guestController.text='1';
+                                   //   setState(() {
+                                   //
+                                   //   });
+                                   // }
 
                                  },
                                  child: Container(
@@ -196,6 +196,7 @@ class _TicketBuyState extends State<TicketBuy> {
                          height: Get.width * 0.05,
                        ),
                        TextFormField(
+
                          validator: (value) =>
                              FieldValidator.empty(nameOnCardController.text),
                          autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -210,6 +211,11 @@ class _TicketBuyState extends State<TicketBuy> {
                          height: Get.width * 0.05,
                        ),
                        TextFormField(
+                         keyboardType: TextInputType.number,
+                         inputFormatters: [
+                           // WhitelistingTextInputFormatter.digitsOnly,
+                           new LengthLimitingTextInputFormatter(16),
+                         ],
                          validator: (value) =>
                              FieldValidator.validateCardNumber(cardNumberController.text),
                          autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -230,13 +236,13 @@ class _TicketBuyState extends State<TicketBuy> {
                              width: Get.width * 0.46,
                              child: TextFormField(
                                controller: dateController,
-                               autovalidateMode: AutovalidateMode.onUserInteraction,
+                               maxLength: 5,
                                keyboardType: TextInputType.number,
-                               validator: (value) =>
-                                   FieldValidator.validateCardDate(dateController.text),
+                               autovalidateMode: AutovalidateMode.onUserInteraction,
+                               validator: (value) => FieldValidator.validateCardDate(dateController.text),
                                decoration: AppInputDecoration.circularFieldDecorationSmall(
                                  null,
-                                 'expiry',
+                                 'mm_yy',
                                  null,
                                ),
                              ),
@@ -245,13 +251,14 @@ class _TicketBuyState extends State<TicketBuy> {
                            Container(
                              width: Get.width * 0.43,
                              child: TextFormField(
+                               maxLength: 3,
                                keyboardType: TextInputType.number,
                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                controller: cvcController,
                                validator: (value) =>
                                    FieldValidator.validateCVC(cvcController.text),
                                textInputAction: TextInputAction.next,
-                               obscureText: true,
+                               // obscureText: true,
                                decoration: AppInputDecoration.circularFieldDecorationSmall(
                                  null,
                                  'cvv',
@@ -268,10 +275,19 @@ class _TicketBuyState extends State<TicketBuy> {
                          buttonText: 'pay_now',
                          onpressed: () {
                            if(formKey.currentState!.validate()){
-                             Get.back();
+                             if(count<=0)
+                               {
+                                 Fluttertoast.showToast(
+                                   msg: getTranslated(context, 'first_add_a_ticket')??"",
+                                   toastLength: Toast.LENGTH_SHORT,
+                                   gravity: ToastGravity.CENTER,
+                                 );
+                               }else{
+                               Get.back();
+                               Get.bottomSheet(CongraulationBottomSheet(text: 'you_have_successfully_brought_a_ticket',comingFromPartyList: true,));
 
+                             }
                            }
-
                          },
                          width: Get.width * 300,
                          isWhite: false,

@@ -102,7 +102,7 @@ class _LoginState extends State<Login> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Get.to(const PhoneNumberPicker());
+                      Get.offAll(const PhoneNumberPicker());
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: Get.width*0.04),

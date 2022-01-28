@@ -7,6 +7,7 @@ import 'package:amigos/utils/input_decorations.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class MoodWidget extends StatefulWidget {
 }
 
 class _MoodWidgetState extends State<MoodWidget> {
-
+  bool selectedChoice=false;
   @override
   Widget build(BuildContext context) {
     return Consumer<DashboardProvider>(builder: (context, provider, _) {
@@ -67,6 +68,7 @@ class _MoodWidgetState extends State<MoodWidget> {
                       children: List.generate(provider.moods.length, (index) {
                         return GestureDetector(
                             onTap: () {
+                              selectedChoice=true;
                               for (int i = 0; i < provider.moods.length; i++) {
                                 if (provider.moods[i].selected == true) {
                                   provider.moods[i].selected = false;
@@ -106,11 +108,21 @@ class _MoodWidgetState extends State<MoodWidget> {
                     isWhite: false,
                     buttonText: 'lets_go',
                     onpressed: () {
-                      int moodIndex = provider.moods
-                          .indexWhere((element) => element.selected == true);
-                      provider.mood = provider.moods[moodIndex].iconImagePath;
-                      provider.update();
-                      Navigator.of(context).pop();
+                      if(selectedChoice==false){
+                        Fluttertoast.showToast(
+                          msg: getTranslated(context, 'first_select_the_event_type')??"",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+
+                        );
+                      }else
+                        {
+                          int moodIndex = provider.moods
+                              .indexWhere((element) => element.selected == true);
+                          provider.mood = provider.moods[moodIndex].iconImagePath;
+                          provider.update();
+                          Navigator.of(context).pop();
+                        }
                     },
                   ),
                   TextButton(

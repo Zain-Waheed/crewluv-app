@@ -35,7 +35,7 @@ class _EventDescriptionWidgetState extends State<EventDescriptionWidget> {
             children: [
               Text(widget.model.title??"",style: AppTextStyle.montserrat(AppColors.black, Get.width*0.04, FontWeight.w700),maxLines: 1,overflow: TextOverflow.ellipsis,),
               Spacer(),
-              widget.titleImage?Image.asset(widget.model.titleImage??"",scale: 2.5,): SizedBox(height: Get.width*0.06,),
+              widget.titleImage?Image.asset(widget.model.titleImage??"",scale: widget.model.personalEvent?2.5:3.5,): SizedBox(height: Get.width*0.06,),
             ],
           ),
           SizedBox(height: Get.width*0.02,),
@@ -56,9 +56,6 @@ class _EventDescriptionWidgetState extends State<EventDescriptionWidget> {
               Text(widget.model.startTime??"",style: AppTextStyle.montserrat(AppColors.eventGrey, Get.width*0.03, FontWeight.w400))
             ],
           ),
-
-
-
         ],
       ),
     );

@@ -17,9 +17,12 @@ import 'package:amigos/utils/images.dart';
 import 'package:emojis/emojis.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:emojis/emoji.dart';
+import 'package:location/location.dart';
 class DashboardProvider extends ChangeNotifier{
   List<EventType> eventTypes=[];
   List<PreferenceModel>  favoriteDrinks=[];
@@ -41,6 +44,9 @@ class DashboardProvider extends ChangeNotifier{
   int allEventPageIndex =0;
   int chatPageIndex = 0;
   int faqIndex=0;
+  bool agreeToTerm = false;
+  String? joinEventBy;
+  int count = 0;
   String mood= AppImages.party;
   bool isChecked = false;
   List<CrewModel> crews=[];
@@ -52,8 +58,13 @@ class DashboardProvider extends ChangeNotifier{
     "shaun",
     "sasha",
   ];
+  LocationData? currentPosition;
+  Location location = new Location();
+  bool? _serviceEnabled;
+  PermissionStatus? _permissionGranted;
 
   DashboardProvider(){
+    addUser();
     addEvents();
     addFavoriteDrinks();
     addFilters();
@@ -67,7 +78,6 @@ class DashboardProvider extends ChangeNotifier{
     addMessages();
     addChats();
     addGroupChat();
-    addUser();
     addTickets();
     notifyListeners();
   }
@@ -104,6 +114,53 @@ class DashboardProvider extends ChangeNotifier{
     FocusScope.of(Get.context!).requestFocus(new FocusNode());
     notifyListeners();
   }
+
+  onEventPost(){
+    count=0;
+    agreeToTerm=false;
+  }
+ onLogout (){
+  emailController.clear();
+  fullNameController.clear();
+  dayController.clear();
+  monthController.clear();
+  yearController.clear();
+  universityController.clear();
+  cityController.clear();
+  gender=0;
+  isChecked=false;
+  favoriteDrinks.clear();
+  musicTaste.clear();
+  interests.clear();
+  mediaListImages.clear();
+  notifyListeners();
+  }
+  getCurrentLocation() async {
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled!) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled!) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    currentPosition = await location.getLocation();
+  }
+  //  getCurrentPosition() async {
+  //    currentPosition= await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  //    return currentPosition;
+  //
+  // }
+
+
   List<MoodModel> moods=[
     MoodModel(AppImages.walking, AppImages.runningIcon, 'Walking'),
     MoodModel(AppImages.birthday, AppImages.balloon, 'Birthday'),
@@ -212,12 +269,12 @@ class DashboardProvider extends ChangeNotifier{
     interests.add(PreferenceModel(name: 'photography',isSelected: false));
   }
   void addEvents(){
-    events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true,));
-    events.add(EventModel( title: 'Bonfire Party', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.bonFire,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
-    events.add(EventModel(title: 'Bachelor Party for CEO', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.partySmall,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: false,));
-    events.add(EventModel(title: 'Birthday Bash',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.balloonSmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
-    events.add(EventModel( title: 'Bonfire Party', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.bonFire,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true));
-    events.add(EventModel(title: 'Friends Mode', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.partySmall,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: false,));
+    events.add(EventModel(title: 'Fun Party',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.partySmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true,eventStatus: 0,model: users[0]));
+    events.add(EventModel( title: 'Bachelor Party for CEO', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.barGlass,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: false,eventStatus: 0,model: users[1]));
+    events.add(EventModel(title: 'Fun Party', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.partySmall,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true,eventStatus: 0,model: users[2]));
+    events.add(EventModel(title: 'Fun Party',description:  AppDummyData.mediumText, distance: 267, day: 'Today',startTime:  '13:30',titleImage: AppImages.partySmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true,eventStatus: 0,model: users[3]),);
+    events.add(EventModel( title: 'Fun Party', description: AppDummyData.shortText, distance: 187, day: 'Monday', startTime: '13:30',titleImage: AppImages.partySmall,endTime: '16:30',withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: true,eventStatus: 0,model: users[4]));
+    events.add(EventModel(title: 'Bachelor Party for CEO', description: AppDummyData.shortText,distance:  92,day:  'Thursday', startTime: '13:30',titleImage: AppImages.barGlass,withFriends: 2,maxFriends: 6,entryType: 'buy_ticket',personalEvent: false,eventStatus: 0,model: users[5]));
   }
   void  addUserInterets()
   {
@@ -255,11 +312,12 @@ class DashboardProvider extends ChangeNotifier{
   }
 
   void addUser(){
-    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.profileDummy,AppDummyData.profileDummy,AppDummyData.profileDummy],intrests:userInterests,music: userMusicTaste ,favorite: true),);
-    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser2,AppDummyData.dummyUser2,AppDummyData.dummyUser2,],intrests:userInterests,music: userMusicTaste,favorite: false ));
-    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser3,AppDummyData.dummyUser3,AppDummyData.dummyUser3],intrests:userInterests,music: userMusicTaste,favorite: false ));
-    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser4,AppDummyData.dummyUser4,AppDummyData.dummyUser4],intrests:userInterests,music: userMusicTaste,favorite: false ));
-    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser5,AppDummyData.dummyUser5,AppDummyData.dummyUser5],intrests:userInterests,music: userMusicTaste,favorite: false ));
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.profileDummy,AppDummyData.profileDummy,AppDummyData.profileDummy],intrests:userInterests,music: userMusicTaste ,favorite: true,BarImage: false),);
+    users.add(UserModel(name: 'Crime Bar & Night Club',distance: 9,imagePath: AppImages.barImage,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser2,AppDummyData.dummyUser2,AppDummyData.dummyUser2,],intrests:userInterests,music: userMusicTaste,favorite: false,BarImage: false ));
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser3,AppDummyData.dummyUser3,AppDummyData.dummyUser3],intrests:userInterests,music: userMusicTaste,favorite: false ,BarImage: false));
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser4,AppDummyData.dummyUser4,AppDummyData.dummyUser4],intrests:userInterests,music: userMusicTaste,favorite: false,BarImage: false ));
+    users.add(UserModel(name: 'jelensen',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser5,AppDummyData.dummyUser5,AppDummyData.dummyUser5],intrests:userInterests,music: userMusicTaste,favorite: false,BarImage: false ));
+    users.add(UserModel(name: 'Crime Bar & Night Club',distance: 9,imagePath: AppImages.profile,age: 21,isVerified: true,activeStatus: 'Recently Active',coverPhoto: [AppDummyData.dummyUser5,AppDummyData.dummyUser5,AppDummyData.dummyUser5],intrests:userInterests,music: userMusicTaste,favorite: false,BarImage: false ));
 
   }
 

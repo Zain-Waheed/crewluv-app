@@ -15,6 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_3.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_5.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
@@ -125,7 +126,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 : MainAxisAlignment.end,
                             children: [
                               Container(
-                                margin: EdgeInsets.only(top: Get.width * 0.15, left: Get.width * 0.0),
+                                margin: EdgeInsets.only(top: Get.width * 0.15, left: Get.width * 0.0,right:Get.width * 0.02 ),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle, border: Border.all(
                                     color: AppColors.blue,
@@ -278,7 +279,15 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     )
                                 );
 
-                              }
+                              }else
+                                {
+                                  Fluttertoast.showToast(
+                                    msg: getTranslated(context, 'enter_text')??"",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+
+                                  );
+                                }
                               sendMessageController.clear();
                               // FocusScope.of(context).requestFocus(new FocusNode());
                             },
@@ -372,13 +381,21 @@ class _ChatDetailsState extends State<ChatDetails> {
           Get.to(DisplayImage(filePath:provider.messages[index].file ?? ""));
         },
         child:  Container(
-          color: AppColors.whiteDark,
+          // color: AppColors.whiteDark,
           alignment: Alignment.topRight,
           margin: EdgeInsets.only(top: 20),
           padding: const EdgeInsets.all(5),
           constraints: BoxConstraints(
             minWidth: Get.width * 0.2,
             maxWidth: Get.height * 0.3,
+          ),
+          decoration: BoxDecoration(
+            color:AppColors.pink,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(18),
+              topRight: Radius.circular(18),
+              bottomLeft: Radius.circular(18),
+            ),
           ),
           child:
           Column(

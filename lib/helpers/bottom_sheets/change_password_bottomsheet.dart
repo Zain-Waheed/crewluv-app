@@ -212,7 +212,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             {
                               Get.back();
                               Get.bottomSheet(
-                                  const CongraulationBottomSheet(text: 'your_password_has',)
+                                  CongraulationBottomSheet(text: 'your_password_has',)
                               );
                               Future.delayed(Duration(seconds: 3),(){
                                 Get.back();

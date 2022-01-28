@@ -8,6 +8,10 @@ class AppImages {
   static var othersIcon = "assets/images/othersIcon.png";
   static var naughty = "assets/images/naughty.png";
   static var ill = "assets/images/ill.png";
+  static var cross = "assets/images/cross.png";
+  static var prefrence = "assets/images/prefrence.png";
+  static var barImage = "assets/images/barImage.png";
+  static var barGlass = "assets/images/barGlass.png";
   static var noNotification2 = "assets/images/noNotification2.png";
   static var happy = "assets/images/happy.png";
   static var love = "assets/images/love.png";
@@ -122,4 +126,5 @@ class AppImages {
   static var noChat = "assets/images/noChat.png";
   static var locationTicket = "assets/images/locationTicket.png";
   static var ticketBackground = "assets/images/ticketBackground.png";
+  static var gps = "assets/images/gps.png";
 }

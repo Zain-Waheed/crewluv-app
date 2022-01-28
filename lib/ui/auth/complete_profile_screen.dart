@@ -14,7 +14,7 @@ import 'package:amigos/ui/auth/media_profile_screen.dart';
 import 'package:amigos/ui/auth/music_taste_screen.dart';
 import 'package:amigos/ui/auth/select_gender.dart';
 import 'package:amigos/ui/auth/university_screen.dart';
-import 'package:amigos/ui/dashboard/dashboard.dart';
+import 'package:amigos/ui/dashboard/sample_dashboard.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class CompleteProfileScreen extends StatefulWidget {
 }
 
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
-  FocusNode focus = FocusNode();
+  // FocusNode focus = FocusNode();
   final PageController _controller = PageController();
   int percentage = 10;
   double percent = 0.1;
@@ -49,7 +49,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     } else {
       model.pageIndex = 0;
       percentageValue(model);
-      Get.to(const Login());
+      Get.off(const Login());
     }
     setState(() {});
     return Future.value(false);
@@ -70,7 +70,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               preferredSize: Size.fromHeight(Get.width * 0.17),
               child: CustomAppBar(
                   function: () {
-                    //Get.to(() => const PhoneNumber());
                     if (dashPro.pageIndex > 0) {
                       dashPro.pageIndex--;
                       dashPro.update();
@@ -105,7 +104,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   title: 'complete_profile'),
             ),
             bottomNavigationBar: Container(
-              height: Get.width * 0.35,
+              height: Get.width * 0.32,
               margin: EdgeInsets.only(left: Get.width * 0.07,right:Get.width * 0.07,bottom: Get.width*0.03),
               child: Column(
                 children: [
@@ -140,14 +139,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               percentageValue(dashPro);
                             }
                             else{
-                              dashPro.pageIndex=0;
-                              Get.bottomSheet(const CongraulationBottomSheet(
+                              dashPro.pageIndex=1;
+                              Get.bottomSheet(CongraulationBottomSheet(
                                 text: 'your_profile_has_been_completed',
                               ));
                               Future.delayed(Duration(seconds: 3),(){
                                 Get.offAll(
-                                    DashBoardScreen()
+                                    DashBoard(isDialog: true,),
                                 );
+                                dashPro.pageIndex=0;
                               });
                             }
                           },
@@ -193,12 +193,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                 percentageValue(dashPro);
                               }
                               else{
-                                Get.bottomSheet(const CongraulationBottomSheet(
+                                Get.bottomSheet(CongraulationBottomSheet(
                                   text: 'your_profile_has_been_completed',
                                 ));
                                 Future.delayed(Duration(seconds: 3),(){
                                   Get.to(
-                                      DashBoardScreen()
+                                      DashBoard(isDialog:true)
                                   );
                                 });
                               }

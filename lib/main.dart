@@ -7,6 +7,7 @@ import 'package:amigos/helpers/widgets/ticket_dialog.dart';
 import 'package:amigos/localization/app_localization.dart';
 import 'package:amigos/providers/auth_provider.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/test_room.dart';
 import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/auth/enter_dob.dart';
 import 'package:amigos/ui/auth/media_profile_screen.dart';
@@ -18,11 +19,13 @@ import 'package:amigos/ui/dashboard/chat_screen.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/ui/dashboard/edit_profile.dart';
 import 'package:amigos/ui/dashboard/event_details.dart';
+import 'package:amigos/ui/dashboard/faqs.dart';
 import 'package:amigos/ui/dashboard/group_chat_screen.dart';
 import 'package:amigos/ui/dashboard/home_screen.dart';
 import 'package:amigos/ui/dashboard/profile_screen.dart';
 import 'package:amigos/ui/dashboard/profiles_screen.dart';
-import 'package:amigos/ui/dashboard/sample_screen.dart';
+import 'package:amigos/ui/dashboard/sample_dashboard.dart';
+import 'package:amigos/ui/dashboard/settings_screen.dart';
 import 'package:amigos/ui/intro/onboarding.dart';
 import 'package:amigos/ui/intro/splash_logo_screen.dart';
 import 'package:amigos/ui/intro/splash_screen.dart';
@@ -160,7 +163,6 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: const [
         Locale('en', 'US'),
-
       ],
       localeResolutionCallback:
           (Locale? deviceLocale, Iterable<Locale> supportedLocales) {
@@ -174,7 +176,7 @@ class _MyAppState extends State<MyApp> {
       },
       debugShowCheckedModeBanner: false,
       title: 'amigos',
-       home: SplashScreen(),
+       home: DashBoard(),
     );
   }
 }

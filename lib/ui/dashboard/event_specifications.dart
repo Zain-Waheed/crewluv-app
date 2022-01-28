@@ -10,6 +10,7 @@ import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/dashboard/dashboard.dart';
 import 'package:amigos/ui/dashboard/event_details.dart';
 import 'package:amigos/ui/dashboard/home_screen.dart';
+import 'package:amigos/ui/dashboard/sample_dashboard.dart';
 import 'package:amigos/ui/dashboard/terms_of_use.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
@@ -34,9 +35,6 @@ class EventSpecifications extends StatefulWidget {
 
 class _EventSpecificationsState extends State<EventSpecifications> {
 
-  String? joinEventBy;
-  bool agreeToTerm = false;
-  int count = 0;
   GlobalKey <FormState> key  = GlobalKey<FormState>();
 
 
@@ -60,7 +58,7 @@ class _EventSpecificationsState extends State<EventSpecifications> {
           ),
           bottomNavigationBar: Container(
             padding: EdgeInsets.symmetric(
-                vertical: Get.width * 0.02, horizontal: Get.width * 0.07),
+                vertical: Get.width * 0.02, horizontal: Get.width * 0.065),
             color: AppColors.backGround,
             child: AppButton(
               width: Get.width * 0.9,
@@ -73,7 +71,7 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                    widget.model.withFriends =
                        int.parse(alreadyWithController.text);
                    widget.model.maxFriends = int.parse(maxController.text);
-                   widget.model.entryType = joinEventBy;
+                   widget.model.entryType = provider.joinEventBy;
                    provider.events.insert(0, widget.model);
                  }
                  Get.bottomSheet(
@@ -84,11 +82,11 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                  Future.delayed(const Duration(seconds: 3), () {
                    provider.dashboardIndex = 1;
                    provider.update();
-                   Get.to(DashBoardScreen());
-                   setState(() {
-
-                   });
+                   Get.to(DashBoard());
                  });
+                 provider.onEventPost();
+                 alreadyWithController.clear();
+                 maxController.clear();
                }
               },
               buttonText: widget.comingFromdit?'save_changes':'post_event',
@@ -120,13 +118,13 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                         GestureDetector(
                           onTap: () {
                             if(alreadyWithController.text.isNotEmpty){
-                              count = int.parse(alreadyWithController.text);
-                              if(count>0)
+                              provider.count = int.parse(alreadyWithController.text);
+                              if(provider.count>0)
                               {
-                                count--;
+                                provider.count--;
                               }
-                              else count=0;
-                              alreadyWithController.text = count.toString();
+                              else provider.count=0;
+                              alreadyWithController.text = provider.count.toString();
                               setState(() {});
                             }
                             else{
@@ -138,7 +136,6 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                           },
                           child: Image.asset(AppImages.minimize,width: Get.width*0.12,height: Get.width*0.12,),
                         ),
-
                         SizedBox(
                           width: Get.width * 0.03,
                         ),
@@ -166,12 +163,12 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                           onTap: () {
                             if(alreadyWithController.text.isNotEmpty)
                             {
-                              count = int.parse(alreadyWithController.text);
-                              count++;
-                              if(count>999){
-                                count = 999;
+                              provider.count = int.parse(alreadyWithController.text);
+                              provider.count++;
+                              if(provider.count>999){
+                                provider.count = 999;
                               }
-                              alreadyWithController.text = count.toString();
+                              alreadyWithController.text = provider.count.toString();
                               setState(() {});
                             }
                             else
@@ -185,7 +182,6 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                           },
                           child:  Image.asset(AppImages.plus,width: Get.width*0.12,height: Get.width*0.12,),
                         ),
-
                       ],
                     ),
                     SizedBox(
@@ -204,13 +200,13 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                           onTap: () {
                             if(maxController.text.isNotEmpty)
                             {
-                              count = int.parse(maxController.text);
-                              if(count>0)
+                              provider.count = int.parse(maxController.text);
+                              if(provider.count>0)
                               {
-                                count--;
+                                provider.count--;
                               }
-                              else count=0;
-                              maxController.text = count.toString();
+                              else provider.count=0;
+                              maxController.text = provider.count.toString();
                               setState(() {});
                             }
                             else{
@@ -246,12 +242,12 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                           onTap: () {
                             if(maxController.text.isNotEmpty)
                             {
-                              count = int.parse(maxController.text);
-                              count++;
-                              if(count>999){
-                                count=999;
+                              provider.count = int.parse(maxController.text);
+                              provider.count++;
+                              if(provider.count>999){
+                                provider.count=999;
                               }
-                              maxController.text = count.toString();
+                              maxController.text = provider.count.toString();
                               setState(() {});
                             }
                             else{
@@ -319,10 +315,10 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                             );
                           }).toList(),
                           onChanged: (value) {
-                            joinEventBy = value ?? "";
+                            provider.joinEventBy = value ?? "";
                             setState(() {});
                           },
-                          value: joinEventBy,
+                          value: provider.joinEventBy,
                           hint: Padding(
                             padding:
                             EdgeInsets.symmetric(horizontal: Get.width * 0.05),
@@ -346,13 +342,13 @@ class _EventSpecificationsState extends State<EventSpecifications> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Checkbox(
-                            value: agreeToTerm,
+                            value: provider.agreeToTerm,
                             activeColor: AppColors.themeColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                             onChanged: (value) {
-                              agreeToTerm = value!;
+                              provider.agreeToTerm = value!;
                               setState(() {});
                             }),
                         Text(

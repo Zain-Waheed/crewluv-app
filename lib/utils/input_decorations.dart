@@ -43,6 +43,44 @@ class AppInputDecoration{
       filled: true,
     );
   }
+  static InputDecoration circularFieldDecorationWithoutFocus(Widget? preIcon,String hintText,Widget? suffixIcon)
+  {
+    return InputDecoration(
+      contentPadding: EdgeInsets.symmetric(horizontal: 16,vertical: 20),
+      fillColor: AppColors.offWhite,
+      hintText: getTranslated(Get.context, hintText),
+      suffixIcon:suffixIcon !=null? Container(
+          margin: EdgeInsets.only(right: Get.width*0.03),
+          child: suffixIcon
+      ):null,
+      suffixIconConstraints: BoxConstraints(
+        maxHeight: Get.width*0.08,
+        maxWidth: Get.width*0.08,
+      ),
+      hintStyle: AppTextStyle.montserrat(AppColors.greyText, Get.width*0.04, FontWeight.w400,),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
+        borderSide: BorderSide(color: AppColors.borderShadow),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
+        borderSide: BorderSide(color: AppColors.borderShadow),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
+        borderSide: BorderSide(color: AppColors.borderShadow),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
+        borderSide: BorderSide(color: AppColors.themeColor),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
+        borderSide: BorderSide(color: AppColors.borderShadow),
+      ),
+      filled: true,
+    );
+  }
   static InputDecoration circularFieldDecorationSmall(Widget? preIcon,String hintText,Widget? suffixIcon)
   {
     return InputDecoration(

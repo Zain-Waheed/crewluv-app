@@ -18,7 +18,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'dashboard.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -47,13 +46,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                height: Get.height*0.4,
+                height: Get.height*0.38,
                 margin: EdgeInsets.symmetric(
-                    horizontal: Get.width * 0.01, vertical: Get.width * 0.02),
+                    horizontal: Get.width * 0.018, vertical: Get.width * 0.02),
                 padding: EdgeInsets.symmetric(
                     horizontal: Get.width * 0.07, vertical: Get.height * 0.02),
                 child: Stack(
-
                   children: [
                     Align(
                       alignment: Alignment.bottomCenter,
@@ -62,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         padding: EdgeInsets.symmetric(horizontal: Get.width*0.1),
                         decoration: BoxDecoration(
                           color: AppColors.themeColor,
-                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(30),bottomLeft: Radius.circular(30)),
+                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(40),bottomLeft: Radius.circular(30)),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -167,7 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Container(
                         height: Get.height*0.26,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
+                            borderRadius: BorderRadius.circular(50),
                             color: AppColors.whiteColor,
                             boxShadow: [
                               BoxShadow(
@@ -182,7 +180,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width:Get.width*0.3,
                               height: Get.height*0.2,
                               child: Stack(
-
                                 children: [
                                   Center(
                                     child: Container(
@@ -238,7 +235,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -275,7 +271,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              ),
                            ),
                          ),
-                         SizedBox(height: 2,),
+                         SizedBox(height: Get.width*0.01,),
                          Text(
                            getTranslated(context, "settings") ?? "",
                            style: AppTextStyle.montserrat(AppColors.shadedBlack,
@@ -287,7 +283,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                      ),
                      Column(
                        children: [
-                         SizedBox(height: 30,),
+                         SizedBox(height: Get.width*0.06,),
                          GestureDetector(
                            onTap: (){
                              Get.to(()=> const EditProfile());
@@ -314,7 +310,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                            ),
                          ),
 
-                         SizedBox(height: 2,),
+                         SizedBox(height: Get.width*0.01,),
                          Text(
                            getTranslated(context, "edit2") ?? "",
                            style: AppTextStyle.montserrat(AppColors.shadedBlack,
@@ -349,7 +345,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                              ),
                            ),
                          ),
-                         SizedBox(height: 2,),
+                         SizedBox(height: Get.width*0.01,),
                          Text(
                            getTranslated(context, "privacy2") ?? "",
                            style: AppTextStyle.montserrat(AppColors.shadedBlack,
@@ -395,7 +391,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   SizedBox(
                                     width: Get.width*0.01,
                                   ),
-                                  Text('intro Text',
+                                  Text('Intro Text',
                                     style: AppTextStyle.montserrat(
                                       AppColors.blackLite,
                                       Get.width*0.045,
@@ -466,7 +462,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               SizedBox(height: Get.height*0.15,)
-
             ],
           ),
         ),

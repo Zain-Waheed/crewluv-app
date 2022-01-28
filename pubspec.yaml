@@ -54,6 +54,11 @@ dependencies:
   emojis: ^0.9.9
   connectivity_plus: ^2.2.0
   draggable_scrollbar: ^0.1.0
+  flutter_google_places: ^0.3.0
+  flutter_masked_text2: ^0.9.1
+
+dependency_overrides:
+  rxdart: ^0.27.2
 
 
 dev_dependencies:

@@ -5,6 +5,7 @@ import 'package:amigos/ui/dashboard/edit_profile.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:amigos/utils/text_styles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,7 @@ class _EditGenderState extends State<EditGender> {
           color: AppColors.whiteColor,
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               width: Get.width*0.25,
@@ -131,7 +133,8 @@ class _EditGenderState extends State<EditGender> {
          AppButton(buttonText: 'save_changes', onpressed: (){
 
            Get.back();
-         }, width: Get.width*0.9, isWhite: false)
+         }, width: Get.width*0.9, isWhite: false),
+            SizedBox(height: Get.width*0.05 ,),
           ],
         ),
 

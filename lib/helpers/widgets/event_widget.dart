@@ -58,7 +58,7 @@ class _EventWidgetState extends State<EventWidget> {
                             widget.event.personalEvent==false?Get.to(()=> RestaurantProfile()):null;
                           },
                           child: Image.asset(
-                            AppImages.profile,
+                            widget.user.imagePath??"",
                             scale: 4,
                           ),
                         ),
@@ -77,18 +77,18 @@ class _EventWidgetState extends State<EventWidget> {
                                       Get.width * 0.04,
                                       FontWeight.w500),
                                 ),
-                                const Text(','),
-                                Text(
+                                widget.event.personalEvent? const Text(','):Text(''),
+                                widget.event.personalEvent? Text(
                                   widget.user.age.toString(),
                                   style: AppTextStyle.montserrat(
                                       AppColors.black3d,
                                       Get.width * 0.04,
                                       FontWeight.w500),
-                                ),
+                                ):Text(''),
                                 SizedBox(
                                   width: Get.width * 0.04,
                                 ),
-                                widget.user.isVerified && widget.event.personalEvent
+                                 widget.event.personalEvent
                                     ? Image.asset(
                                   AppImages.verified,
                                   scale: 3,
@@ -99,13 +99,14 @@ class _EventWidgetState extends State<EventWidget> {
                             SizedBox(
                               height: Get.width * 0.02,
                             ),
-                            widget.event.personalEvent?Row(
+                            widget.event.personalEvent?
+                            Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: Get.width * 0.028,
-                                  width: Get.width * 0.028,
+                                  height: Get.width * 0.02,
+                                  width: Get.width * 0.02,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: AppColors.greenActive,
@@ -160,12 +161,28 @@ class _EventWidgetState extends State<EventWidget> {
                           ],
                         ),
                         Spacer(),
-                        Image.asset(
-                          widget.event.personalEvent
-                              ? AppImages.privateEvent
-                              : AppImages.barIcon,
-                          scale: 3.5,
+                        Stack(
+                          children: [
+                            Image.asset(
+                              AppImages.prefrence,
+                              scale: 4.5,
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(left: 8,top: 10),
+                              child: Image.asset(
+                                widget.event.titleImage??"",
+                                scale:widget.event.personalEvent?3:4.5,
+                              ),
+                            )
+                          ],
                         ),
+                        // widget.event.personalEvent?
+                        // Image.asset(
+                        //   AppImages.privateEvent,
+                        //   scale: 3.5,
+                        // ):Image.asset(AppImages.barIcon,
+                        //   scale: 4.5,
+                        // ),
                       ],
                     ),
                     SizedBox(
@@ -258,22 +275,22 @@ class _EventWidgetState extends State<EventWidget> {
                         Stack(
                           children: [
                             CrewMembersWidget(margin: 0, image: AppImages.crew1),
-                            CrewMembersWidget(margin: 21, image: AppImages.crew2),
+                            CrewMembersWidget(margin: 18, image: AppImages.crew2),
                             Container(
-                                margin: EdgeInsets.only(left: 40, top: 5),
+                                margin: EdgeInsets.only(left: 34, top: 5,right: 7),
                                 decoration: BoxDecoration(
                                     color: AppColors.coalGrey,
                                     shape: BoxShape.circle,
                                     border:
                                     Border.all(color: AppColors.whiteColor)),
-                                height: 30,
-                                width: 30,
+                                height: 25,
+                                width: 25,
                                 child: Center(
                                   child: Text(
                                     "+${widget.event.maxFriends}",
                                     style: AppTextStyle.montserrat(
                                         AppColors.whiteColor,
-                                        Get.width * 0.037,
+                                        Get.width * 0.03,
                                         FontWeight.w500),
                                   ),
                                 )),
@@ -293,12 +310,17 @@ class _EventWidgetState extends State<EventWidget> {
                         onpressed: () {
                           pressed = true;
                           setState(() {});
+                          if(pressed==true)
+                            {
+                              widget.event.eventStatus =1;
+                            }
                         },
                         width: Get.width,
                         isWhite: pressed)
                         : AppButton(
                         buttonText: widget.event.entryType ?? '',
                         onpressed: () {
+                         Get.back();
                           Get.bottomSheet(TicketBuy());
                         },
                         width: Get.width,

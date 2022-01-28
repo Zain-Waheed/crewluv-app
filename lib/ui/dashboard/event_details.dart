@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:amigos/helpers/bottom_sheets/edit_gender_bottomsheet.dart';
 import 'package:amigos/helpers/bottom_sheets/ticketbuy_bottomsheet.dart';
+import 'package:amigos/ui/dashboard/all_events.dart';
+import 'package:amigos/ui/dashboard/sample_dashboard.dart';
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:amigos/helpers/widgets/app_button.dart';
 import 'package:amigos/helpers/widgets/crew_members_widget.dart';
@@ -30,8 +32,8 @@ import 'package:provider/provider.dart';
 
 class EventDetails extends StatefulWidget {
   int index;
-
-  EventDetails({Key? key, required this.index}) : super(key: key);
+  bool commingFromList;
+  EventDetails({Key? key, required this.index, this.commingFromList=false}) : super(key: key);
 
   @override
   _EventDetailsState createState() => _EventDetailsState();
@@ -87,349 +89,252 @@ class _EventDetailsState extends State<EventDetails> {
             preferredSize: Size.fromHeight(Get.width * 0.17),
             child: CustomAppBar(
               function: () {
-                Get.back();
+                if(widget.commingFromList==true){
+                  Get.to(DashBoard(comingFromList: true,));
+                }else{
+                  Get.back();
+                }
+
               },
               title: "event_details",
               backButton: true,
                 suffix: widget.index==0?AppImages.share:null,
             ),
           ),
-          body: Scrollbar(
-            controller: scrollController,
-            interactive: true,
-            isAlwaysShown: true,
-            thickness: 5,
-            radius: Radius.circular(10),
-            child: SingleChildScrollView(
-              controller: scrollController,
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  widget.index == 1 && provider.events[0].personalEvent == true
-                      ? SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+          body: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                statuses(provider),
+            SizedBox(
+              height: Get.height * 0.01,
+            ),
+                Center(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 15),
+                    decoration: BoxDecoration(
+                        color: AppColors.whiteColor,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                              color: AppColors.opacBlack,
+                              offset: Offset(0, 2),
+                              blurRadius: 5)
+                        ]
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        provider.events[0].stories.isEmpty
-                            ? GestureDetector(
-                          onTap: () {
-                            pickFile(provider);
-                          },
-                          child: Stack(
-                            children: [
-                              Image.asset(
-                                AppImages.profileImage,
-                                height: Get.width * 0.22,
-                                width: Get.width * 0.22,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width:Get.width*0.13,
+                              height: Get.width*0.13,
+                              child: Image.asset(AppImages.notification1,fit: BoxFit.fill,),
+                              padding: EdgeInsets.all(1),
+                              decoration: BoxDecoration(
+                                border: Border.all(color:AppColors.themeColor),
+                                shape: BoxShape.circle,
                               ),
-                              Visibility(
-                                child: Positioned(
-                                  right: 2,
-                                  bottom: 12,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: AppColors.themeColor,
+                            ),
+                            SizedBox(
+                              width: Get.width * 0.02,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      provider.users[0].name ?? "",
+                                      style: AppTextStyle.montserrat(
+                                          AppColors.black3d,
+                                          Get.width * 0.04,
+                                          FontWeight.w500),
                                     ),
-                                    child: Icon(
-                                      Icons.add,
-                                      color: AppColors.whiteColor,
+                                    const Text(', '),
+                                    Text(
+                                      provider.users[0].age.toString(),
+                                      style: AppTextStyle.montserrat(
+                                          AppColors.black3d,
+                                          Get.width * 0.04,
+                                          FontWeight.w500),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      width: Get.width * 0.02,
+                                    ),
+                                    provider.users[0].isVerified
+                                        ? Image.asset(
+                                      AppImages.verified,
+                                      scale: 3,
+                                    )
+                                        : SizedBox(),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                        )
-                            : GestureDetector(
-                          onTap: () {
-                            Get.to(StoriesScreen());
-                          },
-                          child: Container(
-                            height: Get.height * 0.12,
-                            width: Get.width * 0.15,
-                            padding: EdgeInsets.all(2),
-                            margin: EdgeInsets.symmetric(
-                                horizontal: Get.width * 0.015),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: AppColors.themeColor,
-                                  width: 2),
-                              color: AppColors.white,
+                                SizedBox(
+                                  height: Get.width * 0.02,
+                                ),
+                                Row(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      AppImages.locationEvent,
+                                      scale: 3,
+                                    ),
+                                    SizedBox(
+                                      width: Get.width * 0.01,
+                                    ),
+                                    Text(
+                                      provider.users[0].distance.toString(),
+                                      style: AppTextStyle.montserrat(
+                                          AppColors.shadedBlack,
+                                          Get.width * 0.035,
+                                          FontWeight.w400),
+                                    ),
+                                    Text(
+                                      getTranslated(
+                                        context,
+                                        "miles_away",
+                                      ) ??
+                                          "",
+                                      style: AppTextStyle.montserrat(
+                                          AppColors.shadedBlack,
+                                          Get.width * 0.035,
+                                          FontWeight.w400),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                            child: Image.asset(
-                              AppImages.person2,
-                              fit: BoxFit.contain,
-                              height: Get.width * 0.23,
-                              width: Get.width * 0.23,
-                              scale: 0.1,
+                            Spacer(),
+                            Image.asset(
+                              AppImages.privateEvent, scale: 4,
                             ),
-                          ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.05,
+                        ),
+                        Text(
+                          provider.events[0].title ?? "",
+                          style: AppTextStyle.montserrat(AppColors.black,
+                              Get.width * 0.04, FontWeight.w700),
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.01,
                         ),
                         Row(
-                          children: List.generate(
-                            10,
-                                (index) =>
-                                GestureDetector(
-                                  onTap:(){
-                                    Get.to(StoriesScreen());
-                                  },
-                                  child: Container(
-                                    height: Get.height * 0.12,
-                                    width: Get.width * 0.15,
-                                    padding: EdgeInsets.all(2),
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: Get.width * 0.015),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                          color: AppColors.themeColor,
-                                          width: 2),
-                                      color: AppColors.white,
-                                    ),
-                                    child: Image.asset(
-                                      AppImages.notification1,
-                                      fit: BoxFit.contain,
-                                      height: Get.width * 0.23,
-                                      width: Get.width * 0.23,
-                                      scale: 0.1,
-                                    ),
-                                  ),
-                                ),
-                          ),
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(width: Get.width*0.02,),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: Get.width * 0.02,
+                                  horizontal: Get.width * 0.03),
+                              margin: EdgeInsets.symmetric(
+                                  vertical: Get.width * 0.02),
+                              decoration: BoxDecoration(
+                                color: AppColors.themeColor.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Text(
+                                provider.events[0].day ?? "",
+                                style: AppTextStyle.montserrat(
+                                    AppColors.themeColor,
+                                    Get.width * 0.035,
+                                    FontWeight.w700),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: Get.width * 0.02,
+                                  horizontal: Get.width * 0.03),
+                              margin: EdgeInsets.symmetric(
+                                  vertical: Get.width * 0.02,
+                                  horizontal: Get.width * 0.02),
+                              decoration: BoxDecoration(
+                                color: AppColors.themeColor.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Text(
+                                "${provider.events[0].startTime}-${provider
+                                    .events[0].endTime} ",
+                                style: AppTextStyle.montserrat(
+                                    AppColors.themeColor,
+                                    Get.width * 0.035,
+                                    FontWeight.w700),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: Get.width * 0.02,
+                                  horizontal: Get.width * 0.03),
+                              margin: EdgeInsets.symmetric(
+                                  vertical: Get.width * 0.02),
+                              decoration: BoxDecoration(
+                                color: AppColors.themeColor.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Text(
+                                "${provider.events[0]
+                                    .distance}  ${getTranslated(
+                                    context, "km")}",
+                                style: AppTextStyle.montserrat(
+                                    AppColors.themeColor,
+                                    Get.width * 0.035,
+                                    FontWeight.w700),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  )
-                      : SizedBox(),
-                  SizedBox(
-                    height: Get.height * 0.01,
-                  ),
-                  Center(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 15),
-                      decoration: BoxDecoration(
-                          color: AppColors.whiteColor,
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
-                            BoxShadow(
-                                color: AppColors.opacBlack,
-                                offset: Offset(0, 2),
-                                blurRadius: 5)
-                          ]),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width:Get.width*0.13,
-                                height: Get.width*0.13,
-                                child: Image.asset(AppImages.notification1,fit: BoxFit.fill,),
-                                padding: EdgeInsets.all(1),
-                                decoration: BoxDecoration(
-                                  border: Border.all(color:AppColors.themeColor),
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              SizedBox(
-                                width: Get.width * 0.02,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        provider.users[0].name ?? "",
-                                        style: AppTextStyle.montserrat(
-                                            AppColors.black3d,
-                                            Get.width * 0.04,
-                                            FontWeight.w500),
-                                      ),
-                                      const Text(', '),
-                                      Text(
-                                        provider.users[0].age.toString(),
-                                        style: AppTextStyle.montserrat(
-                                            AppColors.black3d,
-                                            Get.width * 0.04,
-                                            FontWeight.w500),
-                                      ),
-                                      SizedBox(
-                                        width: Get.width * 0.02,
-                                      ),
-                                      provider.users[0].isVerified
-                                          ? Image.asset(
-                                        AppImages.verified,
-                                        scale: 3,
-                                      )
-                                          : SizedBox(),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: Get.width * 0.02,
-                                  ),
-                                  Row(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Image.asset(
-                                        AppImages.locationEvent,
-                                        scale: 3,
-                                      ),
-                                      SizedBox(
-                                        width: Get.width * 0.01,
-                                      ),
-                                      Text(
-                                        provider.users[0].distance.toString(),
-                                        style: AppTextStyle.montserrat(
-                                            AppColors.shadedBlack,
-                                            Get.width * 0.035,
-                                            FontWeight.w400),
-                                      ),
-                                      Text(
-                                        getTranslated(
-                                          context,
-                                          "miles_away",
-                                        ) ??
-                                            "",
-                                        style: AppTextStyle.montserrat(
-                                            AppColors.shadedBlack,
-                                            Get.width * 0.035,
-                                            FontWeight.w400),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Spacer(),
-                              Image.asset(
-                                AppImages.privateEvent, scale: 4,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: Get.width * 0.05,
-                          ),
-                          Text(
-                            provider.events[0].title ?? "",
-                            style: AppTextStyle.montserrat(AppColors.black,
-                                Get.width * 0.04, FontWeight.w700),
-                          ),
-                          SizedBox(
-                            height: Get.width * 0.01,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(width: Get.width*0.02,),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: Get.width * 0.02,
-                                    horizontal: Get.width * 0.03),
-                                margin: EdgeInsets.symmetric(
-                                    vertical: Get.width * 0.02),
-                                decoration: BoxDecoration(
-                                  color: AppColors.themeColor.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: Text(
-                                  provider.events[0].day ?? "",
-                                  style: AppTextStyle.montserrat(
-                                      AppColors.themeColor,
-                                      Get.width * 0.035,
-                                      FontWeight.w700),
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: Get.width * 0.02,
-                                    horizontal: Get.width * 0.03),
-                                margin: EdgeInsets.symmetric(
-                                    vertical: Get.width * 0.02,
-                                    horizontal: Get.width * 0.02),
-                                decoration: BoxDecoration(
-                                  color: AppColors.themeColor.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: Text(
-                                  "${provider.events[0].startTime}-${provider
-                                      .events[0].endTime} ",
-                                  style: AppTextStyle.montserrat(
-                                      AppColors.themeColor,
-                                      Get.width * 0.035,
-                                      FontWeight.w700),
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: Get.width * 0.02,
-                                    horizontal: Get.width * 0.03),
-                                margin: EdgeInsets.symmetric(
-                                    vertical: Get.width * 0.02),
-                                decoration: BoxDecoration(
-                                  color: AppColors.themeColor.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: Text(
-                                  "${provider.events[0]
-                                      .distance}  ${getTranslated(
-                                      context, "km")}",
-                                  style: AppTextStyle.montserrat(
-                                      AppColors.themeColor,
-                                      Get.width * 0.035,
-                                      FontWeight.w700),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: Get.width * 0.01,
-                          ),
-                          Text(
-                            provider.events[0].description ?? "",
-                            style: AppTextStyle.montserrat(AppColors.lightGrey,
-                                Get.width * 0.035, FontWeight.w400),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(
-                            height: Get.width * 0.04,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                getTranslated(context, widget.index!=2?'my_crew':"joined") ?? '',
-                                style: AppTextStyle.montserrat(AppColors.black,
-                                    Get.width * 0.04, FontWeight.w700),
-                              ),
-                              Spacer(),
-                              Stack(
+                        SizedBox(
+                          height: Get.width * 0.01,
+                        ),
+                        Text(
+                          provider.events[0].description ?? "",
+                          style: AppTextStyle.montserrat(AppColors.lightGrey,
+                              Get.width * 0.035, FontWeight.w400),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(
+                          height: Get.width * 0.04,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              getTranslated(context, widget.index!=2?'my_crew':"joined") ?? '',
+                              style: AppTextStyle.montserrat(AppColors.black,
+                                  Get.width * 0.04, FontWeight.w700),
+                            ),
+                            Spacer(),
+                            Padding(
+                              padding: EdgeInsets.only(right: 8.0),
+                              child: Stack(
                                 children: [
                                   CrewMembersWidget(
                                       margin: 0, image: AppImages.crew1),
                                   CrewMembersWidget(
-                                      margin: 25, image: AppImages.crew2),
+                                      margin: Get.width*0.04, image: AppImages.crew2),
                                   Container(
                                       margin:
-                                      EdgeInsets.only(left: 50, top: 5),
+                                      EdgeInsets.only(left: Get.width*0.08, top: 5),
                                       decoration: BoxDecoration(
                                           color: AppColors.coalGrey,
                                           shape: BoxShape.circle,
                                           border: Border.all(
                                               color: AppColors.whiteColor)),
-                                      height: 35,
-                                      width: 35,
+                                      height: Get.width*0.08,
+                                      width: Get.width*0.08,
                                       child: Center(
                                         child: Text(
                                           "+${provider.events[0].maxFriends}",
@@ -441,38 +346,43 @@ class _EventDetailsState extends State<EventDetails> {
                                       )),
                                 ],
                               ),
-                              Text(
-                                  "${provider.events[0]
-                                      .withFriends}${getTranslated(
-                                      context, 'of')} ${provider.events[0]
-                                      .maxFriends} ${getTranslated(
-                                      context, "friends")} "),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                            Text(
+                                "${provider.events[0]
+                                    .withFriends}${getTranslated(
+                                    context, 'of')} ${provider.events[0]
+                                    .maxFriends} ${getTranslated(
+                                    context, "friends")} "),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: Get.width * 0.05,
-                  ),
-                  widget.index != 2
-                      ? AppButton(
-                      buttonText: widget.index == 0 && provider.events[0].personalEvent
-                          ? 'view_request'
-                          : "view_tickets",
-                      onpressed: () {
-                        widget.index == 0
-                            ? Get.to(() => Profiles())
-                            : Get.dialog(TicketDialogBox());
-                      },
-                      width: Get.width,
-                      isWhite: true)
-                      : SizedBox(),
-                  SizedBox(
-                    height: Get.height * 0.05,
-                  ),
-                  widget.index!=2?Stack(
+                ),
+                SizedBox(
+                  height: Get.width * 0.05,
+                ),
+                widget.index != 2
+                    ? AppButton(
+                    buttonText: widget.index == 0 && provider.events[0].personalEvent
+                        ? 'view_request'
+                        : "view_tickets",
+                    onpressed: () {
+                      widget.index == 0
+                          ? Get.to(() => Profiles())
+                          : Get.dialog(TicketDialogBox());
+                    },
+                    width: Get.width,
+                    isWhite: true)
+                    : SizedBox(),
+                SizedBox(
+                  height: Get.height * 0.05,
+                ),
+                widget.index!=2?GestureDetector(
+                  onTap:(){
+                    Get.to(DrawMapRoute());
+                  },
+                  child: Stack(
                     children: [
                       Container(
                         height: Get.height * 0.2,
@@ -505,9 +415,9 @@ class _EventDetailsState extends State<EventDetails> {
                         ),
                       ),
                     ],
-                  ):SizedBox()
-                ],
-              ),
+                  ),
+                ):SizedBox()
+              ],
             ),
           ),
           bottomNavigationBar: widget.index != 1
@@ -542,5 +452,107 @@ class _EventDetailsState extends State<EventDetails> {
       });
     }
     );
+  }
+
+  statuses(DashboardProvider provider) {
+    return
+    widget.index == 1 && provider.events[0].personalEvent == true
+        ? SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          provider.events[0].stories.isEmpty
+              ? GestureDetector(
+            onTap: () {
+              pickFile(provider);
+            },
+            child: Stack(
+              children: [
+                Image.asset(
+                  AppImages.profileImage,
+                  height: Get.width * 0.22,
+                  width: Get.width * 0.22,
+                ),
+                Visibility(
+                  child: Positioned(
+                    right: 2,
+                    bottom: 12,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.themeColor,
+                      ),
+                      child: Icon(
+                        Icons.add,
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+              : GestureDetector(
+            onTap: () {
+              Get.to(StoriesScreen());
+            },
+            child: Container(
+              height: Get.height * 0.12,
+              width: Get.width * 0.15,
+              padding: EdgeInsets.all(2),
+              margin: EdgeInsets.symmetric(
+                  horizontal: Get.width * 0.015),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                    color: AppColors.themeColor,
+                    width: 2),
+                color: AppColors.white,
+              ),
+              child: Image.asset(
+                AppImages.person2,
+                fit: BoxFit.contain,
+                height: Get.width * 0.23,
+                width: Get.width * 0.23,
+                scale: 0.1,
+              ),
+            ),
+          ),
+          Row(
+            children: List.generate(
+              10,
+                  (index) =>
+                  GestureDetector(
+                    onTap:(){
+                      Get.to(StoriesScreen());
+                    },
+                    child: Container(
+                      height: Get.height * 0.12,
+                      width: Get.width * 0.15,
+                      padding: EdgeInsets.all(2),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: Get.width * 0.015),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: AppColors.themeColor,
+                            width: 2),
+                        color: AppColors.white,
+                      ),
+                      child: Image.asset(
+                        AppImages.notification1,
+                        fit: BoxFit.contain,
+                        height: Get.width * 0.23,
+                        width: Get.width * 0.23,
+                        scale: 0.1,
+                      ),
+                    ),
+                  ),
+            ),
+          ),
+        ],
+      ),
+    ) : SizedBox();
   }
 }

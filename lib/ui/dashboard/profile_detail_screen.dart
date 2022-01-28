@@ -37,40 +37,35 @@ class _ProfileDetailState extends State<ProfileDetail> {
             child: Padding(
               padding: EdgeInsets.only(
                 top: Get.width * 0.099, left: Get.width * 0.06,),
-              child: FloatingActionButton(
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                child: Container(
-                  height: Get.height*0.05,
-                  width: Get.width*0.09,
-                  // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                  // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                            color: AppColors.black.withOpacity(0.5),
-                            offset: Offset(0, 1),
-                            blurRadius: 2)
-                      ]
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Padding(
-                      padding:  EdgeInsets.only(left: Get.width*0.01),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: AppColors.black,
-                        size: Get.width*0.04,
-                      ),
+              child:  Container(
+                height: Get.height*0.045,
+                width: Get.width*0.1,
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.black.withOpacity(0.5),
+                          offset: Offset(0, 1),
+                          blurRadius: 2)
+                    ]
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: AppColors.black,
+                      size: Get.width*0.045,
                     ),
                   ),
                 ),
-                onPressed: () {  },
               ),
             ),
           ),

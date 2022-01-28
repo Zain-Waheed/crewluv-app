@@ -51,11 +51,9 @@ class _EmailScreenState extends State<EmailScreen> {
                   controller: dashPro.emailController,
                   keyboardType: TextInputType.emailAddress,
                   focusNode: focus,
-                  onFieldSubmitted: (val){
-                    dashPro.setFocus();
-                  },
                   // autofocus: true,
                   onTap: (){
+
                     setState(() {
 
                     });
@@ -94,7 +92,7 @@ class _EmailScreenState extends State<EmailScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: Get.width * 0.15),
+                SizedBox(height: Get.width * 0.12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -131,7 +129,7 @@ class _EmailScreenState extends State<EmailScreen> {
                               AppColors.lightGrey, Get.width * 0.027, FontWeight.w400),
                         )),
                   ],
-                )
+                ),
               ],
             ),
           ),

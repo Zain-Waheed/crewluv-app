@@ -41,9 +41,9 @@ class _FaqsState extends State<Faqs> {
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
                    Container(
-                     height: Get.height*0.05,
-                     width: Get.width*0.09,
-                     // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                     height: Get.height*0.04,
+                     width: Get.width*0.095,
+                     margin: const EdgeInsets.symmetric(vertical: 10,),
                      // padding: EdgeInsets.only(top: 4,right: 4,bottom: 4),
                      alignment: Alignment.center,
                      decoration: BoxDecoration(
@@ -61,11 +61,11 @@ class _FaqsState extends State<Faqs> {
                          Get.back();
                        },
                        icon: Padding(
-                         padding:  EdgeInsets.only(left: Get.width*0.01),
+                         padding: const EdgeInsets.only(left: 6),
                          child: Icon(
                            Icons.arrow_back_ios,
                            color: AppColors.black,
-                           size: Get.width*0.04,
+                           size: Get.width*0.045,
                          ),
                        ),
                      ),
@@ -89,24 +89,23 @@ class _FaqsState extends State<Faqs> {
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
                    Text(getTranslated(context,'top_questions')??"",style: AppTextStyle.montserrat(AppColors.whiteColor, Get.width*0.04, FontWeight.w500),),
-                   Container(
-                     height: Get.height*0.07,
-                     width: Get.width*0.1,
-                     decoration: BoxDecoration(
-                         shape: BoxShape.rectangle,
-                         color: AppColors.whiteColor,
-                         borderRadius: BorderRadius.circular(12),
-                         boxShadow: [
-                           BoxShadow(
-                               color: AppColors.black.withOpacity(0.5), offset: Offset(0, 4), blurRadius: 5.0)
-                         ]
-                     ),
+                   GestureDetector(
+                     onTap: (){},
+                     child: Container(
+                       decoration: BoxDecoration(
+                           shape: BoxShape.rectangle,
+                           color: AppColors.whiteColor,
+                           borderRadius: BorderRadius.circular(12),
+                           boxShadow: [
+                             BoxShadow(
+                                 color: AppColors.black.withOpacity(0.5), offset: Offset(0, 4), blurRadius: 5.0)
+                           ]
+                       ),
 
-                     child: IconButton(
-
-                       onPressed: (){},
-                       icon:Icon(Icons.search_sharp,color: AppColors.black,size: Get.height*0.03,),
-
+                       child: Padding(
+                         padding: const EdgeInsets.all(4.0),
+                         child: Icon(Icons.search_sharp,color: AppColors.black,size: Get.height*0.03,),
+                       ),
                      ),
                    ),
 

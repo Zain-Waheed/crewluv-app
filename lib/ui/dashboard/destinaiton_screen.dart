@@ -1,10 +1,13 @@
 import 'dart:developer';
 import 'dart:typed_data';
 import 'package:amigos/providers/dashboard_provider.dart';
+import 'package:amigos/ui/auth/login_screen.dart';
+import 'package:amigos/ui/dashboard/ploylines_screens.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:get/get.dart';
 import 'package:location/location.dart' as loc;
 import 'dart:ui'as ui;
 import 'package:flutter/material.dart';
@@ -144,7 +147,8 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
     return
     Consumer<DashboardProvider>(builder:(context,provider,_){
       return Scaffold(
-        body: isLoading==true? SizedBox() :GoogleMap(
+        body: isLoading==true? SizedBox() :
+        GoogleMap(
           // polylines: Set<Polyline>.of(polylines.values),
           markers: getmarkers(provider),
           initialCameraPosition: _initialLocation,
@@ -157,6 +161,7 @@ class _DrawMapRouteState extends State<DrawMapRoute> {
             mapController = controller;
           },
           onTap: (latLng) {
+            Get.to(() => PolyLinesScreen());
           },
         ),
       );

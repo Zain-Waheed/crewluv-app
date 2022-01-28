@@ -29,10 +29,10 @@ class _SplashLogoScreenState extends State<SplashLogoScreen> with TickerProvider
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String? isLogin = prefs.getString("isLogin");
       if(isLogin=='true'){
-        Get.off(Login());
+        Get.offAll(Login());
       }else
         {
-          Get.off(OnBoarding());
+          Get.offAll(OnBoarding());
         }
     },
     );

@@ -97,7 +97,7 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                                   SizedBox(
                                     width: Get.width*0.01,
                                   ),
-                                  Text('intro Text',
+                                  Text('Intro Text',
                                     style: AppTextStyle.montserrat(
                                       AppColors.blackLite,
                                       Get.width*0.045,
@@ -130,8 +130,8 @@ class _GetPlanDialogBoxState extends State<GetPlanDialogBox> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(5, (index) => Container(
-                    width: pageIndex == index ? Get.width*0.09 : Get.width * 0.015,
-                    height:pageIndex == index ? Get.width*0.03:Get.width * 0.015 ,
+                    width: pageIndex == index ? Get.width*0.08 : Get.width * 0.015,
+                    height:pageIndex == index ? Get.width*0.02:Get.width * 0.015 ,
                     margin: const EdgeInsets.only(right: 3),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),

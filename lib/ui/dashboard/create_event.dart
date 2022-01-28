@@ -8,6 +8,8 @@ import 'package:amigos/models/event_type_model.dart';
 import 'package:amigos/providers/dashboard_provider.dart';
 import 'package:amigos/ui/auth/complete_profile_screen.dart';
 import 'package:amigos/ui/dashboard/event_specifications.dart';
+import 'package:amigos/ui/dashboard/live_map_locaion.dart';
+import 'package:amigos/ui/dashboard/ploylines_screens.dart';
 import 'package:amigos/utils/colors.dart';
 import 'package:amigos/utils/images.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -19,8 +21,10 @@ import 'package:amigos/utils/validation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:geolocator/geolocator.dart';
 
 class CreateEvent extends StatefulWidget {
   bool comingFromEdit;
@@ -35,9 +39,11 @@ class _CreateEventState extends State<CreateEvent> {
   GlobalKey<FormState> formKey =  GlobalKey<FormState>();
   final Geolocator geolocator = Geolocator();
   late Address address;
+  LatLng?  addressPoints;
   DateTime eventDateTime =DateTime.now();
-  String startDate = "Dec 12";
-  String endDate = "Dec 12";
+
+  String startDate = DateFormat('MMM dd').format(DateTime.now()).toString();
+  String endDate = DateFormat('MMM dd').format(DateTime.now()).toString();
   String startHour= '0';
   String endHour= '0';
   String startMinute= '0';
@@ -60,12 +66,11 @@ class _CreateEventState extends State<CreateEvent> {
        startDate = widget.editEventModel!.day??'';
        endDate =widget.editEventModel!.day??'';
        startHour = "${widget.editEventModel!.startTime![0]} ${widget.editEventModel!.startTime![1]}";
-       startMinute = "${widget.editEventModel!.startTime![3]}${widget.editEventModel!.startTime![4]}";
+       // startMinute = "${widget.editEventModel!.startTime![3]}${widget.editEventModel!.startTime![4]}";
        endHour ="${widget.editEventModel!.endTime![0]}${widget.editEventModel!.endTime![1]}";
-       endMinute ="${widget.editEventModel!.endTime![3]}${widget.editEventModel!.endTime![4]}";
+       // endMinute ="${widget.editEventModel!.endTime![3]}${widget.editEventModel!.endTime![4]}";
        alreadyWithController.text= widget.editEventModel!.withFriends.toString();
        maxController.text=widget.editEventModel!.maxFriends.toString();
-
      }
   }
 
@@ -75,7 +80,6 @@ class _CreateEventState extends State<CreateEvent> {
       return GestureDetector(
         onTap: (){
           FocusScope.of(context).requestFocus(new FocusNode());
-
         },
         child: Scaffold(
           backgroundColor: AppColors.backGround,
@@ -105,7 +109,6 @@ class _CreateEventState extends State<CreateEvent> {
                     model.endTime= endHour+':'+endMinute;
                     Get.to(()=>  EventSpecifications(model: model,comingFromdit: widget.comingFromEdit,));
                   }
-
                 },
               buttonText: 'Save_&_continue',
               isWhite: false,
@@ -133,8 +136,6 @@ class _CreateEventState extends State<CreateEvent> {
                                }
                                provider.eventTypes[index].isSelected= !isSelected;
                                provider.update();
-                               setState(() {
-                               });
                              },
                               child: MoodTypeWidget(type:provider.eventTypes[index])
                           );
@@ -164,11 +165,26 @@ class _CreateEventState extends State<CreateEvent> {
                     Text(getTranslated(context, 'location')??"",style: AppTextStyle.montserrat(AppColors.shadedBlack, Get.width*0.04, FontWeight.w500),),
                     SizedBox(height: Get.width*0.01,),
                     TextFormField(
-                      decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location', Icon(Icons.my_location,color: focus.hasFocus?AppColors.themeColor:AppColors.solidGrey,)),
+                      focusNode: focus,
+                      decoration: AppInputDecoration.circularFieldDecoration(null, 'live_location',
+                          Image.asset(AppImages.gps,color: AppColors.solidGrey,)
+                      ),
                       controller: locationController,
                       onTap: (){
-                        Fluttertoast.showToast(msg: getTranslated(context, 'fetching_location')??'');
-                        _getLocation();
+                        setState(() {
+
+                        });
+                        Get.to(
+                            AddPropertyLocationScreen()
+                           // LiveMapLocation()
+                        )?.then((value) async {
+
+                         //  addressPoints= value;
+                         await _getLocation(value!);
+                         //  await   _determinePosition(value);
+                        });
+                        // Fluttertoast.showToast(msg: getTranslated(context, 'fetching_location')??'');
+
                       },
                       readOnly: true,
                       validator: (value)=> FieldValidator.validateText(locationController.text),
@@ -192,7 +208,6 @@ class _CreateEventState extends State<CreateEvent> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-
                                   GestureDetector(
                                     onTap:() {
                                       _selectDate(context,1);
@@ -397,20 +412,67 @@ class _CreateEventState extends State<CreateEvent> {
     }
 
   }
-  _getLocation() async
+
+  // Future _determinePosition(LatLng latlongPoints) async {
+  //   bool serviceEnabled;
+  //   LocationPermission permission;
+  //
+  //   // Test if location services are enabled.
+  //   serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  //   if (!serviceEnabled) {
+  //     // Location services are not enabled don't continue
+  //     // accessing the position and request users of the
+  //     // App to enable the location services.
+  //     return Future.error('Location services are disabled.');
+  //   }
+  //
+  //   permission = await Geolocator.checkPermission();
+  //   if (permission == LocationPermission.denied) {
+  //     permission = await Geolocator.requestPermission();
+  //     if (permission == LocationPermission.denied) {
+  //       Fluttertoast.showToast(msg: getTranslated(context, 'location_permissions_are_denied')??'');
+  //       return Future.error('Location permissions are denied');
+  //     }
+  //   }
+  //
+  //   if (permission == LocationPermission.deniedForever) {
+  //     return Future.error(
+  //         'Location permissions are permanently denied, we cannot request permissions.');
+  //   }
+  //
+  //   // When we reach here, permissions are granted and we can
+  //   // continue accessing the position of the device.
+  //   GeoCode geoCode = GeoCode();
+  //   try {
+  //     address = await geoCode.reverseGeocoding(latitude: latlongPoints.latitude,longitude: latlongPoints.longitude);
+  //     print("city ${address.city}");
+  //     print("city ${address}");
+  //     locationController.clear();
+  //     locationController.text= address.countryName.toString() + address.city.toString() + address.streetAddress.toString();
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  //   setState(() {
+  //
+  //   });
+  // }
+
+  _getLocation(LatLng latlongPoints) async
   {
     GeoCode geoCode = GeoCode();
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     try {
-       address = await geoCode.reverseGeocoding(latitude: position.latitude,longitude: position.longitude);
+       address = await geoCode.reverseGeocoding(latitude: latlongPoints.latitude,longitude: latlongPoints.longitude);
        print("city ${address.city}");
        print("city ${address}");
+       locationController.clear();
        locationController.text= address.countryName.toString() + address.city.toString() + address.streetAddress.toString();
     } catch (e) {
       print(e);
     }
+    setState(() {
 
-
+    });
   }
 
 }
+

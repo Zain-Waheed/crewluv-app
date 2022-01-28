@@ -64,11 +64,30 @@ class _EnterDOBState extends State<EnterDOB> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    dateWidget(dashPro.dayController, "23", "day"),
+                    dateWidget(dashPro.dayController, "23", "day",FieldValidator.dayCheck,
+                      [
+                        FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                        LengthLimitingTextInputFormatter(2),
+                      ],
+                    ),
                     SizedBox(
                       width: Get.width * 0.04,
                     ),
-                    dateWidget(dashPro.monthController, "03", "month"),
+                    dateWidget(dashPro.monthController, "03", "month",FieldValidator.monthCheck,
+                      [
+                        FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                        LengthLimitingTextInputFormatter(2),
+                      ],
+                    ),
+                    SizedBox(
+                      width: Get.width * 0.04,
+                    ),
+                    // dateWidget(dashPro.yearController, "1998", "year",FieldValidator.yearCheck,
+                    //   [
+                    //     FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                    //     LengthLimitingTextInputFormatter(4),
+                    //   ],
+                    // ),
                     SizedBox(
                       width: Get.width * 0.04,
                     ),
@@ -90,9 +109,9 @@ class _EnterDOBState extends State<EnterDOB> {
                               FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                               LengthLimitingTextInputFormatter(4),
                             ],
-                            focusNode: focus,
-                            autofocus: true,
-                            validator: (value) => FieldValidator.dateCheck(dashPro.yearController.text),
+                            // focusNode: focus,
+                            // autofocus: true,
+                            validator: (value) => FieldValidator.yearCheck(dashPro.yearController.text),
                             autovalidateMode: AutovalidateMode.onUserInteraction,
                             controller: dashPro.yearController,
                             keyboardType:
@@ -167,6 +186,8 @@ class _EnterDOBState extends State<EnterDOB> {
   controller,
     String hint,
     String text,
+  String? Function(String?)? validation,
+  List<TextInputFormatter>?  formatters,
   ) {
     return Column(
       children: [
@@ -179,17 +200,18 @@ class _EnterDOBState extends State<EnterDOB> {
           ),
         ),
         Container(
-          width: Get.width * 0.15,
+          width: Get.width * 0.2,
           margin: EdgeInsets.only(top: Get.height * 0.01),
           child: TextFormField(
             textInputAction: TextInputAction.next,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp('[0-9]')),
-              LengthLimitingTextInputFormatter(2),
-            ],
+            inputFormatters: formatters,
             autofocus: true,
-            // validator: (value) => FieldValidator.dateCheck(controller.text), autovalidateMode: AutovalidateMode.onUserInteraction,
+            // focusNode: focus,
+            // validator: (value) => FieldValidator.dateCheck(controller.text),
+            // autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller,
+            validator: validation,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             keyboardType: TextInputType.numberWithOptions(decimal: true),
             textAlign: TextAlign.center,
             decoration: InputDecoration(

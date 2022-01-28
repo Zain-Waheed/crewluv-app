@@ -31,9 +31,13 @@ class _ListViewScreenState extends State<ListViewScreen> {
                   children:
                   List.generate(provider.events.length, (index) => GestureDetector(
                       onTap: (){
-                        Get.dialog(EventWidget(user: provider.users.first, event :provider.events[index] ));
+                        Get.dialog(
+                            EventWidget(user: provider.users[index], event :provider.events[index]
+                            )
+                        );
                       },
-                      child: EventDescriptionWidget(model: provider.events[index],titleImage: true,))),
+                      child: EventDescriptionWidget(model: provider.events[index],titleImage: true,)
+                  )),
 
               ):EmptyScreenWidget(image: AppImages.noEvent, title: 'no_event'),
             ),

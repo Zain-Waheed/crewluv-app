@@ -141,7 +141,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   SizedBox(
                                     width: Get.height*0.005,
                                   ),
-                                  Text('intro Text',
+                                  Text('Intro Text',
                                     style: AppTextStyle.montserrat(
                                       AppColors.blackLite,
                                       Get.width*0.045,
